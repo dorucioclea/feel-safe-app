@@ -47,7 +47,7 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "with": "src/environments/environment.production.ts"
                 }
               ],
               "optimization": true,
@@ -67,6 +67,22 @@
                 }
               ]
             },
+            "hacking": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hacking.ts"
+                }
+              ]
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ]
+            },
             "ci": {
               "progress": false
             }
@@ -80,6 +96,12 @@
           "configurations": {
             "production": {
               "browserTarget": "app:build:production"
+            },
+            "hacking": {
+              "browserTarget": "app:build:hacking"
+            },
+            "staging": {
+              "browserTarget": "app:build:staging"
             },
             "ci": {
               "progress": false
@@ -136,6 +158,12 @@
           "configurations": {
             "production": {
               "browserTarget": "app:build:production"
+            },
+            "hacking": {
+              "browserTarget": "app:build:hacking"
+            },
+            "staging": {
+              "browserTarget": "app:build:staging"
             }
           }
         },
@@ -149,6 +177,14 @@
             "production": {
               "cordovaBuildTarget": "app:ionic-cordova-build:production",
               "devServerTarget": "app:serve:production"
+            },
+            "hacking": {
+              "cordovaBuildTarget": "app:ionic-cordova-build:hacking",
+              "devServerTarget": "app:serve:hacking"
+            },
+            "staging": {
+              "cordovaBuildTarget": "app:ionic-cordova-build:staging",
+              "devServerTarget": "app:serve:staging"
             }
           }
         }

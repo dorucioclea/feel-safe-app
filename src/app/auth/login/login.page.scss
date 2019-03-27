@@ -1,0 +1,33 @@
+@import 'src/helpers';
+
+ion-button {
+  display: block;
+  width: 225px;
+  margin: 0 auto 12px;
+
+  .button-inner {
+    align-items: flex-start;
+  }
+
+  app-svg-icon {
+    margin-right: var(--proto-space-s);
+    font-size: 24px;
+  }
+}
+
+.proto-gradient {
+  @include aspect-ratio(375, 325);
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  margin-top: calc(0px - var(--offset-top));
+  background: var(--proto-gradient);
+
+  img {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    max-width: none;
+  }
+}

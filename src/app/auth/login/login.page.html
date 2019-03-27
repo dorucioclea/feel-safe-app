@@ -1,0 +1,60 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-title>{{ 'VIEW.LOGIN.TITLE' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <div class="login-content">
+    <div class="submit-form-wrapper">
+      <div class="facebook-button-wrapper">
+        <ion-button class="proto-button facebook" mode="ios" block (click)="loginWithFacebook()">
+          <span class="proto-button__content" slot="start">
+            <app-svg-icon name="social-facebook"></app-svg-icon>
+            {{ 'BUTTON.LOGIN_FACEBOOK' | translate }}
+          </span></ion-button>
+        <ion-button class="proto-button twitter" mode="ios" (click)="loginWithTwitter()">
+          <span class="proto-button__content" slot="start">
+            <app-svg-icon name="social-twitter"></app-svg-icon>
+            {{ 'BUTTON.LOGIN_TWITTER' | translate }}
+          </span>
+        </ion-button>
+      </div>
+      <form class="submit-form" novalidate [formGroup]="loginForm" (ngSubmit)="login()" [ngClass]="{ 'is-disabled': isLoading }">
+        <ion-list mode="ios" class="proto-input-list">
+          <div class="form-divider">
+            <span class="form-divider__text">{{ 'TERM.OR' | translate }}</span>
+          </div>
+          <ion-item mode="ios" class="proto-input">
+            <ion-label mode="ios" stacked>{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
+            <ion-input mode="ios" type="email" value="" formControlName="email"></ion-input>
+          </ion-item>
+          <ion-item mode="ios" class="proto-input">
+            <ion-label mode="ios" stacked>{{ 'INPUT.LABEL.PASSWORD' | translate }}</ion-label>
+            <ion-input mode="ios" type="password" value="" formControlName="password"></ion-input>
+          </ion-item>
+          <div class="submit-form__cta">
+            <ion-button class="button-cta" [disabled]="!formIsValid() || isLoading"
+              (click)="login()">
+              {{ 'BUTTON.LOGIN' | translate }}
+            </ion-button>
+          </div>
+        </ion-list>
+      </form>
+      <div class="form-footer-buttons">
+        <ion-button class="button-cta" color="dark" clear small (click)="openPasswordResetPage();" [disabled]="isLoading">
+          {{ 'BUTTON.PASSWORD_FORGOTTEN' | translate }}
+        </ion-button>
+      </div>
+    </div>
+    <div class="registration-block">
+      <div class="form-divider">
+        <span class="form-divider__text">{{ 'VIEW.LOGIN.NOT_REGISTERED_YET' | translate }}</span>
+      </div>
+      <div padding-horizontal>
+        <ion-button block color="favorite" class="button-cta" routerLink="/register" [disabled]="isLoading">
+          {{ 'BUTTON.REGISTER' | translate }}
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

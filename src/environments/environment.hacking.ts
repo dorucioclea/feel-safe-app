@@ -3,4 +3,5 @@ export const environment = {
   name: 'hacking',
   apiBaseUrl: 'http://blueprint.hacking',
   uploadWebFallbackImage: '',
+  facebookAppId: '178987009370996',
 };

@@ -1,0 +1,36 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <proto-back-button defaultHref="login"></proto-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'VIEW.REGISTER.TITLE' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="submit-form" novalidate [formGroup]="registerForm" (ngSubmit)="register()" [ngClass]="{ 'is-disabled': isLoading }">
+    <ion-list mode="ios" class="proto-input-list">
+      <ion-item mode="ios" class="proto-input">
+        <ion-label mode="ios" stacked>{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
+        <ion-input mode="ios" type="email" value="" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item mode="ios" class="proto-input">
+        <ion-label mode="ios" stacked>{{ 'INPUT.LABEL.PASSWORD' | translate }}</ion-label>
+        <ion-input mode="ios" type="password" value="" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item class="proto-input" text-wrap margin-top no-lines>
+        <ion-label handle-internal-links [innerHTML]="'INPUT.LABEL.PRIVACY_CONSENT' | translate"></ion-label>
+        <ion-toggle formControlName="privacyConsent"></ion-toggle>
+      </ion-item>
+      <ion-item class="proto-input" text-wrap margin-top no-lines>
+        <ion-label handle-internal-links [innerHTML]="'INPUT.LABEL.TERMS_CONSENT' | translate"></ion-label>
+        <ion-toggle formControlName="termsConsent"></ion-toggle>
+      </ion-item>
+      <div class="submit-form__cta">
+        <ion-button color="favorite" color="dark" class="button-cta" [disabled]="!formIsValid() || isLoading" (click)="register()">
+          {{ 'BUTTON.REGISTER' | translate }}
+        </ion-button>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

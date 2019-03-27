@@ -9,7 +9,7 @@ export class C {
   public static ENV = environment.name;
 
   public static STORAGE_PREFIX_SEPARATOR = 'ಠ_ಠ';
-  public static STORAGE_APP_PREFIX = 'fabvote';
+  public static STORAGE_APP_PREFIX = 'blueprint';
   public static STORAGE_PREFIX = `${C.STORAGE_APP_PREFIX}-${environment.name}${C.STORAGE_PREFIX_SEPARATOR}`;
 
   // for non-cordova platforms

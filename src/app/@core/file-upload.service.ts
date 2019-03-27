@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FileTransfer, FileTransferObject, FileUploadOptions } from '@ionic-native/file-transfer/ngx';
 import { HttpClient } from '@angular/common/http';
 
-// import { AuthService } from '../auth/shared/auth.service'; // TODO: re-add auth service
+import { AuthService } from '../auth/shared/auth.service';
 import { C } from '../@shared/constants';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { C } from '../@shared/constants';
 })
 export class FileUploadService {
   constructor(
-    // private authService: AuthService,
+    private authService: AuthService,
     private fileTransfer: FileTransfer,
     private http: HttpClient,
   ) {}
@@ -25,7 +25,7 @@ export class FileUploadService {
       fileKey: 'file',
       fileName: fileName,
       headers: {
-        // Authorization: this.authService.getAccessToken().id,
+        Authorization: this.authService.getAccessToken().id,
       },
     }
 

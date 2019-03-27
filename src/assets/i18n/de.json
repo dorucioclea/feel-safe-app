@@ -1,9 +1,29 @@
 {
   "BUTTON": {
     "CONTINUE": "Weiter",
-    "SKIP": "Überspringen"
+    "LOGIN": "Login",
+    "LOGIN_FACEBOOK": "Mit Facebook einloggen",
+    "LOGIN_TWITTER": "Mit Twitter einloggen",
+    "PASSWORD_FORGOTTEN": "Passwort vergessen",
+    "SKIP": "Überspringen",
+    "REGISTER": "Registrieren"
+  },
+  "INPUT": {
+    "LABEL": {
+      "EMAIL": "E-Mail",
+      "PASSWORD": "Passwort",
+      "PRIVACY_CONSENT": "Ich habe die <a href=\"AgreementPage?agreementType=privacy\">Datenschutzbestimmungen</a> gelesen und akzeptiere diese.",
+      "TERMS_CONSENT": "Ich habe die <a href=\"AgreementPage?agreementType=terms\">Nutzungsbedingungen</a> gelesen und akzeptiere diese."
+    }
+  },
+  "TERM": {
+    "OR": "oder"
   },
   "VIEW": {
+    "LOGIN": {
+      "TITLE": "Login",
+      "NOT_REGISTERED_YET": "Noch nicht registriert?"
+    },
     "ONBOARDING": {
       "SLIDES": [
         {
@@ -23,6 +43,9 @@
         }
       ],
       "TITLE": "Onboarding"
+    },
+    "REGISTER": {
+      "TITLE": "Registrieren"
     }
   }
 }
