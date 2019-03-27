@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  name: 'development',
-  apiBaseUrl: 'https://blueprint-dev.prototype.berlin',
+  name: 'staging',
+  apiBaseUrl: 'https://blueprint-staging.prototype.berlin',
   uploadWebFallbackImage: '',
 };

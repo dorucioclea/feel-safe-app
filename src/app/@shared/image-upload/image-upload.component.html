@@ -1,0 +1,19 @@
+<div class="image-upload">
+  <app-proto-image [imageId]="imageId" imageType="default">
+    <div class="proto-image-action">
+      <ion-button *ngIf="imageId" class="delete-button" (click)="deleteImage()">
+        <app-svg-icon name="trash" slot="icon-only"></app-svg-icon>
+      </ion-button>
+      <div *ngIf="!imageId" class="get-image-buttons">
+        <ion-button class="button-cta" color="dark" mode="ios"
+          (click)="getImage('camera')">
+          {{ 'BUTTON.TAKE_PICTURE' | translate }}
+        </ion-button>
+        <ion-button class="button-cta" color="dark" mode="ios"
+          (click)="getImage('gallery')">
+          {{ 'BUTTON.SELECT_IMAGE' | translate }}
+        </ion-button>
+      </div>
+    </div>
+  </app-proto-image>
+</div>

@@ -1,0 +1,30 @@
+.delete-button {
+  position: absolute;
+  top: var(--proto-space-s);
+  right: var(--proto-space-s);
+  z-index: 10;
+  --background: var(--proto-color-grey-light);
+  --color: var(--proto-color-grey-dark);
+  --padding-start: 0;
+  --padding-end: 0;
+  width: var(--proto-space-l);
+  height:  var(--proto-space-l);
+  --border-radius: 50%;
+}
+
+.get-image-buttons {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+
+  .button-cta {
+    max-width: 70%;
+    margin: var(--proto-space) 0;
+  }
+}

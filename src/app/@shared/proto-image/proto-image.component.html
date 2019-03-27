@@ -1,0 +1,9 @@
+<div class="proto-image__inner"
+  [ngStyle]="{'background-image': placeholderImage ? 'url(' + placeholderImage + ')' : 'none'}"
+  [ngClass]="'proto-image-' + imageType">
+  <img class="proto-image-src"
+    #imageSrc
+    [attr.data-src]="largeImage || ''"/>
+  <ng-content select=".proto-image-content"></ng-content>
+  <ng-content select=".proto-image-action"></ng-content>
+</div>
