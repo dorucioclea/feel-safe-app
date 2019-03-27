@@ -3,17 +3,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { TabsPage } from './tabs.page';
-import { TabsPageRoutingModule } from './tabs.router.module';
+import { MainPage } from './main.page';
+import { MainPageRoutingModule } from './main.router.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TabsPageRoutingModule,
+    MainPageRoutingModule,
   ],
-  declarations: [TabsPage],
+  declarations: [MainPage],
 })
 // tslint:disable-next-line
-export class TabsPageModule {}
+export class MainPageModule {}

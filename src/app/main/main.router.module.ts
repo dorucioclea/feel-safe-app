@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TabsPage } from './tabs.page';
+
+import { MainPage } from './main.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
-    component: TabsPage,
+    path: 'main',
+    component: MainPage,
     children: [
       {
         path: 'tab1',
@@ -36,14 +37,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/main/tab1',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/main/tab1',
     pathMatch: 'full',
   },
 ];
@@ -55,4 +56,4 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 // tslint:disable-next-line
-export class TabsPageRoutingModule { }
+export class MainPageRoutingModule { }

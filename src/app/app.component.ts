@@ -23,7 +23,7 @@ export class AppComponent {
 
   public initializeApp() {
     this.handleConsole();
-    
+
     this.platform.ready().then(() => {
       this.setTranslateConfig();
       this.statusBar.styleDefault();
@@ -35,7 +35,7 @@ export class AppComponent {
     let lang = navigator.language.split('-')[0];
     lang = /(de|en)/gi.test(lang) ? lang : 'de';
 
-    this.translate.setDefaultLang('en');
+    this.translate.setDefaultLang('de');
     // We don't need language switch for this project yet
     // this.translate.use(lang);
     this.translate.use('de');
