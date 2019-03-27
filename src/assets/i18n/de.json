@@ -1,0 +1,28 @@
+{
+  "BUTTON": {
+    "CONTINUE": "Weiter",
+    "SKIP": "Überspringen"
+  },
+  "VIEW": {
+    "ONBOARDING": {
+      "SLIDES": [
+        {
+          "CONTENT": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "IMAGE": "empty_myfabs.png",
+          "TITLE": "Lorem ipsum dolor sit amet"
+        },
+        {
+          "CONTENT": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "IMAGE": "empty_follower.png",
+          "TITLE": "Lorem ipsum dolor sit amet"
+        },
+        {
+          "CONTENT": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "IMAGE": "empty_search.png",
+          "TITLE": "Lorem ipsum dolor sit amet"
+        }
+      ],
+      "TITLE": "Onboarding"
+    }
+  }
+}
