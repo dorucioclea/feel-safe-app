@@ -30,14 +30,9 @@ export class LoginPage implements OnInit {
   public ngOnInit() { }
 
   public login() {
-    console.log('LOGIN');
-    if (!this.loginForm.valid || this.isLoading) {
-      console.log('IF');
-      return;
-    }
+    if (!this.loginForm.valid || this.isLoading) { return; }
+    
     this.isLoading = true;
-
-    console.log('FOOOO');
 
     this.authService.login({
       email: this.loginForm.get('email').value.toLowerCase(),
