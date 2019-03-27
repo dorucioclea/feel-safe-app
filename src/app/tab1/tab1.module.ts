@@ -10,8 +10,9 @@ import { Tab1Page } from './tab1.page';
     IonicModule,
     CommonModule,
     FormsModule,
-    RouterModule.forChild([{ path: '', component: Tab1Page }])
+    RouterModule.forChild([{ path: '', component: Tab1Page }]),
   ],
-  declarations: [Tab1Page]
+  declarations: [Tab1Page],
 })
+// tslint:disable-next-line
 export class Tab1PageModule {}

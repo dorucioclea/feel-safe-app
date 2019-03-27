@@ -12,12 +12,20 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    IonicModule.forRoot(),
   ],
-  bootstrap: [AppComponent]
+  providers: [
+    SplashScreen,
+    StatusBar,
+    {
+      provide: RouteReuseStrategy,
+      useClass: IonicRouteStrategy,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
+// tslint:disable-next-line
 export class AppModule {}
