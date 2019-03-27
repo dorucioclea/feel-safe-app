@@ -74,4 +74,143 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /* ================================================== */
+  /*                                                    */
+  /*                   PROTO VARIABLES                  */
+  /*                                                    */
+  /* ================================================== */
+
+  // COLORS
+
+  --proto-color-grey-dark: #3c3c3c;
+  --proto-color-grey-semi: #9d9d9d;
+  --proto-color-grey-light: #f2f2f2;
+  --proto-color-white: #ffffff;
+  --proto-color-facebook: #3C5A99;
+  --proto-color-twitter: #1DA1F2;
+  --proto-color-line: #00C301;
+
+  --proto-gradient: linear-gradient(180deg, #606060 0%, #242A37 100%);
+
+  // TYPO
+
+  --proto-font-family-primary: 'Avenir Black', sans-serif;
+  --proto-font-family-secondary: 'Avenir Roman', sans-serif;
+
+  --proto-h1-font-family: var(--proto-font-family-primary);
+  --proto-h1-font-size: 40px;
+  --proto-h1-font-weight: 800;
+  --proto-h1-line-height: 1.5;
+
+  --proto-h2-font-family: var(--proto-font-family-secondary);
+  --proto-h2-font-size: 20px;
+  --proto-h2-font-weight: 400;
+  --proto-h2-line-height: 1.5;
+
+  --proto-h3-font-family: var(--proto-font-family-primary);
+  --proto-h3-font-size: 14px;
+  --proto-h3-font-weight: 800;
+  --proto-h3-line-height: 1.5;
+
+  --proto-input-font-family: var(--proto-font-family-secondary);
+  --proto-input-font-size: 16px;
+  --proto-input-font-weight: 400;
+  --proto-input-line-height: 1.5;
+
+  --proto-p-font-family: var(--proto-font-family-secondary);
+  --proto-p-font-size: 14px;
+  --proto-p-font-weight: 400;
+  --proto-p-line-height: 1.5;
+
+  --proto-small-font-family: var(--proto-font-family-secondary);
+  --proto-small-font-size: 12px;
+  --proto-small-font-weight: 400;
+  --proto-small-line-height: 1.5;
+
+  // SPACE
+
+  --proto-space: 16px;
+  --proto-space-xxs: 2px;
+  --proto-space-xs: 4px;
+  --proto-space-s: 8px;
+  --proto-space-m: 24px;
+  --proto-space-l: 32px;
+  --proto-space-xl: 40px;
+  --proto-space-xxl: 48px;
+  --proto-space-xxxl: 56px;
+
+  // BUTTONS
+
+  --proto-button-cta-border-radius: 50px;
+  --proto-button-cta-min-width: 225px;
+  --proto-button-cta-height: 50px;
+
+  // OTHER
+
+  --proto-border-radius: 4px;
+  --proto-border-radius-l: 6px;
+
+  --proto-main-segment-border-radius: 20px;
+  --proto-main-segment-width: 70px;
+  --proto-main-segment-height: 36px;
+
+  --proto-button-icon-size: 20px;
+
+  --proto-shadow-card: 0 0 40px 0 rgba(0,0,0,.23);
+  --proto-shadow-lightbox: 0 0 40px 0 rgba(0,0,0,.75);
+  --proto-image-ratio-default: 1.25;
 }
+
+// -------------------------------------
+//   Typo
+// -------------------------------------
+
+@function getFontValue($key, $value) {
+  @return map-get(map-get($font, $key), $value);
+}
+
+$font: (
+  h1: (
+    family: var(--proto-h1-font-family),
+    size: var(--proto-h1-font-size),
+    weight: var(--proto-h1-font-weight),
+    line-height: var(--proto-h1-line-height),
+  ),
+  h2: (
+    family: var(--proto-h2-font-family),
+    size: var(--proto-h2-font-size),
+    weight: var(--proto-h2-font-weight),
+    line-height: var(--proto-h2-line-height),
+  ),
+  h3: (
+    family: var(--proto-h3-font-family),
+    size: var(--proto-h3-font-size),
+    weight: var(--proto-h3-font-weight),
+    line-height: var(--proto-h3-line-height),
+  ),
+  cta: (
+    family: var(--proto-h2-font-family),
+    size: var(--proto-h2-font-size),
+    weight: var(--proto-h2-font-weight),
+    line-height: var(--proto-h2-line-height),
+  ),
+  input: (
+    family: var(--proto-input-font-family),
+    size: var(--proto-input-font-size),
+    weight: var(--proto-input-font-weight),
+    line-height: var(--proto-input-line-height),
+  ),
+  p: (
+    family: var(--proto-p-font-family),
+    size: var(--proto-p-font-size),
+    weight: var(--proto-p-font-weight),
+    line-height: var(--proto-p-line-height),
+  ),
+  small: (
+    family: var(--proto-small-font-family),
+    size: var(--proto-small-font-size),
+    weight: var(--proto-small-font-weight),
+    line-height: var(--proto-small-line-height),
+  ),
+);

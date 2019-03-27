@@ -1,0 +1,187 @@
+.proto-input-list {
+  width: 100%;
+}
+
+.proto-input {
+  --min-height: 50px;
+  --border-radius: 4px;
+  --border-width: 2px;
+  --border-style: solid;
+  --border-color: #CCC;
+  --color: var(--proto-color-grey-dark);
+  --font-family: #{getFontValue(input, family)};
+
+  margin-bottom: var(--proto-space-s);
+  margin-left: var(--proto-space-m);
+  padding: 0;
+  width: calc(100% - var(--proto-space-m) * 2);
+
+  &.item-has-placeholder .label-floating, .label-floating {
+    @extend %input;
+    position: absolute;
+    top: 6px;
+    left: var(--proto-space);
+    transform: translateY(8px) scale(1);
+    transition: none;
+  }
+  &:not(.proto-input--toggle) {
+
+    .native-input, .native-textarea {
+      @extend %input;
+      height: initial;
+      margin: 22px 0 4px;
+      padding: 0;
+
+      &::placeholder {
+        @extend %input;
+        color: var(--proto-color-grey-semi);
+        opacity: 0;
+      }
+
+      // fix border jump on android
+      .md & {
+        transform: none!important;
+      }
+    }
+  }
+
+  .svg-icon {
+    height: 20px;
+  }
+
+  &.item-textarea {
+
+    .native-input {
+      margin: var(--proto-space) 0;
+    }
+
+    textarea {
+      resize: none;
+      margin: 0;
+      width: 100%;
+    }
+
+  }
+
+  &.item-select {
+
+    ion-label {
+      //display: none;
+    }
+  }
+
+  ion-select {
+    padding: 22px 0 0;
+    font-size: var(--proto-input-font-size);
+    font-family: var(--proto-input-font-family);
+    --color: var(--proto-color-grey-dark);
+
+    .select-placeholder {
+      opacity: 1;
+    }
+
+    + .svg-icon {
+      position: absolute;
+      top: var(--proto-space);
+      right: var(--proto-space-xs);
+      z-index: 2;
+      display: block;
+      width: 40px;
+      margin: 0;
+      pointer-events: none;
+      background: white;
+      transition: var(--transition);
+    }
+
+    &[aria-expanded="true"] {
+      + .svg-icon {
+      }
+    }
+  }
+
+  &.item-toggle {
+    .label {
+      @extend %p;
+      line-height: 1.5;
+    }
+    .toggle {
+      padding-right: 0;
+    }
+  }
+
+  ion-input:focus, .text-input {
+    outline: none;
+  }
+
+  &[disabled], .is-disabled & {
+    pointer-events: none;
+    opacity: .5;
+  }
+
+  &.item-has-value, &.item-has-focus, &.ion-focused {
+    --border-color: var(--proto-color-grey-semi);
+
+    .label-floating {
+      transform: translateZ(0) scale(.8);
+      color: var(--proto-color-grey-semi);
+
+    }
+    .native-input, .native-textarea {
+      &::placeholder {
+        opacity: 1;
+      }
+    }
+  }
+
+  .button-effect {
+    display: none;
+  }
+}
+
+// https://css-tricks.com/snippets/css/change-autocomplete-styles-webkit-browsers/
+// Change Autocomplete Styles in WebKit Browsers
+
+:-webkit-autofill,
+:-webkit-autofill:hover,
+:-webkit-autofill:focus {
+  -webkit-text-fill-color: #777;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.proto-input-list {
+  margin-bottom: 0;
+  padding: 0;
+}
+
+// because tabIndex="-1" for ion checkbox isn't enough
+.prevent-ion-checkbox-tabbable {
+  .proto-input {
+    button, a {
+      display: none;
+    }
+  }
+}
+
+ion-radio-group {
+  width: calc(100% - var(--proto-space-m) * 2);
+  margin: 0 var(--proto-space-m) var(--proto-space-m);
+  padding: 0;
+
+  ion-item {
+    --min-height: 50px;
+    --padding-start: 0;
+    --color: var(--proto-color-grey-dark);
+    --border-color: var(--proto-color-grey-light);
+  }
+
+  ion-label {
+    @extend %h3;
+  }
+}
+
+.ion-focused ion-select {
+  + .svg-icon {
+    background: var(--background-focused);
+  }
+}

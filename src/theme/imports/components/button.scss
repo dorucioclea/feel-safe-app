@@ -1,0 +1,79 @@
+.proto-button {
+  font-family: 'Avenir Black', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  text-transform: none;
+  --border-radius: 4px;
+
+  &.activated {
+    opacity: .8;
+  }
+
+  &.big {
+    font-size: 20px;
+  }
+
+  &.facebook {
+    --background: var(--proto-color-facebook);
+    --background-activated: var(--proto-color-facebook);
+  }
+
+  &.twitter {
+    --background: var(--proto-color-twitter);
+    --background-activated: var(--proto-color-twitter);
+  }
+
+  &.line {
+    --background: var(--proto-color-line);
+    --background-activated: var(--proto-color-line);
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+.button-main-toolbar {
+  --border-radius: 50% !important;
+  font-size: 18px !important;
+  height: var(--proto-main-segment-height) !important;
+  width: var(--proto-main-segment-height);
+}
+
+.button-primary {
+  --background: var(--proto-color-grey-dark);
+  --background-activated: var(--proto-color-grey-semi);
+  --color: var(--proto-color-white);
+}
+
+.button-secondary {
+  --background: var(--proto-color-grey-light);
+  --background-activated: var(--proto-color-grey-semi);
+  --color: var(--proto-color-grey-dark);
+}
+
+.button-cta {
+  --border-radius: var(--proto-button-cta-border-radius);
+  min-width: var(--proto-button-cta-min-width);
+  height: var(--proto-button-cta-height);
+  font-size: var(--proto-h2-font-size);
+  font-weight: normal;
+
+  &.activated {
+    opacity: .8;
+  }
+
+  &[fill="clear"] {
+    font-size: var(--proto-p-font-size);
+    text-transform: uppercase;
+  }
+
+}
+
+.button-toolbar {
+  .svg-icon {
+    font-size: 24px;
+  }
+}

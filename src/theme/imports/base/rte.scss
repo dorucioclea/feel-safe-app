@@ -1,0 +1,69 @@
+// .rte {
+//   margin: 0;
+//   &, p {
+//     @extend %p;
+//   }
+//   p:empty {
+//     display: none;
+//   }
+//   a {
+//     @extend %hyperlink;
+//     font-size: 15px;
+//   }
+//   ul {
+//     @extend %reset-list;
+//     margin: $space-m 0 0;
+//     li {
+//       position: relative;
+//       padding-left: $space-m;
+//       line-height: 1.5;
+//       display: block;
+//       margin: $space-m 0;
+//       &::before {
+//         content: '';
+//         @include size(8px);
+//         position: absolute;
+//         top: 8px;
+//         left: 0;
+//         background: color($colors, favorite);
+//         border-radius: 50%;
+//       }
+//     }
+//   }
+
+//   img {
+//     display: block;
+//     width: calc(100% + #{2 * $space});
+//     height: auto;
+//     max-width: none;
+//     margin: $space-m 0 $space-m #{- $space};
+//     color: $c-text-secondary;
+//   }
+
+//   h1, h2, h3, h4, h5, h6 {
+//     margin-top: 1.6rem;
+//     margin-bottom: 1rem;
+//     line-height: 1.33;
+//     .content-block & {
+//       @extend %h4;
+//       color: $c-text-secondary;
+//       margin: 0 0 $space-m;
+//     }
+//     .info-card & {
+//       @extend %card-headline;
+//       color: $c-text-primary;
+//       margin-bottom: $space;
+//     }
+//   }
+
+//   .content-block {
+//     padding-top: $space-m;
+//   }
+
+//   > :first-child {
+//     margin-top: 0;
+//   }
+//   > :last-child {
+//     margin-bottom: 0;
+//   }
+// }
