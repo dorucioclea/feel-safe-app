@@ -83,6 +83,72 @@
                 }
               ]
             },
+            "hacking-prod": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hacking.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "development-prod": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "staging-prod": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
             "ci": {
               "progress": false
             }
@@ -102,6 +168,15 @@
             },
             "staging": {
               "browserTarget": "app:build:staging"
+            },
+            "hacking-prod": {
+              "browserTarget": "app:build:hacking-prod"
+            },
+            "development-prod": {
+              "browserTarget": "app:build:development-prod"
+            },
+            "staging-prod": {
+              "browserTarget": "app:build:staging-prod"
             },
             "ci": {
               "progress": false
@@ -164,6 +239,15 @@
             },
             "staging": {
               "browserTarget": "app:build:staging"
+            },
+            "hacking-prod": {
+              "browserTarget": "app:build:hacking-prod"
+            },
+            "development-prod": {
+              "browserTarget": "app:build:development-prod"
+            },
+            "staging-prod": {
+              "browserTarget": "app:build:staging-prod"
             }
           }
         },
@@ -185,6 +269,18 @@
             "staging": {
               "cordovaBuildTarget": "app:ionic-cordova-build:staging",
               "devServerTarget": "app:serve:staging"
+            },
+            "hacking-prod": {
+              "cordovaBuildTarget": "app:ionic-cordova-build:hacking-prod",
+              "devServerTarget": "app:serve:hacking-prod"
+            },
+            "development-prod": {
+              "cordovaBuildTarget": "app:ionic-cordova-build:development-prod",
+              "devServerTarget": "app:serve:development-prod"
+            },
+            "staging-prod": {
+              "cordovaBuildTarget": "app:ionic-cordova-build:staging-prod",
+              "devServerTarget": "app:serve:staging-prod"
             }
           }
         }
