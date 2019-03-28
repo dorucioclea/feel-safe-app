@@ -1,5 +1,7 @@
 {
   "name": "ionic-blueprint",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
