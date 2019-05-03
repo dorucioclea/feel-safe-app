@@ -6,10 +6,10 @@ import { tap, takeUntil } from 'rxjs/operators';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 import { C } from 'src/app/@shared/constants';
+import { DeeplinkService } from 'src/app/@core/deeplink.service';
 import { DynamicScriptLoaderService } from 'src/app/@core/dynamic-script-loader.service';
 import { StorageService } from 'src/app/@core/storage.service';
 import { Subject } from 'rxjs';
-import { UriSchemeService } from 'src/app/@core/uri-scheme.service';
 import { UserService } from 'src/app/user/shared/user.service';
 import { UserSource, UserModel } from 'src/app/user/shared/user.model';
 import { environment } from 'src/environments/environment';
@@ -27,12 +27,12 @@ export interface LoginData {
 export class AuthService {
   constructor(
     private inAppBrowser: InAppBrowser,
+    private deeplinkService: DeeplinkService,
     private dynamicScriptLoaderService: DynamicScriptLoaderService,
     private facebook: Facebook,
     private http: HttpClient,
     private platform: Platform,
     private storage: StorageService,
-    private uriSchemeService: UriSchemeService,
     private userService: UserService,
   ) { }
 
@@ -114,17 +114,17 @@ export class AuthService {
 
         const unsubscribe: Subject<void> = new Subject<void>();
 
-        return this.uriSchemeService.uriScheme
+        return this.deeplinkService.route()
           .pipe(takeUntil(unsubscribe))
-          .subscribe((url) => {
-            if (url && url.indexOf('fabvote://?twitter') > -1) {
+          .subscribe((data) => {
+            if (data && data.$link && data.$link.url && data.$link.url.indexOf('fabvote://?twitter') > -1) {
               unsubscribe.next();
               unsubscribe.complete();
 
-              const response = JSON.parse(decodeURIComponent(url.split('fabvote://?twitter=')[1]));
+              const response = JSON.parse(decodeURIComponent(data.$link.url.split('fabvote://?twitter=')[1]));
 
               if (response.success) {
-                return this.loginWithTwitterAccessToken(response.cookie).then((user) => {
+                return this.loginWithAccessToken(response.accessToken).then((user) => {
                   return resolve(user);
                 }, (error) => {
                   return reject(error);
@@ -137,18 +137,7 @@ export class AuthService {
       }
 
       // web fallback
-      window.open(`${C.urls.baseUrl}/auth/twitter`, '_blank', 'toolbar=no,scrollbars=yes,resizable=no,top=500,left=500,width=400,height=400');
-      window.onmessage = async (event) => {
-        if (event.data.success) {
-          return this.loginWithTwitterAccessToken(event.data.cookie).then((user) => {
-            return resolve(user);
-          }, (error) => {
-            return reject(error);
-          });
-        }
-
-        return reject();
-      }
+      // TODO: implement new web fallback
     });
   }
 
@@ -206,20 +195,12 @@ export class AuthService {
     });
   }
 
-  private async loginWithTwitterAccessToken(twitterAuthCookie: string) {
+  private async loginWithAccessToken(accessToken: any) {
     try {
-      const TWO = 2;
-      const tokenId = twitterAuthCookie.match(/(access_token=)(.*?)(;|\s|$)/i)[TWO];
-      const userId = twitterAuthCookie.match(/(userId=)(.*?)(;|\s|$)/i)[TWO];
-
-      const accessToken = {
-        id: tokenId,
-        userId: userId,
-      };
-
       this.storage.set('accessToken', accessToken);
 
       const user = await this.http.get<UserSource>(`${C.urls.users}/${accessToken.userId}`).toPromise();
+
       this.userService.setCurrentUser(user);
       
       return Promise.resolve(new UserModel(user));
