@@ -20,6 +20,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
     Crop,
     Deeplinks,
     Facebook,
+    // tslint:disable-next-line
     FileTransfer,
     InAppBrowser,
     Network,
