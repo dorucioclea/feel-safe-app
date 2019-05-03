@@ -6,6 +6,10 @@ sgf((error, stagedFiles) => {
     console.log(error);
   }
 
+  if (!stagedFiles.length) {
+    return process.exit(0);
+  }
+
   let files = [];
 
   for (const stagedFile of stagedFiles) {
@@ -26,7 +30,7 @@ sgf((error, stagedFiles) => {
     console.log(output);
 
     if (output.indexOf('ERROR') > -1) {
-      const count = (output.match(/is/g) || []).length;
+      const count = (output.match(/ERROR/g) || []).length;
       errorCount += count;
     }
   });
@@ -36,9 +40,9 @@ sgf((error, stagedFiles) => {
   });
 
   npm.on('close', (code) => {
-    if (code && errorCount) {
-      console.log(`${errorCount} errors while linting staged files!`);
+    console.log(`${errorCount} errors while linting staged files!`);
 
+    if (code && errorCount) {
       if (process.argv[2] === '--no-hard-exit') {
         return process.exit(0);
       }
