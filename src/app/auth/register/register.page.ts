@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from '../shared/auth.service';
 import { C } from '../../@shared/constants';
@@ -18,7 +17,6 @@ export class RegisterPage implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private translate: TranslateService,
   ) {
     this.registerForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.pattern(C.regex.email), Validators.required])],
@@ -83,15 +81,16 @@ export class RegisterPage implements OnInit {
     // this.showToast(message, false);
   }
 
-  private getUnprocessableEntityMessage(data: any): string {
-    const errorData = data.error ? data.error.error : data;
+  // TODO: 
+  // private getUnprocessableEntityMessage(data: any): string {
+  //   const errorData = data.error ? data.error.error : data;
 
-    if (errorData && errorData.message.includes('Email already exists')) {
-      this.emailTaken = true;
+  //   if (errorData && errorData.message.includes('Email already exists')) {
+  //     this.emailTaken = true;
 
-      return this.translate.instant('TOAST.EMAIL_ALREADY_TAKEN');
-    }
+  //     return this.translate.instant('TOAST.EMAIL_ALREADY_TAKEN');
+  //   }
 
-    return this.translate.instant('TOAST.REGISTER_ERROR');
-  }
+  //   return this.translate.instant('TOAST.REGISTER_ERROR');
+  // }
 }
