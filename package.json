@@ -26,11 +26,13 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "lint:staged": "node scripts/lint-staged.js --no-hard-exit",
+    "check-dependencies": "node scripts/dependency-checker.js",
     "e2e": "ng e2e"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "node scripts/dependency-checker.js"
+      "pre-commit": "npm run check-dependencies && node scripts/lint-staged.js"
     }
   },
   "private": true,
