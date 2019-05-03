@@ -19,6 +19,10 @@
   "TERM": {
     "OR": "oder"
   },
+  "REFRESHER": {
+    "PULLING_TEXT": "Zieh fester!",
+    "REFRESHING_TEXT": "Aktualisiere..."
+  },
   "VIEW": {
     "LOGIN": {
       "TITLE": "Login",

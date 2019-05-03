@@ -110,6 +110,19 @@
     <feature name="CDVWKWebViewEngine">
         <param name="ios-package" value="CDVWKWebViewEngine" />
     </feature>
+    <plugin name="ionic-plugin-deeplinks" spec="1.0.19">
+        <variable name="URL_SCHEME" value="blueprint" />
+        <variable name="DEEPLINK_HOST" value="blueprint-dev.prototype.berlin" />
+        <variable name="DEEPLINK_SCHEME" value="https" />
+        <variable name="DEEPLINK_2_SCHEME" value="https" />
+        <variable name="DEEPLINK_3_SCHEME" value="https" />
+        <variable name="DEEPLINK_4_SCHEME" value="https" />
+        <variable name="DEEPLINK_5_SCHEME" value="https" />
+        <variable name="DEEPLINK_2_HOST" value="blueprint-staging.prototype.berlin" />
+        <variable name="ANDROID_PATH_PREFIX" value="/share/" />
+        <variable name="ANDROID_2_PATH_PREFIX" value="/share/" />
+        <variable name="ANDROID_3_PATH_PREFIX" value="/share/" />
+    </plugin>
     <engine name="ios" spec="5.0.0" />
     <engine name="android" spec="8.0.0" />
 </widget>

@@ -1,0 +1,63 @@
+stages:
+- lint
+- test
+- deploy
+lint:
+  stage: lint
+  script:
+  - echo "Linting project"
+  - npm i
+  - npm run check-dependencies
+  - npm run lint
+  tags:
+  - ionic
+test:
+  stage: test
+  script:
+  - echo "Test"
+  tags:
+  - ionic
+staging_android:
+  stage: deploy
+  script:
+  - source $HOME/.profile
+  - mkdir -p www
+  - whoami
+  - pwd
+  - ls -la
+  - node -v
+  - cordova -v
+  - ionic -v
+  - echo "Building Ionic 2 app"
+  # - npm install
+  # - cordova prepare android
+  # - APP_ENV=staging ionic build android --prod
+  - echo "Upload to hockey"
+  - "cd platforms/android/build/outputs/apk/ && curl -F \"status=2\" -F \"notify=0\" -F \"notes=Continuous Integration Test\" -F \"notes_type=1\" -F \"ipa=@android-debug.apk\" -H \"X-HockeyAppToken: e1a0b489c30344e6be558b83b3cccb6a\" https://rink.hockeyapp.net/api/2/apps/upload"
+  only:
+  - master
+  tags:
+  - ionic-android
+staging_ios:
+  stage: deploy
+  script:
+  - mkdir -p www
+  - whoami
+  - pwd
+  - node -v
+  - cordova -v
+  - ionic -v
+  - ls -la
+  - echo "Prepare Ionic 2 app"
+  # - npm install
+  # - cordova prepare ios
+  - echo "Building Ionic 2 app"
+  # - APP_ENV=staging ionic build ios --prod
+  # - cordova build ios --device --release --buildConfig ./build.json --packageType="ad-hoc"
+  # - ls platforms/ios/build/device/
+  # - echo "Upload to hockey"
+  # - "cd platforms/ios/build/device/ && curl -F \"status=2\" -F \"notify=0\" -F \"notes=Continuous Integration Test\" -F \"notes_type=1\" -F \"ipa=@prototype.ipa\" -H \"X-HockeyAppToken: e1a0b489c30344e6be558b83b3cccb6a\" https://rink.hockeyapp.net/api/2/apps/upload"
+  only:
+  - master
+  tags:
+  - ionic-ios

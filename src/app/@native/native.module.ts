@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
+import { Deeplinks } from '@ionic-native/deeplinks/ngx';
 import { Facebook } from '@ionic-native/facebook/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
@@ -17,7 +18,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
     AppVersion,
     Camera,
     Crop,
+    Deeplinks,
     Facebook,
+    // tslint:disable-next-line
     FileTransfer,
     InAppBrowser,
     Network,

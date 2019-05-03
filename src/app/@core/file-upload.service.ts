@@ -11,6 +11,7 @@ import { C } from '../@shared/constants';
 export class FileUploadService {
   constructor(
     private authService: AuthService,
+    // tslint:disable-next-line
     private fileTransfer: FileTransfer,
     private http: HttpClient,
   ) {}

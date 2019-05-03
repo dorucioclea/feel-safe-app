@@ -16,7 +16,7 @@ export class UnathorizedOnlyGuard implements CanActivate {
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (!this.authService.isAuthenticated()) { return true; }
 
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).catch();
 
     return false;
   }
