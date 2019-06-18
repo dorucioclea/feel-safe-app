@@ -48,6 +48,23 @@ export class UserService {
     );
   }
 
+  public refreshCurrentUser(): Promise<UserModel> {
+    const currentUser = this.getCurrentUser();
+
+    if (!currentUser) { return; }
+
+    const url = `${C.urls.users}/${currentUser.id}`;
+
+    return this.http.get<UserSource>(url)
+      .pipe(
+        tap((user) => {
+          this.setCurrentUser(user);
+        }),
+        map((user) => new UserModel(user)),
+      )
+      .toPromise();
+  }
+
   public getCurrentUser(): UserModel {
     const user: UserSource = this.storage.get('user');
     if (user) {

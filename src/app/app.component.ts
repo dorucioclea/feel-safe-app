@@ -6,6 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from '../environments/environment';
+import { AuthService } from 'src/app/auth/shared/auth.service';
+import { UserService } from 'src/app/user/shared/user.service';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +15,12 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent {
   constructor(
+    private authService: AuthService,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private translate: TranslateService,
+    private userService: UserService,
   ) {
     this.initializeApp();
   }
@@ -24,10 +28,18 @@ export class AppComponent {
   public initializeApp() {
     this.handleConsole();
 
-    this.platform.ready().then(() => {
+    this.platform.ready().then(async () => {
       this.setTranslateConfig();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      if (this.authService.isAuthenticated()) {
+        try {
+          await this.userService.refreshCurrentUser();
+        } catch (error) {
+          console.error(error);
+        }
+      }
     }).catch();
   }
 
