@@ -25,6 +25,9 @@ export class C {
     get baseUrl() {
       return environment.apiBaseUrl;
     },
+    get auth() {
+      return environment.apiBaseUrl + '/auth';
+    },
     apiVersion: 'api',
     get url() {
       return this.baseUrl + '/' + this.apiVersion;

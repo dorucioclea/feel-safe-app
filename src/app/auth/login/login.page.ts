@@ -52,21 +52,16 @@ export class LoginPage implements OnInit {
     return this.loginForm.valid;
   }
 
-  public loginWithFacebook() {
-    this.authService.loginWithFacebook().then((user) => {
-      this.onLoginSucceeded();
-    }).catch();
-  }
-
-  public loginWithTwitter() {
-    this.authService.loginWithTwitter().then((user) => {
+  public loginWithProvider(provider: string) {
+    this.authService.loginWithProvider(provider).then((user) => {
       if (!user) { return; }
 
-      if (user.profileIsIncomplete) {
-        this.router.navigate(['/user-edit'], { queryParams: { returnUrl: '/main' } }).catch();
+      // TODO: handle incomplete users
+      // if (user.profileIsIncomplete) {
+      //   this.router.navigate(['/user-edit'], { queryParams: { returnUrl: '/main' } }).catch();
 
-        return;
-      }
+      //   return;
+      // }
 
       this.onLoginSucceeded();
     }).catch();

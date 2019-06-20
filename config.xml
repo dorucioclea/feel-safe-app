@@ -17,10 +17,6 @@
     <allow-navigation href="mailto:*" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <config-file parent="/resources" target="./res/values/strings.xml">
-            <string name="fb_app_id">178987009370996</string>
-            <string name="fb_app_name">Blueprint</string>
-        </config-file>
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
@@ -123,6 +119,6 @@
         <variable name="ANDROID_2_PATH_PREFIX" value="/share/" />
         <variable name="ANDROID_3_PATH_PREFIX" value="/share/" />
     </plugin>
-    <engine name="ios" spec="5.0.0" />
+    <engine name="ios" spec="5.0.1" />
     <engine name="android" spec="8.0.0" />
 </widget>
