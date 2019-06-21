@@ -27,11 +27,11 @@ const routes: Routes = [
         ],
       },
       {
-        path: 'tab3',
+        path: 'more',
         children: [
           {
             path: '',
-            loadChildren: '../tab3/tab3.module#Tab3PageModule',
+            loadChildren: '../static-pages/more-menu/more-menu.page.module#MoreMenuPageModule',
           },
         ],
       },

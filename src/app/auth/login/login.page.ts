@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
 
 import { AuthService } from '../shared/auth.service';
 import { C } from '../../@shared/constants';
+import { LoginConsentPage } from 'src/app/auth/login-consent/login-consent.page';
+import { LegalService } from 'src/app/legal/shared/legal.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +22,8 @@ export class LoginPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private formBuilder: FormBuilder,
+    private legalService: LegalService,
+    private modalController: ModalController,
     private router: Router,
   ) {
     this.loginForm = this.formBuilder.group({
@@ -52,22 +57,35 @@ export class LoginPage implements OnInit {
     return this.loginForm.valid;
   }
 
-  public loginWithProvider(provider: string) {
-    this.authService.loginWithProvider(provider).then((user) => {
-      if (!user) { return; }
+  public async loginWithProvider(provider: string) {
+    const modal = await this.modalController.create({
+      component: LoginConsentPage,
+    });
 
-      // TODO: handle incomplete users
-      // if (user.profileIsIncomplete) {
-      //   this.router.navigate(['/user-edit'], { queryParams: { returnUrl: '/main' } }).catch();
+    await modal.present();
 
-      //   return;
-      // }
+    modal.onWillDismiss().then(async ({ data }) => {
+      if (data && data.agreements) {
+        this.isLoading = true;
 
-      this.onLoginSucceeded();
+        const user = await this.authService.loginWithProvider(provider);
+
+        if (!user) { return Promise.reject(); }
+
+        for (const agreement of data.agreements) {
+          await this.legalService.consentToAgreement(agreement.id, agreement, agreement.type);
+        }
+
+        // TODO: handle incomplete users
+
+        this.onLoginSucceeded();
+      }
     }).catch();
   }
 
   private onLoginSucceeded() {
+    this.isLoading = false;
+    
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       if (queryParams.returnUrl) {
         this.router.navigate([queryParams.returnUrl]).catch();

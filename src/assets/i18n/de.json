@@ -12,8 +12,8 @@
     "LABEL": {
       "EMAIL": "E-Mail",
       "PASSWORD": "Passwort",
-      "PRIVACY_CONSENT": "Ich habe die <a href=\"AgreementPage?agreementType=privacy\">Datenschutzbestimmungen</a> gelesen und akzeptiere diese.",
-      "TERMS_CONSENT": "Ich habe die <a href=\"AgreementPage?agreementType=terms\">Nutzungsbedingungen</a> gelesen und akzeptiere diese."
+      "PRIVACY_CONSENT": "Ich habe die <span>Datenschutzbestimmungen</span> gelesen und akzeptiere diese.",
+      "TERMS_CONSENT": "Ich habe die <span>Nutzungsbedingungen</span> gelesen und akzeptiere diese."
     }
   },
   "TERM": {

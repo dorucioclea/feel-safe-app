@@ -38,6 +38,9 @@ export class C {
     get agreements() {
       return this.url + '/agreements';
     },
+    get consents() {
+      return this.url + '/consents';
+    },
     get files() {
       return this.url + '/files';
     },

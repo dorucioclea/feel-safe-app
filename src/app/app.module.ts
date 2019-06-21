@@ -6,9 +6,11 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AgreementPageModule } from 'src/app/legal/agreement/agreement.page.module';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './@core/core.module';
+import { LoginConsentPageModule } from 'src/app/auth/login-consent/login-consent.page.module';
 import { NativeModule } from './@native/native.module';
 import { SharedModule } from './@shared/shared.module';
 
@@ -21,11 +23,13 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    AppRoutingModule,
+    /**/AppRoutingModule, // AppRoutingModule has to be importet first
+    AgreementPageModule,
     BrowserModule,
     CoreModule,
     HttpClientModule,
     IonicModule.forRoot(),
+    LoginConsentPageModule,
     NativeModule,
     SharedModule,
     TranslateModule.forRoot({
