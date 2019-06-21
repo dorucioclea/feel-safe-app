@@ -34,23 +34,24 @@ export class LoginPage implements OnInit {
 
   public ngOnInit() { }
 
-  public login() {
+  public async login() {
     if (!this.loginForm.valid || this.isLoading) { return; }
     
     this.isLoading = true;
 
-    this.authService.login({
-      email: this.loginForm.get('email').value.toLowerCase(),
-      password: this.loginForm.get('password').value,
-    }).then(() => {
-      return this.onLoginSucceeded();
-    }, () => {
+    try {
+      await this.authService.login({
+        email: this.loginForm.get('email').value.toLowerCase(),
+        password: this.loginForm.get('password').value,
+      });
+
+      this.onLoginSucceeded();
+    } catch (error) {
       this.isLoading = false;
+      console.error(error);
 
       return this.onLoginFailed();
-    }).catch(() => {
-      this.isLoading = false;
-    });
+    }
   }
 
   public formIsValid() {
@@ -85,7 +86,7 @@ export class LoginPage implements OnInit {
 
   private onLoginSucceeded() {
     this.isLoading = false;
-    
+
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       if (queryParams.returnUrl) {
         this.router.navigate([queryParams.returnUrl]).catch();
