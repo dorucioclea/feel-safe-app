@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, ElementRef, Renderer2, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, ElementRef, Renderer2 } from '@angular/core';
 
 import { C } from '../constants';
 import {
@@ -7,7 +7,7 @@ import {
 } from './proto-image.config';
 
 @Component({
-  selector: 'app-proto-image',
+  selector: 'proto-image',
   host: {
     class: 'proto-image',
   },
@@ -17,40 +17,39 @@ import {
 // tslint:disable:no-magic-numbers
 export class ProtoImageComponent implements OnInit {
   @ViewChild('imageSrc') public imageSrc: ElementRef;
-  @Input() public imageId: string;
+  @Input() public showFallbackImage = false;
   @Input() public imageType: imageType = 'default';
 
-  public largeImage: string;
-  public placeholderImage: string;
-  public isFallbackImage = false;
+  @Input() set imageId(id: string) {
+    // prevent setting fallback image
+    if (!id && !this.showFallbackImage) {
+      this.hasLoaded = false;
 
-  // image callbacks for binding event listeners
-  private listeners: any = {
-    load: null,
-    error: null,
-  };
+      return;
+    }
+
+    this.setImageSource(id);
+  }
+
+  public largeImage: string;
+  public isFallbackImage = false;
+  public hasLoaded = false;
 
   constructor(
     private renderer: Renderer2,
   ) {
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
-    if (changes.imageId && changes.imageId.currentValue) {
-      this.imageSrc.nativeElement && this.setImageSource(changes.imageId.currentValue);
-    }
-
-    if (changes.imageId && changes.imageId.previousValue && !changes.imageId.currentValue) {
-      this.renderer.removeAttribute(this.imageSrc.nativeElement, 'src');
-      this.largeImage = '';
-      this.placeholderImage = '';
-    }
+  public ngOnInit() {
   }
 
-  public ngOnInit() { }
+  public onImageLoaded() {
+    this.renderer.removeAttribute(this.imageSrc.nativeElement, 'data-src');
 
-  public ngOnDestroy() {
-    this.unbindListeners();
+    // probably not necessary, needs more testing
+    //requestAnimationFrame(() => {
+      this.hasLoaded = true;
+    //});
   }
 
   private setImageSource(imageId: string) {
@@ -59,47 +58,8 @@ export class ProtoImageComponent implements OnInit {
 
     this.largeImage = this.getImage(imageId, width, Math.ceil(width / ratio));
 
-    // we don't need a placeholder/preload image for fallback images
-    this.placeholderImage = this.isFallbackImage ? '' : this.getImage(imageId, Config.width.placeholder, Math.ceil(Config.width.placeholder / ratio));
     this.renderer.setAttribute(this.imageSrc.nativeElement, 'src', this.largeImage);
-
-    // if image is already cached don't animate
-    if (this.imageSrc.nativeElement.complete) {
-      return this.onImageComplete();
-    }
-
-    this.bindListeners();
-  }
-
-  private bindListeners() {
-    this.listeners.load = this.renderer.listen(this.imageSrc.nativeElement, 'load', this.onImageLoaded.bind(this));
-
-    // unbind to prevent infinite loop
-    if (this.listeners.error) { return this.listeners.error(); }
-    this.listeners.error = this.renderer.listen(this.imageSrc.nativeElement, 'error', this.onImageError.bind(this));
-  }
-
-  private unbindListeners() {
-    this.listeners.load && this.listeners.load();
-    this.listeners.error && this.listeners.error();
-  }
-
-  // if image is already cached don't animate image
-  private onImageComplete() {
-    this.renderer.setStyle(this.imageSrc.nativeElement, 'transition', 'none');
-    requestAnimationFrame(() => {
-      this.renderer.removeAttribute(this.imageSrc.nativeElement, 'data-src');
-      this.renderer.removeStyle(this.imageSrc.nativeElement, 'transition');
-    });
-    this.unbindListeners();
-  }
-
-  private onImageLoaded() {
-    this.renderer.removeAttribute(this.imageSrc.nativeElement, 'data-src');
-  }
-
-  private onImageError() {
-    this.setImageSource('fallback_error');
+    this.onImageLoaded();
   }
 
   private getImage(id: string, width?: number, height?: number): string {

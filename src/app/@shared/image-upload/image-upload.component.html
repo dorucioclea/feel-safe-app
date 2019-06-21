@@ -1,5 +1,5 @@
 <div class="image-upload">
-  <app-proto-image [imageId]="imageId" imageType="default">
+  <proto-image [imageId]="imageId" imageType="default">
     <div class="proto-image-action">
       <ion-button *ngIf="imageId" class="delete-button" (click)="deleteImage()">
         <app-svg-icon name="trash" slot="icon-only"></app-svg-icon>
@@ -15,5 +15,5 @@
         </ion-button>
       </div>
     </div>
-  </app-proto-image>
+  </proto-image>
 </div>
