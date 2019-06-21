@@ -4,8 +4,8 @@ import { ModalController } from '@ionic/angular';
 
 import { AgreementModel } from 'src/app/legal/shared/agreement.model';
 import { AgreementPage } from 'src/app/legal/agreement/agreement.page';
-import { AuthService } from '../shared/auth.service';
-import { C } from '../../@shared/constants';
+import { AuthService } from 'src/app/auth/shared/auth.service';
+import { C } from 'src/app/@shared/constants';
 import { LegalService } from 'src/app/legal/shared/legal.service';
 
 @Component({

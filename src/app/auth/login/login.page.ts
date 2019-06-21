@@ -3,10 +3,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 
-import { AuthService } from '../shared/auth.service';
-import { C } from '../../@shared/constants';
-import { LoginConsentPage } from 'src/app/auth/login-consent/login-consent.page';
+import { AuthService } from 'src/app/auth/shared/auth.service';
+import { C } from 'src/app/@shared/constants';
 import { LegalService } from 'src/app/legal/shared/legal.service';
+import { LoginConsentPage } from 'src/app/auth/login-consent/login-consent.page';
 
 @Component({
   selector: 'app-login',

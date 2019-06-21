@@ -2,16 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Platform } from '@ionic/angular';
 import { tap, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 import { C } from 'src/app/@shared/constants';
 import { DeeplinkService } from 'src/app/@core/deeplink.service';
+import { InAppBrowserService } from 'src/app/@core/in-app-browser.service';
 import { StorageService } from 'src/app/@core/storage.service';
-import { Subject } from 'rxjs';
 import { UserService } from 'src/app/user/shared/user.service';
 import { UserSource, UserModel } from 'src/app/user/shared/user.model';
-import { InAppBrowserService } from 'src/app/@core/in-app-browser.service';
-
-declare var FB: any;
 
 export interface LoginData {
   email: string,
