@@ -1,0 +1,32 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-buttons mode="ios" slot="start">
+      <proto-back-button></proto-back-button>
+    </ion-buttons>
+    <ion-title mode="ios">LoginConsent</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="submit-form" novalidate [formGroup]="loginConsentForm" (ngSubmit)="consent()" [ngClass]="{ 'is-disabled': isLoading }">
+    <ion-list mode="ios" class="proto-input-list">
+      <ion-item class="proto-input" text-wrap margin-top no-lines>
+        <ion-label (click)="openAgreement('privacy')" [innerHTML]="'INPUT.LABEL.PRIVACY_CONSENT' | translate"></ion-label>
+        <ion-toggle formControlName="privacyConsent"></ion-toggle>
+      </ion-item>
+      <ion-item class="proto-input" text-wrap margin-top no-lines>
+        <ion-label (click)="openAgreement('terms')" [innerHTML]="'INPUT.LABEL.TERMS_CONSENT' | translate"></ion-label>
+        <ion-toggle formControlName="termsConsent"></ion-toggle>
+      </ion-item>
+      <!-- TODO: @matthias implement isLoading somehow -->
+      <div class="submit-form__cta">
+        <ion-button color="favorite" color="dark" class="button-cta" [disabled]="!formIsValid() || isLoading" (click)="consent()">
+          {{ 'BUTTON.CONSENT' | translate }}
+        </ion-button>
+      </div>
+    </ion-list>
+  </form>
+  <ion-button color="favorite" color="dark" class="button-cta" [disabled]="isLoading" (click)="close()">
+    {{ 'BUTTON.CANCEL' | translate }}
+  </ion-button>
+</ion-content>

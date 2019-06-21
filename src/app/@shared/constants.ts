@@ -25,6 +25,9 @@ export class C {
     get baseUrl() {
       return environment.apiBaseUrl;
     },
+    get auth() {
+      return environment.apiBaseUrl + '/auth';
+    },
     apiVersion: 'api',
     get url() {
       return this.baseUrl + '/' + this.apiVersion;
@@ -34,6 +37,9 @@ export class C {
     },
     get agreements() {
       return this.url + '/agreements';
+    },
+    get consents() {
+      return this.url + '/consents';
     },
     get files() {
       return this.url + '/files';

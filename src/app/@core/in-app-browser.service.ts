@@ -3,20 +3,27 @@ import { Platform } from '@ionic/angular';
 import { SafariViewController } from '@ionic-native/safari-view-controller/ngx';
 
 import { C } from '../@shared/constants';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InAppBrowserService {
   constructor(
+    private inAppBrowser: InAppBrowser,
     private platform: Platform,
     private safariViewController: SafariViewController,
   ) { }
 
-  public openUrl(url: string) {
+  public openUrl(url: string, useSystemBrowser = false) {
     if (!this.platform.is('cordova')) {
       return window.open(url, '_system');
     }
+
+    if (useSystemBrowser) {
+      return this.inAppBrowser.create(url, '_system');
+    }
+
     this.safariViewController.isAvailable()
       .then((available: boolean) => {
         if (available) {

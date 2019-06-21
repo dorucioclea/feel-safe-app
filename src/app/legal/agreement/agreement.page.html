@@ -1,0 +1,37 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-buttons mode="ios" slot="start">
+      <proto-back-button></proto-back-button>
+    </ion-buttons>
+    <ion-title mode="ios">{{ agreement?.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="agreement__excerpt"
+    *ngIf="agreement?.excerpt"
+    [innerHtml]="agreement.excerpt">
+  </div>
+
+  <div class="agreement__content"
+    *ngIf="agreement?.content"
+    [innerHtml]="agreement.content">
+  </div>
+</ion-content>
+
+<ion-footer mode="ios"
+  *ngIf="needsConsent">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-button (click)="close()" mode="ios" fill="solid">
+        {{ 'BUTTON.CANCEL' | translate }}
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="consent()" mode="ios" fill="solid">
+        {{ 'BUTTON.OK' | translate }}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

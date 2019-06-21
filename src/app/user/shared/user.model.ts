@@ -12,6 +12,7 @@ export class UserModel {
   public lastName: string;
   public avatar: string;
   public email: string;
+  public providerLogin: boolean;
 
   constructor(source: UserSource) {
     this.id = source.id;
@@ -19,5 +20,6 @@ export class UserModel {
     this.lastName = source.lastName;
     this.avatar = source.avatar;
     this.email = source.email;
+    this.providerLogin = /@.+\.passport/.test(this.email);
   }
 }

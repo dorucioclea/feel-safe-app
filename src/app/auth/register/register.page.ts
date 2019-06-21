@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
 
-import { AuthService } from '../shared/auth.service';
-import { C } from '../../@shared/constants';
+import { AgreementModel } from 'src/app/legal/shared/agreement.model';
+import { AgreementPage } from 'src/app/legal/agreement/agreement.page';
+import { AuthService } from 'src/app/auth/shared/auth.service';
+import { C } from 'src/app/@shared/constants';
+import { LegalService } from 'src/app/legal/shared/legal.service';
 
 @Component({
   selector: 'app-register',
@@ -13,12 +17,16 @@ export class RegisterPage implements OnInit {
   public registerForm: FormGroup;
   public emailTaken = false;
   public isLoading = false;
+  public agreements: { [key: string]: AgreementModel };
 
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
+    private legalService: LegalService,
+    private modalController: ModalController,
   ) {
     this.registerForm = this.formBuilder.group({
+      username: ['', Validators.required],
       email: ['', Validators.compose([Validators.pattern(C.regex.email), Validators.required])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(C.validation.passwordMinLength)])],
       privacyConsent: [false],
@@ -26,7 +34,9 @@ export class RegisterPage implements OnInit {
     });
   }
 
-  public ngOnInit() { }
+  public ngOnInit() {
+    this.loadAgreements().catch();
+  }
 
   public register() {
     if (!this.registerForm.valid || this.isLoading) { return; }
@@ -34,12 +44,12 @@ export class RegisterPage implements OnInit {
     this.isLoading = true;
 
     const registerData = {
+      username: this.registerForm.value.username,
       email: this.registerForm.value.email.toLowerCase(),
       password: this.registerForm.value.password,
       consents: {
-        // TODO: add privacy shizzle
-        // privacy: this.privacyAgreement,
-        // terms: this.termsAgreement,
+        privacy: this.agreements.privacy,
+        terms: this.agreements.terms,
       },
     };
 
@@ -58,6 +68,18 @@ export class RegisterPage implements OnInit {
 
   public consentsValid() {
     return this.registerForm.value.termsConsent && this.registerForm.value.privacyConsent;
+  }
+
+  public async openAgreement(type: string) {
+    const modal = await this.modalController.create({
+      component: AgreementPage,
+      componentProps: {
+        type: type,
+        agreement: this.agreements[type],
+      },
+    });
+
+    return await modal.present();
   }
 
   private onRegistrationSucceeded() {
@@ -93,4 +115,24 @@ export class RegisterPage implements OnInit {
 
   //   return this.translate.instant('TOAST.REGISTER_ERROR');
   // }
+
+  private async loadAgreements() {
+    try {
+      this.isLoading = true;
+
+      const agreements = await Promise.all([
+        this.legalService.getLatestAgreement('terms').toPromise(),
+        this.legalService.getLatestAgreement('privacy').toPromise(),
+      ]);
+
+      this.agreements = {
+        terms: agreements[0],
+        privacy: agreements[1],
+      };
+
+      this.isLoading = false;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

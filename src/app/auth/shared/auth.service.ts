@@ -1,20 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Platform } from '@ionic/angular';
-import { Facebook } from '@ionic-native/facebook/ngx';
 import { tap, takeUntil } from 'rxjs/operators';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { Subject } from 'rxjs';
 
 import { C } from 'src/app/@shared/constants';
 import { DeeplinkService } from 'src/app/@core/deeplink.service';
-import { DynamicScriptLoaderService } from 'src/app/@core/dynamic-script-loader.service';
+import { InAppBrowserService } from 'src/app/@core/in-app-browser.service';
 import { StorageService } from 'src/app/@core/storage.service';
-import { Subject } from 'rxjs';
 import { UserService } from 'src/app/user/shared/user.service';
 import { UserSource, UserModel } from 'src/app/user/shared/user.model';
-import { environment } from 'src/environments/environment';
-
-declare var FB: any;
 
 export interface LoginData {
   email: string,
@@ -26,10 +21,8 @@ export interface LoginData {
 })
 export class AuthService {
   constructor(
-    private inAppBrowser: InAppBrowser,
+    private inAppBrowserService: InAppBrowserService,
     private deeplinkService: DeeplinkService,
-    private dynamicScriptLoaderService: DynamicScriptLoaderService,
-    private facebook: Facebook,
     private http: HttpClient,
     private platform: Platform,
     private storage: StorageService,
@@ -82,46 +75,21 @@ export class AuthService {
     });
   }
 
-  public async loginWithFacebook(): Promise<UserModel> {
-    try {
-      const facebookAccessToken = await this.obtainFacebookAccessToken();
-
-      const url = `${C.urls.baseUrl}/auth/facebook-token/callback?access_token=${facebookAccessToken}`;
-
-      const authResponse: any = await this.http.get(url).toPromise();
-
-      const accessToken = {
-        id: authResponse.access_token,
-        userId: authResponse.userId,
-      };
-
-      this.storage.set('accessToken', accessToken);
-
-      const user = await this.http.get<UserSource>(`${C.urls.users}/${accessToken.userId}`).toPromise();
-      this.userService.setCurrentUser(user);
-      
-      return Promise.resolve(new UserModel(user));
-    } catch (error) {
-      return Promise.reject(error);
-    }
-  }
-
-  public async loginWithTwitter(): Promise<UserModel | any> {
+  public async loginWithProvider(provider: string) {
     return new Promise((resolve, reject) => {
       if (this.platform.is('cordova')) {
-
-        this.inAppBrowser.create(`${C.urls.baseUrl}/auth/twitter`, '_system');
+        this.inAppBrowserService.openUrl(`${C.urls.auth}/${provider}`, true);
 
         const unsubscribe: Subject<void> = new Subject<void>();
 
         return this.deeplinkService.route()
           .pipe(takeUntil(unsubscribe))
           .subscribe((data) => {
-            if (data && data.$link && data.$link.url && data.$link.url.indexOf('fabvote://?twitter') > -1) {
+            if (data && data.$link && data.$link.url && data.$link.url.indexOf('://auth/') > -1) {
               unsubscribe.next();
               unsubscribe.complete();
 
-              const response = JSON.parse(decodeURIComponent(data.$link.url.split('fabvote://?twitter=')[1]));
+              const response = JSON.parse(decodeURIComponent(data.$link.url.split('://auth/')[1]));
 
               if (response.success) {
                 return this.loginWithAccessToken(response.accessToken).then((user) => {
@@ -137,7 +105,25 @@ export class AuthService {
       }
 
       // web fallback
-      // TODO: implement new web fallback
+      try {
+        window.open(`${C.urls.auth}/${provider}`, '_blank', 'width=900,height=500');
+        window.onmessage = async (event) => {
+          if (event.data.response) {
+            const response = JSON.parse(decodeURIComponent(event.data.response));
+
+            this.storage.set('accessToken', response.accessToken);
+
+            const user = await this.http.get<UserSource>(`${C.urls.users}/${response.accessToken.userId}`).toPromise();
+            this.userService.setCurrentUser(user);
+            
+            return resolve(new UserModel(user));
+          }
+
+          return reject();
+        };
+      } catch (error) {
+        reject();
+      }
     });
   }
 
@@ -152,47 +138,6 @@ export class AuthService {
         }),
       )
       .toPromise();
-  }
-
-  private async obtainFacebookAccessToken(): Promise<string> {
-    try {
-      if (this.platform.is('cordova')) {
-        const authResponse: any = await this.facebook.login(['public_profile', 'email']);
-
-        return Promise.resolve(authResponse.authResponse.accessToken);
-      }
-
-      await this.initFacebookJsSdk();
-
-      const accessToken = await this.obtainFacebookAccessTokenWeb();
-
-      return Promise.resolve(accessToken);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  private initFacebookJsSdk(): Promise<any> {
-    return this.dynamicScriptLoaderService.loadScript('facebooksdk').then(() => {
-      FB.init({
-        appId: environment.facebookAppId,
-        cookie: true,
-        xfbml: false,
-        version: 'v3.2',
-      });
-
-      return Promise.resolve();
-    }, (error) => {
-      return Promise.reject(error);
-    });
-  }
-
-  private obtainFacebookAccessTokenWeb(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      FB.login((response) => {
-        return resolve(response.authResponse.accessToken);
-      }, { scope: 'public_profile,email' });
-    });
   }
 
   private async loginWithAccessToken(accessToken: any) {
