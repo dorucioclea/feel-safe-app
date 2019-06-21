@@ -44,8 +44,8 @@ export class C {
     get files() {
       return this.url + '/files';
     },
-    get fabs() {
-      return this.url + '/fabs';
+    get restaurants() {
+      return this.url + '/restaurants';
     },
     get tags() {
       return this.url + '/tags';

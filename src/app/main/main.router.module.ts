@@ -9,11 +9,15 @@ const routes: Routes = [
     component: MainPage,
     children: [
       {
-        path: 'tab1',
+        path: 'restaurants',
         children: [
           {
             path: '',
-            loadChildren: '../tab1/tab1.module#Tab1PageModule',
+            loadChildren: '../restaurant/restaurant-list/restaurant-list.page.module#RestaurantListPageModule',
+          },
+          {
+            path: ':id',
+            loadChildren: '../restaurant/restaurant-detail/restaurant-detail.page.module#RestaurantDetailPageModule',
           },
         ],
       },
@@ -37,14 +41,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/main/tab1',
+        redirectTo: '/main/restaurants',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/main/tab1',
+    redirectTo: '/main/restaurants',
     pathMatch: 'full',
   },
 ];

@@ -1,0 +1,37 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-buttons mode="ios" slot="start">
+      <proto-back-button></proto-back-button>
+    </ion-buttons>
+    <ion-title mode="ios">RestaurantList</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      [pullingText]="'REFRESHER.PULLING_TEXT' | translate"
+      refreshingSpinner="circles"
+      [refreshingText]="'REFRESHER.REFRESHING_TEXT' | translate">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list mode="ios">
+    <ion-item mode="ios"
+      *ngFor="let restaurant of restaurants.items"
+      (click)="openDetailPage(restaurant)">
+      <proto-image class="thumbnail"
+        imageType="thumbnail"
+        [imageId]="restaurant?.image"></proto-image>
+      <h2>{{ restaurant.title }}</h2>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="250px"
+    (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
