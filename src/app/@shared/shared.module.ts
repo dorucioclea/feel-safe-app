@@ -5,6 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { AppInfoComponent } from './app-info/app-info.component';
 import { AppSvgIcon } from './app-svg-icon.component';
+import { HandleInternalLinksDirective } from './handle-internal-links.directive';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { ProtoBackButtonComponent } from './proto-back-button/proto-back-button.component';
 import { ProtoImageComponent } from './proto-image/proto-image.component';
@@ -13,6 +14,7 @@ import { ProtoImageComponent } from './proto-image/proto-image.component';
   declarations: [
     AppInfoComponent,
     AppSvgIcon,
+    HandleInternalLinksDirective,
     ImageUploadComponent,
     ProtoBackButtonComponent,
     ProtoImageComponent,
@@ -25,6 +27,7 @@ import { ProtoImageComponent } from './proto-image/proto-image.component';
   exports: [
     AppInfoComponent,
     AppSvgIcon,
+    HandleInternalLinksDirective,
     ImageUploadComponent,
     ProtoBackButtonComponent,
     ProtoImageComponent,
