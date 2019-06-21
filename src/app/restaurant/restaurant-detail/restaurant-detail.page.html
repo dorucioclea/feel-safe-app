@@ -1,0 +1,24 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-buttons mode="ios" slot="start">
+      <proto-back-button></proto-back-button>
+    </ion-buttons>
+    <ion-title mode="ios">{{ restaurant?.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      [pullingText]="'REFRESHER.PULLING_TEXT' | translate"
+      refreshingSpinner="circles"
+      [refreshingText]="'REFRESHER.REFRESHING_TEXT' | translate">
+    </ion-refresher-content>
+  </ion-refresher>
+  
+  <proto-image
+    [imageId]="restaurant?.image">
+  </proto-image>
+  <h1>{{ restaurant?.title }}</h1>
+</ion-content>

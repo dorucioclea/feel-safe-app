@@ -5,12 +5,6 @@
 :host {
   --proto-image-background: var(--proto-color-grey-light);
   --proto-image-border-radius: 0;
-  --proto-image-ratio-default: 1.25;
-  --proto-image-ratio-banner: 1.88;
-  --proto-image-width-avatar: 48px;
-  --proto-image-width-thumbnail: 56px;
-  --proto-image-width-default: 375px; // only needed for proto image config
-  --proto-image-width-placeholder: 15px; // only needed for proto image config
 }
 
 .proto-image {
@@ -26,20 +20,6 @@
     margin: var(--proto-space-s, 8px) 0 var(--proto-space-s, 8px) var(--proto-space, 16px);
   }
 
-  &.hide-fallback-image {
-    .proto-image__inner {
-      background-image: none!important;
-    }
-
-    img {
-      opacity: 0;
-    }
-  }
-
-  &.is-active {
-    border: 10px solid red;
-  }
-
   &__inner {
     position: relative;
     display: block;
@@ -49,22 +29,11 @@
     background-position: center center;
     background-size: cover;
     border-radius: var(--proto-image-border-radius);
-    -webkit-backdrop-filter: blur(0);
-    
+
     &::before {
       content: '';
       display: block;
       width: 100%;
-    }
-    &::after {
-      position: absolute;
-      top: -1px;
-      right: -1px;
-      bottom: -1px;
-      left: -1px;
-      content: ' ';
-      z-index: 1;
-      -webkit-backdrop-filter: blur(15px);
     }
   }
 
@@ -79,10 +48,9 @@
     max-width: none;
     max-height: none;
     object-fit: cover;
-    opacity: 1;
-    transition: opacity .3s;
-    &[data-src] {
-      opacity: 0;
+    opacity: 0;
+    &.has-loaded {
+      opacity: 1;
     }
   }
 
@@ -94,7 +62,6 @@
   &-title {
     position: absolute;
     width: 100%;
-    // padding: 0 $space;
     bottom: 52px;
   }
 
@@ -108,31 +75,28 @@
       padding-top: calc(100% / var(--proto-image-ratio-default, 1));
     }
   }
-  &-thumbnail, &-avatar {
+  &-thumbnail {
+    max-width: 100%;
+
     &::before {
-      padding-top: calc(100% / var(--ratio-square, 1));
+      padding-top: calc(100% / var(--proto-image-ratio-thumbnail, 1));
     }
   }
-  &-thumbnail {
-    width: var(--proto-image-width-thumbnail);
+
+  &-avatar, &-avatar_large {
+    max-width: 100%;
+    border-radius: 50%;
+
+    &::before {
+      padding-top: calc(100% / var(--ratio-avatar, 1));
+    }
   }
 
   &-avatar {
     width: var(--proto-image-width-avatar);
-    border-radius: 50%;
-    background: none;
-    // https://stackoverflow.com/questions/36378512/backdrop-filter-extends-beyond-border-radius
-    -webkit-backdrop-filter: blur(0);
   }
 
-  // &.hero-image .proto-image__inner {
-  //   &::before {
-  //     padding-top: calc(100% / var(--proto-image-ratio-default, 1));
-  //     .statusbar-padding & {
-  //       padding-top: calc(100% / var(--proto-image-ratio-default, 1) + #{$cordova-ios-statusbar-padding});
-  //       padding-top: calc(100% / var(--proto-image-ratio-default, 1) + constant(safe-area-inset-top));
-  //       padding-top: calc(100% / var(--proto-image-ratio-default, 1) + env(safe-area-inset-top));
-  //     }
-  //   }
-  // }
+  &-avatar_large {
+    width: var(--proto-image-width-avatar-l);
+  }
 }
