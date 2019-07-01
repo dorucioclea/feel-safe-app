@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AppVersionService } from '../../@core/app-version.service';
 import { environment } from '../../../environments/environment';
+
+const minKnocks = 13;
 
 @Component({
   selector: 'app-info',
@@ -14,10 +17,22 @@ export class AppInfoComponent {
   public version = 'Not set';
   public environment = 'Not set';
 
+  private knocks = 0;
+
   constructor(
     private appVersionService: AppVersionService,
+    private router: Router,
   ) {
     this.getAppInfo();
+  }
+
+  public knockToOpenGodMode() {
+    this.knocks++;
+
+    if (this.knocks >= minKnocks) {
+      this.knocks = 0;
+      this.router.navigate(['/god-mode']).catch();
+    }
   }
 
   private getAppInfo() {

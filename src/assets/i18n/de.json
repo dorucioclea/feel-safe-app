@@ -50,6 +50,10 @@
     },
     "REGISTER": {
       "TITLE": "Registrieren"
+    },
+    "IMPRINT": {
+      "TITLE": "Impressum",
+      "CONTENT": "<div class=\"content-block\"><h3>Angaben gemäß § 5 TMG:</h3><p>prototype.berlin GmbH<br>Oranienburger Str. 26<br>10117 Berlin</p></div><div class=\"content-block\"><h3>Kontakt:</h3><ul class=\"default-list\"><li><span>Telefon:</span> <a href=\"tel:+49 30 219 508 60\">+49 30 219 508 60</a></li><li><span>Mobil:</span> <a href=\"tel:+49 151 115 597 08\">+49 151 115 597 08</a></li><li><span>Website:</span> <a href=\"http://www.prototype.berlin\">http://www.prototype.berlin</a></li><li><span>E-Mail:</span> <a href=\"mailto:office@prototype.berlin\">office@prototype.berlin</a></li></ul></div><div class=\"content-block\"><h3>Vertretungsberechtigte Geschäftsführer:</h3><p>Valentin Klinghammer, Philipp Plümicke, Ruben Gänsler</p></div><div class=\"content-block\"><h3>Registereintrag:</h3><ul class=\"default-list\"><li>Amtsgericht Charlottenburg</li><li>Handelsregisternummer: HRB 161970 B</li><li>Steuerident Nummer: DE297100689</li></ul></div><div class=\"content-block\"><h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</h3><p>Valentin Klinghammer, Philipp Plümicke, Ruben Gänsler</p></div>"
     }
   }
 }
