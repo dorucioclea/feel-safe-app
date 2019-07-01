@@ -1,0 +1,31 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-buttons mode="ios" slot="start">
+      <proto-back-button></proto-back-button>
+    </ion-buttons>
+    <ion-title mode="ios">🧙🏼‍♂️</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div padding>
+    <ion-button mode="ios" expand="block"
+      (click)="clearAndReload()">
+      Clear storage and reload
+    </ion-button>
+  </div>
+
+  <div padding>
+    <h2>LocalStorage</h2>
+    <h3>({{ storagePrefix }})</h3>
+  </div>
+
+  <ion-list mode="ios" lines="full">
+    <ion-item mode="ios" *ngFor="let storageItem of storageItems" text-wrap>
+      <ion-label mode="ios">
+        <div class="key">{{storageItem.key}}</div>
+        <ngx-json-viewer [json]="storageItem.value"></ngx-json-viewer>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

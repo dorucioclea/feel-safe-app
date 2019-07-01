@@ -37,6 +37,10 @@ const routes: Routes = [
             path: '',
             loadChildren: '../static-pages/more-menu/more-menu.page.module#MoreMenuPageModule',
           },
+          {
+            path: 'imprint',
+            loadChildren: '../static-pages/imprint/imprint.page.module#ImprintPageModule',
+          },
         ],
       },
       {

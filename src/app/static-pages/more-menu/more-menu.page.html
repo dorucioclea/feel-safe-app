@@ -8,5 +8,11 @@
 </ion-header>
 
 <ion-content>
+  <ion-list mode="ios" lines="full">
+    <ion-item mode="ios" detail="true"
+      [routerLink]="['/main/more/imprint']">
+      {{ 'VIEW.IMPRINT.TITLE' | translate }}
+    </ion-item>
+  </ion-list>
   <ion-button (click)="logout()">logout</ion-button>
 </ion-content>
