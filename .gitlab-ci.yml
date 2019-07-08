@@ -33,7 +33,7 @@ staging_android:
   - cordova prepare android
   - npm run build:android:staging:prod
   - echo "Upload to hockey"
-  - "cd platforms/android/app/build/outputs/apk/debug/ && curl -F \"status=2\" -F \"notify=0\" -F \"notes=Continuous Integration Test\" -F \"notes_type=1\" -F \"ipa=@app-debug.apk\" -H \"X-HockeyAppToken: 4d4e88cebe504b7997451185d0900d72\" https://rink.hockeyapp.net/api/2/apps/1042536/app_versions/upload"
+  - "cd platforms/android/app/build/outputs/apk/debug/ && curl -F \"status=2\" -F \"notify=0\" -F \"notes=Continuous Integration Test\" -F \"notes_type=1\" -F \"ipa=@app-debug.apk\" -H \"X-HockeyAppToken: 66cba1ade92841c790ae887011d8ede8\" https://rink.hockeyapp.net/api/2/apps/1042536/app_versions/upload"
   only:
   - tags
   tags:
