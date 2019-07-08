@@ -29,13 +29,13 @@ staging_android:
   - cordova -v
   - ionic -v
   - echo "Building Ionic 2 app"
-  # - npm install
-  # - cordova prepare android
-  # - APP_ENV=staging ionic build android --prod
+  - npm install
+  - cordova prepare android
+  - npm run build:android:staging:prod
   - echo "Upload to hockey"
-  - "cd platforms/android/build/outputs/apk/ && curl -F \"status=2\" -F \"notify=0\" -F \"notes=Continuous Integration Test\" -F \"notes_type=1\" -F \"ipa=@android-debug.apk\" -H \"X-HockeyAppToken: e1a0b489c30344e6be558b83b3cccb6a\" https://rink.hockeyapp.net/api/2/apps/upload"
+  - "cd platforms/android/app/build/outputs/apk/debug/ && curl -F \"status=2\" -F \"notify=0\" -F \"notes=Continuous Integration Test\" -F \"notes_type=1\" -F \"ipa=@android-debug.apk\" -H \"X-HockeyAppToken: e1a0b489c30344e6be558b83b3cccb6a\" https://rink.hockeyapp.net/api/2/apps/upload"
   only:
-  - master
+  - tags
   tags:
   - ionic-android
 staging_ios:
