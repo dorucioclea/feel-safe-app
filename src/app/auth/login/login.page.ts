@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
 
   public async login() {
     if (!this.loginForm.valid || this.isLoading) { return; }
-    
+
     this.isLoading = true;
 
     try {
@@ -82,6 +82,10 @@ export class LoginPage implements OnInit {
         this.onLoginSucceeded();
       }
     }).catch();
+  }
+
+  public openPasswordResetPage() {
+    console.warn('Implement openPasswordResetPage()');
   }
 
   private onLoginSucceeded() {
