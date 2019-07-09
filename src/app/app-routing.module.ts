@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'login', canActivate: [UnathorizedOnlyGuard], loadChildren: './auth/login/login.page.module#LoginPageModule' },
   { path: 'register', canActivate: [UnathorizedOnlyGuard], loadChildren: './auth/register/register.page.module#RegisterPageModule' },
   { path: 'password-reset', canActivate: [UnathorizedOnlyGuard], loadChildren: './auth/password-reset/password-reset.page.module#PasswordResetPageModule' },
+  { path: 'password-reset/:token', canActivate: [UnathorizedOnlyGuard], loadChildren: './auth/password-reset/password-reset.page.module#PasswordResetPageModule' },
 ];
 @NgModule({
   imports: [

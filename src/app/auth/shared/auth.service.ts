@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Platform } from '@ionic/angular';
 import { tap, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -137,6 +137,24 @@ export class AuthService {
           this.storage.remove('accessToken');
         }),
       )
+      .toPromise();
+  }
+
+  public requestPasswordReset(email: string) {
+    const url = `${C.urls.users}/reset`;
+
+    return this.http.post(url, { email: email })
+      .toPromise();
+  }
+
+  public resetPassword(token: string, newPassword: string) {
+    const url = `${C.urls.users}/reset-password`;
+
+    const headers = new HttpHeaders({
+      Authorization: token,
+    });
+
+    return this.http.post(url, { newPassword: newPassword }, { headers: headers })
       .toPromise();
   }
 
