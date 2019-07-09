@@ -78,7 +78,7 @@ export class AuthService {
   public async loginWithProvider(provider: string) {
     return new Promise((resolve, reject) => {
       if (this.platform.is('cordova')) {
-        this.inAppBrowserService.openUrl(`${C.urls.auth}/${provider}`, true);
+        this.inAppBrowserService.openUrl(`${C.urls.auth}/${provider}`);
 
         const unsubscribe: Subject<void> = new Subject<void>();
 
@@ -88,6 +88,8 @@ export class AuthService {
             if (data && data.$link && data.$link.url && data.$link.url.indexOf('://auth/') > -1) {
               unsubscribe.next();
               unsubscribe.complete();
+
+              this.inAppBrowserService.hide();
 
               const response = JSON.parse(decodeURIComponent(data.$link.url.split('://auth/')[1]));
 
