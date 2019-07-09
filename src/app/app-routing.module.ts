@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'agreements/:type', loadChildren: './legal/agreement/agreement.page.module#AgreementPageModule' },
   { path: 'login', canActivate: [UnathorizedOnlyGuard], loadChildren: './auth/login/login.module#LoginPageModule' },
   { path: 'register', canActivate: [UnathorizedOnlyGuard], loadChildren: './auth/register/register.module#RegisterPageModule' },
+  { path: 'password-reset', canActivate: [UnathorizedOnlyGuard], loadChildren: './auth/password-reset/password-reset.page.module#PasswordResetPageModule' },
 ];
 @NgModule({
   imports: [

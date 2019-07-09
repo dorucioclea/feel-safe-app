@@ -85,7 +85,7 @@ export class LoginPage implements OnInit {
   }
 
   public openPasswordResetPage() {
-    console.warn('Implement openPasswordResetPage()');
+    this.router.navigate(['/password-reset']).catch();
   }
 
   private onLoginSucceeded() {
