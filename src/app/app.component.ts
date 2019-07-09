@@ -66,6 +66,14 @@ export class AppComponent {
         break;
     }
 
+    if (methods.length) {
+      console.warn('=====================================================');
+      console.warn(' ');
+      console.warn(`    🚨 Console output is disabled on ${environment.name}!`);
+      console.warn(' ');
+      console.warn('=====================================================');
+    }
+
     methods.forEach((method) => {
       console[method] = function () { };
     });
