@@ -64,3 +64,33 @@ staging_ios:
   - tags
   tags:
   - ionic-ios
+release_android:
+  stage: deploy
+  script:
+  - source $HOME/.profile
+  - mkdir -p www
+  - whoami
+  - pwd
+  - ls -la
+  - node -v
+  - cordova -v
+  - ionic -v
+  - echo "--- Preparing Ionic app"
+  - npm install
+  - cordova prepare android
+  - echo "--- Building Ionic app"
+  - npm run build:android:release
+  - echo "--- Release Signing"
+  - cd platforms/android/app/build/outputs/apk/release/
+  - echo $KEYSTORE_FILE | base64 -D -o production.keystore
+  - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore production.keystore -storepass $KEYSTORE_PASSWORD app-release-unsigned.apk $KEY_ALIAS
+  - $HOME/android-sdk/build-tools/28.0.3/zipalign -v 4 app-release-unsigned.apk AppName.apk
+  only:
+  - tags
+  when:
+  - manual
+  tags:
+  - ionic-android
+  artifacts:
+    paths:
+    - platforms/android/app/build/outputs/apk/release
