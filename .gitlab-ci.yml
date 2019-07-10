@@ -87,8 +87,7 @@ release_android:
   - $HOME/android-sdk/build-tools/28.0.3/zipalign -v 4 app-release-unsigned.apk AppName.apk
   only:
   - tags
-  when:
-  - manual
+  when: manual
   tags:
   - ionic-android
   artifacts:
