@@ -23,6 +23,7 @@
     "build:android:staging": "ionic cordova build android --c=staging",
     "build:android:staging:prod": "ionic cordova build android --c=staging-prod",
     "build:android:production": "ionic cordova build android --prod",
+    "build:android:release": "ionic cordova build android --prod --release",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
