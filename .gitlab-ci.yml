@@ -28,11 +28,12 @@ staging_android:
   - node -v
   - cordova -v
   - ionic -v
-  - echo "Building Ionic 2 app"
+  - echo "--- Preparing Ionic app"
   - npm install
   - cordova prepare android
+  - echo "--- Building Ionic app"
   - npm run build:android:staging:prod
-  - echo "Upload to hockey"
+  - echo "--- Upload to hockey"
   - "cd platforms/android/app/build/outputs/apk/debug/ && curl -F \"status=2\" -F \"notify=0\" -F \"notes=Continuous Integration Test\" -F \"notes_type=1\" -F \"ipa=@app-debug.apk\" -H \"X-HockeyAppToken: a23112aed3a84f85b85323240f88d480\" https://rink.hockeyapp.net/api/2/apps/5e01523916244d7cbd63c4f52e166d39/app_versions/upload"
   only:
   - tags
@@ -41,23 +42,25 @@ staging_android:
 staging_ios:
   stage: deploy
   script:
+  - source $HOME/.profile
   - mkdir -p www
   - whoami
   - pwd
+  - ls -la
   - node -v
   - cordova -v
   - ionic -v
-  - ls -la
-  - echo "Prepare Ionic 2 app"
-  # - npm install
-  # - cordova prepare ios
-  - echo "Building Ionic 2 app"
+  - echo "--- Preparing Ionic app"
+  - npm install
+  - cordova prepare android
+  - echo "--- Building Ionic app"
+  - npm run build:ios:staging:prod
   # - APP_ENV=staging ionic build ios --prod
   # - cordova build ios --device --release --buildConfig ./build.json --packageType="ad-hoc"
   # - ls platforms/ios/build/device/
   # - echo "Upload to hockey"
   # - "cd platforms/ios/build/device/ && curl -F \"status=2\" -F \"notify=0\" -F \"notes=Continuous Integration Test\" -F \"notes_type=1\" -F \"ipa=@prototype.ipa\" -H \"X-HockeyAppToken: e1a0b489c30344e6be558b83b3cccb6a\" https://rink.hockeyapp.net/api/2/apps/upload"
   only:
-  - master
+  - tags
   tags:
   - ionic-ios
