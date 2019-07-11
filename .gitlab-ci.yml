@@ -25,9 +25,7 @@ staging_android:
   - whoami
   - pwd
   - ls -la
-  - node -v
-  - cordova -v
-  - ionic -v
+  - ionic info
   - echo "--- Preparing Ionic app"
   - npm install
   - cordova prepare android
@@ -47,9 +45,7 @@ staging_ios:
   - whoami
   - pwd
   - ls -la
-  - node -v
-  - cordova -v
-  - ionic -v
+  - ionic info
   - echo "--- Preparing Ionic app"
   - npm install
   - cordova prepare android
@@ -72,9 +68,7 @@ release_android:
   - whoami
   - pwd
   - ls -la
-  - node -v
-  - cordova -v
-  - ionic -v
+  - ionic info
   - echo "--- Preparing Ionic app"
   - npm install
   - cordova prepare android
