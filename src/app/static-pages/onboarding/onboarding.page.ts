@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { IonSlides } from '@ionic/angular';
 
-import { StorageService } from '../../@core/storage.service';
+import { PushService } from 'src/app/@core/push.service';
+import { StorageService } from 'src/app/@core/storage.service';
 
 @Component({
   selector: 'app-onboarding',
@@ -20,6 +21,7 @@ export class OnboardingPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private pushService: PushService,
     private storage: StorageService,
     private translate: TranslateService,
   ) { }
@@ -42,8 +44,14 @@ export class OnboardingPage implements OnInit {
     this.slider.slideTo(this.slides.length - 1).catch();
   }
 
-  public proceed() {
+  public proceed(allowPush = false) {
     this.storage.set('hasOnboardingRun', true);
+
+    const pushStatus = this.pushService.getPushStatus();
+    pushStatus.softPermission = allowPush ? 'allowed' : 'denied';
+    this.pushService.setPushStatus(pushStatus);
+
+    this.pushService.initPush().catch();
 
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       if (queryParams.returnUrl) {

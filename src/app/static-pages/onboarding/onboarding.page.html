@@ -23,8 +23,14 @@
       </div>
     </ion-slide>
   </ion-slides>
-  <ion-button *ngIf="lastSlideActive" slot="fixed" class="button-cta button-onboarding" color="dark" mode="ios"
-    (click)="proceed()">
-    {{ 'BUTTON.CONTINUE' | translate }}
-  </ion-button>
+  <div class="buttons-onboarding" slot="fixed">
+    <ion-button *ngIf="lastSlideActive" class="button-cta" color="dark" mode="ios"
+      (click)="proceed()">
+      {{ 'BUTTON.SKIP' | translate }}
+    </ion-button>
+    <ion-button *ngIf="lastSlideActive" class="button-cta" color="dark" mode="ios"
+      (click)="proceed(true)">
+      {{ 'BUTTON.CONTINUE' | translate }}
+    </ion-button>
+  </div>
 </ion-content>
