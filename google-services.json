@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "207800948057",
+    "firebase_url": "https://blueprint-244213.firebaseio.com",
+    "project_id": "blueprint-244213",
+    "storage_bucket": "blueprint-244213.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207800948057:android:67c7ccf2953a3f7c",
+        "android_client_info": {
+          "package_name": "berlin.prototype.blueprint"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "207800948057-9d5cihmq8v2qq5pg3ds59ojgd9083g7g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFCzlgf2UBqpLRKIh1-2qSprIityADWrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "207800948057-9d5cihmq8v2qq5pg3ds59ojgd9083g7g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "207800948057-rkd45t13dst7ru0udd7un8610e64p2cr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "berlin.prototype.blueprint"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

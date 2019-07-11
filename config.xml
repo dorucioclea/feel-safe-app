@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="berlin.prototype.blueprint" version="0.1.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="berlin.prototype.blueprint" version="0.1.3" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>prototype</name>
     <description>prototype.berlin Ionic Starter</description>
     <author email="office@prototype.berlin" href="http://www.prototype.berlin/">prototype.berlin GmbH</author>
@@ -17,6 +17,18 @@
     <allow-navigation href="mailto:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <resource-file src="google-services.json" target="app/google-services.json" />
+        <resource-file src="resources/android/notification.png" target="app/src/main/res/drawable/notification.png" />
+        <config-file parent="/*" target="res/values/strings.xml">
+            <color name="notificationIcon">#C31B1D</color>
+        </config-file>
+        <config-file mode="merge" parent="/manifest/application" target="AndroidManifest.xml">
+            <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/notification" />
+        </config-file>
+        <config-file parent="/manifest/application" target="AndroidManifest.xml">
+            <meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@color/notificationIcon" />
+        </config-file>
+        <resource-file src="resources/android/notification.png" target="app/src/main/res/drawable/notification.png" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
@@ -45,6 +57,7 @@
         </edit-config>
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <resource-file src="GoogleService-Info.plist" />
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
         <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
         <icon height="40" src="resources/ios/icon/icon-40.png" width="40" />

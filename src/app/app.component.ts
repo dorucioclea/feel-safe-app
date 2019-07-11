@@ -5,9 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 
-import { environment } from '../environments/environment';
 import { AuthService } from 'src/app/auth/shared/auth.service';
+import { PushService } from 'src/app/@core/push.service';
 import { UserService } from 'src/app/user/shared/user.service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent {
   constructor(
     private authService: AuthService,
     private platform: Platform,
+    private pushService: PushService,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private translate: TranslateService,
@@ -32,6 +34,8 @@ export class AppComponent {
       this.setTranslateConfig();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.pushService.initPush().catch();
 
       if (this.authService.isAuthenticated()) {
         try {
