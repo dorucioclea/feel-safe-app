@@ -22,10 +22,10 @@
         <config-file parent="/*" target="res/values/strings.xml">
             <color name="notificationIcon">#C31B1D</color>
         </config-file>
-        <config-file mode="merge" parent="/manifest/application" target="AndroidManifest.xml">
+        <config-file mode="merge" parent="/manifest/application" target="app/src/main/AndroidManifest.xml">
             <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/notification" />
         </config-file>
-        <config-file parent="/manifest/application" target="AndroidManifest.xml">
+        <config-file parent="/manifest/application" target="app/src/main/AndroidManifest.xml">
             <meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@color/notificationIcon" />
         </config-file>
         <resource-file src="resources/android/notification.png" target="app/src/main/res/drawable/notification.png" />
