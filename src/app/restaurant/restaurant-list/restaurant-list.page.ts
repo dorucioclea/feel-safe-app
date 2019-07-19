@@ -32,8 +32,6 @@ export class RestaurantListPage implements OnInit {
       .subscribe((restaurants) => {
         this.restaurants = restaurants;
 
-        console.log(restaurants);
-
         this.completeInfiniteScroll();
         this.completeRefresher();
       });
@@ -75,10 +73,6 @@ export class RestaurantListPage implements OnInit {
         orderBy: JSON.parse(JSON.stringify(this.restaurants.meta.orderBy)),
       },
     });
-
-    modal.onWillDismiss().then(() => {
-      console.log(this.restaurants);
-    }).catch();
 
     return await modal.present();
   }
