@@ -1,0 +1,62 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-buttons mode="ios" slot="start">
+      <proto-back-button></proto-back-button>
+    </ion-buttons>
+    <ion-title mode="ios">RestaurantFilter</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list mode="ios">
+    <ion-item mode="ios">
+      <ion-label>Order by</ion-label>
+      <ion-select placeholder="select" [(ngModel)]="orderBy">
+        <ion-select-option [value]="'createdAt DESC'">createdAt DESC</ion-select-option>
+        <ion-select-option [value]="'createdAt ASC'">createdAt ASC</ion-select-option>
+        <ion-select-option [value]="'numberOfSeats DESC'">numberOfSeats DESC</ion-select-option>
+        <ion-select-option [value]="'numberOfSeats ASC'">numberOfSeats ASC</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list mode="ios">
+    <ion-item mode="ios">
+      <ion-label>Price Range</ion-label>
+      <ion-select placeholder="select" [(ngModel)]="priceRange">
+        <ion-select-option value="___ALL___">Alle</ion-select-option>
+        <ion-select-option value="low">low</ion-select-option>
+        <ion-select-option value="mid">mid</ion-select-option>
+        <ion-select-option value="high">high</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item mode="ios">
+      <ion-label>Category</ion-label>
+      <ion-select placeholder="select" [(ngModel)]="restaurantCategoryId">
+        <ion-select-option value="___ALL___">Alle</ion-select-option>
+        <ion-select-option [value]="category.id" *ngFor="let category of categories">{{ category.title }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item mode="ios">
+      <ion-range min="1" max="50" color="secondary" [(ngModel)]="range">
+        <ion-label slot="start">1</ion-label>
+        <ion-label slot="end">&infin;</ion-label>
+      </ion-range>
+      <div>{{ infinityStartsAt === range ? '&infin;' : range }}</div>
+    </ion-item>
+  </ion-list>
+
+  <ion-button mode="ios" (click)="applyFilter()">
+    apply
+  </ion-button>
+
+  <ion-button mode="ios" (click)="clearFilter()">
+    clear
+  </ion-button>
+
+  <ion-button mode="ios" (click)="dismiss()">
+    cancel
+  </ion-button>
+</ion-content>

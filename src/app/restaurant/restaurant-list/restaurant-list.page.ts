@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { ModalController } from '@ionic/angular';
 
 import { RestaurantModel } from '../shared/restaurant.model';
 import { RestaurantService, Restaurants } from '../shared/restaurant.service';
+import { RestaurantFilterPage } from 'src/app/restaurant/restaurant-filter/restaurant-filter.page';
 
 @Component({
   selector: 'page-restaurant-list',
@@ -19,6 +21,7 @@ export class RestaurantListPage implements OnInit {
   private refresherEvent: any;
   
   constructor(
+    private modalController: ModalController,
     private restaurantService: RestaurantService,
     private router: Router,
   ) { }
@@ -28,6 +31,8 @@ export class RestaurantListPage implements OnInit {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((restaurants) => {
         this.restaurants = restaurants;
+
+        console.log(restaurants);
 
         this.completeInfiniteScroll();
         this.completeRefresher();
@@ -60,6 +65,22 @@ export class RestaurantListPage implements OnInit {
     if (!restaurant) { return; }
 
     this.router.navigate(['/main/restaurants', restaurant.id]).catch();
+  }
+
+  public async openFilterModal() {
+    const modal = await this.modalController.create({
+      component: RestaurantFilterPage,
+      componentProps: {
+        whereFilter: JSON.parse(JSON.stringify(this.restaurants.meta.whereFilter)),
+        orderBy: JSON.parse(JSON.stringify(this.restaurants.meta.orderBy)),
+      },
+    });
+
+    modal.onWillDismiss().then(() => {
+      console.log(this.restaurants);
+    }).catch();
+
+    return await modal.present();
   }
 
   private completeInfiniteScroll() {

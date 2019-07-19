@@ -13,6 +13,7 @@ import { CoreModule } from './@core/core.module';
 import { LoginConsentPageModule } from 'src/app/auth/login-consent/login-consent.page.module';
 import { NativeModule } from './@native/native.module';
 import { SharedModule } from './@shared/shared.module';
+import { RestaurantFilterPageModule } from 'src/app/restaurant/restaurant-filter/restaurant-filter.page.module';
 
 // --- Factories ---------------------------------------------------------------
 export function createTranslateLoader(http: HttpClient) {
@@ -23,7 +24,7 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    /**/AppRoutingModule, // AppRoutingModule has to be importet first
+    /**/AppRoutingModule, // AppRoutingModule has to be imported first
     AgreementPageModule,
     BrowserModule,
     CoreModule,
@@ -31,6 +32,7 @@ export function createTranslateLoader(http: HttpClient) {
     IonicModule.forRoot(),
     LoginConsentPageModule,
     NativeModule,
+    RestaurantFilterPageModule,
     SharedModule,
     TranslateModule.forRoot({
       loader: {

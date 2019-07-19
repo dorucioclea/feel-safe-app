@@ -3,7 +3,14 @@
     <ion-buttons mode="ios" slot="start">
       <proto-back-button></proto-back-button>
     </ion-buttons>
+
     <ion-title mode="ios">RestaurantList</ion-title>
+
+    <ion-buttons mode="ios" slot="end">
+      <ion-button mode="ios" (click)="openFilterModal()">
+        <ion-icon slot="icon-only" name="funnel"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -25,6 +32,7 @@
         imageType="thumbnail"
         [imageId]="restaurant?.image"></proto-image>
       <h2>{{ restaurant.title }}</h2>
+      <h3>{{ restaurant.numberOfSeats }}</h3>
     </ion-item>
   </ion-list>
 
