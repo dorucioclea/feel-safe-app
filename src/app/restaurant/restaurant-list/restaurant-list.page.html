@@ -30,7 +30,7 @@
 
   <ion-list mode="ios">
     <ion-item mode="ios"
-      *ngFor="let restaurant of restaurants.items"
+      *ngFor="let restaurant of restaurants.items; trackBy: trackByFunction"
       (click)="openDetailPage(restaurant)">
       <proto-image class="thumbnail"
         imageType="thumbnail"

@@ -85,6 +85,10 @@ export class RestaurantListPage implements OnInit {
     return await modal.present();
   }
 
+  public trackByFunction(index: number, item: any) {
+    return item ? item.id : index;
+  }
+
   private completeInfiniteScroll() {
     if (this.infiniteScrollEvent) {
       this.infiniteScrollEvent.target.complete();
