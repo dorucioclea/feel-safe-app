@@ -42,6 +42,14 @@ export class RestaurantListPage implements OnInit {
     this.ngUnsubscribe.complete();
   }
 
+  public search(event: any) {
+    if (!event.detail.value) {
+      return this.restaurantService.clearSearch();
+    }
+
+    this.restaurantService.searchRestaurants({ title: { ilike: `%${event.detail.value}%` } });
+  }
+
   public refresh(event: any) {
     this.refresherEvent = event;
     this.restaurantService.refreshRestaurants();

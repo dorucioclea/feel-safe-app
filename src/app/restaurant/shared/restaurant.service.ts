@@ -31,6 +31,7 @@ const DEFAULT_ORDER_BY = 'createdAt DESC';
 export class RestaurantService {
   private whereFilter: any = DEFAUL_WHERE_FILTER;
   private orderBy = DEFAULT_ORDER_BY;
+  private search: { [key: string]: string } = {};
   private restaurantsStore: Restaurants = null;
   private restaurants: BehaviorSubject<Restaurants> = new BehaviorSubject(null);
   private restaurantsByIdStore: RestaurantsByIdStore = {};
@@ -46,40 +47,14 @@ export class RestaurantService {
     this.whereFilter = whereFilter;
     this.orderBy = orderBy;
 
-    this.restaurantsStore.items = [];
-    this.restaurantsStore.meta.isLoading = true;
-    this.restaurantsStore.meta.filterIsActive = AppHelper.isEmptyObject(this.whereFilter);
-    this.restaurantsStore.meta.whereFilter = this.whereFilter;
-    this.restaurantsStore.meta.orderBy = orderBy;
-    this.restaurants.next(this.restaurantsStore);
-
-    this.loadRestaurants().toPromise().catch((error) => {
-      this.restaurantsStore.meta.error = error;
-      this.restaurantsStore.meta.isLoading = false;
-
-      this.restaurants.next(this.restaurantsStore);
-    });
+    this.updateFilter();
   }
 
-  public getFilter() {
-    return this.whereFilter;
-  }
+  public resetFilter() {
+    this.whereFilter = DEFAUL_WHERE_FILTER;
+    this.orderBy = DEFAULT_ORDER_BY;
 
-  public clearFilter() {
-    this.whereFilter = {};
-
-    this.restaurantsStore.items = [];
-    this.restaurantsStore.meta.isLoading = true;
-    this.restaurantsStore.meta.filterIsActive = AppHelper.isEmptyObject(this.whereFilter);
-    this.restaurantsStore.meta.whereFilter = this.whereFilter;
-    this.restaurants.next(this.restaurantsStore);
-
-    this.loadRestaurants().toPromise().catch((error) => {
-      this.restaurantsStore.meta.error = error;
-      this.restaurantsStore.meta.isLoading = false;
-
-      this.restaurants.next(this.restaurantsStore);
-    });
+    this.updateFilter();
   }
 
   public getDefaultWhereFilter(): any {
@@ -88,6 +63,14 @@ export class RestaurantService {
 
   public getDefaultOrderBy(): string {
     return DEFAULT_ORDER_BY;
+  }
+
+  public searchRestaurants(search: { [key: string]: any }) {
+    this.updateSearch(search);
+  }
+
+  public clearSearch() {
+    this.updateSearch({});
   }
 
   public getRestaurantById(restaurantId: string): Observable<RestaurantModel> {
@@ -161,9 +144,13 @@ export class RestaurantService {
     const filter = {
       skip: skip,
       limit: limit,
-      where: this.whereFilter,
+      where: JSON.parse(JSON.stringify(this.whereFilter)),
       order: this.orderBy,
     };
+
+    if (!AppHelper.isEmptyObject(this.search)) {
+      filter.where = Object.assign(filter.where, this.search);
+    }
 
     const url = `${C.urls.restaurants}?filter=${encodeURIComponent(JSON.stringify(filter))}`;
 
@@ -235,5 +222,36 @@ export class RestaurantService {
           this.restaurantCategories.next(this.restaurantCategoriesStore);
         }),
       );
+  }
+
+  private updateFilter() {
+    this.restaurantsStore.items = [];
+    this.restaurantsStore.meta.isLoading = true;
+    this.restaurantsStore.meta.filterIsActive = AppHelper.isEmptyObject(this.whereFilter);
+    this.restaurantsStore.meta.whereFilter = this.whereFilter;
+    this.restaurantsStore.meta.orderBy = this.orderBy;
+    this.restaurants.next(this.restaurantsStore);
+
+    this.loadRestaurants().toPromise().catch((error) => {
+      this.restaurantsStore.meta.error = error;
+      this.restaurantsStore.meta.isLoading = false;
+
+      this.restaurants.next(this.restaurantsStore);
+    });
+  }
+  
+  private updateSearch(search: { [key: string]: any }) {
+    this.search = search;
+
+    this.restaurantsStore.items = [];
+    this.restaurantsStore.meta.isLoading = true;
+    this.restaurantsStore.meta.search = this.search;
+
+    this.loadRestaurants().toPromise().catch((error) => {
+      this.restaurantsStore.meta.error = error;
+      this.restaurantsStore.meta.isLoading = false;
+
+      this.restaurants.next(this.restaurantsStore);
+    });
   }
 }

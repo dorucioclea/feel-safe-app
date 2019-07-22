@@ -12,6 +12,10 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+
+  <ion-toolbar mode="ios">
+    <ion-searchbar showCancelButton="always" mode="ios" (ionChange)="search($event)"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
