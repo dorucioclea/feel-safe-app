@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginConsentPage } from './login-consent.page';
+import { RestaurantFilterPage } from './restaurant-filter.page';
 import { SharedModule } from 'src/app/@shared/shared.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginConsentPage,
+    component: RestaurantFilterPage,
   },
 ];
 
@@ -16,7 +16,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule,
   ],
-  declarations: [LoginConsentPage],
+  declarations: [RestaurantFilterPage],
 })
 // tslint:disable-next-line
-export class LoginConsentPageModule {}
+export class RestaurantFilterPageModule {}

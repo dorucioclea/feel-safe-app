@@ -45,6 +45,10 @@ export class AppHelper {
     return filter;
   }
 
+  public  static isEmptyObject(obj) {
+    return Object.keys(obj).length === 0 && obj.constructor === Object;
+  }
+
   public static formatDate(date: string, dateFormat: string): string {
     if (dateFormat === 'fromNow') {
       return moment(date).fromNow();

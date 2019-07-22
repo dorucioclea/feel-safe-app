@@ -47,6 +47,9 @@ export class C {
     get restaurants() {
       return this.url + '/restaurants';
     },
+    get restaurantCategories() {
+      return this.url + '/restaurant-categories';
+    },
     get tags() {
       return this.url + '/tags';
     },

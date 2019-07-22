@@ -3,7 +3,18 @@
     <ion-buttons mode="ios" slot="start">
       <proto-back-button></proto-back-button>
     </ion-buttons>
+
     <ion-title mode="ios">RestaurantList</ion-title>
+
+    <ion-buttons mode="ios" slot="end">
+      <ion-button mode="ios" (click)="openFilterModal()">
+        <ion-icon slot="icon-only" name="funnel"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar mode="ios">
+    <ion-searchbar showCancelButton="always" mode="ios" (ionChange)="search($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -19,12 +30,13 @@
 
   <ion-list mode="ios">
     <ion-item mode="ios"
-      *ngFor="let restaurant of restaurants.items"
+      *ngFor="let restaurant of restaurants.items; trackBy: trackByFunction"
       (click)="openDetailPage(restaurant)">
       <proto-image class="thumbnail"
         imageType="thumbnail"
         [imageId]="restaurant?.image"></proto-image>
       <h2>{{ restaurant.title }}</h2>
+      <h3>{{ restaurant.numberOfSeats }}</h3>
     </ion-item>
   </ion-list>
 

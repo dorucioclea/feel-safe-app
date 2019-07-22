@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppInfoComponent } from './app-info/app-info.component';
 import { AppSvgIcon } from './app-svg-icon.component';
@@ -24,17 +25,23 @@ import { ProtoImageComponent } from './proto-image/proto-image.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     TranslateModule,
   ],
   exports: [
     AppInfoComponent,
     AppSvgIcon,
+    CommonModule,
+    FormsModule,
     HandleExternalLinksDirective,
     HandleInternalLinksDirective,
     ImageUploadComponent,
+    IonicModule,
     ProtoBackButtonComponent,
     ProtoImageComponent,
+    ReactiveFormsModule,
     TranslateModule,
   ],
 })
