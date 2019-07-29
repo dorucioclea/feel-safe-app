@@ -61,7 +61,7 @@ export class AuthService {
 
     return new Promise((resolve, reject) => {
       this.http.post(url, loginData).subscribe((response: any) => {
-        const accessToken = Object.assign({}, response);
+        const accessToken: any = Object.assign({}, response);
         const user = response.user;
 
         delete accessToken.user;
@@ -84,7 +84,7 @@ export class AuthService {
 
         return this.deeplinkService.route()
           .pipe(takeUntil(unsubscribe))
-          .subscribe((data) => {
+          .subscribe((data: any) => {
             if (data && data.$link && data.$link.url && data.$link.url.indexOf('://auth/') > -1) {
               unsubscribe.next();
               unsubscribe.complete();
@@ -115,7 +115,7 @@ export class AuthService {
 
             this.storage.set('accessToken', response.accessToken);
 
-            const user = await this.http.get<UserSource>(`${C.urls.users}/${response.accessToken.userId}`).toPromise();
+            const user = await this.http.get<UserSource>(`${C.urls.users}/${response.accessToken.userId}`).toPromise() as UserSource;
             this.userService.setCurrentUser(user);
             
             return resolve(new UserModel(user));
@@ -164,7 +164,7 @@ export class AuthService {
     try {
       this.storage.set('accessToken', accessToken);
 
-      const user = await this.http.get<UserSource>(`${C.urls.users}/${accessToken.userId}`).toPromise();
+      const user = await this.http.get<UserSource>(`${C.urls.users}/${accessToken.userId}`).toPromise() as UserSource;
 
       this.userService.setCurrentUser(user);
       

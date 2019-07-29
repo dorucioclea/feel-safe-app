@@ -19,7 +19,7 @@ export class DeeplinkService {
   }
 
   public route() {
-    return Observable.create((observer) => {
+    return new Observable((observer) => {
       this.deeplinks.route({}).subscribe((data) => {
         observer.next(data);
       }, (data) => {
