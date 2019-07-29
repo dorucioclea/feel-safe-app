@@ -12,7 +12,7 @@ import { StorageService } from 'src/app/@core/storage.service';
   styleUrls: ['./onboarding.page.scss'],
 })
 export class OnboardingPage implements OnInit {
-  @ViewChild('slider') public slider: IonSlides;
+  @ViewChild('slider', { static: true }) public slider: IonSlides;
 
   public slideOptions = {};
   public slides: any[] = [];

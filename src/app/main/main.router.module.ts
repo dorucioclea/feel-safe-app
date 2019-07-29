@@ -13,11 +13,11 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../restaurant/restaurant-list/restaurant-list.page.module#RestaurantListPageModule',
+            loadChildren: () => import('../restaurant/restaurant-list/restaurant-list.page.module').then((mod) => mod.RestaurantListPageModule),
           },
           {
             path: ':id',
-            loadChildren: '../restaurant/restaurant-detail/restaurant-detail.page.module#RestaurantDetailPageModule',
+            loadChildren: () => import('../restaurant/restaurant-detail/restaurant-detail.page.module').then((mod) => mod.RestaurantDetailPageModule),
           },
         ],
       },
@@ -26,11 +26,11 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../static-pages/more-menu/more-menu.page.module#MoreMenuPageModule',
+            loadChildren: () => import('../static-pages/more-menu/more-menu.page.module').then((mod) => mod.MoreMenuPageModule),
           },
           {
             path: 'imprint',
-            loadChildren: '../static-pages/imprint/imprint.page.module#ImprintPageModule',
+            loadChildren: () => import('../static-pages/imprint/imprint.page.module').then((mod) => mod.ImprintPageModule),
           },
         ],
       },
