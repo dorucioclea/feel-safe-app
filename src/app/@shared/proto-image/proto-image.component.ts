@@ -16,7 +16,7 @@ import {
 })
 // tslint:disable:no-magic-numbers
 export class ProtoImageComponent implements OnInit {
-  @ViewChild('imageSrc') public imageSrc: ElementRef;
+  @ViewChild('imageSrc', { static: true }) public imageSrc: ElementRef;
   @Input() public showFallbackImage = false;
   @Input() public imageType: imageType = 'default';
 

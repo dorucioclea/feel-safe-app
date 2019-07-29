@@ -18,6 +18,9 @@
     "no-floating-promises": true,
     "no-unnecessary-class": true,
     "no-invalid-template-strings": true,
+    "no-inputs-metadata-property": true,
+    "no-outputs-metadata-property": true,
+    "no-host-metadata-property": true,
     "deprecation": true,
     "indent": [true, "spaces", 2],
     "max-file-line-count": [true, 300],
@@ -25,6 +28,7 @@
     "prefer-const": true,
     "import-spacing": true,
     "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
+    "use-lifecycle-interface": true,
     "whitespace": [
       true,
       "check-branch",
