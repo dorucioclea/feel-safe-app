@@ -31,6 +31,11 @@
     "check-dependencies": "node scripts/dependency-checker.js",
     "e2e": "ng e2e"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run check-dependencies && node scripts/lint-staged.js"
+    }
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "8.1.1",
@@ -40,7 +45,7 @@
     "@angular/platform-browser-dynamic": "8.1.1",
     "@angular/pwa": "0.801.1",
     "@angular/router": "8.1.1",
-    "@angular/service-worker": "~8.1.1",
+    "@angular/service-worker": "8.1.1",
     "@ionic-native/app-version": "5.10.0",
     "@ionic-native/camera": "5.10.0",
     "@ionic-native/core": "5.10.0",
@@ -76,6 +81,7 @@
     "cordova-plugin-x-socialsharing": "5.4.7",
     "cordova-support-google-services": "1.1.0",
     "core-js": "2.5.7",
+    "es6-promise-plugin": "4.2.2",
     "ionic-plugin-deeplinks": "1.0.19",
     "moment": "2.24.0",
     "ngx-json-viewer": "2.4.0",
@@ -83,7 +89,7 @@
     "phonegap-plugin-push": "2.2.3",
     "rxjs": "6.5.2",
     "sw-toolbox": "3.6.0",
-    "tslib": "^1.9.0",
+    "tslib": "1.9.0",
     "zone.js": "0.9.1"
   },
   "devDependencies": {
@@ -101,6 +107,7 @@
     "@types/jasminewd2": "2.0.6",
     "@types/node": "12.0.8",
     "codelyzer": "5.0.1",
+    "husky": "2.2.0",
     "jasmine-core": "3.4.0",
     "jasmine-spec-reporter": "4.2.1",
     "karma": "4.1.0",
@@ -110,8 +117,10 @@
     "karma-jasmine-html-reporter": "1.4.2",
     "protractor": "5.4.2",
     "puppeteer": "1.17.0",
+    "staged-git-files": "1.1.2",
     "ts-node": "8.2.0",
     "tslint": "5.17.0",
+    "tslint-eslint-rules": "5.4.0",
     "typescript": "3.4.5"
   },
   "description": "The awesome Ionic 4 Blueprint",
@@ -130,7 +139,9 @@
       "cordova-plugin-camera": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-x-socialsharing": {
-        "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
+        "ANDROID_SUPPORT_V4_VERSION": "24.1.1+",
+        "PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION": "This app requires photo library access to function properly.",
+        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "This app requires photo library access to function properly."
       },
       "cordova-plugin-inappbrowser": {},
       "ionic-plugin-deeplinks": {
