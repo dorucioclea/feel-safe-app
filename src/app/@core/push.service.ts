@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
-import { takeUntil, tap } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 
+import { C } from 'src/app/@shared/constants';
 import { StorageService } from 'src/app/@core/storage.service';
 import { UserService } from 'src/app/user/shared/user.service';
-import { C } from 'src/app/@shared/constants';
-import { HttpClient } from '@angular/common/http';
 
 export interface PushStatus {
   softPermission: 'unknown' | 'allowed' | 'denied',
@@ -18,8 +17,8 @@ export interface PushStatus {
   providedIn: 'root',
 })
 export class PushService {
-  private ngUnsubscribe: Subject<any> = new Subject();
   private pushObject: PushObject;
+  private initialized = false;
 
   constructor(
     private push: Push,
@@ -29,7 +28,6 @@ export class PushService {
     private userService: UserService,
   ) {
     this.platform.resume
-      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(() => {
         this.clearAllNotifications();
       });
@@ -39,11 +37,6 @@ export class PushService {
 
       this.initPush().catch();
     });
-  }
-
-  public ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
   }
 
   public getPushStatus(): PushStatus {
@@ -57,6 +50,8 @@ export class PushService {
   }
 
   public async initPush() {
+    if (this.initialized) { return; }
+
     const pushStatus = this.getPushStatus();
 
     console.log('check push permissions', pushStatus);
@@ -76,6 +71,8 @@ export class PushService {
     };
 
     console.log('init push');
+
+    this.initialized = true;
 
     this.pushObject = this.push.init(options);
 
