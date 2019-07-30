@@ -18,3 +18,39 @@
   0%, 20%, 100% { opacity: 0 }
   40%, 80% { opacity: 1 }
 }
+
+// splash animation
+.splash-overlay {
+  @extend %stretched-container;
+  pointer-events: none;
+  transition: opacity .5s;
+  transition-delay: .3s;
+
+  img {
+    @extend %object-fit;
+    @extend %middle-self;
+    display: block;
+    width: 150%;
+    height: 150%;
+    object-fit: cover;
+    opacity: 0;
+    transform: translate(-50%, - 50%) scale(.667);
+    tansform-origin: center center;
+    transition: transform .5s;
+    transition-delay: .3s;
+    will-change: transform;
+  }
+
+  &.is-active {
+    img {
+      opacity: 1;
+    }
+  }
+
+  .page-ready & {
+    opacity: 0;
+    img {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}

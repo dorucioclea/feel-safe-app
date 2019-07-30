@@ -7,7 +7,9 @@ import { AuthService } from 'src/app/auth/shared/auth.service';
 import { C } from 'src/app/@shared/constants';
 import { LegalService } from 'src/app/legal/shared/legal.service';
 import { LoginConsentPage } from 'src/app/auth/login-consent/login-consent.page';
+import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
+@HideSplash()
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',

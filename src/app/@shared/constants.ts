@@ -1,8 +1,11 @@
 import { environment } from '../../environments/environment';
 
+declare var navigator: any;
+
 // Do NEVER remove or modify the following line (appVersionFromConfigXml)
 // under any circumstances as the world will explode if you do so!
-const appVersionFromConfigXml = '0.9.3_RC1'
+const appVersionFromConfigXml = '0.9.3_RC1';
+const pStyle: CSSStyleDeclaration = getComputedStyle(document.documentElement);
 
 /* tslint:disable-next-line */
 export class C {
@@ -79,11 +82,12 @@ export class C {
   };
 
   public static colors = {
-    primary: '#C2B096',
-    secondary: '#F4F4F4',
-    danger: '#FF687A',
-    light: '#fff',
-    dark: '#1D3C5D',
+    primary: pStyle.getPropertyValue(`--ion-color-primary`),
+    secondary: pStyle.getPropertyValue(`--ion-color-secondary`),
+    danger: pStyle.getPropertyValue(`--ion-color-danger`),
+    light: pStyle.getPropertyValue(`--ion-color-light`),
+    medium: pStyle.getPropertyValue(`--ion-color-medium`),
+    dark: pStyle.getPropertyValue(`--ion-color-dark`),
   };
 
   public static imageUploadOptions: any = {
@@ -127,4 +131,13 @@ export class C {
       key: 'AIzaSyBdcFMydB2OhLucCDSIt9GvxzvqB9TzBhg',
     },
   };
+
+  /**
+   * @param {{deviceMemory:number}} navigator
+   */
+  public static isLowEndDevice(): boolean {
+    const DEVICE_MEMORY = 2;
+
+    return navigator.deviceMemory && navigator.deviceMemory <= DEVICE_MEMORY;
+  }
 }

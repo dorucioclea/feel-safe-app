@@ -5,7 +5,9 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from 'src/app/auth/shared/auth.service';
+import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
+@HideSplash()
 @Component({
   selector: 'page-more-menu',
   templateUrl: './more-menu.page.html',

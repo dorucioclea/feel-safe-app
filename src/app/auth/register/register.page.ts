@@ -7,7 +7,9 @@ import { AgreementPage } from 'src/app/legal/agreement/agreement.page';
 import { AuthService } from 'src/app/auth/shared/auth.service';
 import { C } from 'src/app/@shared/constants';
 import { LegalService } from 'src/app/legal/shared/legal.service';
+import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
+@HideSplash()
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -83,7 +85,7 @@ export class RegisterPage implements OnInit {
   }
 
   private onRegistrationSucceeded() {
-    // TODO: 
+    // TODO:
     // this.navController.setRoot('TabsPage', null, { animate: true, direction: 'left' }).then(() => {
     //   this.isLoading = false;
     //   this.showToast(this.translate.instant('TOAST.REGISTER_SUCCESS'), true);
@@ -94,7 +96,7 @@ export class RegisterPage implements OnInit {
 
   private onRegistrationFailed(err: any) {
     this.isLoading = false;
-    // TODO: 
+    // TODO:
     // let message = this.translate.instant('TOAST.REGISTER_ERROR');
     // if (err && err.status === C.status.unprocessableEntity) {
     //   message = this.getUnprocessableEntityMessage(err);
@@ -103,7 +105,7 @@ export class RegisterPage implements OnInit {
     // this.showToast(message, false);
   }
 
-  // TODO: 
+  // TODO:
   // private getUnprocessableEntityMessage(data: any): string {
   //   const errorData = data.error ? data.error.error : data;
 

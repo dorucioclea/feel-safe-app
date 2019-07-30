@@ -5,7 +5,9 @@ import { takeUntil } from 'rxjs/operators';
 
 import { RestaurantModel } from '../shared/restaurant.model';
 import { RestaurantService } from '../shared/restaurant.service';
+import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
+@HideSplash()
 @Component({
   selector: 'page-restaurant-detail',
   templateUrl: './restaurant-detail.page.html',

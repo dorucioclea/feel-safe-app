@@ -5,7 +5,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { AgreementModel } from 'src/app/legal/shared/agreement.model';
 import { AgreementPage } from 'src/app/legal/agreement/agreement.page';
 import { LegalService } from 'src/app/legal/shared/legal.service';
+import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
+@HideSplash()
 @Component({
   selector: 'page-login-consent',
   templateUrl: './login-consent.page.html',
