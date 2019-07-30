@@ -59,7 +59,7 @@ export class PushService {
   public async initPush() {
     const pushStatus = this.getPushStatus();
 
-    console.log('INIT PUSH', pushStatus);
+    console.log('check push permissions', pushStatus);
 
     if (pushStatus.softPermission !== 'allowed' || pushStatus.permission === 'denied') { return; }
 
@@ -74,6 +74,8 @@ export class PushService {
         sound: 'false',
       },
     };
+
+    console.log('init push');
 
     this.pushObject = this.push.init(options);
 

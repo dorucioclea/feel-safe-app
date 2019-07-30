@@ -5,7 +5,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppInfoComponent } from './app-info/app-info.component';
-import { AppSvgIcon } from './app-svg-icon.component';
 import { HandleExternalLinksDirective } from './handle-external-links.directive';
 import { HandleInternalLinksDirective } from './handle-internal-links.directive';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
@@ -15,7 +14,6 @@ import { ProtoImageComponent } from './proto-image/proto-image.component';
 @NgModule({
   declarations: [
     AppInfoComponent,
-    AppSvgIcon,
     HandleExternalLinksDirective,
     HandleExternalLinksDirective,
     HandleInternalLinksDirective,
@@ -32,7 +30,6 @@ import { ProtoImageComponent } from './proto-image/proto-image.component';
   ],
   exports: [
     AppInfoComponent,
-    AppSvgIcon,
     CommonModule,
     FormsModule,
     HandleExternalLinksDirective,

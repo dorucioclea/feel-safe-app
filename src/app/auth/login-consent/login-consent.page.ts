@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { ModalOptions } from '@ionic/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { AgreementModel } from 'src/app/legal/shared/agreement.model';
@@ -44,7 +45,7 @@ export class LoginConsentPage implements OnInit {
         type: type,
         agreement: this.agreements[type],
       },
-    });
+    } as ModalOptions);
 
     return await modal.present();
   }
