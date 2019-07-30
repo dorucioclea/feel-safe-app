@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 
 import { C } from 'src/app/@shared/constants';
 import { StorageService } from 'src/app/@core/storage.service';
+import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
+@HideSplash()
 @Component({
   selector: 'page-god-mode',
   templateUrl: './god-mode.page.html',

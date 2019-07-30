@@ -5,7 +5,9 @@ import { IonSlides } from '@ionic/angular';
 
 import { PushService } from 'src/app/@core/push.service';
 import { StorageService } from 'src/app/@core/storage.service';
+import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
+@HideSplash()
 @Component({
   selector: 'app-onboarding',
   templateUrl: './onboarding.page.html',

@@ -1,3 +1,8 @@
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
+  <div class="splash-overlay"
+    [ngClass]="{
+    'is-active': splashImage }">
+    <img [src]="splashImage" (load)="onSplashImageLoaded()"/>
+  </div>
 </ion-app>

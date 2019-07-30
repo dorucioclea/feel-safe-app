@@ -4,7 +4,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/shared/auth.service';
 import { C } from 'src/app/@shared/constants';
 import { ActivatedRoute } from '@angular/router';
+import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
+@HideSplash()
 @Component({
   selector: 'page-password-reset',
   templateUrl: './password-reset.page.html',

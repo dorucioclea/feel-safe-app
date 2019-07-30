@@ -7,7 +7,9 @@ import { ModalController } from '@ionic/angular';
 import { RestaurantModel } from '../shared/restaurant.model';
 import { RestaurantService, Restaurants } from '../shared/restaurant.service';
 import { RestaurantFilterPage } from 'src/app/restaurant/restaurant-filter/restaurant-filter.page';
+import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
+@HideSplash()
 @Component({
   selector: 'page-restaurant-list',
   templateUrl: './restaurant-list.page.html',
@@ -19,7 +21,7 @@ export class RestaurantListPage implements OnInit {
   private ngUnsubscribe: Subject<any> = new Subject();
   private infiniteScrollEvent: any;
   private refresherEvent: any;
-  
+
   constructor(
     private modalController: ModalController,
     private restaurantService: RestaurantService,
