@@ -1,1 +1,6 @@
+.active-tab-disabled {
+  .tab-selected {
+    pointer-events: none!important;
+  }
+}
 
