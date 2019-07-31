@@ -7,6 +7,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppInfoComponent } from './app-info/app-info.component';
 import { HandleExternalLinksDirective } from './handle-external-links.directive';
 import { HandleInternalLinksDirective } from './handle-internal-links.directive';
+import { HandleKeyboardEventsDirective } from './handle-keyboard-events.directive';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { ProtoBackButtonComponent } from './proto-back-button/proto-back-button.component';
 import { ProtoImageComponent } from './proto-image/proto-image.component';
@@ -15,8 +16,8 @@ import { ProtoImageComponent } from './proto-image/proto-image.component';
   declarations: [
     AppInfoComponent,
     HandleExternalLinksDirective,
-    HandleExternalLinksDirective,
     HandleInternalLinksDirective,
+    HandleKeyboardEventsDirective,
     ImageUploadComponent,
     ProtoBackButtonComponent,
     ProtoImageComponent,
@@ -34,6 +35,7 @@ import { ProtoImageComponent } from './proto-image/proto-image.component';
     FormsModule,
     HandleExternalLinksDirective,
     HandleInternalLinksDirective,
+    HandleKeyboardEventsDirective,
     ImageUploadComponent,
     IonicModule,
     ProtoBackButtonComponent,

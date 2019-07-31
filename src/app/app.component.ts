@@ -10,7 +10,6 @@ import { PushService } from 'src/app/@core/push.service';
 import { UserService } from 'src/app/user/shared/user.service';
 import { environment } from '../environments/environment';
 import { C } from './@shared/constants';
-import { DeeplinkService } from './@core/deeplink.service';
 
 declare var cordova: any;
 declare var window: any;
@@ -28,7 +27,6 @@ export class AppComponent {
 
   constructor(
     private authService: AuthService,
-    private deeplinkService: DeeplinkService,
     private platform: Platform,
     private pushService: PushService,
     private splashScreen: SplashScreen,
