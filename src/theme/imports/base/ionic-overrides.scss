@@ -1,3 +1,8 @@
 .swiper-container-horizontal>.swiper-pagination-bullets {
   bottom: var(--proto-space-s);
 }
+
+ion-back-button.button {
+  --margin-start: var(--proto-space-s);
+  --color: var(--ion-toolbar-color);
+}

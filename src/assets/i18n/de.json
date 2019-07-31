@@ -17,6 +17,10 @@
       "PRIVACY_CONSENT": "Ich habe die <span>Datenschutzbestimmungen</span> gelesen und akzeptiere diese.",
       "TERMS_CONSENT": "Ich habe die <span>Nutzungsbedingungen</span> gelesen und akzeptiere diese.",
       "NEW_PASSWORD": "Neues Passwort"
+    },
+    "PLACEHOLDER": {
+      "EMAIL": "max@mustermann.de",
+      "PASSWORD": "password requirements placeholder"
     }
   },
   "TERM": {

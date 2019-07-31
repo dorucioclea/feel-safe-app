@@ -1,0 +1,85 @@
+$font-path: "~/assets/fonts";
+
+@font-face {
+  font-family: 'Avenir Roman';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Avenir Roman'), local('Avenir-Roman'),
+  url('#{$font-path}/Avenir-Roman.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('#{$font-path}/Avenir-Roman.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+  font-family: 'Avenir Black';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Avenir Black'), local('Avenir-Black'),
+  url('#{$font-path}/Avenir-Black.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('#{$font-path}/Avenir-Black.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+.hyperlink, %hyperlink {
+  color: var(--ion-color-primary);
+  text-decoration: underline;
+}
+
+%font-block {
+  margin: 0;
+  font-family: var(--proto-font-family, --ion-font-family);
+  font-size: var(--proto-font-size);
+  font-weight: var(--proto-font-weight, inherit);
+  font-style: var(--proto-font-style, inherit);
+  line-height: var(--proto-line-height, inherit);
+  text-transform: var(--proto-text-transform, inherit);
+  letter-spacing: var(--proto-letter-spacing, inherit);
+}
+
+// inspired by https://css-tricks.com/do-css-custom-properties-beat-sass-loops/
+
+h1, .h1, %h1 {
+  --proto-font-family: var(--proto-font-family-headlines);
+  --proto-font-size: 40px;
+  --proto-font-weight: 800;
+  --proto-text-transform: uppercase;
+  --proto-letter-spacing: 1px;
+}
+
+h2, .h2, %h2 {
+  --proto-font-family: var(--proto-font-family-headlines);
+  --proto-font-size: 20px;
+  --proto-font-weight: 800;
+  --proto-letter-spacing: 1px;
+}
+
+h3, .h3, %h3 {
+  --proto-font-family: var(--ion-font-family);
+  --proto-font-size: 16px;
+  --proto-font-weight: 500;
+}
+
+p, .p, %p {
+  --proto-font-family: var(--ion-font-family);
+  --proto-font-size: 14px;
+  --proto-font-weight: 400;
+  --proto-line-height: 1.5;
+}
+
+input, .input, %input {
+  --proto-font-family: var(--ion-font-family);
+}
+
+small, .small, %small {
+  --proto-font-family: var(--ion-font-family);
+  --proto-font-size: 12px;
+  --proto-font-weight: 400;
+  --proto-line-height: 1.25;
+}
+
+$font-tags: h1 h2 h3 input p input small;
+
+@each $h in $font-tags {
+  #{$h}, .#{$h}, %#{$h} {
+    @extend %font-block;
+  }
+}
+
