@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { ModalController } from '@ionic/angular';
+import { ModalOptions } from '@ionic/core';
 
 import { RestaurantModel } from '../shared/restaurant.model';
 import { RestaurantService, Restaurants } from '../shared/restaurant.service';
@@ -82,7 +83,7 @@ export class RestaurantListPage implements OnInit {
         whereFilter: JSON.parse(JSON.stringify(this.restaurants.meta.whereFilter)),
         orderBy: JSON.parse(JSON.stringify(this.restaurants.meta.orderBy)),
       },
-    });
+    } as ModalOptions);
 
     return await modal.present();
   }

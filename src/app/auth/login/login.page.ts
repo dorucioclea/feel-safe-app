@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { ModalOptions } from '@ionic/core';
 
 import { AuthService } from 'src/app/auth/shared/auth.service';
 import { C } from 'src/app/@shared/constants';
@@ -63,7 +64,7 @@ export class LoginPage implements OnInit {
   public async loginWithProvider(provider: string) {
     const modal = await this.modalController.create({
       component: LoginConsentPage,
-    });
+    } as ModalOptions);
 
     await modal.present();
 

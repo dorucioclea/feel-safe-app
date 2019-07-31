@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { ModalOptions } from '@ionic/core';
 
 import { AgreementModel } from 'src/app/legal/shared/agreement.model';
 import { AgreementPage } from 'src/app/legal/agreement/agreement.page';
@@ -79,7 +80,7 @@ export class RegisterPage implements OnInit {
         type: type,
         agreement: this.agreements[type],
       },
-    });
+    } as ModalOptions);
 
     return await modal.present();
   }
