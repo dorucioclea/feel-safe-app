@@ -4,6 +4,11 @@ ion-header {
   ion-title {
     @extend %h2;
   }
+
+  .title-ios {
+    padding-inline-start: var(--proto-space-xxl);
+    padding-inline-end: var(--proto-space-xxl);
+  }
 }
 
 ion-toolbar {
