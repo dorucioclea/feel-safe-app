@@ -5,20 +5,22 @@
 :host {
   --proto-image-background: var(--ion-color-medium);
   --proto-image-border-radius: 0;
-}
 
-.proto-image {
   display: block;
-  &[item-start], &[item-end] {
+
+  &[slot=start], &[slot=end] {
     flex: none;
   }
 
-  &[item-start] {
-    margin: var(--proto-space-s, 8px) var(--proto-space, 16px) var(--proto-space-s, 8px) 0;
+  &[slot=start] {
+    margin: var(--proto-space, 16px) var(--proto-space, 16px) var(--proto-space, 16px) 0;
   }
-  &[item-end] {
-    margin: var(--proto-space-s, 8px) 0 var(--proto-space-s, 8px) var(--proto-space, 16px);
+  &[slot=end] {
+    margin: var(--proto-space, 16px) 0 var(--proto-space, 16px) var(--proto-space, 16px);
   }
+}
+
+.proto-image {
 
   &__inner {
     position: relative;
@@ -55,7 +57,6 @@
   }
 
   &-content {
-    // @extend %stretched-container;
     z-index: 2;
   }
 
@@ -98,5 +99,9 @@
 
   &-avatar_large {
     width: var(--proto-image-width-avatar-l);
+  }
+
+  &-thumbnail {
+    width: var(--proto-image-width-thumbnail);
   }
 }

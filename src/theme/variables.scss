@@ -72,10 +72,10 @@
   --ion-text-color-rgb: var(--ion-color-dark-rgb);
   --ion-placeholder-color: var(--ion-color-medium);
 
-  --ion-tab-bar-background: var(--ion-color-light);
-  --ion-tab-bar-background-focused: var(--ion-color-light);
-  --ion-tab-bar-border-color: transparent;
-  --ion-tab-bar-color: var(--ion-color-secondary);
+  --ion-tab-bar-background: #fff;
+  --ion-tab-bar-background-focused: #fff;
+  --ion-tab-bar-border-color: var(--ion-color-light);
+  --ion-tab-bar-color: var(--ion-color-medium);
   --ion-tab-bar-color-activated: var(--ion-color-dark);
 
   --ion-toolbar-background: var(--ion-color-primary);
@@ -138,5 +138,14 @@
   --proto-button-height: 50px;
 
   --proto-button-icon-size: 20px;
-  --proto-image-ratio-default: 1.25;
+
+  // HOTFIX: proto-image-config.ts currently needs these values in :root
+  --ratio-square: 1;
+  --proto-image-ratio-default: 1;
+  --proto-image-ratio-thumbnail: 1;
+  --proto-image-width-avatar: 48px;
+  --proto-image-width-avatar-l: 100px;
+  --proto-image-width-thumbnail: 80px;
+  --proto-image-width-default: 375px;
+  --proto-image-width-placeholder: 15px;
 }

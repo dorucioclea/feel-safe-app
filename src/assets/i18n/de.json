@@ -27,8 +27,8 @@
     "OR": "oder"
   },
   "REFRESHER": {
-    "PULLING_TEXT": "Zieh fester!",
-    "REFRESHING_TEXT": "Aktualisiere..."
+    "PULLING_TEXT": "Ziehen, um zu aktualisieren",
+    "REFRESHING_TEXT": "Inhalt wird aktualisiert"
   },
   "VIEW": {
     "LOGIN": {

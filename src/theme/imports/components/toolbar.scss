@@ -9,6 +9,10 @@ ion-header {
     padding-inline-start: var(--proto-space-xxl);
     padding-inline-end: var(--proto-space-xxl);
   }
+
+  .proto-button ion-icon[slot=icon-only] {
+    font-size: 24px;
+  }
 }
 
 ion-toolbar {
