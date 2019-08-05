@@ -1,62 +1,69 @@
 <ion-header mode="ios">
   <ion-toolbar mode="ios">
     <ion-buttons mode="ios" slot="start">
-      <ion-back-button mode="ios" icon="ios-arrow-round-back" text=""></ion-back-button>
+      <ion-button mode="ios" fill="clear" (click)="dismiss()">
+        <ion-icon slot="icon-only" name="ios-close"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title mode="ios">RestaurantFilter</ion-title>
+    <ion-title mode="ios">{{ 'FILTER.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list mode="ios">
-    <ion-item mode="ios">
-      <ion-label>Order by</ion-label>
-      <ion-select placeholder="select" [(ngModel)]="orderBy">
-        <ion-select-option [value]="'createdAt DESC'">createdAt DESC</ion-select-option>
-        <ion-select-option [value]="'createdAt ASC'">createdAt ASC</ion-select-option>
-        <ion-select-option [value]="'numberOfSeats DESC'">numberOfSeats DESC</ion-select-option>
-        <ion-select-option [value]="'numberOfSeats ASC'">numberOfSeats ASC</ion-select-option>
+  <ion-list class="proto-input-list" mode="ios">
+    <ion-item class="proto-input" mode="ios">
+      <ion-label class="proto-input__label" mode="ios">{{ 'FILTER.ORDER.TITLE' | translate }}:</ion-label>
+      <ion-select mode="ios" [(ngModel)]="orderBy">
+        <ion-select-option
+          *ngFor="let ITEM of ('FILTER.ORDER.OPTIONS' | translate)"
+          [value]="ITEM.VALUE">{{ ITEM.LABEL }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="proto-input" mode="ios">
+      <ion-label mode="ios">{{ 'FILTER.PRICE_CATEGORY.TITLE' | translate }}:</ion-label>
+      <ion-select mode="ios" [(ngModel)]="priceRange">
+        <ion-select-option
+          *ngFor="let ITEM of ('FILTER.PRICE_CATEGORY.OPTIONS' | translate)"
+          [value]="ITEM.VALUE">{{ ITEM.LABEL }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="categories.length" class="proto-input" mode="ios">
+      <ion-label>{{ 'FILTER.RESTAURANT_CATEGORY.TITLE' | translate }}:</ion-label>
+      <ion-select mode="ios" [(ngModel)]="restaurantCategoryId">
+        <ion-select-option value="___ALL___">{{ 'TERM.ALL' | translate }}</ion-select-option>
+        <ion-select-option
+          *ngFor="let category of categories"
+          [value]="category.id">{{ category.title }}</ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list>
 
-  <ion-list mode="ios">
-    <ion-item mode="ios">
-      <ion-label>Price Range</ion-label>
-      <ion-select placeholder="select" [(ngModel)]="priceRange">
-        <ion-select-option value="___ALL___">Alle</ion-select-option>
-        <ion-select-option value="low">low</ion-select-option>
-        <ion-select-option value="mid">mid</ion-select-option>
-        <ion-select-option value="high">high</ion-select-option>
-      </ion-select>
+  <ion-list class="proto-input-list" mode="ios" lines="none">
+    <ion-item mode="ios" class="proto-range-checkbox">
+      <ion-checkbox slot="start" mode="ios" [(ngModel)]="locationDistance.isActive"></ion-checkbox>
+      <ion-label class="proto-range-label" mode="ios">
+        <p class="proto-range-checkbox-title">{{ 'FILTER.DISTANCE.TITLE' | translate }}:</p>
+        <p class="proto-range-checkbox-value">{{ locationDistance.current }} {{ 'FILTER.DISTANCE.UNIT' | translate }}</p>
+      </ion-label>
     </ion-item>
-
-    <ion-item mode="ios">
-      <ion-label>Category</ion-label>
-      <ion-select placeholder="select" [(ngModel)]="restaurantCategoryId">
-        <ion-select-option value="___ALL___">Alle</ion-select-option>
-        <ion-select-option [value]="category.id" *ngFor="let category of categories">{{ category.title }}</ion-select-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item mode="ios">
-      <ion-range min="1" max="50" color="secondary" [(ngModel)]="range">
-        <ion-label slot="start">1</ion-label>
-        <ion-label slot="end">&infin;</ion-label>
+    <ion-item class="proto-range" mode="ios">
+      <ion-range mode="ios" color="secondary"
+        [(ngModel)]="locationDistance.current"
+        [min]="locationDistance.min"
+        [max]="locationDistance.max"
+        [disabled]="!locationDistance.isActive">
       </ion-range>
-      <div>{{ infinityStartsAt === range ? '&infin;' : range }}</div>
     </ion-item>
   </ion-list>
 
-  <ion-button mode="ios" (click)="applyFilter()">
-    apply
-  </ion-button>
-
-  <ion-button mode="ios" (click)="clearFilter()">
-    clear
-  </ion-button>
-
-  <ion-button mode="ios" (click)="dismiss()">
-    cancel
-  </ion-button>
+  <div class="submit-buttons">
+    <ion-button mode="ios" class="proto-button" (click)="applyFilter()">
+      {{'BUTTON.APPLY' | translate }}
+    </ion-button>
+    <ion-button size="small" fill="clear" color="dark" mode="ios" (click)="clearFilter()">
+      {{ 'BUTTON.RESET_FILTER' | translate }}
+    </ion-button>
+  </div>
 </ion-content>

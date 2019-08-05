@@ -59,6 +59,13 @@
     </ion-item>
   </ion-list>
 
+  <div class="empty-state"
+    *ngIf="restaurants.items.length === 0 && !restaurants.meta.isLoading">
+    <h2 class="empty-state-headline">{{ 'EMPTY.RESTAURANT_LIST.TITLE' | translate }}</h2>
+    <p class="empty-state-message" *ngIf="!searchValue" [innerHTML]="'EMPTY.RESTAURANT_LIST.MESSAGE' | translate"></p>
+    <p class="empty-state-message" *ngIf="searchValue" [innerHTML]="'EMPTY.SEARCH.MESSAGE' | translate: { query: searchValue }"></p>
+  </div>
+
   <ion-infinite-scroll threshold="150px"
     [disabled]="!restaurants.meta.hasMore"
     (ionInfinite)="loadMore($event)">

@@ -11,3 +11,12 @@
     --keyboard-offset: 0!important;
   }
 }
+
+.empty-state {
+  text-align: center;
+  margin: var(--proto-space);
+
+  h2 {
+    margin-bottom: var(--proto-space-m);
+  }
+}

@@ -23,9 +23,8 @@ $font-path: "~/assets/fonts";
   text-decoration: underline;
 }
 
-%font-block {
-  margin: 0;
-  font-family: var(--proto-font-family, --ion-font-family);
+%font-properties {
+  font-family: var(--ion-font-family, sans-serif);
   font-size: var(--proto-font-size);
   font-weight: var(--proto-font-weight, inherit);
   font-style: var(--proto-font-style, inherit);
@@ -79,7 +78,12 @@ $font-tags: h1 h2 h3 input p input small;
 
 @each $h in $font-tags {
   #{$h}, .#{$h}, %#{$h} {
-    @extend %font-block;
+    @extend %font-properties;
+  }
+
+  // reset default margin for font tags
+  #{$h} {
+    margin: 0;
   }
 }
 

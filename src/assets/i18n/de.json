@@ -1,5 +1,7 @@
 {
   "BUTTON": {
+    "APPLY": "Anwenden",
+    "CANCEL": "Abbrechen",
     "CONTINUE": "Weiter",
     "LOGIN": "Login",
     "LOGIN_FACEBOOK": "Mit Facebook einloggen",
@@ -8,6 +10,7 @@
     "SKIP": "Überspringen",
     "REGISTER": "Registrieren",
     "REQUEST_NEW_PASSWORD": "Neues Passwort anfordern",
+    "RESET_FILTER": "Filter zurücksetzen",
     "RESET_PASSWORD": "Passwort zurücksetzen"
   },
   "INPUT": {
@@ -24,7 +27,8 @@
     }
   },
   "TERM": {
-    "OR": "oder"
+    "OR": "oder",
+    "ALL": "Alle"
   },
   "REFRESHER": {
     "PULLING_TEXT": "Ziehen, um zu aktualisieren",
@@ -72,6 +76,68 @@
     },
     "MORE": {
       "TITLE": "Mehr"
+    }
+  },
+  "EMPTY": {
+    "RESTAURANT_LIST": {
+      "MESSAGE": "Wir konnten keine Restaurants finden",
+      "TITLE": "Hoppla"
+    },
+    "SEARCH": {
+      "MESSAGE": "Wir konnten keine Ergebnisse für<br><strong> {{query}} <\/strong> finden. Überprüfe deine Filter- und Sucheinstellungen.",
+      "TITLE": "Hoppla!"
+    }
+  },
+  "FILTER": {
+    "TITLE": "Filter",
+    "ORDER": {
+      "TITLE": "Sortierung",
+      "OPTIONS": [
+        {
+          "LABEL": "Datum (absteigend)",
+          "VALUE": "createdAt DESC"
+        },
+        {
+          "LABEL": "Datum (aufsteigend)",
+          "VALUE": "createdAt ASC"
+        },
+        {
+          "LABEL": "Freie Plätze (absteigend)",
+          "VALUE": "numberOfSeats DESC"
+        },
+        {
+          "LABEL": "Freie Plätze (aufsteigend)",
+          "VALUE": "numberOfSeats ASC"
+        }
+      ]
+    },
+    "PRICE_CATEGORY": {
+      "TITLE": "Preiskategorie",
+      "OPTIONS": [
+        {
+          "LABEL": "Alle",
+          "VALUE": "___ALL___"
+        },
+        {
+          "LABEL": "€",
+          "VALUE": "low"
+        },
+        {
+          "LABEL": "€€",
+          "VALUE": "mid"
+        },
+        {
+          "LABEL": "€€€",
+          "VALUE": "high"
+        }
+      ]
+    },
+    "RESTAURANT_CATEGORY": {
+      "TITLE": "Küche"
+    },
+    "DISTANCE": {
+      "TITLE": "Entfernung",
+      "UNIT": "km"
     }
   }
 }

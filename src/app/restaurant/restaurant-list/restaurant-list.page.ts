@@ -22,6 +22,7 @@ export class RestaurantListPage implements OnInit {
     items: RESTAURANT_DUMMY_DATA,
     meta: { isFirstLoad: true, isLoading: true },
   };
+  public searchValue: string;
 
   private ngUnsubscribe: Subject<any> = new Subject();
   private infiniteScrollEvent: any;
@@ -63,12 +64,14 @@ export class RestaurantListPage implements OnInit {
 
   public search(event: any) {
     this.searchResultsLoading = true;
-    
-    if (!event.detail.value) {
+
+    this.searchValue = event.detail.value;
+
+    if (!this.searchValue) {
       return this.restaurantService.clearSearch();
     }
 
-    this.restaurantService.searchRestaurants({ title: { ilike: `%${event.detail.value}%` } });
+    this.restaurantService.searchRestaurants({ title: { ilike: `%${this.searchValue}%` } });
   }
 
   public refresh(event: any) {

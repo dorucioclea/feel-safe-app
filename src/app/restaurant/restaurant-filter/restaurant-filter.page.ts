@@ -7,6 +7,10 @@ import { RestaurantService } from 'src/app/restaurant/shared/restaurant.service'
 import { RestaurantCategoryModel } from 'src/app/restaurant/shared/restaurant-category.model';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
+const MIN_DISTANCE = 1;
+const MAX_DISTANCE = 50;
+const DEFAULT_DISTANCE = 25;
+
 @HideSplash()
 @Component({
   selector: 'page-restaurant-filter',
@@ -17,12 +21,17 @@ export class RestaurantFilterPage implements OnInit {
   @Input() public whereFilter: any;
   @Input() public orderBy: any;
 
-  public categories: RestaurantCategoryModel[];
+  public categories: RestaurantCategoryModel[] = [];
   public currentLocation = { lat: 52.52451, lng: 13.395346 };
   public priceRange: string;
   public restaurantCategoryId: string;
-  public range: number;
-  public infinityStartsAt = 50;
+
+  public locationDistance: any = {
+    isActive: false,
+    current: DEFAULT_DISTANCE,
+    min: MIN_DISTANCE,
+    max: MAX_DISTANCE,
+  };
 
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
@@ -32,7 +41,7 @@ export class RestaurantFilterPage implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this.splitWhereFilter();
+    this.restoreFilter();
 
     this.restaurantService.getCategories()
       .pipe(takeUntil(this.ngUnsubscribe))
@@ -47,9 +56,9 @@ export class RestaurantFilterPage implements OnInit {
   }
 
   public clearFilter() {
-    this.priceRange = null;
-    this.restaurantCategoryId = null;
-    this.range = this.infinityStartsAt;
+    this.priceRange = '___ALL___';
+    this.restaurantCategoryId = '___ALL___';
+    this.locationDistance.isActive = false;
     this.orderBy = this.restaurantService.getDefaultOrderBy();
 
     this.applyFilter();
@@ -63,27 +72,30 @@ export class RestaurantFilterPage implements OnInit {
   }
 
   public dismiss() {
+    console.log(this.whereFilter, this.orderBy);
     this.modalController.dismiss().catch();
   }
 
-  private splitWhereFilter() {
+  private restoreFilter() {
     this.priceRange = this.whereFilter.priceRange || '___ALL___';
     this.restaurantCategoryId = this.whereFilter.restaurantCategoryId || '___ALL___';
-    this.range = this.whereFilter.location && this.whereFilter.location.maxDistance ? this.whereFilter.location.maxDistance : this.infinityStartsAt;
+
+    if (this.whereFilter.location && this.whereFilter.location.maxDistance) {
+      this.locationDistance.isActive = true;
+      this.locationDistance.current = this.whereFilter.location.maxDistance;
+    }
   }
 
   private updateWhereFilter() {
     this.whereFilter.priceRange = this.priceRange;
     this.whereFilter.restaurantCategoryId = this.restaurantCategoryId;
 
-    if (this.range !== this.infinityStartsAt) {
+    if (this.locationDistance.isActive) {
       this.whereFilter.location = {
-        maxDistance: this.range,
+        maxDistance: this.locationDistance.current,
         near: this.currentLocation,
       };
-    }
-
-    if (this.range === this.infinityStartsAt) {
+    } else {
       this.whereFilter.location = null;
     }
 
