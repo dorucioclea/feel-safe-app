@@ -9,7 +9,6 @@ import { HandleExternalLinksDirective } from './handle-external-links.directive'
 import { HandleInternalLinksDirective } from './handle-internal-links.directive';
 import { HandleKeyboardEventsDirective } from './handle-keyboard-events.directive';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
-import { ProtoBackButtonComponent } from './proto-back-button/proto-back-button.component';
 import { ProtoImageComponent } from './proto-image/proto-image.component';
 
 @NgModule({
@@ -19,7 +18,6 @@ import { ProtoImageComponent } from './proto-image/proto-image.component';
     HandleInternalLinksDirective,
     HandleKeyboardEventsDirective,
     ImageUploadComponent,
-    ProtoBackButtonComponent,
     ProtoImageComponent,
   ],
   imports: [
@@ -38,7 +36,6 @@ import { ProtoImageComponent } from './proto-image/proto-image.component';
     HandleKeyboardEventsDirective,
     ImageUploadComponent,
     IonicModule,
-    ProtoBackButtonComponent,
     ProtoImageComponent,
     ReactiveFormsModule,
     TranslateModule,

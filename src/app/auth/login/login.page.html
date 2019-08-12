@@ -3,7 +3,7 @@
     <ion-title>{{ 'VIEW.LOGIN.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content padding>
+<ion-content>
   <div class="login-content">
     <div class="submit-form-wrapper">
       <div class="facebook-button-wrapper">
@@ -19,13 +19,14 @@
           <div class="form-divider">
             <span class="form-divider__text">{{ 'TERM.OR' | translate }}</span>
           </div>
+
           <ion-item mode="ios" class="proto-input">
-            <ion-label mode="ios" stacked>{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
-            <ion-input mode="ios" type="email" value="" formControlName="email"></ion-input>
+            <ion-label mode="ios" position="floating">{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
+            <ion-input mode="ios" type="email" value="" formControlName="email" [placeholder]="'INPUT.PLACEHOLDER.EMAIL' | translate"></ion-input>
           </ion-item>
           <ion-item mode="ios" class="proto-input">
-            <ion-label mode="ios" stacked>{{ 'INPUT.LABEL.PASSWORD' | translate }}</ion-label>
-            <ion-input mode="ios" type="password" value="" formControlName="password"></ion-input>
+            <ion-label mode="ios" position="floating">{{ 'INPUT.LABEL.PASSWORD' | translate }}</ion-label>
+            <ion-input mode="ios" type="password" value="" formControlName="password" [placeholder]="'INPUT.PLACEHOLDER.PASSWORD' | translate"></ion-input>
           </ion-item>
           <div class="submit-form__cta">
             <ion-button class="button-cta" [disabled]="!formIsValid() || isLoading"

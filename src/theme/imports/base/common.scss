@@ -1,173 +1,22 @@
-// .hidden {
-//   display: none!important;
-// }
+.keyboard-will-show {
+  ion-content {
+    --keyboard-offset: var(--keyboard-height, 290px)!important;
+  }
 
-// .empty-state {
-//   .button-cta {
-//     margin: $space 0;
-//   }
-//   &-text {
-//     text-align: center;
-//     margin: $space;
-//     padding: 0 $space;
-//   }
-// }
+  .no-tabbar {
+    --keyboard-offset: calc(var(--keyboard-height, 290px) - var(--ion-safe-area-bottom))!important;
+  }
 
-// .content {
-//   &.has-toolbar-background {
-//     &::before {
-//       content: '';
-//       position: absolute;
-//       top: 0;
-//       left: 0;
-//       z-index: 0;
-//       width: 100%;
-//       padding-bottom: 100%;
-//       background: color($colors, toolbar);
-//     }
-//   }
+  .no-keyboard-padding {
+    --keyboard-offset: 0!important;
+  }
+}
 
-//   &.has-image-background {
-//     &::before {
-//       content: '';
-//       position: absolute;
-//       top: 0;
-//       left: 0;
-//       z-index: 0;
-//       width: 100%;
-//       padding-bottom: (240 / 375) * 100%;
-//       background: color($colors, toolbar);
-//     }
-//   }
-// }
+.empty-state {
+  text-align: center;
+  margin: var(--proto-space);
 
-// .has-bottom-border {
-//   border-bottom: 16px solid $c-header;
-// }
-
-// .ignore-header-margin {
-//   .scroll-content {
-//     margin-top: 0!important;
-//   }
-//   .content-title {
-//     padding-top: #{$height-toolbar + $space};
-//     padding-bottom: $space-m;
-//     .ios & {
-//       padding-top: calc(#{$height-toolbar + $space} + #{$cordova-ios-statusbar-padding});
-//       padding-top: calc(#{$height-toolbar+ $space} + constant(safe-area-inset-top));
-//       padding-top: calc(#{$height-toolbar+ $space} + env(safe-area-inset-top));
-//     }
-//   }
-// }
-
-// .bounce-image-background {
-//   width: 100%;
-//   padding-bottom: (240 / 375) * 100%;
-//   background: color($colors, toolbar);
-//   z-index: $z-index-scroll-content - 1;
-// }
-
-// .content-wrapper {
-//   display: flex;
-//   flex-direction: column;
-//   min-height: 100%;
-//   background: $c-background-primary;
-//   &.has-safe-area-bottom {
-//     padding-bottom: constant(safe-area-inset-bottom);
-//     padding-bottom: env(safe-area-inset-bottom);
-//   }
-// }
-
-// .content-title {
-//   padding: 0 $space $space;
-//   margin: 0 0 $space-m;
-//   min-height: 36px;
-//   flex: none;
-//   box-sizing: content-box;
-//   &__main {
-//     color: $c-text-primary;
-//   }
-//   &__sub {
-//     color: $c-text-secondary;
-//     font-size: 18px;
-//     margin: $space-xs 0 0;
-//   }
-//   &--toolbar {
-//     background: color($colors, toolbar);
-//   }
-
-//   &.no-header {
-//     padding-top: $height-toolbar;
-//   }
-
-//   ion-spinner {
-//     margin-left: $space-xs;
-//   }
-
-//   .title-bottom-space-s  & {
-//     margin-bottom: 0;
-//     padding-bottom: #{$space + $info-card-offset};
-//   }
-
-//   .title-bottom-space-l & {
-//     margin-bottom: 0;
-//     padding-bottom: #{$space + $info-card-offset-l};
-//   }
-// }
-
-// .flex-content-title {
-//   display: flex;
-//   align-items: flex-start;
-//   &__element {
-//     flex: none;
-//     margin-right: $space;
-//   }
-//   &__text {
-//     flex: 1;
-//     min-width: 1px;
-//   }
-//   .content-title__sub {
-//     font-size: 16px;
-//   }
-// }
-
-// .proto-badge {
-//   @extend %small;
-//   position: absolute;
-//   top: $space;
-//   left: $space;
-//   min-width: 60px;
-//   padding: 0 8px;
-//   background: $c-white;
-//   color: $c-text-primary;
-//   text-align: center;
-//   border-radius: 20px;
-//   height: 30px;
-//   line-height: 30px;
-//   box-shadow: $box-shadow-default;
-//   &-dot {
-//     @include size(10px);
-//     display: inline-block;
-//     background: color($colors, primary);
-//     border-radius: 50%;
-//     margin-right: $space-xs;
-//   }
-//   &--video {
-//     left: initial;
-//     right: 16px;
-//     background: color($colors, favorite);
-//     color: $c-text-invert;
-
-//   }
-
-//   &--hero {
-//     top: 10px;
-//     left: initial;
-//     right: $space;
-//     .statusbar-padding & {
-//       top: calc(10px + #{$cordova-ios-statusbar-padding});
-//       top: calc(10px + constant(safe-area-inset-top));
-//       top: calc(10px + env(safe-area-inset-top));
-//     }
-//   }
-// }
+  h2 {
+    margin-bottom: var(--proto-space-m);
+  }
+}

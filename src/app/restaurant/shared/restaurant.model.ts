@@ -1,3 +1,4 @@
+
 export interface RestaurantSource {
   id: string,
   title: string,
@@ -10,6 +11,7 @@ export interface RestaurantSource {
   restaurantCategory: any,
   createdAt: string,
   updatedAt: string,
+  isSkeleton?: boolean,
 }
 
 export class RestaurantModel {
@@ -24,6 +26,7 @@ export class RestaurantModel {
   public restaurantCategory: any;
   public createdAt: string;
   public updatedAt: string;
+  public isSkeleton: boolean;
 
   constructor (source: RestaurantSource) {
     this.id = source.id;
@@ -37,5 +40,94 @@ export class RestaurantModel {
     this.restaurantCategory = source.restaurantCategory;
     this.createdAt = source.createdAt;
     this.updatedAt = source.updatedAt;
+
+    this.isSkeleton = source.isSkeleton;
   }
 }
+
+export const RESTAURANT_DUMMY_DATA: RestaurantModel[] = [
+  {
+    id: '',
+    title: '',
+    description: '',
+    canonicalAddress: '',
+    image: '',
+    numberOfSeats: 0,
+    priceRange: 'low',
+    restaurantCategoryId: '',
+    restaurantCategory: '',
+    createdAt: '',
+    updatedAt: '',
+    isSkeleton: true,
+  },
+  {
+    id: '',
+    title: '',
+    description: '',
+    canonicalAddress: '',
+    image: '',
+    numberOfSeats: 0,
+    priceRange: 'low',
+    restaurantCategoryId: '',
+    restaurantCategory: '',
+    createdAt: '',
+    updatedAt: '',
+    isSkeleton: true,
+  },
+  {
+    id: '',
+    title: '',
+    description: '',
+    canonicalAddress: '',
+    image: '',
+    numberOfSeats: 0,
+    priceRange: 'low',
+    restaurantCategoryId: '',
+    restaurantCategory: '',
+    createdAt: '',
+    updatedAt: '',
+    isSkeleton: true,
+  },
+  {
+    id: '',
+    title: '',
+    description: '',
+    canonicalAddress: '',
+    image: '',
+    numberOfSeats: 0,
+    priceRange: 'low',
+    restaurantCategoryId: '',
+    restaurantCategory: '',
+    createdAt: '',
+    updatedAt: '',
+    isSkeleton: true,
+  },
+  {
+    id: '',
+    title: '',
+    description: '',
+    canonicalAddress: '',
+    image: '',
+    numberOfSeats: 0,
+    priceRange: 'low',
+    restaurantCategoryId: '',
+    restaurantCategory: '',
+    createdAt: '',
+    updatedAt: '',
+    isSkeleton: true,
+  },
+  {
+    id: '',
+    title: '',
+    description: '',
+    canonicalAddress: '',
+    image: '',
+    numberOfSeats: 0,
+    priceRange: 'low',
+    restaurantCategoryId: '',
+    restaurantCategory: '',
+    createdAt: '',
+    updatedAt: '',
+    isSkeleton: true,
+  },
+];

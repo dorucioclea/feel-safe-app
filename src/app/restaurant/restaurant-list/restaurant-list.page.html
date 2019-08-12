@@ -1,49 +1,75 @@
 <ion-header mode="ios">
   <ion-toolbar mode="ios">
     <ion-buttons mode="ios" slot="start">
-      <proto-back-button></proto-back-button>
+      <ion-back-button mode="ios" icon="ios-arrow-round-back" text=""></ion-back-button>
     </ion-buttons>
 
-    <ion-title mode="ios">RestaurantList</ion-title>
+    <ion-title mode="ios">{{ 'VIEW.RESTAURANT_LIST.TITLE' | translate }}</ion-title>
 
     <ion-buttons mode="ios" slot="end">
-      <ion-button mode="ios" (click)="openFilterModal()">
+      <ion-button class="proto-button" mode="ios" (click)="openFilterModal()">
         <ion-icon slot="icon-only" src="./assets/icons/sliders.svg"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 
-  <ion-toolbar mode="ios">
-    <ion-searchbar showCancelButton="always" mode="ios" (ionChange)="search($event)"></ion-searchbar>
+  <ion-toolbar mode="ios" color="light">
+    <ion-searchbar mode="ios" (ionChange)="search($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+<ion-content #ListContent>
+  <ion-refresher mode="ios" slot="fixed" pullFactor="0.3" (ionRefresh)="refresh($event)">
     <ion-refresher-content
-      pullingIcon="arrow-dropdown"
+      pullingIcon="arrow-down"
       [pullingText]="'REFRESHER.PULLING_TEXT' | translate"
-      refreshingSpinner="circles"
       [refreshingText]="'REFRESHER.REFRESHING_TEXT' | translate">
     </ion-refresher-content>
-  </ion-refresher>
+   </ion-refresher>
 
-  <ion-list mode="ios">
-    <ion-item mode="ios"
+  <ion-list mode="ios" class="proto-item-list">
+    <ion-item button mode="ios" class="proto-item"
       *ngFor="let restaurant of restaurants.items; trackBy: trackByFunction"
       (click)="openDetailPage(restaurant)">
-      <proto-image class="thumbnail"
-        imageType="thumbnail"
-        [imageId]="restaurant?.image"></proto-image>
-      <h2>{{ restaurant.title }}</h2>
-      <h3>{{ restaurant.numberOfSeats }}</h3>
+
+      <ng-container *ngIf="!restaurant.isSkeleton">
+        <proto-image
+          imageType="thumbnail"
+          [imageId]="restaurant.image"
+          slot="start"></proto-image>
+        <ion-label mode="ios" text-wrap="normal" class="proto-item__label">
+          <p class="p">{{ restaurant.title }}</p>
+          <small>{{ restaurant.canonicalAddress }}</small>
+        </ion-label>
+      </ng-container>
+
+      <ng-container *ngIf="restaurant.isSkeleton">
+        <ion-thumbnail slot=start>
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label mode="ios" text-wrap="normal" class="proto-item__label">
+          <p class="p">
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+          <small>
+            <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+          </small>
+        </ion-label>
+      </ng-container>
     </ion-item>
   </ion-list>
 
-  <ion-infinite-scroll threshold="250px"
+  <div class="empty-state"
+    *ngIf="restaurants.items.length === 0 && !restaurants.meta.isLoading">
+    <h2 class="empty-state-headline">{{ 'EMPTY.RESTAURANT_LIST.TITLE' | translate }}</h2>
+    <p class="empty-state-message" *ngIf="!searchValue" [innerHTML]="'EMPTY.RESTAURANT_LIST.MESSAGE' | translate"></p>
+    <p class="empty-state-message" *ngIf="searchValue" [innerHTML]="'EMPTY.SEARCH.MESSAGE' | translate: { query: searchValue }"></p>
+  </div>
+
+  <ion-infinite-scroll threshold="150px"
+    [disabled]="!restaurants.meta.hasMore"
     (ionInfinite)="loadMore($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles">
+    <ion-infinite-scroll-content>
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

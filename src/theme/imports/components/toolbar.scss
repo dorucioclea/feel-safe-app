@@ -4,45 +4,17 @@ ion-header {
   ion-title {
     @extend %h2;
   }
+
+  .title-ios {
+    padding-inline-start: var(--proto-space-xxl);
+    padding-inline-end: var(--proto-space-xxl);
+  }
+
+  .proto-button ion-icon[slot=icon-only] {
+    font-size: 24px;
+  }
 }
 
 ion-toolbar {
   --border-width: 0 !important;
-}
-
-.main-toolbar {
-  &__segment {
-    &:before {
-      content: "";
-      position: absolute;
-      background: var(--proto-color-grey-light);
-      z-index: -1;
-      height: var(--proto-main-segment-height);
-      width: var(--proto-main-segment-width);
-    }
-  }
-
-  &-segment-button {
-    border-radius: var(--proto-main-segment-border-radius);
-    max-width: var(--proto-main-segment-width) !important;
-    --background: var(--proto-color-grey-light);
-    --background-activated: var(--proto-color-grey-light);
-    --background-checked: var(--proto-color-grey-dark);
-    --color: var(--proto-color-grey-semi);
-    --border-width: 0;
-    --padding-top: var(--proto-space-s);
-    --padding-bottom: var(--proto-space-s);
-  }
-
-  &-icon {
-    font-size: var(--proto-button-icon-size);
-  }
-
-  .button-primary {
-    margin-right: var(--proto-space);
-  }
-
-  .button-secondary {
-    margin-left: var(--proto-space);
-  }
 }

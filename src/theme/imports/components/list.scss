@@ -1,13 +1,16 @@
-.user-list {
-  .proto-image__inner {
-    border-radius: 50%;
+.proto-item-list {
+  margin: 0 0 var(--proto-space);
+
+  ion-list-header {
+    @extend %p;
+    --color: var(--ion-color-secondary);
   }
 
-  .username {
-    display: block;
-  }
+  .proto-button {
+    margin: var(--proto-space) auto 0;
 
-  .country {
-    display: block;
+    &[expand="block"] {
+      width: calc(100% - var(--proto-space) * 2);
+    }
   }
 }

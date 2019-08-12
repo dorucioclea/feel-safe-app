@@ -47,10 +47,10 @@ export class AppComponent {
         window.open = cordova.InAppBrowser.open;
       }
 
-      this.statusBar.styleDefault();
+      this.statusBar.styleLightContent();
 
       if (this.platform.is('android')) {
-        this.statusBar.backgroundColorByHexString(C.colors.secondary);
+        this.statusBar.backgroundColorByHexString('#3171e0');
 
         // provide extra css class for low end android devices
         if (C.isLowEndDevice()) {

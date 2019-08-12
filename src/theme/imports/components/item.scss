@@ -1,0 +1,13 @@
+.proto-item {
+  --background-activated: #fafafa;
+
+  &__label {
+    p {
+      color: var(--ion-text-color);
+    }
+
+    small {
+      color: var(--ion-color-medium);
+    }
+  }
+}

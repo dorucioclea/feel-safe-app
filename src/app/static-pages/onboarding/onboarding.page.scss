@@ -2,16 +2,14 @@
 
 ion-header {
   ion-button {
-    --color: --proto-color-grey-dark;
-    font-family: var(--proto-h1-font-family);
-    font-weight: var(--proto-h1-font-weight);
+    --color: var(--ion-color-dark);
     text-transform: uppercase;
   }
 }
 
 ion-slides {
-  --bullet-background: var(--proto-color-grey-semi);
-  --bullet-background-active: var(--proto-color-grey-dark);
+  --bullet-background: var(--ion-color-medium);
+  --bullet-background-active: var(--ion-color-dark);
   height: calc(100% - var(--proto-space) - env(safe-area-inset-bottom));
 }
 
