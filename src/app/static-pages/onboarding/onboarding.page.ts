@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { IonSlides } from '@ionic/angular';
 
+import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
+import { LanguageService } from 'src/app/@core/language.service';
 import { PushService } from 'src/app/@core/push.service';
 import { StorageService } from 'src/app/@core/storage.service';
-import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
 @HideSplash()
 @Component({
@@ -22,14 +22,14 @@ export class OnboardingPage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private languageService: LanguageService,
     private router: Router,
     private pushService: PushService,
     private storage: StorageService,
-    private translate: TranslateService,
   ) { }
 
   public ngOnInit() {
-    this.translate.get('VIEW.ONBOARDING.SLIDES').subscribe((slides) => {
+    this.languageService.getTranslation('VIEW.ONBOARDING.SLIDES').subscribe((slides) => {
       this.slides = slides;
     });
   }
