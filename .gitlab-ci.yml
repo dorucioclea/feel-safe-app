@@ -40,8 +40,7 @@ staging_android:
 staging_ios:
   stage: deploy
   script:
-  - source $HOME/.profile
-  - mkdir -p www
+  - source $HOME/.bash_profile
   - whoami
   - pwd
   - ls -la
@@ -50,7 +49,6 @@ staging_ios:
   - npm install
   - cordova prepare ios
   - echo "--- Building Ionic app"
-  - npm run build:ios:staging:prod
   - ionic cordova build ios --c=staging-prod --release --buildConfig ./build.json --packageType="ad-hoc"
   - ls platforms/ios/build/device/
   - echo "Upload to hockey"
