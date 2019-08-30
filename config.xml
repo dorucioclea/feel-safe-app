@@ -154,6 +154,5 @@
         <variable name="ANDROID_2_PATH_PREFIX" value="/a/" />
         <variable name="ANDROID_3_PATH_PREFIX" value="/a/" />
     </plugin>
-    <engine name="ios" spec="5.0.1" />
     <engine name="android" spec="8.0.0" />
 </widget>
