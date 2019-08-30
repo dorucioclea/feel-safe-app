@@ -48,6 +48,7 @@ staging_ios:
   - echo "--- Preparing Ionic app"
   - npm install
   - cordova prepare ios
+  - pod setup
   - echo "--- Building Ionic app"
   - ionic cordova build ios --c=staging-prod --release --buildConfig ./build.json --packageType="ad-hoc"
   - ls platforms/ios/build/device/
