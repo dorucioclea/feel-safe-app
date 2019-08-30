@@ -50,7 +50,8 @@ staging_ios:
   - cordova prepare ios
   - pod setup
   - echo "--- Building Ionic app"
-  - ionic cordova build ios --c=staging-prod --release --buildConfig ./build.json --packageType="ad-hoc"
+ # - ionic cordova build ios --c=staging-prod --release --buildConfig ./build.json --packageType="ad-hoc"
+  - ionic cordova build ios --c=staging-prod --release --packageType="ad-hoc"
   - ls platforms/ios/build/device/
   - echo "Upload to hockey"
   - "cd platforms/ios/build/device/ && curl -F \"status=2\" -F \"notify=0\" -F \"notes=Continuous Integration Test\" -F \"notes_type=1\" -F \"ipa=@prototype.ipa\" -H \"X-HockeyAppToken: f438b3b2230949a086b0604dfd17ecbb\" https://rink.hockeyapp.net/api/2/apps/66f7adb447f5491ea249d1a998842ba7/app_versions/upload"
