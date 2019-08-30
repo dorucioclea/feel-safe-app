@@ -48,14 +48,13 @@ staging_ios:
   - ionic info
   - echo "--- Preparing Ionic app"
   - npm install
-  - cordova prepare android
+  - cordova prepare ios
   - echo "--- Building Ionic app"
   - npm run build:ios:staging:prod
-  # - APP_ENV=staging ionic build ios --prod
-  # - cordova build ios --device --release --buildConfig ./build.json --packageType="ad-hoc"
-  # - ls platforms/ios/build/device/
-  # - echo "Upload to hockey"
-  # - "cd platforms/ios/build/device/ && curl -F \"status=2\" -F \"notify=0\" -F \"notes=Continuous Integration Test\" -F \"notes_type=1\" -F \"ipa=@prototype.ipa\" -H \"X-HockeyAppToken: e1a0b489c30344e6be558b83b3cccb6a\" https://rink.hockeyapp.net/api/2/apps/upload"
+  - ionic cordova build ios --c=staging-prod --release --buildConfig ./build.json --packageType="ad-hoc"
+  - ls platforms/ios/build/device/
+  - echo "Upload to hockey"
+  - "cd platforms/ios/build/device/ && curl -F \"status=2\" -F \"notify=0\" -F \"notes=Continuous Integration Test\" -F \"notes_type=1\" -F \"ipa=@prototype.ipa\" -H \"X-HockeyAppToken: f438b3b2230949a086b0604dfd17ecbb\" https://rink.hockeyapp.net/api/2/apps/66f7adb447f5491ea249d1a998842ba7/app_versions/upload"
   only:
   - tags
   tags:
