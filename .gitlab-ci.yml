@@ -1,3 +1,7 @@
+variables:
+  APP_NAME: "prototype"
+  ANDROID_HOCKEY_APP_TOKEN: "a23112aed3a84f85b85323240f88d480"
+  ANDROID_HOCKEY_APP_ID: "5e01523916244d7cbd63c4f52e166d39"
 stages:
 - lint
 - test
@@ -32,7 +36,7 @@ staging_android:
   - echo "--- Building Ionic app"
   - npm run build:android:staging:prod
   - echo "--- Upload to hockey"
-  - "cd platforms/android/app/build/outputs/apk/debug/ && curl -F \"status=2\" -F \"notify=0\" -F \"notes=Continuous Integration Test\" -F \"notes_type=1\" -F \"ipa=@app-debug.apk\" -H \"X-HockeyAppToken: a23112aed3a84f85b85323240f88d480\" https://rink.hockeyapp.net/api/2/apps/5e01523916244d7cbd63c4f52e166d39/app_versions/upload"
+  - "cd platforms/android/app/build/outputs/apk/debug/ && curl -F \"status=2\" -F \"notify=0\" -F \"notes=Continuous Integration Test\" -F \"notes_type=1\" -F \"ipa=@app-debug.apk\" -H \"X-HockeyAppToken: $ANDROID_HOCKEY_APP_TOKEN\" https://rink.hockeyapp.net/api/2/apps/$ANDROID_HOCKEY_APP_ID/app_versions/upload"
   only:
   - tags
   tags:
@@ -77,7 +81,7 @@ release_android:
   - cd platforms/android/app/build/outputs/apk/release/
   - echo $KEYSTORE_FILE | base64 -d > production.keystore
   - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore production.keystore -storepass $KEYSTORE_PASSWORD app-release-unsigned.apk $KEY_ALIAS
-  - $HOME/android-sdk/build-tools/28.0.3/zipalign -v 4 app-release-unsigned.apk ${APP_NAME}.apk
+  - $HOME/android-sdk/build-tools/28.0.3/zipalign -v 4 app-release-unsigned.apk $APP_NAME.apk
   only:
   - tags
   when: manual
