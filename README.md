@@ -1,6 +1,8 @@
 # ionic-blueprint Readme
 This project was made with ❤️ in Berlin by the great team at [prototype.berlin GmbH](https://www.prototype.berlin/).
 
+As the names says this project serves as a setup for scaffolding a new app. All you need is to follow the Table of Contents eh voilà your new app is ready to build and use. All the necessary key features are already there.
+
 ## Table of Contents
 1. Setup & Build/Release
 2. Architecture overview
