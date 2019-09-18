@@ -25,10 +25,10 @@ staging_android:
   - whoami
   - pwd
   - ls -la
-  - ionic info
   - echo "--- Preparing Ionic app"
   - npm install
-  - cordova prepare android
+  - ionic info
+  - cordova prepare android --no-build
   - echo "--- Building Ionic app"
   - npm run build:android:staging:prod
   - echo "--- Upload to hockey"
@@ -44,10 +44,10 @@ staging_ios:
   - whoami
   - pwd
   - ls -la
-  - ionic info
   - echo "--- Preparing Ionic app"
   - npm install
-  - cordova prepare ios
+  - ionic info
+  - cordova prepare ios --no-build
   - pod setup
   - echo "--- Building Ionic app"
  # - ionic cordova build ios --c=staging-prod --release --buildConfig ./build.json --packageType="ad-hoc"
@@ -67,17 +67,17 @@ release_android:
   - whoami
   - pwd
   - ls -la
-  - ionic info
   - echo "--- Preparing Ionic app"
   - npm install
-  - cordova prepare android
+  - ionic info
+  - cordova prepare android --no-build
   - echo "--- Building Ionic app"
   - npm run build:android:release
   - echo "--- Release Signing"
   - cd platforms/android/app/build/outputs/apk/release/
   - echo $KEYSTORE_FILE | base64 -d > production.keystore
   - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore production.keystore -storepass $KEYSTORE_PASSWORD app-release-unsigned.apk $KEY_ALIAS
-  - $HOME/android-sdk/build-tools/28.0.3/zipalign -v 4 app-release-unsigned.apk AppName.apk
+  - $HOME/android-sdk/build-tools/28.0.3/zipalign -v 4 app-release-unsigned.apk ${APP_NAME}.apk
   only:
   - tags
   when: manual
@@ -85,4 +85,4 @@ release_android:
   - ionic-android
   artifacts:
     paths:
-    - platforms/android/app/build/outputs/apk/release
+    - platforms/android/app/build/outputs/apk/release/
