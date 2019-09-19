@@ -13,7 +13,7 @@ audit:
  script:
  - npm audit | grep -q 'high' && exit 1
  only:
- - npm-audit
+ - schedules
 lint:
   stage: lint
   script:
@@ -23,12 +23,16 @@ lint:
   - npm run lint
   tags:
   - ionic
+  except:
+    - schedules
 test:
   stage: test
   script:
   - echo "Test"
   tags:
   - ionic
+  except:
+    - schedules
 staging_android:
   stage: deploy
   script:
