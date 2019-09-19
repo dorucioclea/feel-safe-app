@@ -5,7 +5,9 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from 'src/app/auth/shared/auth.service';
+import { C } from 'src/app/@shared/constants';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
+import { LanguageService } from 'src/app/@core/language.service';
 
 @HideSplash()
 @Component({
@@ -14,15 +16,22 @@ import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
   styleUrls: ['./more-menu.page.scss'],
 })
 export class MoreMenuPage implements OnInit {
+  public availableLanguages: string[];
+  public currentLanguage: string;
+
   constructor(
     private alertController: AlertController,
     private authService: AuthService,
     private router: Router,
     private splashScreen: SplashScreen,
     private translate: TranslateService,
+    private languageService: LanguageService,
   ) { }
 
-  public ngOnInit() { }
+  public ngOnInit() {
+    this.availableLanguages = C.availableLanguages.map((language) => language.toUpperCase());
+    this.currentLanguage = this.translate.currentLang.toUpperCase();
+  }
 
   public async logout() {
     const confirmation = await this.confirmLogout();
@@ -35,6 +44,15 @@ export class MoreMenuPage implements OnInit {
         window.location.reload();
       }).catch();
     }).catch();
+  }
+
+  public changeLanguage(event: any) {
+    const currentLanguage = this.currentLanguage;
+
+    this.languageService.changeLanguage(event.detail.value.toLowerCase()).catch((error) => {
+      console.error(error);
+      this.currentLanguage = currentLanguage;
+    });
   }
 
   private confirmLogout() {

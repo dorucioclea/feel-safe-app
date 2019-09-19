@@ -1,0 +1,534 @@
+{
+    "ALERT": {
+        "FAB_DELETE": {
+            "HEADER": "Attention!",
+            "MESSAGE": "This can not be undone!"
+        },
+        "FAB_EDIT": {
+            "HEADER": "Attention!",
+            "MESSAGE": "Are you sure you want to cancel?"
+        },
+        "LOGOUT": {
+            "HEADER": "Logout",
+            "MESSAGE": "Do you really want to logout?"
+        },
+        "USER_DELETE": {
+            "HEADER": "Attention!",
+            "MESSAGE": "This can not be undone! Are you really sure?"
+        }
+    },
+    "BUTTON": {
+        "BLOCK": "Block",
+        "CANCEL": "Cancel",
+        "CONTINUE": "Continue",
+        "CREATE_FAB": "Create FAB",
+        "DELETE": "Delete",
+        "DELETE_ACCOUNT": "Delete Account",
+        "DELETE_FAB": "Delete FAB",
+        "DISCOVER": "Discover",
+        "EDIT_AVATAR": "Edit Image",
+        "FOLLOW": "Follow",
+        "FOLLOWING": "Following",
+        "LOAD_MORE": "Load more",
+        "LOGIN_EMAIL": "Login with Email",
+        "LOGIN_FACEBOOK": "Login with Facebook",
+        "LOGIN_GOOGLE": "Login with Google",
+        "LOGIN_LINE": "Login with LINE",
+        "LOGIN_SMS": "Login with SMS",
+        "LOGIN_TWITTER": "Login with Twitter",
+        "MARK_ALL_READ": "Mark all as read",
+        "MARK_AS_READ": "Mark as read",
+        "MORE": "More",
+        "OK": "Ok",
+        "PROCEED": "Proceed",
+        "PROFILE_EDIT": "Edit Profile",
+        "REMOVE_IMAGE": "Remove Image",
+        "REPORT": "Report",
+        "SAVE": "Save",
+        "SAVE_CHANGES": "Save changes",
+        "SELECT_IMAGE": "Select Image",
+        "SHARE": "Share",
+        "SHARE_FAB": "Share FAB",
+        "SHARE_WITH_FRIENDS": "Share with friends",
+        "SKIP": "Skip",
+        "SUBMIT_REPORT": "Submit Report",
+        "TAKE_PICTURE": "Take Picture",
+        "UNFOLLOW": "Unfollow"
+    },
+    "COUNTRIES": {
+        "AD": "Andorra",
+        "AE": "United Arab Emirates",
+        "AF": "Afghanistan",
+        "AG": "Antigua and Barbuda",
+        "AI": "Anguilla",
+        "AL": "Albania",
+        "AM": "Armenia",
+        "AO": "Angola",
+        "AQ": "Antarctica",
+        "AR": "Argentina",
+        "AS": "American Samoa",
+        "AT": "Austria",
+        "AU": "Australia",
+        "AW": "Aruba",
+        "AX": "Åland Islands",
+        "AZ": "Azerbaijan",
+        "BA": "Bosnia and Herzegovina",
+        "BB": "Barbados",
+        "BD": "Bangladesh",
+        "BE": "Belgium",
+        "BF": "Burkina Faso",
+        "BG": "Bulgaria",
+        "BH": "Bahrain",
+        "BI": "Burundi",
+        "BJ": "Benin",
+        "BL": "Saint Barthélemy",
+        "BM": "Bermuda",
+        "BN": "Brunei Darussalam",
+        "BO": "Bolivia, Plurinational State of",
+        "BQ": "Bonaire, Sint Eustatius and Saba",
+        "BR": "Brazil",
+        "BS": "Bahamas",
+        "BT": "Bhutan",
+        "BV": "Bouvet Island",
+        "BW": "Botswana",
+        "BY": "Belarus",
+        "BZ": "Belize",
+        "CA": "Canada",
+        "CC": "Cocos (Keeling) Islands",
+        "CD": "Congo, the Democratic Republic of the",
+        "CF": "Central African Republic",
+        "CG": "Congo",
+        "CH": "Switzerland",
+        "CI": "Côte d'Ivoire",
+        "CK": "Cook Islands",
+        "CL": "Chile",
+        "CM": "Cameroon",
+        "CN": "China",
+        "CO": "Colombia",
+        "CR": "Costa Rica",
+        "CU": "Cuba",
+        "CV": "Cape Verde",
+        "CW": "Curaçao",
+        "CX": "Christmas Island",
+        "CY": "Cyprus",
+        "CZ": "Czech Republic",
+        "DE": "Germany",
+        "DJ": "Djibouti",
+        "DK": "Denmark",
+        "DM": "Dominica",
+        "DO": "Dominican Republic",
+        "DZ": "Algeria",
+        "EC": "Ecuador",
+        "EE": "Estonia",
+        "EG": "Egypt",
+        "EH": "Western Sahara",
+        "ER": "Eritrea",
+        "ES": "Spain",
+        "ET": "Ethiopia",
+        "FI": "Finland",
+        "FJ": "Fiji",
+        "FK": "Falkland Islands (Malvinas)",
+        "FM": "Micronesia, Federated States of",
+        "FO": "Faroe Islands",
+        "FR": "France",
+        "GA": "Gabon",
+        "GB": "United Kingdom",
+        "GD": "Grenada",
+        "GE": "Georgia",
+        "GF": "French Guiana",
+        "GG": "Guernsey",
+        "GH": "Ghana",
+        "GI": "Gibraltar",
+        "GL": "Greenland",
+        "GM": "Gambia",
+        "GN": "Guinea",
+        "GP": "Guadeloupe",
+        "GQ": "Equatorial Guinea",
+        "GR": "Greece",
+        "GS": "South Georgia and the South Sandwich Islands",
+        "GT": "Guatemala",
+        "GU": "Guam",
+        "GW": "Guinea-Bissau",
+        "GY": "Guyana",
+        "HK": "Hong Kong",
+        "HM": "Heard Island and McDonald Islands",
+        "HN": "Honduras",
+        "HR": "Croatia",
+        "HT": "Haiti",
+        "HU": "Hungary",
+        "ID": "Indonesia",
+        "IE": "Ireland",
+        "IL": "Israel",
+        "IM": "Isle of Man",
+        "IN": "India",
+        "IO": "British Indian Ocean Territory",
+        "IQ": "Iraq",
+        "IR": "Iran, Islamic Republic of",
+        "IS": "Iceland",
+        "IT": "Italy",
+        "JE": "Jersey",
+        "JM": "Jamaica",
+        "JO": "Jordan",
+        "JP": "Japan",
+        "KE": "Kenya",
+        "KG": "Kyrgyzstan",
+        "KH": "Cambodia",
+        "KI": "Kiribati",
+        "KM": "Comoros",
+        "KN": "Saint Kitts and Nevis",
+        "KP": "Korea, Democratic People's Republic of",
+        "KR": "Korea, Republic of",
+        "KW": "Kuwait",
+        "KY": "Cayman Islands",
+        "KZ": "Kazakhstan",
+        "LA": "Lao People's Democratic Republic",
+        "LB": "Lebanon",
+        "LC": "Saint Lucia",
+        "LI": "Liechtenstein",
+        "LK": "Sri Lanka",
+        "LR": "Liberia",
+        "LS": "Lesotho",
+        "LT": "Lithuania",
+        "LU": "Luxembourg",
+        "LV": "Latvia",
+        "LY": "Libya",
+        "MA": "Morocco",
+        "MC": "Monaco",
+        "MD": "Moldova, Republic of",
+        "ME": "Montenegro",
+        "MF": "Saint Martin (French part)",
+        "MG": "Madagascar",
+        "MH": "Marshall Islands",
+        "MK": "Macedonia, the Former Yugoslav Republic of",
+        "ML": "Mali",
+        "MM": "Myanmar",
+        "MN": "Mongolia",
+        "MO": "Macao",
+        "MP": "Northern Mariana Islands",
+        "MQ": "Martinique",
+        "MR": "Mauritania",
+        "MS": "Montserrat",
+        "MT": "Malta",
+        "MU": "Mauritius",
+        "MV": "Maldives",
+        "MW": "Malawi",
+        "MX": "Mexico",
+        "MY": "Malaysia",
+        "MZ": "Mozambique",
+        "NA": "Namibia",
+        "NC": "New Caledonia",
+        "NE": "Niger",
+        "NF": "Norfolk Island",
+        "NG": "Nigeria",
+        "NI": "Nicaragua",
+        "NL": "Netherlands",
+        "NO": "Norway",
+        "NP": "Nepal",
+        "NR": "Nauru",
+        "NU": "Niue",
+        "NZ": "New Zealand",
+        "OM": "Oman",
+        "PA": "Panama",
+        "PE": "Peru",
+        "PF": "French Polynesia",
+        "PG": "Papua New Guinea",
+        "PH": "Philippines",
+        "PK": "Pakistan",
+        "PL": "Poland",
+        "PM": "Saint Pierre and Miquelon",
+        "PN": "Pitcairn",
+        "PR": "Puerto Rico",
+        "PS": "Palestine, State of",
+        "PT": "Portugal",
+        "PW": "Palau",
+        "PY": "Paraguay",
+        "QA": "Qatar",
+        "RE": "Réunion",
+        "RO": "Romania",
+        "RS": "Serbia",
+        "RU": "Russian Federation",
+        "RW": "Rwanda",
+        "SA": "Saudi Arabia",
+        "SB": "Solomon Islands",
+        "SC": "Seychelles",
+        "SD": "Sudan",
+        "SE": "Sweden",
+        "SG": "Singapore",
+        "SH": "Saint Helena, Ascension and Tristan da Cunha",
+        "SI": "Slovenia",
+        "SJ": "Svalbard and Jan Mayen",
+        "SK": "Slovakia",
+        "SL": "Sierra Leone",
+        "SM": "San Marino",
+        "SN": "Senegal",
+        "SO": "Somalia",
+        "SR": "Suriname",
+        "SS": "South Sudan",
+        "ST": "Sao Tome and Principe",
+        "SV": "El Salvador",
+        "SX": "Sint Maarten (Dutch part)",
+        "SY": "Syrian Arab Republic",
+        "SZ": "Swaziland",
+        "TC": "Turks and Caicos Islands",
+        "TD": "Chad",
+        "TF": "French Southern Territories",
+        "TG": "Togo",
+        "TH": "Thailand",
+        "TJ": "Tajikistan",
+        "TK": "Tokelau",
+        "TL": "Timor-Leste",
+        "TM": "Turkmenistan",
+        "TN": "Tunisia",
+        "TO": "Tonga",
+        "TR": "Turkey",
+        "TT": "Trinidad and Tobago",
+        "TV": "Tuvalu",
+        "TW": "Taiwan, Province of China",
+        "TZ": "Tanzania, United Republic of",
+        "UA": "Ukraine",
+        "UG": "Uganda",
+        "UM": "United States Minor Outlying Islands",
+        "US": "United States",
+        "UY": "Uruguay",
+        "UZ": "Uzbekistan",
+        "VA": "Holy See (Vatican City State)",
+        "VC": "Saint Vincent and the Grenadines",
+        "VE": "Venezuela, Bolivarian Republic of",
+        "VG": "Virgin Islands, British",
+        "VI": "Virgin Islands, U.S.",
+        "VN": "Viet Nam",
+        "VU": "Vanuatu",
+        "WF": "Wallis and Futuna",
+        "WS": "Samoa",
+        "YE": "Yemen",
+        "YT": "Mayotte",
+        "ZA": "South Africa",
+        "ZM": "Zambia",
+        "ZW": "Zimbabwe"
+    },
+    "EMPTY": {
+        "EXPLORE": {
+            "MESSAGE": "To get more FABs switch to the channel section or add some interests or friends in your settings.",
+            "TITLE": "Ooops - there is no new FAB!"
+        },
+        "FOLLOWERS": {
+            "MESSAGE": "You easily gain followers by creating more FABs or exploring and inviting friends and other users.",
+            "TITLE": "Ooops - no followers yet!",
+            "TITLE_OTHER": "{{ username }} has no followers yet."
+        },
+        "FOLLOWINGS": {
+            "MESSAGE": "Start exploring channels and FABs to find interesting users you want to follow.",
+            "TITLE": "Ooops - you don´t follow anyone!",
+            "TITLE_OTHER": "{{ username }} does not follow anyone yet."
+        },
+        "NOTIFICATION_LIST": {
+            "MESSAGE": "There are no new messages",
+            "TITLE": "No new notifications"
+        },
+        "RECENT_FABS": {
+            "MESSAGE": "To get more FABs switch to the channel section or add some interests or friends in your settings.",
+            "TITLE": "Ooops - there is no new FAB!"
+        },
+        "SEARCH": {
+            "MESSAGE": "We couldn’t find any results for <strong>{{query}}<\/strong><br>Try something new.",
+            "TITLE": "Ooops!"
+        },
+        "USER_DETAIL": {
+            "MESSAGE": "You haven’t created any FAB yet. Upload up to four pictures and off you go. Get the opinion of your friends & the community in real time.",
+            "TITLE": "Ooops - no FABs!"
+        },
+        "VOTERS_LIST": {
+            "MESSAGE": "To get more FABs switch to the channel section or add some interests or friends in your settings.",
+            "TITLE": "Ooops - there is no new FAB!"
+        }
+    },
+    "INPUT": {
+        "LABEL": {
+            "BIRTHDAY": "Birthday",
+            "COUNTRY": "Country",
+            "FAB_CONTENT": "Content",
+            "FAB_DESCRIPTION": "Enter description",
+            "GENDER": "Gender",
+            "REASON": "Reason",
+            "USERNAME": "Username"
+        },
+        "PLACEHOLDER": {
+            "BIRTHDAY": "DD.MM.YYYY",
+            "CATEGORY": "Category",
+            "COMMENT": "Comment...",
+            "COUNTRY": "Country",
+            "FAB_CONTENT": "FAB Content",
+            "FAB_DESCRIPTION": "Text and hashtags",
+            "GENDER": "Gender",
+            "REASON": "Why do you want to report this user or FAB?",
+            "SEARCH": "search for hashtags or users",
+            "USERNAME": "user_123"
+        }
+    },
+    "LANGUAGE": {
+        "DE": "German",
+        "EN": "English",
+        "ES": "Spanish",
+        "FR": "French",
+        "JA": "Japanese",
+        "KO": "Korean",
+        "PT": "Portuguese",
+        "ZH": "Chinese Simplified"
+    },
+    "NOTIFICATION": {
+        "NEW_COMMENT": "commented on your FAB",
+        "NEW_FAB": "just created a new FAB",
+        "NEW_FOLLOWER": "started following you"
+    },
+    "REFRESHER": {
+        "PULLING_TEXT": "Pull to refresh!",
+        "REFRESHING_TEXT": "Refreshing..."
+    },
+    "SHARE_FAB": {
+        "MESSAGE": "FABVOTE - the global voting app. Get opinions from your community in real time.",
+        "SUBJECT": "FABVOTE"
+    },
+    "SHARE": {
+        "MESSAGE": "I have found a new app, check it out!",
+        "SUBJECT": "FABVOTE",
+        "URL": "https:\/\/www.fabvote.com"
+    },
+    "TERM": {
+        "ALL": "All",
+        "FAB_VOTES": "FAB Votes",
+        "FABS": "FABs",
+        "FABVOTE": "FABVOTE",
+        "FOLLOWERS": "Followers",
+        "FOLLOWINGS": "Following",
+        "GENDERS": {
+            "diverse": "diverse",
+            "female": "female",
+            "male": "male"
+        },
+        "LANGUAGE": "Language",
+        "LOGOUT": "Logout",
+        "NUMBER_OF_COMMENTS": "{{ count }} comments",
+        "POST": "Post",
+        "POSTS": "Posts",
+        "POSTS_SINGULAR": "Post",
+        "REQUIRED_FIELDS": "* Required information.",
+        "SHARING": "Sharing"
+    },
+    "TOAST": {
+        "BLOCK_SUCCESSFUL": "User is now blocked.",
+        "ERROR_DEFAULT": "Something went wrong.",
+        "ERROR_REQUEST_TIMEOUT": "Bad connection, try again later! ⛈",
+        "ERROR_USERNAME": "User {{username}} already exists",
+        "REPORT_SUCCESSFUL": "Report successfully submitted.",
+        "SAVED": "Changes successfully saved!"
+    },
+    "URLS": {
+        "IMPRINT": "https:\/\/www.fabvote.com\/imprint?fbclid=IwAR1grT0dbNqtIEUrw9e343MEJxtlw0b6VamawxP75RacBJh1sXm803x0VnE",
+        "PRIVACY": "https:\/\/www.fabvote.com\/copy-of-terms?fbclid=IwAR1grT0dbNqtIEUrw9e343MEJxtlw0b6VamawxP75RacBJh1sXm803x0VnE",
+        "TERMS": "https:\/\/www.fabvote.com\/copy-of-imprint?fbclid=IwAR1grT0dbNqtIEUrw9e343MEJxtlw0b6VamawxP75RacBJh1sXm803x0VnE"
+    },
+    "VIEW": {
+        "ABOUT": {
+            "CONTENT": "One App - All Opinions<br><br>Let others participate in your decisions - and become an influencer yourself.<br>FABVOTE is the global voting app for lifestyle, fashion, technology, politics and much more.",
+            "TITLE": "About FABVOTE"
+        },
+        "CHANNEL_LIST": {
+            "TITLE": "Explore"
+        },
+        "COMMENT_LIST": {
+            "TITLE": "Comments"
+        },
+        "CONTACT": {
+            "CONTENT": "<h3>Contact and Feedback<\/h3><br><p>Send us your request to <a href=\"mailto:info@fabvote.com\">info@fabvote.com<\/a>.<\/p><br><p>We'll take care of it as soon as we can.<\/p>",
+            "TITLE": "Contact and Feedback"
+        },
+        "FAB_DETAIL": {
+            "TITLE": "FAB"
+        },
+        "FAB_EDIT": {
+            "PRIVATE": "Followers only",
+            "PUBLIC": "Public",
+            "STATUS": "How do you want to share your FAB?",
+            "TITLE": "Create FAB"
+        },
+        "FAB_SUCCESS": {
+            "MESSAGE": "Whoop whoop, your FAB is online. Share it with your friends.",
+            "TITLE": "Great — you created a FAB!"
+        },
+        "FAB_VOTE_LIST": {
+            "TITLE": "Votes"
+        },
+        "IMPRINT": {
+            "TITLE": "Imprint"
+        },
+        "LOGIN": {
+            "MESSAGE": "Welcome to FABVOTE. Thanks for joining us! You can now choose your preferred social login from the options listed below and off you go.",
+            "TITLE": "Hello!"
+        },
+        "MORE_MENU": {
+            "TITLE": "More"
+        },
+        "MORE": {
+            "TITLE": "More"
+        },
+        "NOTIFICATION_LIST": {
+            "TITLE": "Notifications"
+        },
+        "ONBOARDING": {
+            "SLIDES": [
+                {
+                    "CONTENT": "One App - All Opinions<br>Let others participate in your decisions - and become an influencer yourself.",
+                    "IMAGE": "0.jpg",
+                    "TITLE": "Welcome to FABVOTE"
+                },
+                {
+                    "CONTENT": "If you like it - swipe right<br>if you don't - swipe left",
+                    "IMAGE": "1.jpg",
+                    "TITLE": "Swipe"
+                },
+                {
+                    "CONTENT": "See all results instantly and compare your opinion with that of your friends.",
+                    "IMAGE": "2.jpg",
+                    "TITLE": "Votings"
+                },
+                {
+                    "CONTENT": "Discover FABs from other users, new channels and new posts you might like via the  „Explore\" feature.",
+                    "IMAGE": "3.jpg",
+                    "TITLE": "Explore"
+                },
+                {
+                    "CONTENT": "If you continue using the App, you accept the <a href=\"https:\/\/www.fabvote.com\/copy-of-imprint\">terms<\/a> & <a href=\"https:\/\/www.fabvote.com\/copy-of-terms\">privacy statement<\/a>.",
+                    "IMAGE": "0.jpg",
+                    "TITLE": "terms & privacy statement"
+                }
+            ],
+            "TITLE": "Welcome Tour"
+        },
+        "PRIVACY": {
+            "TITLE": "Privacy"
+        },
+        "REPORT": {
+            "TITLE": "Report"
+        },
+        "TABS": {
+            "EXPLORE": "Explore",
+            "HOME": "Home",
+            "PROFILE": "Profile",
+            "SEARCH": "Search"
+        },
+        "TERMS": {
+            "TITLE": "Terms"
+        },
+        "USER_DELETE": {
+            "CONFIRMATION_TEXT": "Yes, please delete my account!",
+            "CONTENT": "Warning, this can not be undone! All your votes, FABs, images and comments will be deleted forever.",
+            "TITLE": "Delete Account"
+        },
+        "USER_DETAIL": {
+            "TITLE": "Profile"
+        },
+        "USER_EDIT": {
+            "TITLE": "Personal Data"
+        }
+    }
+}
