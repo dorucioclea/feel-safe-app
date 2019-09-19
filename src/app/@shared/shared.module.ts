@@ -1,3 +1,4 @@
+import { LanguageSwitchComponent } from 'src/app/components/language-switch/language-switch.component';
 import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
@@ -18,6 +19,7 @@ import { ProtoImageComponent } from './proto-image/proto-image.component';
     HandleInternalLinksDirective,
     HandleKeyboardEventsDirective,
     ImageUploadComponent,
+    LanguageSwitchComponent,
     ProtoImageComponent,
   ],
   imports: [
@@ -36,6 +38,7 @@ import { ProtoImageComponent } from './proto-image/proto-image.component';
     HandleKeyboardEventsDirective,
     ImageUploadComponent,
     IonicModule,
+    LanguageSwitchComponent,
     ProtoImageComponent,
     ReactiveFormsModule,
     TranslateModule,

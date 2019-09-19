@@ -9,29 +9,13 @@
 
 <ion-content>
   <ion-list mode="ios" lines="full">
+    <proto-language-switch></proto-language-switch>
     <ion-item mode="ios" detail="true"
       [routerLink]="['/main/more/imprint']">
       {{ 'VIEW.IMPRINT.TITLE' | translate }}
     </ion-item>
   </ion-list>
   <ion-button (click)="logout()">logout</ion-button>
-
   <ion-list>
-    <ion-item>
-      <ion-label>{{ 'TERM.LANGUAGE' | translate }}</ion-label>
-      <ion-select placeholder="Select One"
-        [(ngModel)]="currentLanguage"
-        (ionChange)="changeLanguage($event)"
-        [okText]="'BUTTON.OK' | translate"
-        [cancelText]="'BUTTON.CANCEL' | translate">
-
-        <ion-select-option
-          *ngFor="let language of availableLanguages"
-          [value]="language">
-          {{ 'LANGUAGE.' + language | translate }}
-        </ion-select-option>
-
-      </ion-select>
-    </ion-item>
   </ion-list>
 </ion-content>
