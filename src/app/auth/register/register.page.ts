@@ -9,6 +9,8 @@ import { AuthService } from 'src/app/auth/shared/auth.service';
 import { C } from 'src/app/@shared/constants';
 import { LegalService } from 'src/app/legal/shared/legal.service';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
+import { ToastService } from 'src/app/@core/toast.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @HideSplash()
 @Component({
@@ -27,6 +29,8 @@ export class RegisterPage implements OnInit {
     private formBuilder: FormBuilder,
     private legalService: LegalService,
     private modalController: ModalController,
+    private toastService: ToastService,
+    private translate: TranslateService,
   ) {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -96,7 +100,10 @@ export class RegisterPage implements OnInit {
   }
 
   private onRegistrationFailed(err: any) {
+    const genericToastMessage = this.translate.instant('TOAST.GENERIC_ERROR.MESSAGE');
     this.isLoading = false;
+    
+    this.toastService.show(genericToastMessage).catch();
     // TODO:
     // let message = this.translate.instant('TOAST.REGISTER_ERROR');
     // if (err && err.status === C.status.unprocessableEntity) {
