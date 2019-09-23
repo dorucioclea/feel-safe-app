@@ -15,6 +15,7 @@
   },
   "INPUT": {
     "LABEL": {
+      "USERNAME": "Benutzername",
       "EMAIL": "E-Mail",
       "PASSWORD": "Passwort",
       "PRIVACY_CONSENT": "Ich habe die <span>Datenschutzbestimmungen</span> gelesen und akzeptiere diese.",
