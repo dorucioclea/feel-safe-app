@@ -89,17 +89,14 @@
     }
   },
   "TOAST": {
+    "GENERIC_ERROR": {
+      "MESSAGE": "Ein Fehler ist aufgetreten, bitte versuche es später erneut."
+    },
     "SAVE_SUCCESS": {
       "MESSAGE": "Änderungen erfolgreich gespeichert!"
     },
     "SAVE_ERROR": {
       "MESSAGE": "Beim Speichern ist ein Fehler aufgetreten."
-    },
-    "NO_STAFF_MEMBER": {
-      "MESSAGE": "Du bist noch keine Zimtie? Informiere dich auf unserer Website!"
-    },
-    "GENERIC_ERROR": {
-      "MESSAGE": "Ein Fehler ist aufgetreten, bitte versuche es später erneut."
     },
     "EMAIL_EXISTS": {
       "MESSAGE": "Ein Account mit dieser E-Mail-Adresse existiert bereits."
