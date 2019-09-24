@@ -10,6 +10,7 @@ import { HandleExternalLinksDirective } from './handle-external-links.directive'
 import { HandleInternalLinksDirective } from './handle-internal-links.directive';
 import { HandleKeyboardEventsDirective } from './handle-keyboard-events.directive';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { LanguageSwitchComponent } from 'src/app/components/language-switch/language-switch.component';
 import { ProtoImageComponent } from './proto-image/proto-image.component';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { ProtoImageComponent } from './proto-image/proto-image.component';
     HandleInternalLinksDirective,
     HandleKeyboardEventsDirective,
     ImageUploadComponent,
+    LanguageSwitchComponent,
     ProtoImageComponent,
   ],
   imports: [
@@ -38,6 +40,7 @@ import { ProtoImageComponent } from './proto-image/proto-image.component';
     HandleKeyboardEventsDirective,
     ImageUploadComponent,
     IonicModule,
+    LanguageSwitchComponent,
     MomentModule,
     ProtoImageComponent,
     ReactiveFormsModule,
