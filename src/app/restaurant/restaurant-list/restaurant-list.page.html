@@ -39,7 +39,8 @@
           slot="start"></proto-image>
         <ion-label mode="ios" text-wrap="normal" class="proto-item__label">
           <p class="p">{{ restaurant.title }}</p>
-          <small>{{ restaurant.canonicalAddress }}</small>
+          <small>{{ restaurant.canonicalAddress }}</small> <br>
+          <small>{{ 'VIEW.RESTAURANT_LIST.TIME_AGO' | translate }}{{ restaurant.createdAt | amLocale: currentLang | amTimeAgo:true}}</small> <br>
         </ion-label>
       </ng-container>
 

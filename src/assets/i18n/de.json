@@ -73,7 +73,8 @@
       "RESET_SUCCESS": "Dein Passwort wurde erfolgreich geändert. Du kannst nich nun damit einloggen."
     },
     "RESTAURANT_LIST": {
-      "TITLE": "Restaurants"
+      "TITLE": "Restaurants",
+      "TIME_AGO": "Eintrag besteht seit: "
     },
     "MORE": {
       "TITLE": "Mehr"
