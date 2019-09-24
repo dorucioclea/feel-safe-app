@@ -4,6 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { IonContent, ModalController } from '@ionic/angular';
 import { ModalOptions } from '@ionic/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import { RESTAURANT_DUMMY_DATA, RestaurantModel } from '../shared/restaurant.model';
 import { RestaurantService, Restaurants } from '../shared/restaurant.service';
@@ -23,6 +24,7 @@ export class RestaurantListPage implements OnInit {
     meta: { isFirstLoad: true, isLoading: true },
   };
   public searchValue: string;
+  public currentLang: string;
 
   private ngUnsubscribe: Subject<any> = new Subject();
   private infiniteScrollEvent: any;
@@ -33,7 +35,10 @@ export class RestaurantListPage implements OnInit {
     private modalController: ModalController,
     private restaurantService: RestaurantService,
     private router: Router,
-  ) { }
+    private translate: TranslateService,
+  ) {
+    this.currentLang = this.translate.currentLang;
+  }
 
   public ngOnInit() {
     this.restaurantService.getRestaurants()

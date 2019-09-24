@@ -84,6 +84,7 @@
     "es6-promise-plugin": "4.2.2",
     "ionic-plugin-deeplinks": "1.0.19",
     "moment": "2.24.0",
+    "ngx-moment": "3.4.0",
     "ngx-json-viewer": "2.4.0",
     "phonegap-plugin-multidex": "1.0.0",
     "phonegap-plugin-push": "2.2.3",
