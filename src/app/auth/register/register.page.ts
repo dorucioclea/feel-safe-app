@@ -9,6 +9,8 @@ import { AuthService } from 'src/app/auth/shared/auth.service';
 import { C } from 'src/app/@shared/constants';
 import { LegalService } from 'src/app/legal/shared/legal.service';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
+import { ToastService } from 'src/app/@core/toast.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @HideSplash()
 @Component({
@@ -27,6 +29,8 @@ export class RegisterPage implements OnInit {
     private formBuilder: FormBuilder,
     private legalService: LegalService,
     private modalController: ModalController,
+    private toastService: ToastService,
+    private translate: TranslateService,
   ) {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -97,27 +101,31 @@ export class RegisterPage implements OnInit {
 
   private onRegistrationFailed(err: any) {
     this.isLoading = false;
-    // TODO:
-    // let message = this.translate.instant('TOAST.REGISTER_ERROR');
-    // if (err && err.status === C.status.unprocessableEntity) {
-    //   message = this.getUnprocessableEntityMessage(err);
-    // }
 
-    // this.showToast(message, false);
+    if (err &&
+        err.status === C.status.unprocessableEntity &&
+        this.getUnprocessableEntityMessage(err).includes('Email already exists'))
+    {
+      const mailToastMessage = this.translate.instant('TOAST.EMAIL_EXISTS.MESSAGE');
+      this.emailTaken = true;
+
+      return this.toastService.show(this.translate.instant(mailToastMessage), false).catch();
+    }
+
+    {
+      const genericToastMessage = this.translate.instant('TOAST.GENERIC_ERROR.MESSAGE');
+      this.toastService.show(genericToastMessage).catch();
+    }
   }
 
-  // TODO:
-  // private getUnprocessableEntityMessage(data: any): string {
-  //   const errorData = data.error ? data.error.error : data;
-
-  //   if (errorData && errorData.message.includes('Email already exists')) {
-  //     this.emailTaken = true;
-
-  //     return this.translate.instant('TOAST.EMAIL_ALREADY_TAKEN');
-  //   }
-
-  //   return this.translate.instant('TOAST.REGISTER_ERROR');
-  // }
+  private getUnprocessableEntityMessage(data: any): string {
+    try {
+      return data.error.error.message;
+    }
+    catch (catchErr) {
+      return '';
+    };
+  }
 
   private async loadAgreements() {
     try {

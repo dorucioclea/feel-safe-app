@@ -15,6 +15,7 @@
   },
   "INPUT": {
     "LABEL": {
+      "USERNAME": "Benutzername",
       "EMAIL": "E-Mail",
       "PASSWORD": "Passwort",
       "PRIVACY_CONSENT": "Ich habe die <span>Datenschutzbestimmungen</span> gelesen und akzeptiere diese.",
@@ -86,6 +87,20 @@
     "SEARCH": {
       "MESSAGE": "Wir konnten keine Ergebnisse für<br><strong> {{query}} <\/strong> finden. Überprüfe deine Filter- und Sucheinstellungen.",
       "TITLE": "Hoppla!"
+    }
+  },
+  "TOAST": {
+    "GENERIC_ERROR": {
+      "MESSAGE": "Ein Fehler ist aufgetreten, bitte versuche es später erneut."
+    },
+    "SAVE_SUCCESS": {
+      "MESSAGE": "Änderungen erfolgreich gespeichert!"
+    },
+    "SAVE_ERROR": {
+      "MESSAGE": "Beim Speichern ist ein Fehler aufgetreten."
+    },
+    "EMAIL_EXISTS": {
+      "MESSAGE": "Ein Account mit dieser E-Mail-Adresse existiert bereits."
     }
   },
   "FILTER": {
