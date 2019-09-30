@@ -27,9 +27,14 @@
       "PASSWORD": "password requirements placeholder"
     }
   },
+  "LANGUAGE": {
+    "DE": "Deutsch",
+    "EN": "Englisch"
+  },
   "TERM": {
     "OR": "oder",
-    "ALL": "Alle"
+    "ALL": "Alle",
+    "LANGUAGE": "Sprache"
   },
   "REFRESHER": {
     "PULLING_TEXT": "Ziehen, um zu aktualisieren",
