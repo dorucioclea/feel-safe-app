@@ -18,7 +18,8 @@ stylelint
 
     if (cliParameter === '-f') {
       options.fix = true;
-      stylelint.lint(options)
+      stylelint
+        .lint(options)
         .catch();
 
       return;
@@ -29,6 +30,7 @@ stylelint
       const red = "\x1b[31m";
       console.log(red, 'You are not in accordance with the CSS linter rules. If you want to fix them automatically type:');
       console.log(green, " npm run order-css:fix\n");
+
       return process.exit(1);
     }
 
@@ -50,7 +52,8 @@ function startDialog() {
     };
 
     options.fix = true;
-    stylelint.lint(options)
+    stylelint
+      .lint(options)
       .then(() => {
         interface.close();
       })
