@@ -14,7 +14,7 @@ audit:
  - echo $CI_JOB_URL
  - echo $CI_PROJECT_NAME
  - echo $CI_PROJECT_URL
- - npm audit | grep -q 'high' && curl -X POST https://hooks.slack.com/services/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 -H 'Content-Type":" application/json' -H 'cache-control":" no-cache' -d '{ "channel"":" "i_npm-audit", "username"":" "npm audit bot", "icon_emoji"":" ":rotating_light:", "attachments"":" [{ "title"":" "Security issues found in $CI_PROJECT_NAME.", "title_link"":" "$CI_JOB_URL", "color"":" "warning", "text"":" "Severity":" high" }] }'
+ - sh bin/npm-audit-notify.sh $CI_JOB_URL $CI_PROJECT_NAME
  only:
  - schedules
  - npm-audit
