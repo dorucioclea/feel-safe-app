@@ -12,6 +12,8 @@ audit:
  stage: audit
  script:
  - echo $CI_JOB_URL
+ - echo $CI_PROJECT_NAME
+ - echo $CI_PROJECT_URL
  - npm audit | grep -q 'high' && exit 1
  only:
  - schedules
