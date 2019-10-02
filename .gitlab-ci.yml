@@ -11,9 +11,11 @@ stages:
 audit:
  stage: audit
  script:
+ - echo $CI_JOB_URL
  - npm audit | grep -q 'high' && exit 1
  only:
  - schedules
+ - npm-audit
 lint:
   stage: lint
   script:
