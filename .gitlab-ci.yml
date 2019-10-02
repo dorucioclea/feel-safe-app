@@ -14,7 +14,6 @@ audit:
  - echo $CI_JOB_URL
  - echo $CI_PROJECT_NAME
  - echo $CI_PROJECT_URL
- - npm audit
  - sh bin/npm-audit-notify.sh $CI_JOB_URL $CI_PROJECT_NAME
  only:
  - schedules
