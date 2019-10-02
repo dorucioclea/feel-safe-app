@@ -30,11 +30,12 @@
     "lint:staged": "node scripts/lint-staged.js --no-hard-exit",
     "check-dependencies": "node scripts/dependency-checker.js",
     "order-css": "node scripts/css-order.js",
+    "order-css:fix": "node scripts/css-order.js -f",
     "e2e": "ng e2e"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run check-dependencies && node scripts/lint-staged.js"
+      "pre-commit": "node scripts/css-order.js -h && npm run check-dependencies && node scripts/lint-staged.js"
     }
   },
   "private": true,

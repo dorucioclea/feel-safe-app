@@ -4,13 +4,7 @@
     "stylelint-config-rational-order/plugin"
 	],
   "rules": {
-    "order/order": [
-      "custom-properties",
-      "dollar-variables",
-      "at-variables",
-      "declarations",
-      "rules"
-		],
+    "order/order": [],
     "order/properties-order": [
       "position"
     ],
