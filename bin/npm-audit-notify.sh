@@ -3,7 +3,10 @@
 JOB_URL=$1
 PROJECT_NAME=$2
 
-npm audit | grep -q 'high' && curl -s -X POST \
+OUTPUT=${npm audit}
+
+if [[ $OUTPUT == *"high"* ]]; then
+curl -s -X POST \
   https://hooks.slack.com/services/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 \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \
@@ -12,16 +15,18 @@ npm audit | grep -q 'high' && curl -s -X POST \
     \"username\": \"npm audit bot\",
     \"icon_emoji\": \":rotating_light:\",
     \"attachments\": [
-    	{
-    		\"title\": \"Found security issues in $PROJECT_NAME\",
-    		\"title_link\": \"$JOB_URL\",
-    		\"text\": \"Severity: high\",
-    		\"color\": \"warning\"
-    	}
+      {
+        \"title\": \"Found security issues in $PROJECT_NAME\",
+        \"title_link\": \"$JOB_URL\",
+        \"text\": \"Severity: high\",
+        \"color\": \"warning\"
+      }
     ]
   }" > /dev/null
+fi
 
-npm audit | grep -q 'critical' && curl -s -X POST \
+if [[ $OUTPUT == *"critical"* ]]; then
+curl -s -X POST \
   https://hooks.slack.com/services/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 \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \
@@ -34,7 +39,8 @@ npm audit | grep -q 'critical' && curl -s -X POST \
     		\"title\": \"Found security issues in $PROJECT_NAME\",
     		\"title_link\": \"$JOB_URL\",
     		\"text\": \"Severity: critical\",
-    		\"color\": \"critical\"
+    		\"color\": \"danger\"
     	}
     ]
   }" > /dev/null
+fi
