@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 JOB_URL=$1
 PROJECT_NAME=$2
 
-OUTPUT=${npm audit}
+OUTPUT=$(npm audit)
 
 if [[ $OUTPUT == *"high"* ]]; then
 curl -s -X POST \
