@@ -9,12 +9,10 @@ stages:
 - deploy
 audit:
  script:
- - node -v
  - npm i
  - node bin/npm-audit.js $CI_JOB_URL $CI_PROJECT_NAME $SLACK_WEBHOOK
  only:
  - schedules
- - npm-audit
 lint:
   stage: lint
   script:
