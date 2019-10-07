@@ -2,12 +2,13 @@
 
 JOB_URL=$1
 PROJECT_NAME=$2
+SLACK_WEBHOOK=$3
 
 OUTPUT=$(npm audit)
 
 if [[ $OUTPUT == *"high"* ]]; then
 curl -s -X POST \
-  https://hooks.slack.com/services/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 \
+  $SLACK_WEBHOOK \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \
   -d "{
@@ -27,7 +28,7 @@ fi
 
 if [[ $OUTPUT == *"critical"* ]]; then
 curl -s -X POST \
-  https://hooks.slack.com/services/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 \
+  $SLACK_WEBHOOK \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \
   -d "{
