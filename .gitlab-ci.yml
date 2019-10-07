@@ -4,7 +4,6 @@ variables:
   ANDROID_HOCKEY_APP_ID: "5e01523916244d7cbd63c4f52e166d39"
   IOS_HOCKEY_APP_ID: "66f7adb447f5491ea249d1a998842ba7"
 stages:
-- audit
 - lint
 - test
 - deploy
