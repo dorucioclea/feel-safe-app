@@ -9,6 +9,7 @@ stages:
 - deploy
 audit:
  script:
+ - node -v
  - node bin/npm-audit.js $CI_JOB_URL $CI_PROJECT_NAME $SLACK_WEBHOOK
  only:
  - schedules
@@ -22,16 +23,12 @@ lint:
   - npm run lint
   tags:
   - ionic
-  except:
-    - schedules
 test:
   stage: test
   script:
   - echo "Test"
   tags:
   - ionic
-  except:
-    - schedules
 staging_android:
   stage: deploy
   script:
