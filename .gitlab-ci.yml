@@ -8,7 +8,6 @@ stages:
 - test
 - deploy
 audit:
- stage: audit
  script:
  - echo $CI_JOB_URL
  - echo $CI_PROJECT_NAME
