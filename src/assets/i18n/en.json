@@ -1,23 +1,22 @@
 {
   "BUTTON": {
-    "APPLY": "Anwenden",
-    "CANCEL": "Abbrechen",
-    "CONTINUE": "Weiter",
+    "APPLY": "Apply",
+    "CANCEL": "Cancel",
+    "CONTINUE": "Continue",
     "LOGIN": "Login",
     "LOGIN_FACEBOOK": "Mit Facebook einloggen",
     "LOGIN_TWITTER": "Mit Twitter einloggen",
     "PASSWORD_FORGOTTEN": "Passwort vergessen",
-    "SKIP": "Überspringen",
-    "REGISTER": "Registrieren",
-    "REQUEST_NEW_PASSWORD": "Neues Passwort anfordern",
-    "RESET_FILTER": "Filter zurücksetzen",
-    "RESET_PASSWORD": "Passwort zurücksetzen"
+    "SKIP": "Skip",
+    "REGISTER": "Register",
+    "REQUEST_NEW_PASSWORD": "Request new password",
+    "RESET_FILTER": "Reset filter",
+    "RESET_PASSWORD": "Reset password"
   },
   "INPUT": {
     "LABEL": {
-      "USERNAME": "Benutzername",
       "EMAIL": "E-Mail",
-      "PASSWORD": "Passwort",
+      "PASSWORD": "Password",
       "PRIVACY_CONSENT": "Ich habe die <span>Datenschutzbestimmungen</span> gelesen und akzeptiere diese.",
       "TERMS_CONSENT": "Ich habe die <span>Nutzungsbedingungen</span> gelesen und akzeptiere diese.",
       "NEW_PASSWORD": "Neues Passwort"
@@ -28,13 +27,13 @@
     }
   },
   "LANGUAGE": {
-    "DE": "Deutsch",
-    "EN": "Englisch"
+    "DE": "German",
+    "EN": "English"
   },
   "TERM": {
-    "OR": "oder",
-    "ALL": "Alle",
-    "LANGUAGE": "Sprache"
+    "OR": "or",
+    "ALL": "all",
+    "LANGUAGE": "Language"
   },
   "REFRESHER": {
     "PULLING_TEXT": "Ziehen, um zu aktualisieren",
@@ -66,23 +65,22 @@
       "TITLE": "Onboarding"
     },
     "REGISTER": {
-      "TITLE": "Registrieren"
+      "TITLE": "Register"
     },
     "IMPRINT": {
-      "TITLE": "Impressum",
+      "TITLE": "Imprint",
       "CONTENT": "<div class=\"content-block\"><h3>Angaben gemäß § 5 TMG:</h3><p>prototype.berlin GmbH<br>Oranienburger Str. 26<br>10117 Berlin</p></div><div class=\"content-block\"><h3>Kontakt:</h3><ul class=\"default-list\"><li><span>Telefon:</span> <a href=\"tel:+49 30 219 508 60\">+49 30 219 508 60</a></li><li><span>Mobil:</span> <a href=\"tel:+49 151 115 597 08\">+49 151 115 597 08</a></li><li><span>Website:</span> <a href=\"http://www.prototype.berlin\">http://www.prototype.berlin</a></li><li><span>E-Mail:</span> <a href=\"mailto:office@prototype.berlin\">office@prototype.berlin</a></li></ul></div><div class=\"content-block\"><h3>Vertretungsberechtigte Geschäftsführer:</h3><p>Valentin Klinghammer, Philipp Plümicke, Ruben Gänsler</p></div><div class=\"content-block\"><h3>Registereintrag:</h3><ul class=\"default-list\"><li>Amtsgericht Charlottenburg</li><li>Handelsregisternummer: HRB 161970 B</li><li>Steuerident Nummer: DE297100689</li></ul></div><div class=\"content-block\"><h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</h3><p>Valentin Klinghammer, Philipp Plümicke, Ruben Gänsler</p></div>"
     },
     "PASSWORD_RESET": {
-      "TITLE": "Passwort zurücksetzen",
+      "TITLE": "Reset password",
       "REQUEST_SUCCESS": "Wir haben dir per Mail einen Link zum zurücksetzen deines Passworts geschickt.",
       "RESET_SUCCESS": "Dein Passwort wurde erfolgreich geändert. Du kannst nich nun damit einloggen."
     },
     "RESTAURANT_LIST": {
-      "TITLE": "Restaurants",
-      "TIME_AGO": "Eintrag besteht seit: "
+      "TITLE": "Restaurants"
     },
     "MORE": {
-      "TITLE": "Mehr"
+      "TITLE": "More"
     }
   },
   "EMPTY": {
@@ -95,24 +93,10 @@
       "TITLE": "Hoppla!"
     }
   },
-  "TOAST": {
-    "GENERIC_ERROR": {
-      "MESSAGE": "Ein Fehler ist aufgetreten, bitte versuche es später erneut."
-    },
-    "SAVE_SUCCESS": {
-      "MESSAGE": "Änderungen erfolgreich gespeichert!"
-    },
-    "SAVE_ERROR": {
-      "MESSAGE": "Beim Speichern ist ein Fehler aufgetreten."
-    },
-    "EMAIL_EXISTS": {
-      "MESSAGE": "Ein Account mit dieser E-Mail-Adresse existiert bereits."
-    }
-  },
   "FILTER": {
     "TITLE": "Filter",
     "ORDER": {
-      "TITLE": "Sortierung",
+      "TITLE": "Sort",
       "OPTIONS": [
         {
           "LABEL": "Datum (absteigend)",
@@ -154,10 +138,10 @@
       ]
     },
     "RESTAURANT_CATEGORY": {
-      "TITLE": "Küche"
+      "TITLE": "Kitchen"
     },
     "DISTANCE": {
-      "TITLE": "Entfernung",
+      "TITLE": "Distance",
       "UNIT": "km"
     }
   }

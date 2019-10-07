@@ -14,6 +14,7 @@ import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
   styleUrls: ['./more-menu.page.scss'],
 })
 export class MoreMenuPage implements OnInit {
+
   constructor(
     private alertController: AlertController,
     private authService: AuthService,
@@ -22,7 +23,7 @@ export class MoreMenuPage implements OnInit {
     private translate: TranslateService,
   ) { }
 
-  public ngOnInit() { }
+  public ngOnInit() {}
 
   public async logout() {
     const confirmation = await this.confirmLogout();
