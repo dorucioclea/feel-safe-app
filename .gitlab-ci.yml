@@ -9,12 +9,7 @@ stages:
 - deploy
 audit:
  script:
- - echo $CI_JOB_URL
- - echo $CI_PROJECT_NAME
- - echo $CI_PROJECT_URL
- - echo $SLACK_WEBHOOK
- - bash bin/npm-audit-notify.sh $CI_JOB_URL $CI_PROJECT_NAME $SLACK_WEBHOOK
- - exit 0
+ - node bin/npm-audit.js $CI_JOB_URL $CI_PROJECT_NAME $SLACK_WEBHOOK
  only:
  - schedules
  - npm-audit
