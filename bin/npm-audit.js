@@ -19,10 +19,16 @@ exec('npm audit --json', (error, stdout, stderr) => {
 
     if (output.advisories.hasOwnProperty(advisoryId)) {
       const advisory = output.advisories[advisoryId];
+
+      const attachment = getSlackAttachment(advisory);
+
+      if (!attachment) { continue; }
       
-      attachments.push(getSlackAttachment(advisory));
+      attachments.push(attachment);
     }
   }
+
+  if (!attachments.length) { return; }
 
   sendNotification(attachments);
 });
@@ -30,7 +36,7 @@ exec('npm audit --json', (error, stdout, stderr) => {
 function sendNotification(attachments) {
   request.post(slackWebhook, {
     json: {
-    channel: 'i_npm-audit',
+      channel: 'i_npm-audit',
       username: `npm audit bot: ${projectName}`,
       icon_emoji: ':rotating_light:',
       text: `I just ran \`npm audit\` on *${projectName}* and found following unknown issues:`,
@@ -38,7 +44,8 @@ function sendNotification(attachments) {
     },
   }, (error, res, body) => {
     if (error) {
-      console.error(error)
+      console.error(error);
+
       return;
     }
   });
