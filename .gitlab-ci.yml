@@ -4,14 +4,13 @@ variables:
   ANDROID_HOCKEY_APP_ID: "5e01523916244d7cbd63c4f52e166d39"
   IOS_HOCKEY_APP_ID: "66f7adb447f5491ea249d1a998842ba7"
 stages:
-- audit
 - lint
 - test
 - deploy
 audit:
- stage: audit
  script:
- - npm audit | grep -q 'high' && exit 1
+ - npm i
+ - node bin/npm-audit.js $CI_JOB_URL $CI_PROJECT_NAME $SLACK_WEBHOOK
  only:
  - schedules
 lint:
