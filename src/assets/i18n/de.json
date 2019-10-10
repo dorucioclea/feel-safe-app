@@ -1,6 +1,7 @@
 {
   "BUTTON": {
     "APPLY": "Anwenden",
+    "OK": "OK",
     "CANCEL": "Abbrechen",
     "CONTINUE": "Weiter",
     "LOGIN": "Login",
@@ -83,6 +84,12 @@
     },
     "MORE": {
       "TITLE": "Mehr"
+    }
+  },
+  "ALERT": {
+    "LOGOUT": {
+      "HEADER": "Warnung",
+      "MESSAGE": "Möchten Sie sich wirklich ausloggen?"
     }
   },
   "EMPTY": {
