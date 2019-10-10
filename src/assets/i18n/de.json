@@ -24,8 +24,8 @@
       "NEW_PASSWORD": "Neues Passwort"
     },
     "PLACEHOLDER": {
-      "EMAIL": "max@mustermann.de",
-      "PASSWORD": "password requirements placeholder"
+      "EMAIL": "Enter your email address",
+      "PASSWORD": "Enter your password"
     }
   },
   "LANGUAGE": {

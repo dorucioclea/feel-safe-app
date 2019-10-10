@@ -1,69 +1,42 @@
-// .rte {
-//   margin: 0;
-//   &, p {
-//     @extend %p;
-//   }
-//   p:empty {
-//     display: none;
-//   }
-//   a {
-//     @extend %hyperlink;
-//     font-size: 15px;
-//   }
-//   ul {
-//     @extend %reset-list;
-//     margin: $space-m 0 0;
-//     li {
-//       position: relative;
-//       padding-left: $space-m;
-//       line-height: 1.5;
-//       display: block;
-//       margin: $space-m 0;
-//       &::before {
-//         content: '';
-//         @include size(8px);
-//         position: absolute;
-//         top: 8px;
-//         left: 0;
-//         background: color($colors, favorite);
-//         border-radius: 50%;
-//       }
-//     }
-//   }
+.rte {
+  margin: var(--proto-space-m) 0;
+  padding: 0 var(--proto-space-m);
 
-//   img {
-//     display: block;
-//     width: calc(100% + #{2 * $space});
-//     height: auto;
-//     max-width: none;
-//     margin: $space-m 0 $space-m #{- $space};
-//     color: $c-text-secondary;
-//   }
+  .content-block {
+    padding: 0;
+    margin: 1em 0;
+  }
 
-//   h1, h2, h3, h4, h5, h6 {
-//     margin-top: 1.6rem;
-//     margin-bottom: 1rem;
-//     line-height: 1.33;
-//     .content-block & {
-//       @extend %h4;
-//       color: $c-text-secondary;
-//       margin: 0 0 $space-m;
-//     }
-//     .info-card & {
-//       @extend %card-headline;
-//       color: $c-text-primary;
-//       margin-bottom: $space;
-//     }
-//   }
+  &, p {
+    @extend %p;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+  }
 
-//   .content-block {
-//     padding-top: $space-m;
-//   }
+  p:empty {
+    display: none;
+  }
 
-//   > :first-child {
-//     margin-top: 0;
-//   }
-//   > :last-child {
-//     margin-bottom: 0;
-//   }
-// }
+  a {
+    @extend %hyperlink;
+  }
+
+  ul {
+    margin: 1em 0;
+    padding-left: 20px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    line-height: 1.5;
+    color: var(--ion-color-secondary);
+  }
+
+  > :first-child {
+    margin-top: 0;
+  }
+  > :last-child {
+    margin-bottom: 0;
+  }
+}

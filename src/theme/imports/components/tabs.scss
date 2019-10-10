@@ -1,0 +1,17 @@
+
+ion-tab-bar {
+  --ion-tab-bar-background: var(--ion-color-light);
+  --ion-tab-bar-background-focused: var(--ion-color-light-shade);
+  --ion-tab-bar-border-color: var(--ion-color-medium);
+  --ion-tab-bar-color: var(--ion-color-medium);
+  --ion-tab-bar-color-activated: var(ion-color-primary);
+
+  ion-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  ion-label {
+    @extend %small;
+  }
+}

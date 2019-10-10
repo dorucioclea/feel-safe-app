@@ -1,24 +1,43 @@
 .proto-button {
+  @extend %p;
+
+  --border-radius: 4px;
+
+  margin: 0;
+  font-weight: 700;
   text-transform: none;
   letter-spacing: initial;
 
-  &.button-clear {
-    @extend %h3;
+  &.button-solid {
+    height: 50px;
   }
 
-  &.button-solid {
-    @extend %h3;
-    --border-radius: var(--proto-button-border-radius);
-    height: var(--proto-button-height);
+  &.button-clear {
+    font-weight: 400;
+    text-decoration: underline;
+  }
+
+  &.button-disabled {
+    --color: var(--ion-color-medium-shade);
+    --background: var(--ion-color-light-shade);
   }
 
   &.button-round {
     --padding-start: 0;
     --padding-end: 0;
     --border-radius: 50%;
+
     width: 42px;
     height: 42px;
-    margin: 0;
     font-size: 24px;
+  }
+}
+
+.proto-fab-button {
+  width: 40px;
+  height: 40px;
+
+  ion-icon {
+    font-size: 18px;
   }
 }

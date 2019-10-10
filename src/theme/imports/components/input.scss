@@ -1,84 +1,74 @@
 .proto-input-list {
-  width: 100%;
-  margin-bottom: 0;
-  padding: 0;
+  margin: 0;
 }
 
 .proto-input {
-  --min-height: 58px;
+  --min-height: 54px;
+  --background: var(--ion-color-light);
+  --background-focused: var(--ion-color-light);
   --border-radius: 4px;
+  --border-color: var(--ion-border-color);
+  --border-style: solid;
   --border-width: 1px;
   --inner-border-width: 0;
-  --border-style: solid;
-  --border-color: var(--ion-color-medium-tint);
-  --background: var(--ion-color-light);
+  --ion-placeholder-color: var(--ion-color-medium);
 
-  margin-bottom: var(--proto-space);
-  margin-left: var(--proto-space-m);
-  padding: 0;
-  width: calc(100% - var(--proto-space-m) * 2);
-
-  ion-input {
-    --placeholder-opacity: 0;
-    align-items: flex-end;
-  }
-
-  .label-floating {
-    position: absolute;
-  }
+  margin: var(--proto-space) var(--proto-space-m);
 
   &.item-has-placeholder .label-floating, .label-floating {
-    @extend %input;
-    transform: translateY(19px) scale(1);
+    --color: var(--ion-color-medium);
+    margin-top: 0;
+    transform: translateY(18px);
+  }
+
+  &.item-has-placeholder ::placeholder {
+    opacity: 0;
+    transition: opacity .3s;
   }
 
   &.item-has-value, &.item-has-focus, &.ion-focused {
-    --border-color: var(--ion-color-medium-shade);
+    --border-color: var(--ion-color-dark-tint);
 
     .label-floating {
-      transform: translateZ(0) translateY(8px) scale(.8);
-      opacity: .5;
+      transform: translateZ(0) translateY(10px) scale(.8);
     }
 
-    ion-input {
-      --placeholder-opacity: 0.5;
+    ::placeholder {
+      opacity: .5;
     }
+  }
+
+  // password component handles it's own valid/invalid styles
+  &.ion-touched.ion-valid:not(.proto-input--password) {
+    --border-color: var(--ion-color-success);
   }
 
   &.ion-touched.ion-invalid {
     --border-color: var(--ion-color-danger);
   }
 
-
-  &:not(.proto-input--toggle) {
-    .native-input, .native-textarea {
-      @extend %input;
-      margin: var(--proto-space-s) 0;
-      padding: 0;
-
-      &::placeholder {
-        @extend %input;
-        transition: opacity .3s;
-      }
-    }
-  }
-
-  &.item-toggle {
-    .label {
-      @extend %p;
-      line-height: 1.5;
-    }
-    .toggle {
-      padding-right: 0;
-    }
+  .label-floating, .native-input {
+    @extend %input;
   }
 
   ion-input:focus, .text-input {
     outline: none;
   }
+}
 
-  &[disabled], .is-disabled & {
+.proto-toggle {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  --inner-border-width: 0;
 
+  margin: var(--proto-space) var(--proto-space-m);
+
+  ion-label {
+    margin: 0 var(--proto-space-s) 0 0;
+  }
+
+  ion-toggle {
+    --background: var(--ion-color-medium);
   }
 }
 
@@ -111,7 +101,7 @@
 
 .proto-input {
   &.item-select {
-    @extend %p;
+    @extend %input;
     --min-height: 50px;
 
     ion-label {
@@ -137,7 +127,7 @@ ion-list-header {
   }
 
   .proto-range-label {
-    @extend %p;
+    @extend %input;
     display: flex;
     justify-content: space-between;
     align-items: center;

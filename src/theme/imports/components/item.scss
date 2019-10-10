@@ -1,13 +1,32 @@
 .proto-item {
-  --background-activated: #fafafa;
+  @extend %p;
 
-  &__label {
-    p {
-      color: var(--ion-text-color);
-    }
+  margin-left: var(--proto-space-m);
+  
+  --padding-start: 0;
+  --inner-padding-end: var(--proto-space-m);
 
-    small {
-      color: var(--ion-color-medium);
-    }
+  --min-height: 60px;
+  
+  --detail-icon-color: var(--ion-color-dark);
+  --detail-icon-font-size: 24px;
+  --detail-icon-opacity: 1;
+
+  --border-color: var(--ion-color-light-shade);
+
+  --background-activated: var(--ion-color-light);
+
+  &.proto-item-clear {
+    --border-width: 0;
+  }
+
+  &, .proto-item-label {
+    @extend %p;
+  }
+
+  ion-icon[slot="end"] {
+    margin-right: 2px;
+    font-size: 24px;
+    color: var(--ion-color-primary);
   }
 }
