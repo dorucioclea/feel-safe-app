@@ -12,6 +12,7 @@ import { HandleKeyboardEventsDirective } from './handle-keyboard-events.directiv
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { LanguageSwitchComponent } from 'src/app/components/language-switch/language-switch.component';
 import { ProtoImageComponent } from './proto-image/proto-image.component';
+import { ShowHidePasswordComponent } from 'src/app/components/show-hide-password/show-hide-password.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ProtoImageComponent } from './proto-image/proto-image.component';
     ImageUploadComponent,
     LanguageSwitchComponent,
     ProtoImageComponent,
+    ShowHidePasswordComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +46,7 @@ import { ProtoImageComponent } from './proto-image/proto-image.component';
     MomentModule,
     ProtoImageComponent,
     ReactiveFormsModule,
+    ShowHidePasswordComponent,
     TranslateModule,
   ],
 })
