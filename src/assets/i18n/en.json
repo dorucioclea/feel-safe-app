@@ -83,6 +83,12 @@
       "TITLE": "More"
     }
   },
+  "ALERT": {
+    "LOGOUT": {
+      "HEADER": "Warning",
+      "MESSAGE": "Do you really want to logout?"
+    }
+  },
   "EMPTY": {
     "RESTAURANT_LIST": {
       "MESSAGE": "Wir konnten keine Restaurants finden",
