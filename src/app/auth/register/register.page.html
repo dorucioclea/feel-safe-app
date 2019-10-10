@@ -14,22 +14,27 @@
         <ion-label mode="ios" stacked>{{ 'INPUT.LABEL.USERNAME' | translate }}</ion-label>
         <ion-input mode="ios" type="text" value="" formControlName="username"></ion-input>
       </ion-item>
+
       <ion-item mode="ios" class="proto-input">
         <ion-label mode="ios" stacked>{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
         <ion-input mode="ios" type="email" value="" formControlName="email"></ion-input>
       </ion-item>
-      <ion-item mode="ios" class="proto-input">
-        <ion-label mode="ios" stacked>{{ 'INPUT.LABEL.PASSWORD' | translate }}</ion-label>
-        <ion-input mode="ios" type="password" value="" formControlName="password"></ion-input>
-      </ion-item>
+
+      <proto-show-hide-password
+        formControlName="password"
+        [label]="('INPUT.LABEL.PASSWORD' | translate)">
+      </proto-show-hide-password>
+
       <ion-item class="proto-input" text-wrap margin-top no-lines>
         <ion-label (click)="openAgreement('privacy')" [innerHTML]="'INPUT.LABEL.PRIVACY_CONSENT' | translate"></ion-label>
         <ion-toggle formControlName="privacyConsent"></ion-toggle>
       </ion-item>
+
       <ion-item class="proto-input" text-wrap margin-top no-lines>
         <ion-label (click)="openAgreement('terms')" [innerHTML]="'INPUT.LABEL.TERMS_CONSENT' | translate"></ion-label>
         <ion-toggle formControlName="termsConsent"></ion-toggle>
       </ion-item>
+      
       <div class="submit-form__cta">
         <ion-button color="favorite" color="dark" class="button-cta" [disabled]="!formIsValid() || isLoading" (click)="register()">
           {{ 'BUTTON.REGISTER' | translate }}

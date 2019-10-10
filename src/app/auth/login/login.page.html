@@ -24,10 +24,13 @@
             <ion-label mode="ios" position="floating">{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
             <ion-input mode="ios" type="email" value="" formControlName="email" [placeholder]="'INPUT.PLACEHOLDER.EMAIL' | translate"></ion-input>
           </ion-item>
-          <ion-item mode="ios" class="proto-input">
-            <ion-label mode="ios" position="floating">{{ 'INPUT.LABEL.PASSWORD' | translate }}</ion-label>
-            <ion-input mode="ios" type="password" value="" formControlName="password" [placeholder]="'INPUT.PLACEHOLDER.PASSWORD' | translate"></ion-input>
-          </ion-item>
+
+          <proto-show-hide-password
+            formControlName="password"
+            [label]="('INPUT.LABEL.PASSWORD' | translate)"
+            [placeholder]="('INPUT.PLACEHOLDER.PASSWORD' | translate)">
+          </proto-show-hide-password>
+
           <div class="submit-form__cta">
             <ion-button class="button-cta" [disabled]="!formIsValid() || isLoading"
               (click)="login()">
