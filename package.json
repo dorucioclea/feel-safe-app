@@ -27,11 +27,14 @@
     "build": "ng build",
     "lint": "ng lint",
     "lint:staged": "node scripts/lint-staged.js --no-hard-exit",
-    "check-dependencies": "node scripts/dependency-checker.js"
+    "check-dependencies": "node scripts/dependency-checker.js",
+    "order-css": "node scripts/css-order.js",
+    "order-css:fix": "node scripts/css-order.js -f",
+    "order-css:husky": "node scripts/css-order.js -h"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run check-dependencies && node scripts/lint-staged.js"
+      "pre-commit": "npm run order-css:husky && npm run check-dependencies && node scripts/lint-staged.js"
     }
   },
   "private": true,
@@ -105,6 +108,9 @@
     "codelyzer": "5.0.1",
     "husky": "2.2.0",
     "staged-git-files": "1.1.2",
+    "stylelint": "11.0.0",
+    "stylelint-config-rational-order": "0.1.2",
+    "stylelint-order": "3.1.1",
     "ts-node": "8.2.0",
     "tslint": "5.17.0",
     "tslint-eslint-rules": "5.4.0",
