@@ -20,16 +20,11 @@
             <activity android:windowSoftInputMode="adjustPan" />
         </edit-config>
         <allow-intent href="market:*" />
-        <resource-file src="google-services.json" target="app/google-services.json" />
-        <resource-file src="resources/android/notification.png" target="app/src/main/res/drawable/notification.png" />
         <config-file parent="/*" target="res/values/strings.xml">
-            <color name="notificationIcon">#C31B1D</color>
+            <color name="notificationIcon">#C41517</color>
         </config-file>
         <config-file mode="merge" parent="/manifest/application" target="app/src/main/AndroidManifest.xml">
             <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/notification" />
-        </config-file>
-        <config-file parent="/manifest/application" target="app/src/main/AndroidManifest.xml">
-            <meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@color/notificationIcon" />
         </config-file>
         <resource-file src="resources/android/notification.png" target="app/src/main/res/drawable/notification.png" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -66,7 +61,6 @@
         </edit-config>
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-        <resource-file src="GoogleService-Info.plist" />
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
         <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
         <icon height="40" src="resources/ios/icon/icon-40.png" width="40" />
@@ -141,7 +135,7 @@
     <feature name="CDVWKWebViewEngine">
         <param name="ios-package" value="CDVWKWebViewEngine" />
     </feature>
-    <plugin name="ionic-plugin-deeplinks" spec="1.0.19">
+    <plugin name="ionic-plugin-deeplinks" spec="1.0.20">
         <variable name="URL_SCHEME" value="blueprint" />
         <variable name="DEEPLINK_HOST" value="blueprint-dev.prototype.berlin" />
         <variable name="DEEPLINK_SCHEME" value="https" />
@@ -154,5 +148,5 @@
         <variable name="ANDROID_2_PATH_PREFIX" value="/a/" />
         <variable name="ANDROID_3_PATH_PREFIX" value="/a/" />
     </plugin>
-    <engine name="android" spec="8.0.0" />
+    <engine name="android" spec="8.1.0" />
 </widget>
