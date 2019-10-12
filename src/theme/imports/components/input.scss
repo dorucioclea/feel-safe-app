@@ -30,7 +30,7 @@
     --border-color: var(--ion-color-dark-tint);
 
     .label-floating {
-      transform: translateZ(0) translateY(10px) scale(.8);
+      transform: translateZ(0) translateY(10px) scale(.85);
     }
 
     ::placeholder {
@@ -104,12 +104,42 @@
   }
 }
 
+.proto-checkbox {
+  --padding-start: var(--proto-space-m);
+  --padding-end: var(--proto-space);
+  --background-activated: var(--ion-background-color);
+  --inner-border-width: 0;
+
+  &.md {
+    ion-checkbox {
+      margin-top: var(--proto-space);
+    }
+  }
+
+  ion-checkbox {
+    align-self: flex-start;
+    margin-right: var(--proto-space);
+  }
+
+  .proto-checkbox-label {
+    @extend %input;
+
+    pointer-events: none;
+    position: relative;
+    z-index: 2;
+
+    a {
+      pointer-events: initial;
+    }
+  }
+}
+
 .proto-range-checkbox {
   --padding-start: var(--proto-space-m);
   --padding-end: var(--proto-space);
 
   ion-checkbox {
-    margin-right: 8px;
+    margin-right: var(--proto-space-s);
   }
 
   .proto-range-label {

@@ -17,7 +17,10 @@
       <p class="social-login__divider-text">{{ 'TERM.OR' | translate }}</p>
     </div>
 
-    <form class="form-block submit-form" novalidate [formGroup]="loginForm" (ngSubmit)="login()" [ngClass]="{ 'is-disabled': isLoading }">
+    <form class="form-block submit-form" novalidate
+      [formGroup]="loginForm"
+      [ngClass]="{ 'is-disabled': isLoading }"
+      (ngSubmit)="login()">
       <ion-list mode="ios" class="proto-input-list">
         <ion-item mode="ios" class="proto-input">
           <ion-label mode="ios" position="floating">{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
@@ -34,7 +37,7 @@
           <a class="hyperlink" [routerLink]="['/password-reset']" routerDirection="forward">{{ 'BUTTON.PASSWORD_FORGOTTEN' | translate }}</a>
           <ion-button class="proto-button" expand="block" type="submit"
             [disabled]="!formIsValid() || isLoading">
-            <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+            <ion-spinner *ngIf="isLoading"></ion-spinner>
             <ng-container *ngIf="!isLoading" >
               {{ 'BUTTON.LOGIN' | translate }}
             </ng-container>

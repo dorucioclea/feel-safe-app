@@ -2,13 +2,11 @@
   margin: var(--proto-space-m) 0;
   padding: 0 var(--proto-space-m);
 
-  .content-block {
-    padding: 0;
-    margin: 1em 0;
-  }
-
   &, p {
     @extend %p;
+  }
+
+  p {
     margin-top: 1em;
     margin-bottom: 1.5em;
   }

@@ -20,7 +20,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class LoginPage implements OnInit {
   public loginForm: FormGroup;
-  public isCordova = true;
   public isLoading = false;
 
   constructor(

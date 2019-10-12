@@ -1,23 +1,25 @@
-<ion-header mode="ios">
-  <ion-toolbar mode="ios">
+<ion-header translucent="true">
+  <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button mode="ios" icon="ios-arrow-round-back" text="" defaultHref="login"></ion-back-button>
+      <ion-back-button text="" defaultHref="login"></ion-back-button>
     </ion-buttons>
     <ion-title>{{ 'VIEW.REGISTER.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <form class="submit-form" novalidate [formGroup]="registerForm" (ngSubmit)="register()" [ngClass]="{ 'is-disabled': isLoading }">
+<ion-content fullscreen>
+  <form class="form-block submit-form" novalidate
+    [formGroup]="registerForm"
+    [ngClass]="{ 'is-disabled': isLoading }"
+    (ngSubmit)="register()">
     <ion-list mode="ios" class="proto-input-list">
       <ion-item mode="ios" class="proto-input">
-        <ion-label mode="ios" stacked>{{ 'INPUT.LABEL.USERNAME' | translate }}</ion-label>
-        <ion-input mode="ios" type="text" value="" formControlName="username"></ion-input>
+        <ion-label mode="ios" position="floating">{{ 'INPUT.LABEL.USERNAME' | translate }}</ion-label>
+        <ion-input mode="ios" type="text" autocomplete="true" autocorrect="true" value="" formControlName="username" [placeholder]="'INPUT.PLACEHOLDER.USERNAME' | translate"></ion-input>
       </ion-item>
-
       <ion-item mode="ios" class="proto-input">
-        <ion-label mode="ios" stacked>{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
-        <ion-input mode="ios" type="email" value="" formControlName="email"></ion-input>
+        <ion-label mode="ios" position="floating">{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
+        <ion-input mode="ios" type="email" value="" formControlName="email" [placeholder]="'INPUT.PLACEHOLDER.EMAIL' | translate"></ion-input>
       </ion-item>
 
       <proto-show-hide-password
@@ -25,20 +27,27 @@
         [label]="('INPUT.LABEL.PASSWORD' | translate)">
       </proto-show-hide-password>
 
-      <ion-item class="proto-input" text-wrap margin-top no-lines>
-        <ion-label (click)="openAgreement('privacy')" [innerHTML]="'INPUT.LABEL.PRIVACY_CONSENT' | translate"></ion-label>
-        <ion-toggle formControlName="privacyConsent"></ion-toggle>
+      <ion-item class="proto-checkbox" handle-external-links>
+        <ion-checkbox formControlName="privacyConsent"></ion-checkbox>
+        <ion-label class="ion-text-wrap proto-checkbox-label" [innerHTML]="'INPUT.LABEL.PRIVACY_CONSENT' | translate"></ion-label>
       </ion-item>
 
-      <ion-item class="proto-input" text-wrap margin-top no-lines>
-        <ion-label (click)="openAgreement('terms')" [innerHTML]="'INPUT.LABEL.TERMS_CONSENT' | translate"></ion-label>
-        <ion-toggle formControlName="termsConsent"></ion-toggle>
+      <ion-item class="proto-checkbox" handle-internal-links>
+        <ion-checkbox formControlName="termsConsent"></ion-checkbox>
+        <ion-label class="ion-text-wrap proto-checkbox-label" [innerHTML]="'INPUT.LABEL.TERMS_CONSENT' | translate"></ion-label>
       </ion-item>
-      
-      <div class="submit-form__cta">
-        <ion-button color="favorite" color="dark" class="button-cta" [disabled]="!formIsValid() || isLoading" (click)="register()">
-          {{ 'BUTTON.REGISTER' | translate }}
+
+      <div class="form-buttons">
+        <ion-button class="proto-button" expand="block" type="submit"
+          [disabled]="!formIsValid() || isLoading">
+          <ion-spinner *ngIf="isLoading"></ion-spinner>
+          <ng-container *ngIf="!isLoading" >
+            {{ 'BUTTON.LOGIN' | translate }}
+          </ng-container>
         </ion-button>
+
+        <!-- this allows you to submit form via enter key (e.g. useful for pwa) -->
+        <input class="hidden-submit-button" type="submit">
       </div>
     </ion-list>
   </form>
