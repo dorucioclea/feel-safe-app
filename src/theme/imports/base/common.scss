@@ -38,6 +38,14 @@
     display: block;
     margin: var(--proto-space-xs) 0 var(--proto-space) auto;
   }
+
+  ion-footer & {
+    padding-top: var(--proto-space-s);
+    padding-bottom: var(--proto-space-s);
+    flex-direction: initial;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 // hide scrollbar by default

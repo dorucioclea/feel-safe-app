@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalController, NavController } from '@ionic/angular';
-import { ModalOptions } from '@ionic/core';
 
 import { AgreementModel } from 'src/app/legal/shared/agreement.model';
-import { AgreementPage } from 'src/app/legal/agreement/agreement.page';
 import { AuthService } from 'src/app/auth/shared/auth.service';
 import { C } from 'src/app/@shared/constants';
 import { LegalService } from 'src/app/legal/shared/legal.service';
@@ -77,18 +75,6 @@ export class RegisterPage implements OnInit {
 
   public consentsValid() {
     return this.registerForm.value.termsConsent && this.registerForm.value.privacyConsent;
-  }
-
-  public async openAgreement(type: string) {
-    const modal = await this.modalController.create({
-      component: AgreementPage,
-      componentProps: {
-        type: type,
-        agreement: this.agreements[type],
-      },
-    } as ModalOptions);
-
-    return await modal.present();
   }
 
   private onRegistrationSucceeded() {

@@ -45,12 +45,11 @@ export class AppComponent {
 
       if (this.platform.is('cordova')) {
         window.open = cordova.InAppBrowser.open;
+
+        this.statusBar.styleDefault();
       }
 
-      this.statusBar.styleLightContent();
-
       if (this.platform.is('android')) {
-        this.statusBar.backgroundColorByHexString('#3171e0');
 
         // provide extra css class for low end android devices
         if (C.isLowEndDevice()) {
@@ -80,6 +79,8 @@ export class AppComponent {
   public onSplashImageLoaded() {
     clearTimeout(this.splashTimeout);
     this.splashImageLoaded = true;
+
+    if (!this.platform.is('cordova')) { return; }
 
     // timeout prevents flickering
     const t = 300;

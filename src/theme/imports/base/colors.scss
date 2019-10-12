@@ -72,6 +72,10 @@
   --ion-border-color: var(--ion-color-light-shade);
   --ion-text-color: var(--ion-color-dark);
   --ion-text-color-rgb: var(--ion-color-dark-rgb);
+
+  --ion-toolbar-background: var(--ion-color-primary);
+  --ion-toolbar-color: var(--ion-color-primary-contrast);
+  --ion-toolbar-border-color: var(--ion-color-primary-shade);
 }
 
 
@@ -80,12 +84,6 @@
 // -------------------------------------
 
 :root {
-  --ion-color-toolbar: #ffffff;
-  --ion-color-toolbar-rgb: 255,255,255;
-  --ion-color-toolbar-contrast: #2A4449;
-  --ion-color-toolbar-contrast-rgb: 0,0,0;
-  --ion-color-toolbar-shade: #e0e0e0;
-  --ion-color-toolbar-tint: #ffffff;
 
   // brand colors
 

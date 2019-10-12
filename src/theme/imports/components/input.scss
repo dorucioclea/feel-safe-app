@@ -132,6 +132,10 @@
       pointer-events: initial;
     }
   }
+
+  + .form-buttons {
+    margin-top: var(--proto-space);
+  }
 }
 
 .proto-range-checkbox {

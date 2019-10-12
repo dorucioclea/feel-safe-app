@@ -3,6 +3,7 @@
     "APPLY": "Anwenden",
     "OK": "OK",
     "CANCEL": "Abbrechen",
+    "CONSENT": "Zustimmen",
     "CONTINUE": "Weiter",
     "LOGIN": "Login",
     "LOGIN_FACEBOOK": "Mit Facebook einloggen",
@@ -47,6 +48,9 @@
     "LOGIN": {
       "TITLE": "Login",
       "NOT_REGISTERED_YET": "Noch nicht registriert?"
+    },
+    "LOGIN_CONSENT": {
+      "TITLE": "Bedingungen zustimmen"
     },
     "ONBOARDING": {
       "SLIDES": [
