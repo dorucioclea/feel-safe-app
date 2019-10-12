@@ -21,6 +21,25 @@
   }
 }
 
+.form-block {
+  margin-top: var(--proto-space-m);
+}
+
+.form-info-message {
+  margin: var(--proto-space-m);
+}
+
+.form-buttons {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--proto-space-m);
+
+  .hyperlink {
+    display: block;
+    margin: var(--proto-space-xs) 0 var(--proto-space) auto;
+  }
+}
+
 // hide scrollbar by default
 ::-webkit-scrollbar {
   display: none;

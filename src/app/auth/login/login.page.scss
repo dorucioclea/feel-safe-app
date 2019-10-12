@@ -1,9 +1,5 @@
 @import 'src/theme/imports/helpers/middle-content';
 
-.form-block {
-  margin-top: var(--proto-space-m);
-}
-
 .social-login {
   position: relative;
   margin-right: var(--proto-space-m);
@@ -23,17 +19,6 @@
     background: var(--ion-background-color);
     color: var(--ion-color-medium);
     transform: translate(-50%, 50%);
-  }
-}
-
-.form-buttons {
-  display: flex;
-  flex-direction: column;
-  padding: 0 var(--proto-space-m);
-
-  .hyperlink {
-    display: block;
-    margin: var(--proto-space-xs) 0 var(--proto-space) auto;
   }
 }
 

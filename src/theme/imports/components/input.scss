@@ -72,17 +72,6 @@
   }
 }
 
-// https://css-tricks.com/snippets/css/change-autocomplete-styles-webkit-browsers/
-// Change Autocomplete Styles in WebKit Browsers
-
-:-webkit-autofill,
-:-webkit-autofill:hover,
-:-webkit-autofill:focus {
-  -webkit-text-fill-color: #777;
-  -webkit-box-shadow: 0 0 0px 1000px white inset;
-  transition: background-color 5000s ease-in-out 0s;
-}
-
 .proto-searchbar {
   --clear-button-color: var(--ion-color-light);
   --icon-color: var(--ion-color-light);
@@ -102,6 +91,7 @@
 .proto-input {
   &.item-select {
     @extend %input;
+
     --min-height: 50px;
 
     ion-label {
@@ -114,10 +104,6 @@
   }
 }
 
-ion-list-header {
-}
-
-
 .proto-range-checkbox {
   --padding-start: var(--proto-space-m);
   --padding-end: var(--proto-space);
@@ -128,6 +114,7 @@ ion-list-header {
 
   .proto-range-label {
     @extend %input;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -142,9 +129,6 @@ ion-list-header {
     + p {
       opacity: 0;
     }
-  }
-
-  &-title {
   }
 
   &-value {
@@ -165,4 +149,25 @@ ion-list-header {
   ion-range {
     padding-top: 0;
   }
+}
+
+
+// https://stackoverflow.com/questions/6317761/pressing-enter-submits-html-form-with-one-input-but-not-two
+.hidden-submit-button {
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  visibility: hidden;
+}
+
+// https://css-tricks.com/snippets/css/change-autocomplete-styles-webkit-browsers/
+// Change Autocomplete Styles in WebKit Browsers
+
+:-webkit-autofill,
+:-webkit-autofill:hover,
+:-webkit-autofill:focus {
+  -webkit-text-fill-color: #777;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  transition: background-color 5000s ease-in-out 0s;
 }

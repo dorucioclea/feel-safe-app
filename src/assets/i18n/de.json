@@ -8,6 +8,7 @@
     "LOGIN_FACEBOOK": "Mit Facebook einloggen",
     "LOGIN_TWITTER": "Mit Twitter einloggen",
     "PASSWORD_FORGOTTEN": "Passwort vergessen",
+    "SAVE": "Speichern",
     "SKIP": "Überspringen",
     "REGISTER": "Registrieren",
     "REQUEST_NEW_PASSWORD": "Neues Passwort anfordern",
@@ -75,6 +76,7 @@
     },
     "PASSWORD_RESET": {
       "TITLE": "Passwort zurücksetzen",
+      "TITLE_NEW_PASSWORD": "Neues Passwort festlegen",
       "REQUEST_SUCCESS": "Wir haben dir per Mail einen Link zum zurücksetzen deines Passworts geschickt.",
       "RESET_SUCCESS": "Dein Passwort wurde erfolgreich geändert. Du kannst nich nun damit einloggen."
     },
@@ -114,6 +116,9 @@
     },
     "EMAIL_EXISTS": {
       "MESSAGE": "Ein Account mit dieser E-Mail-Adresse existiert bereits."
+    },
+    "EMAIL_NOT_FOUND": {
+      "MESSAGE": "Dieser Account existiert nicht."
     }
   },
   "FILTER": {

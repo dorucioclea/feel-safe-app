@@ -1,6 +1,6 @@
-<ion-header mode="ios" translucent="true">
-  <ion-toolbar mode="ios">
-    <ion-title mode="ios">{{ 'VIEW.LOGIN.TITLE' | translate }}</ion-title>
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-title>{{ 'VIEW.LOGIN.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
@@ -31,15 +31,16 @@
         </proto-show-hide-password>
 
         <div class="form-buttons">
-          <a class="hyperlink" [routerLink]="['/password-reset']">{{ 'BUTTON.PASSWORD_FORGOTTEN' | translate }}</a>
-          <ion-button class="proto-button" expand="block"
-            [disabled]="!formIsValid() || isLoading"
-            (click)="login()">
+          <a class="hyperlink" [routerLink]="['/password-reset']" routerDirection="forward">{{ 'BUTTON.PASSWORD_FORGOTTEN' | translate }}</a>
+          <ion-button class="proto-button" expand="block" type="submit"
+            [disabled]="!formIsValid() || isLoading">
             <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
             <ng-container *ngIf="!isLoading" >
               {{ 'BUTTON.LOGIN' | translate }}
             </ng-container>
           </ion-button>
+          <!-- this allows you to submit form via enter key (e.g. useful for pwa) -->
+          <input class="hidden-submit-button" type="submit">
         </div>
       </ion-list>
     </form>
@@ -47,8 +48,8 @@
     <div class="registration-block">
       <p>
         {{ 'VIEW.LOGIN.NOT_REGISTERED_YET' | translate }}
-        <a class="hyperlink" [routerLink]="['/register']">{{ 'BUTTON.REGISTER' | translate }}</a>
+        <a class="hyperlink" [routerLink]="['/register']" routerDirection="forward">{{ 'BUTTON.REGISTER' | translate }}</a>
       </p>
     </div>
-    <a class="hyperlink imprint-link" [routerLink]="['/imprint']">{{ 'VIEW.IMPRINT.TITLE' | translate }}</a>
+    <a class="hyperlink imprint-link" [routerLink]="['/imprint']" routerDirection="forward">{{ 'VIEW.IMPRINT.TITLE' | translate }}</a>
 </ion-content>
