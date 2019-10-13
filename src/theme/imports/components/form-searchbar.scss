@@ -1,0 +1,15 @@
+.proto-searchbar {
+  --clear-button-color: var(--ion-color-light);
+  --icon-color: var(--ion-color-light);
+
+  &.searchbar-has-focus, &.searchbar-has-value {
+    --background: var(--ion-color-secondary);
+    .searchbar-input {
+      border-color: var(--ion-color-primary);
+    }
+  }
+
+  .searchbar-input {
+    border: 1px solid transparent;
+  }
+}

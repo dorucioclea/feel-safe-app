@@ -9,6 +9,10 @@
   text-transform: none;
   letter-spacing: initial;
 
+  &.button-small {
+    @extend %small;
+  }
+
   &.button-solid {
     height: 50px;
   }

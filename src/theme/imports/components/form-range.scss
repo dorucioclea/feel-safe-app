@@ -1,0 +1,8 @@
+.proto-range {
+  --padding-end: var(--proto-space-s);
+  --knob-background: var(--ion-color-light);
+
+  ion-range {
+    padding-top: 0;
+  }
+}

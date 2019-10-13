@@ -28,6 +28,7 @@
     "PLACEHOLDER": {
       "EMAIL": "Enter your email address",
       "PASSWORD": "Enter your password",
+      "PASSWORD_REQUIREMENTS": "{{min}} oder mehr Zeichen",
       "USERNAME": "Enter your username"
     }
   },
