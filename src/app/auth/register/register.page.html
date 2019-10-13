@@ -13,18 +13,19 @@
     [ngClass]="{ 'is-disabled': isLoading }"
     (ngSubmit)="register()">
     <ion-list mode="ios" class="proto-input-list">
-      <ion-item mode="ios" class="proto-input">
+      <ion-item mode="ios" class="proto-input has-valid-state">
         <ion-label mode="ios" position="floating">{{ 'INPUT.LABEL.USERNAME' | translate }}</ion-label>
         <ion-input mode="ios" type="text" autocomplete="true" autocorrect="true" value="" formControlName="username" [placeholder]="'INPUT.PLACEHOLDER.USERNAME' | translate"></ion-input>
       </ion-item>
-      <ion-item mode="ios" class="proto-input">
+      <ion-item mode="ios" class="proto-input has-valid-state">
         <ion-label mode="ios" position="floating">{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
         <ion-input mode="ios" type="email" value="" formControlName="email" [placeholder]="'INPUT.PLACEHOLDER.EMAIL' | translate"></ion-input>
       </ion-item>
 
       <proto-show-hide-password
         formControlName="password"
-        [label]="('INPUT.LABEL.PASSWORD' | translate)">
+        [label]="('INPUT.LABEL.PASSWORD' | translate)"
+        [placeholder]="'INPUT.PLACEHOLDER.PASSWORD_REQUIREMENTS' | translate: { min: passwordMinLength }">
       </proto-show-hide-password>
 
       <ion-item class="proto-checkbox" handle-external-links>

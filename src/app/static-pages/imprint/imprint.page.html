@@ -1,13 +1,14 @@
-<ion-header mode="ios">
-  <ion-toolbar mode="ios">
-    <ion-buttons mode="ios" slot="start">
-      <ion-back-button mode="ios" icon="ios-arrow-round-back" text=""></ion-back-button>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
     </ion-buttons>
-    <ion-title mode="ios">{{ 'VIEW.IMPRINT.TITLE' | translate }}</ion-title>
+    <ion-title>{{ 'VIEW.IMPRINT.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding handle-external-links>
-  <div margin-top class="rte" [innerHTML]="'VIEW.IMPRINT.CONTENT' | translate"></div>
+<ion-content>
+  <div class="rte" handle-external-links
+    [innerHTML]="'VIEW.IMPRINT.CONTENT' | translate"></div>
   <app-info></app-info>
 </ion-content>

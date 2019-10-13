@@ -21,6 +21,7 @@ export class RegisterPage implements OnInit {
   public emailTaken = false;
   public isLoading = false;
   public agreements: { [key: string]: AgreementModel };
+  public passwordMinLength = C.validation.passwordMinLength;
 
   constructor(
     private authService: AuthService,
