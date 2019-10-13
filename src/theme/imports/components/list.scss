@@ -3,11 +3,7 @@
 
   ion-list-header {
     @extend %p;
-
-    --color: var(--ion-color-secondary);
-  }
-
-  .proto-button {
+    --background: var(--ion-background-color);
   }
 }
 

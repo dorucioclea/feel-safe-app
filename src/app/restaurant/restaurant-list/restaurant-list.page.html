@@ -1,20 +1,15 @@
-<ion-header mode="ios">
-  <ion-toolbar mode="ios">
-    <ion-buttons mode="ios" slot="start">
-      <ion-back-button mode="ios" icon="ios-arrow-round-back" text=""></ion-back-button>
-    </ion-buttons>
-
-    <ion-title mode="ios">{{ 'VIEW.RESTAURANT_LIST.TITLE' | translate }}</ion-title>
-
-    <ion-buttons mode="ios" slot="end">
-      <ion-button class="proto-button" mode="ios" (click)="openFilterModal()">
-        <ion-icon slot="icon-only" src="./assets/icons/sliders.svg"></ion-icon>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'VIEW.RESTAURANT_LIST.TITLE' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="proto-button" (click)="openFilterModal()">
+        <ion-icon slot="icon-only" name="options"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 
-  <ion-toolbar mode="ios" color="light">
-    <ion-searchbar mode="ios" (ionChange)="search($event)"></ion-searchbar>
+  <ion-toolbar mode="ios" color="primary">
+    <ion-searchbar class="proto-searchbar" mode="ios" (ionChange)="search($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 

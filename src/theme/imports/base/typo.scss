@@ -34,7 +34,7 @@ $font-path: "~/assets/fonts";
   font-style: var(--proto-font-style, inherit);
   line-height: var(--proto-line-height, inherit);
   text-transform: var(--proto-text-transform, inherit);
-  letter-spacing: var(--proto-letter-spacing, inherit);
+  letter-spacing: var(--proto-letter-spacing, initial);
 }
 
 // inspired by https://css-tricks.com/do-css-custom-properties-beat-sass-loops/

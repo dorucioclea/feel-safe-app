@@ -5,9 +5,10 @@
     "CANCEL": "Abbrechen",
     "CONSENT": "Zustimmen",
     "CONTINUE": "Weiter",
-    "LOGIN": "Login",
+    "LOGIN": "Anmelden",
     "LOGIN_FACEBOOK": "Mit Facebook einloggen",
     "LOGIN_TWITTER": "Mit Twitter einloggen",
+    "LOGOUT": "Abmelden",
     "PASSWORD_FORGOTTEN": "Passwort vergessen",
     "SAVE": "Speichern",
     "SKIP": "Überspringen",
@@ -22,7 +23,7 @@
       "EMAIL": "E-Mail",
       "PASSWORD": "Passwort",
       "PRIVACY_CONSENT": "Ich habe die <a class=\"hyperlink\" href=\"https://google.de\">Datenschutzbestimmungen</a> gelesen und akzeptiere diese.",
-      "TERMS_CONSENT": "Ich habe die <a class=\"hyperlink\" href=\"agreements\">Nutzungsbedingungen</a> gelesen und akzeptiere diese.",
+      "TERMS_CONSENT": "Ich habe die <a class=\"hyperlink\" href=\"agreements/terms\">Nutzungsbedingungen</a> gelesen und akzeptiere diese.",
       "NEW_PASSWORD": "Neues Passwort"
     },
     "PLACEHOLDER": {
@@ -91,7 +92,10 @@
       "TIME_AGO": "Eintrag besteht seit: "
     },
     "MORE": {
-      "TITLE": "Mehr"
+      "TITLE": "Mehr",
+      "PRIVACY": "Datenschutz",
+      "TERMS": "AGB",
+      "ONBOARDING": "Onboarding erneut ansehen"
     }
   },
   "ALERT": {
