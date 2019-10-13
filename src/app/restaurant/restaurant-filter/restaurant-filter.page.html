@@ -1,69 +1,75 @@
-<ion-header mode="ios">
-  <ion-toolbar mode="ios">
-    <ion-buttons mode="ios" slot="start">
-      <ion-button mode="ios" fill="clear" (click)="dismiss()">
-        <ion-icon slot="icon-only" name="ios-close"></ion-icon>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title mode="ios">{{ 'FILTER.TITLE' | translate }}</ion-title>
+    <ion-title>{{ 'FILTER.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list class="proto-input-list" mode="ios">
-    <ion-item class="proto-input" mode="ios">
-      <ion-label class="proto-input__label" mode="ios">{{ 'FILTER.ORDER.TITLE' | translate }}:</ion-label>
-      <ion-select mode="ios" [(ngModel)]="orderBy">
-        <ion-select-option
-          *ngFor="let ITEM of ('FILTER.ORDER.OPTIONS' | translate)"
-          [value]="ITEM.VALUE">{{ ITEM.LABEL }}</ion-select-option>
-      </ion-select>
-    </ion-item>
+  <div class="form-block">
+    <ion-list class="proto-input-list" mode="ios">
+      <ion-item class="proto-input proto-input--select" mode="ios">
+        <ion-label mode="ios" position="floating">{{ 'FILTER.ORDER.TITLE' | translate }}:</ion-label>
+        <ion-select mode="ios" [(ngModel)]="orderBy">
+          <ion-select-option
+            *ngFor="let ITEM of ('FILTER.ORDER.OPTIONS' | translate)"
+            [value]="ITEM.VALUE">{{ ITEM.LABEL }}</ion-select-option>
+        </ion-select>
+        <div class="select-arrow"></div>
+      </ion-item>
 
-    <ion-item class="proto-input" mode="ios">
-      <ion-label mode="ios">{{ 'FILTER.PRICE_CATEGORY.TITLE' | translate }}:</ion-label>
-      <ion-select mode="ios" [(ngModel)]="priceRange">
-        <ion-select-option
-          *ngFor="let ITEM of ('FILTER.PRICE_CATEGORY.OPTIONS' | translate)"
-          [value]="ITEM.VALUE">{{ ITEM.LABEL }}</ion-select-option>
-      </ion-select>
-    </ion-item>
+      <ion-item class="proto-input proto-input--select" mode="ios">
+        <ion-label mode="ios" position="floating">{{ 'FILTER.PRICE_CATEGORY.TITLE' | translate }}:</ion-label>
+        <ion-select mode="ios" [(ngModel)]="priceRange">
+          <ion-select-option
+            *ngFor="let ITEM of ('FILTER.PRICE_CATEGORY.OPTIONS' | translate)"
+            [value]="ITEM.VALUE">{{ ITEM.LABEL }}</ion-select-option>
+        </ion-select>
+        <div class="select-arrow"></div>
+      </ion-item>
 
-    <ion-item *ngIf="categories.length" class="proto-input" mode="ios">
-      <ion-label>{{ 'FILTER.RESTAURANT_CATEGORY.TITLE' | translate }}:</ion-label>
-      <ion-select mode="ios" [(ngModel)]="restaurantCategoryId">
-        <ion-select-option value="___ALL___">{{ 'TERM.ALL' | translate }}</ion-select-option>
-        <ion-select-option
-          *ngFor="let category of categories"
-          [value]="category.id">{{ category.title }}</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
+      <ion-item *ngIf="categories.length" class="proto-input proto-input--select" mode="ios">
+        <ion-label mode="ios" position="floating">{{ 'FILTER.RESTAURANT_CATEGORY.TITLE' | translate }}:</ion-label>
+        <ion-select mode="ios" [(ngModel)]="restaurantCategoryId">
+          <ion-select-option value="___ALL___">{{ 'TERM.ALL' | translate }}</ion-select-option>
+          <ion-select-option
+            *ngFor="let category of categories"
+            [value]="category.id">{{ category.title }}</ion-select-option>
+        </ion-select>
+        <div class="select-arrow"></div>
+      </ion-item>
+    </ion-list>
 
-  <ion-list class="proto-input-list" mode="ios" lines="none">
-    <ion-item mode="ios" class="proto-range-checkbox">
-      <ion-checkbox slot="start" mode="ios" [(ngModel)]="locationDistance.isActive"></ion-checkbox>
-      <ion-label class="proto-range-label" mode="ios">
-        <p class="proto-range-checkbox-title">{{ 'FILTER.DISTANCE.TITLE' | translate }}:</p>
-        <p class="proto-range-checkbox-value">{{ locationDistance.current }} {{ 'FILTER.DISTANCE.UNIT' | translate }}</p>
-      </ion-label>
-    </ion-item>
-    <ion-item class="proto-range" mode="ios">
-      <ion-range mode="ios" color="secondary"
-        [(ngModel)]="locationDistance.current"
-        [min]="locationDistance.min"
-        [max]="locationDistance.max"
-        [disabled]="!locationDistance.isActive">
-      </ion-range>
-    </ion-item>
-  </ion-list>
+    <ion-list class="proto-input-list" mode="ios" lines="none">
+      <ion-item class="proto-checkbox">
+        <ion-checkbox [(ngModel)]="locationDistance.isActive"></ion-checkbox>
+        <ion-label class="proto-checkbox-label has-columns"
+          [ngClass]="{ 'is-inactive': !locationDistance.isActive }">
+          <p class="proto-checkbox-label__col">{{ 'FILTER.DISTANCE.TITLE' | translate }}:</p>
+          <p class="proto-checkbox-label__col" [hidden]="!locationDistance.isActive">{{ locationDistance.current }} {{ 'FILTER.DISTANCE.UNIT' | translate }}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item class="proto-range">
+        <ion-range color="secondary"
+          [(ngModel)]="locationDistance.current"
+          [min]="locationDistance.min"
+          [max]="locationDistance.max"
+          [disabled]="!locationDistance.isActive">
+        </ion-range>
+      </ion-item>
 
-  <div class="submit-buttons">
-    <ion-button mode="ios" class="proto-button" (click)="applyFilter()">
-      {{'BUTTON.APPLY' | translate }}
-    </ion-button>
-    <ion-button size="small" fill="clear" color="dark" mode="ios" (click)="clearFilter()">
-      {{ 'BUTTON.RESET_FILTER' | translate }}
-    </ion-button>
+      <div class="form-buttons">
+        <ion-button class="proto-button" expand="block" (click)="applyFilter()">
+          {{'BUTTON.APPLY' | translate }}
+        </ion-button>
+        <ion-button class="proto-button" size="small" fill="clear" color="dark" expand="block" (click)="clearFilter()">
+          {{ 'BUTTON.RESET_FILTER' | translate }}
+        </ion-button>
+      </div>
+    </ion-list>
   </div>
 </ion-content>
