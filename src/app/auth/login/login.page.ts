@@ -6,9 +6,11 @@ import { ModalOptions } from '@ionic/core';
 
 import { AuthService } from 'src/app/auth/shared/auth.service';
 import { C } from 'src/app/@shared/constants';
+import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 import { LegalService } from 'src/app/legal/shared/legal.service';
 import { LoginConsentPage } from 'src/app/auth/login-consent/login-consent.page';
-import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
+import { ToastService } from '../../@core/toast.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @HideSplash()
 @Component({
@@ -18,7 +20,6 @@ import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 })
 export class LoginPage implements OnInit {
   public loginForm: FormGroup;
-  public isCordova = true;
   public isLoading = false;
 
   constructor(
@@ -28,10 +29,12 @@ export class LoginPage implements OnInit {
     private legalService: LegalService,
     private modalController: ModalController,
     private router: Router,
+    private toastService: ToastService,
+    private translate: TranslateService,
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.pattern(C.regex.email), Validators.required])],
-      password: ['', Validators.compose([Validators.minLength(C.validation.passwordMinLength), Validators.required])],
+      password: ['', Validators.required],
     });
   }
 
@@ -87,10 +90,6 @@ export class LoginPage implements OnInit {
     }).catch();
   }
 
-  public openPasswordResetPage() {
-    this.router.navigate(['/password-reset']).catch();
-  }
-
   private onLoginSucceeded() {
     this.isLoading = false;
 
@@ -106,7 +105,7 @@ export class LoginPage implements OnInit {
   }
 
   private onLoginFailed() {
-    // TODO: implement onLoginFailed()
-    console.log('TODO: implement onLoginFailed()');
+    const message = this.translate.instant('TOAST.LOGIN_ERROR.MESSAGE');
+    this.toastService.show(message, false).catch();
   }
 }

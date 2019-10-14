@@ -32,6 +32,10 @@ const routes: Routes = [
             path: 'imprint',
             loadChildren: () => import('../static-pages/imprint/imprint.page.module').then((mod) => mod.ImprintPageModule),
           },
+          {
+            path: 'agreements/:type',
+            loadChildren: () => import('src/app/legal/agreement/agreement.page.module').then((mod) => mod.AgreementPageModule),
+          },
         ],
       },
       {

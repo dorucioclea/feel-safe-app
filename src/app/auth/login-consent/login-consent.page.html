@@ -1,32 +1,44 @@
-<ion-header mode="ios">
-  <ion-toolbar mode="ios">
-    <ion-buttons mode="ios" slot="start">
-      <ion-back-button mode="ios" icon="ios-arrow-round-back" text=""></ion-back-button>
-    </ion-buttons>
-    <ion-title mode="ios">LoginConsent</ion-title>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'VIEW.LOGIN_CONSENT.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form class="submit-form" novalidate [formGroup]="loginConsentForm" (ngSubmit)="consent()" [ngClass]="{ 'is-disabled': isLoading }">
+  <form class="form-block submit-form" novalidate
+    [formGroup]="loginConsentForm"
+    [ngClass]="{ 'is-disabled': isLoading }"
+    (ngSubmit)="consent()" >
     <ion-list mode="ios" class="proto-input-list">
-      <ion-item class="proto-input" text-wrap margin-top no-lines>
-        <ion-label (click)="openAgreement('privacy')" [innerHTML]="'INPUT.LABEL.PRIVACY_CONSENT' | translate"></ion-label>
-        <ion-toggle formControlName="privacyConsent"></ion-toggle>
+      <ion-item class="proto-checkbox" handle-external-links>
+        <ion-checkbox formControlName="privacyConsent"></ion-checkbox>
+        <ion-label class="ion-text-wrap proto-checkbox-label" [innerHTML]="'INPUT.LABEL.PRIVACY_CONSENT' | translate"></ion-label>
       </ion-item>
-      <ion-item class="proto-input" text-wrap margin-top no-lines>
-        <ion-label (click)="openAgreement('terms')" [innerHTML]="'INPUT.LABEL.TERMS_CONSENT' | translate"></ion-label>
-        <ion-toggle formControlName="termsConsent"></ion-toggle>
+
+      <ion-item class="proto-checkbox" handle-internal-links>
+        <ion-checkbox formControlName="termsConsent"></ion-checkbox>
+        <ion-label class="ion-text-wrap proto-checkbox-label" [innerHTML]="'INPUT.LABEL.TERMS_CONSENT' | translate"></ion-label>
       </ion-item>
-      <!-- TODO: @matthias implement isLoading somehow -->
-      <div class="submit-form__cta">
-        <ion-button color="favorite" color="dark" class="button-cta" [disabled]="!formIsValid() || isLoading" (click)="consent()">
-          {{ 'BUTTON.CONSENT' | translate }}
+
+      <div class="form-buttons">
+        <ion-button class="proto-button" expand="block" type="submit"
+          [disabled]="!formIsValid() || isLoading">
+          <ion-spinner *ngIf="isLoading"></ion-spinner>
+          <ng-container *ngIf="!isLoading" >
+            {{ 'BUTTON.CONSENT' | translate }}
+          </ng-container>
         </ion-button>
+        <ion-button class="proto-button" color="dark" fill="clear" expand="block"
+          [disabled]="isLoading"
+          (click)="close()">
+          <ion-spinner *ngIf="isLoading"></ion-spinner>
+          <ng-container *ngIf="!isLoading" >
+            {{ 'BUTTON.CANCEL' | translate }}
+          </ng-container>
+        </ion-button>
+        <!-- this allows you to submit form via enter key (e.g. useful for pwa) -->
+        <input class="hidden-submit-button" type="submit">
       </div>
     </ion-list>
   </form>
-  <ion-button color="favorite" color="dark" class="button-cta" [disabled]="isLoading" (click)="close()">
-    {{ 'BUTTON.CANCEL' | translate }}
-  </ion-button>
 </ion-content>

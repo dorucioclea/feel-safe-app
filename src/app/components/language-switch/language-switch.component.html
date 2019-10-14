@@ -1,6 +1,6 @@
-<ion-item>
+<ion-item class="proto-item">
   <ion-label>{{ 'TERM.LANGUAGE' | translate }}</ion-label>
-  <ion-select placeholder="Select One"
+  <ion-select
     [(ngModel)]="currentLanguage"
     (ionChange)="changeLanguage($event)"
     [okText]="'BUTTON.OK' | translate"
