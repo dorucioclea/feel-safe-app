@@ -89,7 +89,7 @@ export class PushService {
 
     const url = `${C.urls.users}/${currentUser.id}/set-push-token`;
 
-    return this.http.post(url, {token: token })
+    return this.http.post(url, { token: token })
       .pipe(
         tap(() => {
           console.log('Push token successfully updated!');
