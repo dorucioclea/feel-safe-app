@@ -25,6 +25,7 @@
     "import-spacing": true,
     "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
     "object-curly-spacing": "always",
+    "arrow-spacing": true,
     "whitespace": [
       true,
       "check-branch",
