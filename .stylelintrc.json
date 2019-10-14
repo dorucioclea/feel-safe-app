@@ -1,6 +1,6 @@
 {
   "plugins": [
-		"stylelint-order",
+    "stylelint-order",
     "stylelint-config-rational-order/plugin"
 	],
   "rules": {

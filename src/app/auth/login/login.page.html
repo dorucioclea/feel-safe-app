@@ -1,60 +1,58 @@
-<ion-header mode="ios">
-  <ion-toolbar mode="ios">
+<ion-header>
+  <ion-toolbar>
     <ion-title>{{ 'VIEW.LOGIN.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <div class="login-content">
-    <div class="submit-form-wrapper">
-      <div class="facebook-button-wrapper">
-        <ion-button class="proto-button facebook" mode="ios" block (click)="loginWithProvider('facebook')">
-          {{ 'BUTTON.LOGIN_FACEBOOK' | translate }}
-        </ion-button>
-        <ion-button class="proto-button twitter" mode="ios" (click)="loginWithProvider('twitter')">
-          {{ 'BUTTON.LOGIN_TWITTER' | translate }}
-        </ion-button>
-      </div>
-      <form class="submit-form" novalidate [formGroup]="loginForm" (ngSubmit)="login()" [ngClass]="{ 'is-disabled': isLoading }">
-        <ion-list mode="ios" class="proto-input-list">
-          <div class="form-divider">
-            <span class="form-divider__text">{{ 'TERM.OR' | translate }}</span>
-          </div>
+<ion-content fullscreen>
+    <div class="form-block social-login">
+      <ion-button mode="ios" expand="block" color="facebook" class="proto-button"
+        (click)="loginWithProvider('facebook')">
+        {{ 'BUTTON.LOGIN_FACEBOOK' | translate }}
+      </ion-button>
+      <ion-button mode="ios" expand="block" color="twitter" class="proto-button"
+        (click)="loginWithProvider('twitter')">
+        {{ 'BUTTON.LOGIN_TWITTER' | translate }}
+      </ion-button>
 
-          <ion-item mode="ios" class="proto-input">
-            <ion-label mode="ios" position="floating">{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
-            <ion-input mode="ios" type="email" value="" formControlName="email" [placeholder]="'INPUT.PLACEHOLDER.EMAIL' | translate"></ion-input>
-          </ion-item>
+      <p class="social-login__divider-text">{{ 'TERM.OR' | translate }}</p>
+    </div>
 
-          <proto-show-hide-password
-            formControlName="password"
-            [label]="('INPUT.LABEL.PASSWORD' | translate)"
-            [placeholder]="('INPUT.PLACEHOLDER.PASSWORD' | translate)">
-          </proto-show-hide-password>
+    <form class="form-block submit-form" novalidate
+      [formGroup]="loginForm"
+      [ngClass]="{ 'is-disabled': isLoading }"
+      (ngSubmit)="login()">
+      <ion-list mode="ios" class="proto-input-list">
+        <ion-item mode="ios" class="proto-input has-valid-state">
+          <ion-label mode="ios" position="floating">{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
+          <ion-input mode="ios" type="email" value="" formControlName="email" [placeholder]="'INPUT.PLACEHOLDER.EMAIL' | translate"></ion-input>
+        </ion-item>
 
-          <div class="submit-form__cta">
-            <ion-button class="button-cta" [disabled]="!formIsValid() || isLoading"
-              (click)="login()">
+        <proto-show-hide-password
+          formControlName="password"
+          [label]="('INPUT.LABEL.PASSWORD' | translate)"
+          [placeholder]="('INPUT.PLACEHOLDER.PASSWORD' | translate)">
+        </proto-show-hide-password>
+
+        <div class="form-buttons">
+          <a class="hyperlink" [routerLink]="['/password-reset']" routerDirection="forward">{{ 'BUTTON.PASSWORD_FORGOTTEN' | translate }}</a>
+          <ion-button class="proto-button" expand="block" type="submit"
+            [disabled]="!formIsValid() || isLoading">
+            <ion-spinner *ngIf="isLoading"></ion-spinner>
+            <ng-container *ngIf="!isLoading" >
               {{ 'BUTTON.LOGIN' | translate }}
-            </ion-button>
-          </div>
-        </ion-list>
-      </form>
-      <div class="form-footer-buttons">
-        <ion-button class="button-cta" color="dark" clear small (click)="openPasswordResetPage();" [disabled]="isLoading">
-          {{ 'BUTTON.PASSWORD_FORGOTTEN' | translate }}
-        </ion-button>
-      </div>
-    </div>
+            </ng-container>
+          </ion-button>
+          <!-- this allows you to submit form via enter key (e.g. useful for pwa) -->
+          <input class="hidden-submit-button" type="submit">
+        </div>
+      </ion-list>
+    </form>
+
     <div class="registration-block">
-      <div class="form-divider">
-        <span class="form-divider__text">{{ 'VIEW.LOGIN.NOT_REGISTERED_YET' | translate }}</span>
-      </div>
-      <div padding-horizontal>
-        <ion-button block color="favorite" class="button-cta" routerLink="/register" [disabled]="isLoading">
-          {{ 'BUTTON.REGISTER' | translate }}
-        </ion-button>
-      </div>
+      <p>
+        {{ 'VIEW.LOGIN.NOT_REGISTERED_YET' | translate }}
+        <a class="hyperlink" [routerLink]="['/register']" routerDirection="forward">{{ 'BUTTON.REGISTER' | translate }}</a>
+      </p>
     </div>
-    <a [routerLink]="['/imprint']">{{ 'VIEW.IMPRINT.TITLE' | translate }}</a>
-  </div>
+    <a class="hyperlink imprint-link" [routerLink]="['/imprint']" routerDirection="forward">{{ 'VIEW.IMPRINT.TITLE' | translate }}</a>
 </ion-content>

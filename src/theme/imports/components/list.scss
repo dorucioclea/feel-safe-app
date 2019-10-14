@@ -3,14 +3,10 @@
 
   ion-list-header {
     @extend %p;
-    --color: var(--ion-color-secondary);
+    --background: var(--ion-background-color);
   }
+}
 
-  .proto-button {
-    margin: var(--proto-space) auto 0;
-
-    &[expand="block"] {
-      width: calc(100% - var(--proto-space) * 2);
-    }
-  }
+.proto-input-list {
+  margin: 0;
 }

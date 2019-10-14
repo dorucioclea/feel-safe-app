@@ -3,11 +3,14 @@
     "APPLY": "Anwenden",
     "OK": "OK",
     "CANCEL": "Abbrechen",
+    "CONSENT": "Zustimmen",
     "CONTINUE": "Weiter",
-    "LOGIN": "Login",
+    "LOGIN": "Anmelden",
     "LOGIN_FACEBOOK": "Mit Facebook einloggen",
     "LOGIN_TWITTER": "Mit Twitter einloggen",
+    "LOGOUT": "Abmelden",
     "PASSWORD_FORGOTTEN": "Passwort vergessen",
+    "SAVE": "Speichern",
     "SKIP": "Überspringen",
     "REGISTER": "Registrieren",
     "REQUEST_NEW_PASSWORD": "Neues Passwort anfordern",
@@ -19,13 +22,15 @@
       "USERNAME": "Benutzername",
       "EMAIL": "E-Mail",
       "PASSWORD": "Passwort",
-      "PRIVACY_CONSENT": "Ich habe die <span>Datenschutzbestimmungen</span> gelesen und akzeptiere diese.",
-      "TERMS_CONSENT": "Ich habe die <span>Nutzungsbedingungen</span> gelesen und akzeptiere diese.",
+      "PRIVACY_CONSENT": "Ich habe die <a class=\"hyperlink\" href=\"https://google.de\">Datenschutzbestimmungen</a> gelesen und akzeptiere diese.",
+      "TERMS_CONSENT": "Ich habe die <a class=\"hyperlink\" href=\"agreements/terms\">Nutzungsbedingungen</a> gelesen und akzeptiere diese.",
       "NEW_PASSWORD": "Neues Passwort"
     },
     "PLACEHOLDER": {
-      "EMAIL": "max@mustermann.de",
-      "PASSWORD": "password requirements placeholder"
+      "EMAIL": "Enter your email address",
+      "PASSWORD": "Enter your password",
+      "PASSWORD_REQUIREMENTS": "{{min}} oder mehr Zeichen",
+      "USERNAME": "Enter your username"
     }
   },
   "LANGUAGE": {
@@ -45,6 +50,9 @@
     "LOGIN": {
       "TITLE": "Login",
       "NOT_REGISTERED_YET": "Noch nicht registriert?"
+    },
+    "LOGIN_CONSENT": {
+      "TITLE": "Bedingungen zustimmen"
     },
     "ONBOARDING": {
       "SLIDES": [
@@ -75,6 +83,7 @@
     },
     "PASSWORD_RESET": {
       "TITLE": "Passwort zurücksetzen",
+      "TITLE_NEW_PASSWORD": "Neues Passwort festlegen",
       "REQUEST_SUCCESS": "Wir haben dir per Mail einen Link zum zurücksetzen deines Passworts geschickt.",
       "RESET_SUCCESS": "Dein Passwort wurde erfolgreich geändert. Du kannst nich nun damit einloggen."
     },
@@ -83,7 +92,10 @@
       "TIME_AGO": "Eintrag besteht seit: "
     },
     "MORE": {
-      "TITLE": "Mehr"
+      "TITLE": "Mehr",
+      "PRIVACY": "Datenschutz",
+      "TERMS": "AGB",
+      "ONBOARDING": "Onboarding erneut ansehen"
     }
   },
   "ALERT": {
@@ -106,6 +118,9 @@
     "GENERIC_ERROR": {
       "MESSAGE": "Ein Fehler ist aufgetreten, bitte versuche es später erneut."
     },
+    "REGISTER_SUCCESS": {
+      "MESSAGE": "Erfolgreich registriert!"
+    },
     "SAVE_SUCCESS": {
       "MESSAGE": "Änderungen erfolgreich gespeichert!"
     },
@@ -114,6 +129,9 @@
     },
     "EMAIL_EXISTS": {
       "MESSAGE": "Ein Account mit dieser E-Mail-Adresse existiert bereits."
+    },
+    "EMAIL_NOT_FOUND": {
+      "MESSAGE": "Dieser Account existiert nicht."
     }
   },
   "FILTER": {

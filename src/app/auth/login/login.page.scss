@@ -1,28 +1,38 @@
-@import 'src/helpers';
+@import 'src/theme/imports/helpers/middle-content';
 
-ion-button {
-  display: block;
-  width: 225px;
-  margin: 0 auto 12px;
+.social-login {
+  position: relative;
+  margin-right: var(--proto-space-m);
+  margin-left: var(--proto-space-m);
+  padding-bottom: var(--proto-space);
+  border-bottom: 1px solid var(--ion-border-color);
 
-  .button-inner {
-    align-items: flex-start;
+  .button {
+    margin-bottom: var(--proto-space);
+  }
+
+  &__divider-text {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    padding: 0 8px;
+    background: var(--ion-background-color);
+    color: var(--ion-color-medium);
+    transform: translate(-50%, 50%);
   }
 }
 
-.proto-gradient {
-  @include aspect-ratio(375, 325);
-  position: absolute;
-  z-index: 0;
-  width: 100%;
-  margin-top: calc(0px - var(--offset-top));
-  background: var(--proto-gradient);
+.registration-block {
+  display: block;
+  margin: var(--proto-space-m);
+  padding: var(--proto-space-m) 0;
+  border-top: 1px solid var(--ion-border-color);
+}
 
-  img {
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    max-width: none;
-  }
+.imprint-link {
+  @extend %middle-content;
+
+  width: 200px;
+  height: 40px;
+  margin: var(--proto-space) auto;
 }

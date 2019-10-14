@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ModalOptions } from '@ionic/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { AgreementModel } from 'src/app/legal/shared/agreement.model';
-import { AgreementPage } from 'src/app/legal/agreement/agreement.page';
 import { LegalService } from 'src/app/legal/shared/legal.service';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
@@ -36,18 +34,6 @@ export class LoginConsentPage implements OnInit {
 
   public formIsValid() {
     return this.loginConsentForm.valid && this.consentsValid();
-  }
-
-  public async openAgreement(type: string) {
-    const modal = await this.modalController.create({
-      component: AgreementPage,
-      componentProps: {
-        type: type,
-        agreement: this.agreements[type],
-      },
-    } as ModalOptions);
-
-    return await modal.present();
   }
 
   public consentsValid() {

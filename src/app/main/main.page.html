@@ -1,12 +1,12 @@
-<ion-tabs #tabs mode="ios"
+<ion-tabs #tabs
   [ngClass]="{'active-tab-disabled': activeTabDisabled }">
-  <ion-tab-bar mode="ios" slot="bottom">
-    <ion-tab-button mode="ios" tab="restaurants">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="restaurants">
       <ion-icon src="./assets/icons/list.svg"></ion-icon>
       <ion-label>{{ 'VIEW.RESTAURANT_LIST.TITLE' | translate }}</ion-label>
     </ion-tab-button>
-    <ion-tab-button mode="ios" tab="more">
-      <ion-icon mode="ios" name="ios-more"></ion-icon>
+    <ion-tab-button tab="more">
+      <ion-icon name="ios-more"></ion-icon>
       <ion-label>{{ 'VIEW.MORE.TITLE' | translate }}</ion-label>
     </ion-tab-button>
   </ion-tab-bar>

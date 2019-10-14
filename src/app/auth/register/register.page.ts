@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
-import { ModalOptions } from '@ionic/core';
+import { ModalController, NavController } from '@ionic/angular';
 
 import { AgreementModel } from 'src/app/legal/shared/agreement.model';
-import { AgreementPage } from 'src/app/legal/agreement/agreement.page';
 import { AuthService } from 'src/app/auth/shared/auth.service';
 import { C } from 'src/app/@shared/constants';
 import { LegalService } from 'src/app/legal/shared/legal.service';
@@ -23,12 +21,14 @@ export class RegisterPage implements OnInit {
   public emailTaken = false;
   public isLoading = false;
   public agreements: { [key: string]: AgreementModel };
+  public passwordMinLength = C.validation.passwordMinLength;
 
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private legalService: LegalService,
     private modalController: ModalController,
+    private navController: NavController,
     private toastService: ToastService,
     private translate: TranslateService,
   ) {
@@ -66,6 +66,7 @@ export class RegisterPage implements OnInit {
       return this.onRegistrationFailed(err);
     }).catch(() => {
       this.isLoading = false;
+      this.toastService.show(this.translate.instant('TOAST.GENERIC_ERROR.MESSAGE'), false).catch();
     });
   }
 
@@ -77,45 +78,26 @@ export class RegisterPage implements OnInit {
     return this.registerForm.value.termsConsent && this.registerForm.value.privacyConsent;
   }
 
-  public async openAgreement(type: string) {
-    const modal = await this.modalController.create({
-      component: AgreementPage,
-      componentProps: {
-        type: type,
-        agreement: this.agreements[type],
-      },
-    } as ModalOptions);
-
-    return await modal.present();
-  }
-
   private onRegistrationSucceeded() {
-    // TODO:
-    // this.navController.setRoot('TabsPage', null, { animate: true, direction: 'left' }).then(() => {
-    //   this.isLoading = false;
-    //   this.showToast(this.translate.instant('TOAST.REGISTER_SUCCESS'), true);
-    // }).catch(() => {
-    //   this.isLoading = false;
-    // });
+    this.isLoading = false;
+    this.navController.navigateRoot('/main')
+      .then(() => {
+        this.toastService.show(this.translate.instant('TOAST.REGISTER_SUCCESS.MESSAGE'), true).catch();
+      })
+      .catch();
   }
 
   private onRegistrationFailed(err: any) {
     this.isLoading = false;
 
-    if (err &&
-        err.status === C.status.unprocessableEntity &&
-        this.getUnprocessableEntityMessage(err).includes('Email already exists'))
-    {
-      const mailToastMessage = this.translate.instant('TOAST.EMAIL_EXISTS.MESSAGE');
+    if (err && err.status === C.status.unprocessableEntity &&
+      this.getUnprocessableEntityMessage(err).includes('Email already exists')) {
       this.emailTaken = true;
 
-      return this.toastService.show(this.translate.instant(mailToastMessage), false).catch();
+      return this.toastService.show(this.translate.instant('TOAST.EMAIL_EXISTS.MESSAGE'), false).catch();
     }
 
-    {
-      const genericToastMessage = this.translate.instant('TOAST.GENERIC_ERROR.MESSAGE');
-      this.toastService.show(genericToastMessage).catch();
-    }
+    this.toastService.show(this.translate.instant('TOAST.GENERIC_ERROR.MESSAGE'), false).catch();
   }
 
   private getUnprocessableEntityMessage(data: any): string {

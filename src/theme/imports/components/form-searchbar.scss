@@ -1,0 +1,14 @@
+.toolbar-searchbar {
+  --border-color: var(--ion-color-shade);
+
+  .proto-searchbar {
+    padding-bottom: 4px;
+  }
+}
+
+.proto-searchbar {
+
+  .searchbar-input {
+    @extend %input;
+  }
+}

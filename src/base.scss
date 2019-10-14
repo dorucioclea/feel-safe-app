@@ -1,8 +1,6 @@
-
-@import 'src/theme/variables.scss';
+@import 'src/theme/imports/base/colors';
+@import 'src/theme/imports/base/sizes';
 @import 'src/theme/imports/base/typo';
 @import 'src/theme/imports/base/animations';
 @import 'src/theme/imports/base/common';
-@import 'src/theme/imports/base/ionic-overrides';
 @import 'src/theme/imports/base/rte';
-@import 'src/theme/imports/base/svg-icons';

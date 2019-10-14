@@ -1,20 +1,32 @@
-
 ion-header {
 
   ion-title {
-    @extend %h2;
+    font-weight: 700;
   }
 
   .title-ios {
-    padding-inline-start: var(--proto-space-xxl);
-    padding-inline-end: var(--proto-space-xxl);
+    padding-right: var(--proto-space-xxl);
+    padding-left: var(--proto-space-xxl);
   }
 
-  .proto-button ion-icon[slot=icon-only] {
-    font-size: 24px;
+  .title-md {
+    padding-right: var(--proto-space);
+    padding-left: var(--proto-space-m);
+  }
+
+  ion-buttons + .title-md {
+    padding-left: var(--proto-space-xs);
   }
 }
 
 ion-toolbar {
-  --border-width: 0 !important;
+
+  &[transparent] {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+  }
+
+  .button {
+    --min-width: 40px;
+  }
 }

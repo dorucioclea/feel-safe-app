@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/shared/auth.service';
 import { C } from 'src/app/@shared/constants';
-import { ActivatedRoute } from '@angular/router';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
+import { ToastService } from '../../@core/toast.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @HideSplash()
 @Component({
@@ -24,6 +26,8 @@ export class PasswordResetPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private formBuilder: FormBuilder,
+    private toastService: ToastService,
+    private translate: TranslateService,
   ) {
     this.requestForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.pattern(C.regex.email), Validators.required])],
@@ -56,11 +60,9 @@ export class PasswordResetPage implements OnInit {
       this.showRequestSuccessMessage = true;
     }).catch((error) => {
       console.error(error);
-
+      this.onSubmitFailed(this.translate.instant('TOAST.EMAIL_NOT_FOUND.MESSAGE'));
       this.isLoading = false;
     });
-
-    console.log('send');
   }
 
   public reset() {
@@ -73,8 +75,12 @@ export class PasswordResetPage implements OnInit {
       this.showResetSuccessMessage = true;
     }).catch((error) => {
       console.error(error);
-
+      this.onSubmitFailed(this.translate.instant('TOAST.SAVE_ERROR.MESSAGE'));
       this.isLoading = false;
     });
+  }
+
+  private onSubmitFailed(message: string) {
+    this.toastService.show(message, false).catch();
   }
 }

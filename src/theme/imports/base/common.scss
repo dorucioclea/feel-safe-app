@@ -20,3 +20,8 @@
     margin-bottom: var(--proto-space-m);
   }
 }
+
+// hide scrollbar by default
+::-webkit-scrollbar {
+  display: none;
+}

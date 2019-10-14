@@ -1,37 +1,33 @@
-<ion-header mode="ios">
-  <ion-toolbar mode="ios">
-    <ion-buttons mode="ios" slot="start">
-      <ion-back-button mode="ios" icon="ios-arrow-round-back" text=""></ion-back-button>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons *ngIf="!needsConsent" slot="start">
+      <ion-back-button text=""></ion-back-button>
     </ion-buttons>
-    <ion-title mode="ios">{{ agreement?.title }}</ion-title>
+    <ion-title>{{ agreement?.title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <div class="agreement__excerpt"
+<ion-content>
+  <div class="rte agreement-block"
     *ngIf="agreement?.excerpt"
     [innerHtml]="agreement.excerpt">
   </div>
 
-  <div class="agreement__content"
+  <div class="rte agreement-block"
     *ngIf="agreement?.content"
     [innerHtml]="agreement.content">
   </div>
 </ion-content>
 
-<ion-footer mode="ios"
-  *ngIf="needsConsent">
-  <ion-toolbar mode="ios">
-    <ion-buttons slot="start">
-      <ion-button (click)="close()" mode="ios" fill="solid">
+<ion-footer *ngIf="needsConsent" no-border>
+  <ion-toolbar transparent>
+    <div class="form-buttons">
+      <ion-button (click)="close()" color="dark" fill="clear" class="proto-button">
         {{ 'BUTTON.CANCEL' | translate }}
       </ion-button>
-    </ion-buttons>
-
-    <ion-buttons slot="end">
-      <ion-button (click)="consent()" mode="ios" fill="solid">
-        {{ 'BUTTON.OK' | translate }}
+      <ion-button (click)="consent()" fill="solid" class="proto-button">
+        {{ 'BUTTON.CONSENT' | translate }}
       </ion-button>
-    </ion-buttons>
+    </div>
   </ion-toolbar>
 </ion-footer>
