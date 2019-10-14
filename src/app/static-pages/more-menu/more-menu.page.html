@@ -7,16 +7,16 @@
 <ion-content>
   <ion-list class="proto-item-list" mode="ios" lines="full">
     <ion-item class="proto-item" detail="true"
-      [routerLink]="['/main/more/imprint']">
+      [routerLink]="['/main/more/imprint']" routerDirection="forward">
       {{ 'VIEW.IMPRINT.TITLE' | translate }}
     </ion-item>
     <ion-item class="proto-item" detail="true"
-      [routerLink]="['/main/more/agreements/privacy']">
+      [routerLink]="['/main/more/agreements/privacy']" routerDirection="forward">
       {{ 'VIEW.MORE.PRIVACY' | translate }}
     </ion-item>
 
     <ion-item class="proto-item" detail="true"
-      [routerLink]="['/main/more/agreements/terms']">
+      [routerLink]="['/main/more/agreements/terms']" routerDirection="forward">
       {{ 'VIEW.MORE.TERMS' | translate }}
     </ion-item>
 
