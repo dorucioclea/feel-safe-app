@@ -132,6 +132,9 @@
     },
     "EMAIL_NOT_FOUND": {
       "MESSAGE": "Dieser Account existiert nicht."
+    },
+    "LOGIN_ERROR": {
+      "MESSAGE": "Ihre Nutzerdaten sind nicht korrekt."
     }
   },
   "FILTER": {

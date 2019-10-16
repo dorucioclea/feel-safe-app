@@ -19,13 +19,13 @@
   </div>
 </ion-content>
 
-<ion-footer *ngIf="needsConsent" no-border>
+<ion-footer *ngIf="needsConsent" class="ion-no-border">
   <ion-toolbar transparent>
     <div class="form-buttons">
-      <ion-button (click)="close()" color="dark" fill="clear" class="proto-button">
+      <ion-button class="proto-button" color="dark" fill="clear" (click)="close()">
         {{ 'BUTTON.CANCEL' | translate }}
       </ion-button>
-      <ion-button (click)="consent()" fill="solid" class="proto-button">
+      <ion-button class="proto-button" fill="solid" (click)="consent()">
         {{ 'BUTTON.CONSENT' | translate }}
       </ion-button>
     </div>

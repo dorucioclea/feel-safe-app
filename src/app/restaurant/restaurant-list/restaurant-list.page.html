@@ -8,8 +8,8 @@
     </ion-buttons>
   </ion-toolbar>
 
-  <ion-toolbar mode="ios" color="primary">
-    <ion-searchbar class="proto-searchbar" mode="ios" (ionChange)="search($event)"></ion-searchbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar class="proto-searchbar" (ionChange)="search($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -23,7 +23,7 @@
    </ion-refresher>
 
   <ion-list mode="ios" class="proto-item-list">
-    <ion-item button mode="ios" class="proto-item"
+    <ion-item class="proto-item" detail="true"
       *ngFor="let restaurant of restaurants.items; trackBy: trackByFunction"
       (click)="openDetailPage(restaurant)">
 
@@ -32,7 +32,7 @@
           imageType="thumbnail"
           [imageId]="restaurant.image"
           slot="start"></proto-image>
-        <ion-label mode="ios" text-wrap="normal" class="proto-item__label">
+        <ion-label class="ion-text-wrap proto-item__label">
           <p class="p">{{ restaurant.title }}</p>
           <small>{{ restaurant.canonicalAddress }}</small> <br>
           <small>{{ 'VIEW.RESTAURANT_LIST.TIME_AGO' | translate }}{{ restaurant.createdAt | amLocale: currentLang | amTimeAgo:true}}</small> <br>
@@ -43,7 +43,7 @@
         <ion-thumbnail slot=start>
           <ion-skeleton-text animated></ion-skeleton-text>
         </ion-thumbnail>
-        <ion-label mode="ios" text-wrap="normal" class="proto-item__label">
+        <ion-label class="ion-text-wrap proto-item__label">
           <p class="p">
             <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
           </p>

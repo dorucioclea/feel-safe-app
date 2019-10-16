@@ -9,6 +9,7 @@
   --border-width: 1px;
   --inner-border-width: 0;
   --ion-placeholder-color: var(--ion-color-medium);
+  --full-highlight-height: 0;
 
   margin: var(--proto-space) var(--proto-space-m);
 
@@ -41,6 +42,8 @@
     --border-color: var(--ion-color-dark-tint);
 
     .label-floating {
+      color: var(--ion-color-medium);
+
       transform: translateZ(0) translateY(8px) scale(.8);
     }
 

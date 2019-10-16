@@ -23,8 +23,6 @@
 .splash-overlay {
   @extend %stretched-container;
   pointer-events: none;
-  transition: opacity .5s;
-  transition-delay: .3s;
 
   img {
     @extend %object-fit;
@@ -37,7 +35,6 @@
     transform: translate(-50%, - 50%) scale(.667);
     transform-origin: center center;
     transition: transform .5s;
-    transition-delay: .3s;
     will-change: transform;
   }
 
@@ -51,6 +48,18 @@
     opacity: 0;
     img {
       transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}
+
+.plt-cordova {
+  .splash-overlay {
+    transition: opacity .5s;
+    transition-delay: .3s;
+
+    img {
+      transition: transform .5s;
+      transition-delay: .3s;
     }
   }
 }

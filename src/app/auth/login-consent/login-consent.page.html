@@ -9,7 +9,7 @@
     [formGroup]="loginConsentForm"
     [ngClass]="{ 'is-disabled': isLoading }"
     (ngSubmit)="consent()" >
-    <ion-list mode="ios" class="proto-input-list">
+    <ion-list class="proto-input-list">
       <ion-item class="proto-checkbox" handle-external-links>
         <ion-checkbox formControlName="privacyConsent"></ion-checkbox>
         <ion-label class="ion-text-wrap proto-checkbox-label" [innerHTML]="'INPUT.LABEL.PRIVACY_CONSENT' | translate"></ion-label>
