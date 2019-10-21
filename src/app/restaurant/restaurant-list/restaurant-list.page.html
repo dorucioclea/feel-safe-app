@@ -8,7 +8,7 @@
     </ion-buttons>
   </ion-toolbar>
 
-  <ion-toolbar color="primary">
+  <ion-toolbar mode="ios" color="primary">
     <ion-searchbar class="proto-searchbar" (ionChange)="search($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
@@ -22,7 +22,7 @@
     </ion-refresher-content>
    </ion-refresher>
 
-  <ion-list mode="ios" class="proto-item-list">
+  <ion-list class="proto-item-list">
     <ion-item class="proto-item" detail="true"
       *ngFor="let restaurant of restaurants.items; trackBy: trackByFunction"
       (click)="openDetailPage(restaurant)">

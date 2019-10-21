@@ -21,7 +21,7 @@
       [formGroup]="loginForm"
       [ngClass]="{ 'is-disabled': isLoading }"
       (ngSubmit)="login()">
-      <ion-list mode="ios" class="proto-input-list">
+      <ion-list class="proto-input-list">
         <ion-item class="proto-input has-valid-state">
           <ion-label position="floating">{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
           <ion-input type="email" value="" formControlName="email" [placeholder]="'INPUT.PLACEHOLDER.EMAIL' | translate"></ion-input>

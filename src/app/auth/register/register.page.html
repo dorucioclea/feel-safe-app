@@ -12,7 +12,7 @@
     [formGroup]="registerForm"
     [ngClass]="{ 'is-disabled': isLoading }"
     (ngSubmit)="register()">
-    <ion-list mode="ios" class="proto-input-list">
+    <ion-list class="proto-input-list">
       <ion-item class="proto-input has-valid-state">
         <ion-label position="floating">{{ 'INPUT.LABEL.USERNAME' | translate }}</ion-label>
         <ion-input type="text" autocomplete="true" autocorrect="true" value="" formControlName="username" [placeholder]="'INPUT.PLACEHOLDER.USERNAME' | translate"></ion-input>
