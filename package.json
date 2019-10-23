@@ -103,7 +103,7 @@
     "@angular-devkit/build-angular": "0.803.8",
     "@angular-devkit/core": "8.3.8",
     "@angular-devkit/schematics": "8.3.8",
-    "@angular/cli": "8.3.8",
+    "@angular/cli": "8.3.13",
     "@angular/compiler": "8.2.10",
     "@angular/compiler-cli": "8.2.10",
     "@angular/language-service": "8.2.10",
