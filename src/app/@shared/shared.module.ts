@@ -10,9 +10,9 @@ import { HandleExternalLinksDirective } from './handle-external-links.directive'
 import { HandleInternalLinksDirective } from './handle-internal-links.directive';
 import { HandleKeyboardEventsDirective } from './handle-keyboard-events.directive';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
-import { LanguageSwitchComponent } from 'src/app/components/language-switch/language-switch.component';
+import { LanguageSwitchComponent } from './language-switch/language-switch.component';
 import { ProtoImageComponent } from './proto-image/proto-image.component';
-import { ShowHidePasswordComponent } from 'src/app/components/show-hide-password/show-hide-password.component';
+import { ShowHidePasswordComponent } from './show-hide-password/show-hide-password.component';
 
 @NgModule({
   declarations: [
