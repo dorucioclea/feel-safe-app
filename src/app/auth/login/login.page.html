@@ -5,11 +5,11 @@
 </ion-header>
 <ion-content fullscreen>
     <div class="form-block social-login">
-      <ion-button mode="ios" expand="block" color="facebook" class="proto-button"
+      <ion-button color="facebook" class="proto-button" expand="block"
         (click)="loginWithProvider('facebook')">
         {{ 'BUTTON.LOGIN_FACEBOOK' | translate }}
       </ion-button>
-      <ion-button mode="ios" expand="block" color="twitter" class="proto-button"
+      <ion-button expand="block" color="twitter" class="proto-button"
         (click)="loginWithProvider('twitter')">
         {{ 'BUTTON.LOGIN_TWITTER' | translate }}
       </ion-button>
@@ -21,10 +21,10 @@
       [formGroup]="loginForm"
       [ngClass]="{ 'is-disabled': isLoading }"
       (ngSubmit)="login()">
-      <ion-list mode="ios" class="proto-input-list">
-        <ion-item mode="ios" class="proto-input has-valid-state">
-          <ion-label mode="ios" position="floating">{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
-          <ion-input mode="ios" type="email" value="" formControlName="email" [placeholder]="'INPUT.PLACEHOLDER.EMAIL' | translate"></ion-input>
+      <ion-list class="proto-input-list">
+        <ion-item class="proto-input has-valid-state">
+          <ion-label position="floating">{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
+          <ion-input type="email" value="" formControlName="email" [placeholder]="'INPUT.PLACEHOLDER.EMAIL' | translate"></ion-input>
         </ion-item>
 
         <proto-show-hide-password

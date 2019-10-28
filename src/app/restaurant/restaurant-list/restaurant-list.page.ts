@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { IonContent, ModalController } from '@ionic/angular';
+import { IonContent, ModalController, NavController } from '@ionic/angular';
 import { ModalOptions } from '@ionic/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -33,8 +32,8 @@ export class RestaurantListPage implements OnInit {
 
   constructor(
     private modalController: ModalController,
+    private navController: NavController,
     private restaurantService: RestaurantService,
-    private router: Router,
     private translate: TranslateService,
   ) {
     this.currentLang = this.translate.currentLang;
@@ -97,7 +96,7 @@ export class RestaurantListPage implements OnInit {
   public openDetailPage(restaurant: RestaurantModel) {
     if (!restaurant) { return; }
 
-    this.router.navigate(['/main/restaurants', restaurant.id]).catch();
+    this.navController.navigateForward(['/main/restaurants', restaurant.id]).catch();
   }
 
   public async openFilterModal() {

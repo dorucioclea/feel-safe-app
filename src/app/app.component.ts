@@ -50,6 +50,7 @@ export class AppComponent {
       }
 
       if (this.platform.is('android')) {
+        this.statusBar.styleLightContent();
 
         // provide extra css class for low end android devices
         if (C.isLowEndDevice()) {

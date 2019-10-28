@@ -12,14 +12,14 @@
     [formGroup]="registerForm"
     [ngClass]="{ 'is-disabled': isLoading }"
     (ngSubmit)="register()">
-    <ion-list mode="ios" class="proto-input-list">
-      <ion-item mode="ios" class="proto-input has-valid-state">
-        <ion-label mode="ios" position="floating">{{ 'INPUT.LABEL.USERNAME' | translate }}</ion-label>
-        <ion-input mode="ios" type="text" autocomplete="true" autocorrect="true" value="" formControlName="username" [placeholder]="'INPUT.PLACEHOLDER.USERNAME' | translate"></ion-input>
+    <ion-list class="proto-input-list">
+      <ion-item class="proto-input has-valid-state">
+        <ion-label position="floating">{{ 'INPUT.LABEL.USERNAME' | translate }}</ion-label>
+        <ion-input type="text" autocomplete="true" autocorrect="true" value="" formControlName="username" [placeholder]="'INPUT.PLACEHOLDER.USERNAME' | translate"></ion-input>
       </ion-item>
-      <ion-item mode="ios" class="proto-input has-valid-state">
-        <ion-label mode="ios" position="floating">{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
-        <ion-input mode="ios" type="email" value="" formControlName="email" [placeholder]="'INPUT.PLACEHOLDER.EMAIL' | translate"></ion-input>
+      <ion-item class="proto-input has-valid-state">
+        <ion-label position="floating">{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
+        <ion-input type="email" value="" formControlName="email" [placeholder]="'INPUT.PLACEHOLDER.EMAIL' | translate"></ion-input>
       </ion-item>
 
       <proto-show-hide-password
@@ -43,7 +43,7 @@
           [disabled]="!formIsValid() || isLoading">
           <ion-spinner *ngIf="isLoading"></ion-spinner>
           <ng-container *ngIf="!isLoading" >
-            {{ 'BUTTON.LOGIN' | translate }}
+            {{ 'BUTTON.REGISTER' | translate }}
           </ng-container>
         </ion-button>
 

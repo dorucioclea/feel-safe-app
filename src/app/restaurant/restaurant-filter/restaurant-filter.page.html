@@ -11,10 +11,10 @@
 
 <ion-content>
   <div class="form-block">
-    <ion-list class="proto-input-list" mode="ios">
-      <ion-item class="proto-input proto-input--select" mode="ios">
-        <ion-label mode="ios" position="floating">{{ 'FILTER.ORDER.TITLE' | translate }}:</ion-label>
-        <ion-select mode="ios" [(ngModel)]="orderBy">
+    <ion-list class="proto-input-list">
+      <ion-item class="proto-input proto-input--select">
+        <ion-label position="floating">{{ 'FILTER.ORDER.TITLE' | translate }}:</ion-label>
+        <ion-select [(ngModel)]="orderBy">
           <ion-select-option
             *ngFor="let ITEM of ('FILTER.ORDER.OPTIONS' | translate)"
             [value]="ITEM.VALUE">{{ ITEM.LABEL }}</ion-select-option>
@@ -22,9 +22,9 @@
         <div class="select-arrow"></div>
       </ion-item>
 
-      <ion-item class="proto-input proto-input--select" mode="ios">
-        <ion-label mode="ios" position="floating">{{ 'FILTER.PRICE_CATEGORY.TITLE' | translate }}:</ion-label>
-        <ion-select mode="ios" [(ngModel)]="priceRange">
+      <ion-item class="proto-input proto-input--select">
+        <ion-label position="floating">{{ 'FILTER.PRICE_CATEGORY.TITLE' | translate }}:</ion-label>
+        <ion-select [(ngModel)]="priceRange">
           <ion-select-option
             *ngFor="let ITEM of ('FILTER.PRICE_CATEGORY.OPTIONS' | translate)"
             [value]="ITEM.VALUE">{{ ITEM.LABEL }}</ion-select-option>
@@ -32,9 +32,9 @@
         <div class="select-arrow"></div>
       </ion-item>
 
-      <ion-item *ngIf="categories.length" class="proto-input proto-input--select" mode="ios">
-        <ion-label mode="ios" position="floating">{{ 'FILTER.RESTAURANT_CATEGORY.TITLE' | translate }}:</ion-label>
-        <ion-select mode="ios" [(ngModel)]="restaurantCategoryId">
+      <ion-item *ngIf="categories.length" class="proto-input proto-input--select">
+        <ion-label position="floating">{{ 'FILTER.RESTAURANT_CATEGORY.TITLE' | translate }}:</ion-label>
+        <ion-select [(ngModel)]="restaurantCategoryId">
           <ion-select-option value="___ALL___">{{ 'TERM.ALL' | translate }}</ion-select-option>
           <ion-select-option
             *ngFor="let category of categories"

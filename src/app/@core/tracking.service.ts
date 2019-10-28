@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Events } from '@ionic/angular';
 
 import { StorageService } from './storage.service';
 
@@ -8,7 +7,6 @@ import { StorageService } from './storage.service';
 })
 export class TrackingService {
   constructor(
-    private events: Events,
     private storage: StorageService,
   ) { }
 
@@ -29,9 +27,8 @@ export class TrackingService {
   }
 
   private bindEvents() {
-    this.events.subscribe('viewOnboarding', () => {
-      this.track('viewOnboarding');
-    });
+    // TODO: replace deprecated ionic Events
+    // e.g. via plain js Event constructor or libs like https://github.com/ai/nanoevents
   }
 
   private track(eventName: string, eventProperties?: any) {

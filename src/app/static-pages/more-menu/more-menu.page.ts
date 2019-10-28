@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -18,7 +18,7 @@ export class MoreMenuPage implements OnInit {
   constructor(
     private alertController: AlertController,
     private authService: AuthService,
-    private router: Router,
+    private navController: NavController,
     private splashScreen: SplashScreen,
     private translate: TranslateService,
   ) { }
@@ -32,7 +32,7 @@ export class MoreMenuPage implements OnInit {
 
     this.splashScreen.show();
     this.authService.logout().then(() => {
-      this.router.navigate(['/login']).then(() => {
+      this.navController.navigateRoot(['/login']).then(() => {
         window.location.reload();
       }).catch();
     }).catch();
