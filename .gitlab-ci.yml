@@ -32,6 +32,24 @@ test:
   - ionic
   except:
     - schedules
+build_android:
+  stage: deploy
+  script:
+  - source $HOME/.profile
+  - mkdir -p www
+  - whoami
+  - pwd
+  - ls -la
+  - echo "--- Preparing Ionic app"
+  - npm install
+  - ionic info
+  - cordova prepare android --no-build
+  - echo "--- Building Ionic app"
+  - npm run build:android:staging:prod
+only:
+  - schedules
+  tags:
+  - ionic-android
 staging_android:
   stage: deploy
   script:
