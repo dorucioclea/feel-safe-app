@@ -46,7 +46,7 @@ build_android:
   - cordova prepare android --no-build
   - echo "--- Building Ionic app"
   - npm run build:android:staging:prod
-only:
+  only:
   - schedules
   tags:
   - ionic-android
