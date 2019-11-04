@@ -99,6 +99,8 @@ export class AppComponent {
   }
 
   private handleConsole() {
+    if (window.localStorage.getItem('PROTO_DEBUG')) { return; }
+    
     let methods: string[] = [];
 
     switch (environment.name) {
