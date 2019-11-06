@@ -1,24 +1,29 @@
 @import 'src/helpers';
 
-ion-header {
-  ion-button {
-    --color: var(--ion-color-dark);
-    text-transform: uppercase;
-  }
+ion-content {
+  --offset-top: 0!important;
 }
 
 ion-slides {
   --bullet-background: var(--ion-color-medium);
-  --bullet-background-active: var(--ion-color-dark);
-  height: calc(100% - var(--proto-space) - env(safe-area-inset-bottom));
+  --bullet-background-active: var(--ion-color-primary);
+  height: 100%;
 }
 
 ion-slide {
   flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: calc(var(--slides-offset-bottom) + var(--proto-space-xl));
+  background: #fff;
+
+  &:nth-child(even) {
+    background: #fafafa;
+  }
 }
 
 .slide-img {
-  @include cover(375, 290, transparent);
+  @include cover(3, 2, #eee);
+  flex: none;
   width: 100%;
 }
 
@@ -26,21 +31,58 @@ ion-slide {
   display: flex;
   flex: 1;
   flex-direction: column;
-  max-width: 320px;
-  margin: 0 auto;
-  padding: var(--proto-space-l) var(--proto-space-s);
+  justify-content: center;
+  padding: var(--proto-space-m);
 
-  h2 {
-    margin-bottom: var(--proto-space-m);
+  &__icon {
+    margin: 0 auto 3vh;
+    font-size: 64px;
+  }
+
+  .slide-content__title {
+    margin-bottom: 5vh;
+  }
+
+  .slide-content__text {
+    font-weight: bold;
   }
 }
 
-.buttons-onboarding {
+.skip-button {
+  position: absolute;
+  top: calc(var(--proto-space-s) + var(--ion-safe-area-top));
+  right: var(--proto-space);
+  z-index: 1;
+  margin: 0;
+}
+
+.footer-buttons {
+  pointer-events: none;
   position: absolute;
   left: 50%;
-  bottom: var(--proto-space);
-  bottom: calc(var(--proto-space) + env(safe-area-inset-bottom));
+  bottom: calc(var(--proto-space-xl) + var(--ion-safe-area-bottom));
   z-index: 2;
-  margin: 0;
-  transform: translateX(-50%);
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--proto-space-m);
+  transform: translate(-50%, 12px);
+
+  .proto-button {
+    pointer-events: initial;
+  }
 }
+
+.prev-button {
+  ion-icon {
+    margin-left: -2px;
+  }
+}
+
+.next-button {
+  ion-icon {
+    margin-right: -2px;
+  }
+}
+

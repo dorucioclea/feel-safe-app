@@ -57,19 +57,22 @@
     "ONBOARDING": {
       "SLIDES": [
         {
-          "CONTENT": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "IMAGE": "empty_myfabs.png",
-          "TITLE": "Lorem ipsum dolor sit amet"
+          "CONTENT": " Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis.",
+          "ICON": "./assets/icons/onboarding-1.svg",
+          "IMAGE": "./assets/img/onboarding/img1.jpg",
+          "TITLE": "Et harum quidem rerum facilis est et expedita"
         },
         {
-          "CONTENT": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "IMAGE": "empty_follower.png",
-          "TITLE": "Lorem ipsum dolor sit amet"
+          "CONTENT": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.",
+          "ICON": "./assets/icons/onboarding-2.svg",
+          "IMAGE": "./assets/img/onboarding/img2.jpg",
+          "TITLE": "Justo duo dolores et ea rebum."
         },
         {
-          "CONTENT": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "IMAGE": "empty_search.png",
-          "TITLE": "To push or not to push"
+          "CONTENT": "Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
+          "ICON": "./assets/icons/onboarding-3.svg",
+          "IMAGE": "./assets/img/onboarding/img3.jpg",
+          "TITLE": "Tempor invidunt ut"
         }
       ],
       "TITLE": "Onboarding"

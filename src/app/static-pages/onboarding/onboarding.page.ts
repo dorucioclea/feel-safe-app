@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { IonSlides } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { IonSlides, NavController } from '@ionic/angular';
 
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 import { LanguageService } from 'src/app/@core/language.service';
@@ -18,12 +18,13 @@ export class OnboardingPage implements OnInit {
 
   public slideOptions = {};
   public slides: any[] = [];
+  public firstSlideActive = true;
   public lastSlideActive = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private languageService: LanguageService,
-    private router: Router,
+    private navController: NavController,
     private pushService: PushService,
     private storage: StorageService,
   ) { }
@@ -34,16 +35,36 @@ export class OnboardingPage implements OnInit {
     });
   }
 
-  public ionSlideReachEnd() {
-    this.lastSlideActive = true;
+  public ionViewDidLeave() {
+    this.lastSlideActive = false;
+    this.slider.length().then(() => {
+      this.slider.slideTo(0).catch();
+    }).catch();
   }
 
-  public ionSlidePrevStart() {
-    this.lastSlideActive = false;
+  public ionSlideWillChange() {
+    this.slider.getActiveIndex().then((index: number) => {
+      this.firstSlideActive = index === 0;
+      this.lastSlideActive = index === this.slides.length - 1;
+    }).catch();
   }
 
   public skip() {
-    this.slider.slideTo(this.slides.length - 1).catch();
+    this.slider.length().then((length: number) => {
+      this.slider.slideTo(length - 1).catch();
+    }).catch();
+  }
+
+  public prev() {
+    this.slider.slidePrev();
+  }
+
+  public next() {
+    if (!this.lastSlideActive) {
+      return this.slider.slideNext();
+    }
+
+    this.proceed(true);
   }
 
   public proceed(allowPush = false) {
@@ -55,14 +76,13 @@ export class OnboardingPage implements OnInit {
 
     this.pushService.initPush().catch();
 
-    this.activatedRoute.queryParams.subscribe((queryParams) => {
-      if (queryParams.returnUrl) {
-        this.router.navigate([queryParams.returnUrl]).catch();
+    const queryParams = this.activatedRoute.snapshot.queryParams;
+    if (queryParams.returnUrl) {
+      this.navController.navigateForward([queryParams.returnUrl]).catch();
 
-        return;
-      }
+      return;
+    }
 
-      this.router.navigate(['/login']).catch();
-    });
+    this.navController.navigateForward(['/login']).catch();
   }
 }
