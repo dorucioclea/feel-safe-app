@@ -36,7 +36,7 @@ export class MoreMenuPage implements OnInit {
 
     this.splashScreen.show();
     this.authService.logout().then(() => {
-      this.navController.navigateRoot(['/login']).then(() => {
+      this.navController.navigateRoot('/login').then(() => {
         window.location.reload();
       }).catch();
     }).catch();

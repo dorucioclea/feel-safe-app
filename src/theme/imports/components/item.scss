@@ -15,6 +15,11 @@
     --border-width: 0;
   }
 
+  &.is-skeleton {
+    --detail-icon-opacity: 0;
+    pointer-events: none;
+  }
+
   &, .proto-item-label {
     @extend %p;
   }

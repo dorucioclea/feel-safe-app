@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { ModalOptions } from '@ionic/core';
 
 import { AuthService } from 'src/app/auth/shared/auth.service';
@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private legalService: LegalService,
     private modalController: ModalController,
-    private router: Router,
+    private navController: NavController,
     private toastService: ToastService,
     private translate: TranslateService,
   ) {
@@ -95,12 +95,12 @@ export class LoginPage implements OnInit {
 
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       if (queryParams.returnUrl) {
-        this.router.navigate([queryParams.returnUrl]).catch();
+        this.navController.navigateRoot(queryParams.returnUrl).catch();
 
         return;
       }
 
-      this.router.navigate(['/main']).catch();
+      this.navController.navigateRoot('/main').catch();
     });
   }
 
