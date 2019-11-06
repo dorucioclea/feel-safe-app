@@ -1,1 +1,26 @@
 // RestaurantDetailComponent
+
+h1 {
+  margin-bottom: var(--proto-space);
+}
+
+.detail-content {
+  min-height: calc(100vh - 56px);
+  padding: var(--proto-space-m);
+}
+
+.back-button {
+  --icon-font-size: 24px;
+  --padding-start: 0;
+  --padding-end: 0;
+
+  position: absolute;
+  top: calc(var(--proto-space) + var(--ion-safe-area-top));
+  left: var(--proto-space);
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  min-width: 0;
+  background: rgba(0,0,0,0.15);
+  border-radius: 50%;
+}

@@ -13,6 +13,7 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { LanguageSwitchComponent } from './language-switch/language-switch.component';
 import { ProtoImageComponent } from './proto-image/proto-image.component';
 import { ShowHidePasswordComponent } from './show-hide-password/show-hide-password.component';
+import { ProtoParallaxDirective } from './proto-parallax.directive';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ShowHidePasswordComponent } from './show-hide-password/show-hide-passwo
     ImageUploadComponent,
     LanguageSwitchComponent,
     ProtoImageComponent,
+    ProtoParallaxDirective,
     ShowHidePasswordComponent,
   ],
   imports: [
@@ -45,6 +47,7 @@ import { ShowHidePasswordComponent } from './show-hide-password/show-hide-passwo
     LanguageSwitchComponent,
     MomentModule,
     ProtoImageComponent,
+    ProtoParallaxDirective,
     ReactiveFormsModule,
     ShowHidePasswordComponent,
     TranslateModule,
