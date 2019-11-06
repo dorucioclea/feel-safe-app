@@ -19,6 +19,9 @@ export class AgreementPage implements OnInit {
   @Input() public type: string;
   @Input() public agreement: AgreementModel;
 
+  public initialized = false;
+  public firstLoadFinished = false;
+
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
@@ -29,14 +32,16 @@ export class AgreementPage implements OnInit {
 
   public ngOnInit() {
     this.type = this.type || this.activatedRoute.snapshot.params.type || 'terms';
+  }
 
-    if (this.agreement) { return; }
+  public ionViewDidEnter() {
+    if (this.initialized) {
+      return;
+    }
 
-    this.legalService.getLatestAgreement(this.type)
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((agreement) => {
-        this.agreement = agreement;
-      });
+    this.initialized = true;
+
+    this.loadAgreements();
   }
 
   public ngOnDestroy() {
@@ -50,5 +55,17 @@ export class AgreementPage implements OnInit {
 
   public close(data = {}) {
     this.modalController.dismiss(data).catch();
+  }
+
+  private loadAgreements() {
+    if (this.agreement) { return; }
+
+    this.legalService.getLatestAgreement(this.type)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((agreement) => {
+        this.agreement = agreement;
+        this.firstLoadFinished = true;
+      });
+
   }
 }

@@ -15,7 +15,9 @@ import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 export class LoginConsentPage implements OnInit {
   public loginConsentForm: FormGroup;
   public agreements: { [key: string]: AgreementModel };
+  public initialized = false;
   public isLoading: boolean;
+  public firstLoadFinished = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,7 +31,16 @@ export class LoginConsentPage implements OnInit {
   }
 
   public ngOnInit() {
-   this.loadAgreements().catch();
+  }
+
+  public ionViewDidEnter() {
+    if (this.initialized) {
+      return;
+    }
+
+    this.initialized = true;
+
+    this.loadAgreements().catch();
   }
 
   public formIsValid() {
@@ -63,6 +74,7 @@ export class LoginConsentPage implements OnInit {
       };
 
       this.isLoading = false;
+      this.firstLoadFinished = true;
     } catch (error) {
       console.error(error);
     }

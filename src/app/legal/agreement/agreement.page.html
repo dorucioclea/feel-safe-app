@@ -8,18 +8,22 @@
 </ion-header>
 
 <ion-content>
-  <div class="rte agreement-block"
-    *ngIf="agreement?.excerpt"
-    [innerHtml]="agreement.excerpt">
-  </div>
+  <ion-spinner class="proto-spinner" *ngIf="!firstLoadFinished" color="dark"></ion-spinner>
 
-  <div class="rte agreement-block"
-    *ngIf="agreement?.content"
-    [innerHtml]="agreement.content">
-  </div>
+  <ng-container *ngIf="firstLoadFinished">
+    <div class="rte agreement-block"
+      *ngIf="agreement.excerpt"
+      [innerHtml]="agreement.excerpt">
+    </div>
+
+    <div class="rte agreement-block"
+      *ngIf="agreement.content"
+      [innerHtml]="agreement.content">
+    </div>
+  </ng-container>
 </ion-content>
 
-<ion-footer *ngIf="needsConsent" class="ion-no-border">
+<ion-footer *ngIf="needsConsent && firstLoadFinished" class="ion-no-border">
   <ion-toolbar transparent>
     <div class="form-buttons">
       <ion-button class="proto-button" color="dark" fill="clear" (click)="close()">
