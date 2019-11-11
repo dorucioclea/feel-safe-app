@@ -12,8 +12,8 @@ import { HandleKeyboardEventsDirective } from './handle-keyboard-events.directiv
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { LanguageSwitchComponent } from './language-switch/language-switch.component';
 import { ProtoImageComponent } from './proto-image/proto-image.component';
-import { ShowHidePasswordComponent } from './show-hide-password/show-hide-password.component';
 import { ProtoParallaxDirective } from './proto-parallax.directive';
+import { ShowHidePasswordComponent } from './show-hide-password/show-hide-password.component';
 
 @NgModule({
   declarations: [

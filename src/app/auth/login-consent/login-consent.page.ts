@@ -30,8 +30,7 @@ export class LoginConsentPage implements OnInit {
     });
   }
 
-  public ngOnInit() {
-  }
+  public ngOnInit() {}
 
   public ionViewDidEnter() {
     if (this.initialized) {
