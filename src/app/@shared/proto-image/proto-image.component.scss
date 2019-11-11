@@ -70,7 +70,7 @@
       padding-top: calc(100% / var(--proto-image-ratio-banner, 1));
     }
   }
-  &-default {
+  &-default, &-preload {
     &::before {
       padding-top: calc(100% / var(--proto-image-ratio-default, 1));
     }

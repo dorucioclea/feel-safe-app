@@ -1,29 +1,30 @@
-<ion-content proto-parallax>
-  <ion-refresher mode="ios" slot="fixed" pullFactor="0.3"
-    (ionRefresh)="refresh($event)">
-    <ion-refresher-content
-      pullingIcon="arrow-down"
-      [pullingText]="'REFRESHER.PULLING_TEXT' | translate"
-      [refreshingText]="'REFRESHER.REFRESHING_TEXT' | translate">
-    </ion-refresher-content>
-   </ion-refresher>
-    <div class="proto-parallax-container">
-      <div class="proto-parallax-element proto-parallax-element--main" parallax="0.6"
-        [ngClass]="{'is-skeleton': restaurant.isSkeleton }">
-        <proto-image [imageId]="restaurant.image" imageType="default"></proto-image>
-        <ion-back-button text="" defaultHref="" icon="ios-arrow-round-back" color="light" class="back-button"></ion-back-button>
-      </div>
-      <div class="proto-parallax-content detail-content">
-        <ion-spinner class="proto-spinner" *ngIf="restaurant.isSkeleton" color="dark"></ion-spinner>
+<ion-header mode="ios">
+  <ion-toolbar transparent>
+    <ion-buttons slot="start">
+      <ion-back-button mode="ios" text="" defaultHref="" icon="ios-arrow-round-back" color="light"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-        <ng-container *ngIf="!restaurant.isSkeleton">
-          <h1>{{ restaurant.title }}</h1>
-          <p>{{ restaurant.canonicalAddress }}</p> <br>
-          <small>
-            {{ 'VIEW.RESTAURANT_LIST.TIME_AGO' | translate }}
-            {{ restaurant.createdAt | amTimeAgo:true}}
-          </small>
-        </ng-container>
-      </div>
+<ion-content fullscreen="true" proto-parallax>
+  <proto-image class="hero-background" [imageId]="restaurant.image" imageType="preload" slot="fixed"></proto-image>
+  <div class="proto-parallax-container">
+    <div class="proto-parallax-element proto-parallax-element--main" parallax="0.6"
+      [ngClass]="{'is-skeleton': restaurant.isSkeleton }">
+      <proto-image class="proto-parallax-image" [imageId]="restaurant.image" imageType="default"></proto-image>
     </div>
+    <div class="proto-parallax-content detail-content">
+      <div class="magic-pixel"></div>
+      <ion-spinner class="proto-spinner" *ngIf="restaurant.isSkeleton" color="dark"></ion-spinner>
+
+      <ng-container *ngIf="!restaurant.isSkeleton">
+        <h1>{{ restaurant.title }}</h1>
+        <p>{{ restaurant.canonicalAddress }}</p> <br>
+        <small>
+          {{ 'VIEW.RESTAURANT_LIST.TIME_AGO' | translate }}
+          {{ restaurant.createdAt | amTimeAgo:true}}
+        </small>
+      </ng-container>
+    </div>
+  </div>
 </ion-content>

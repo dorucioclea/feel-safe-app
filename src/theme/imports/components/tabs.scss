@@ -4,7 +4,9 @@ ion-tab-bar {
   --background-focused: var(--ion-color-light-shade);
   --border-color: var(--ion-color-light-shade);
   --tab-bar-color: var(--ion-color-medium);
-  --tab-bar-color-activated: var(ion-color-primary);
+  --tab-bar-color-activated: var(--ion-color-primary);
+
+  height: var(--tab-bar-height);
 
   ion-icon {
     width: 24px;

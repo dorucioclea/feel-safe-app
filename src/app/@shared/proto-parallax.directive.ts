@@ -1,4 +1,5 @@
 import { Directive, Renderer2, ElementRef } from '@angular/core';
+import { DomController, IonContent, Platform } from '@ionic/angular';
 
 interface ParallaxItem {
   element: HTMLElement,
@@ -10,16 +11,22 @@ interface ParallaxItem {
 
 @Directive({
   selector: '[proto-parallax]',
+
 })
 export class ProtoParallaxDirective {
   private parallaxContainer: HTMLElement;
   private parallaxItems: ParallaxItem[];
+  private mainParallaxItem: ParallaxItem;
 
-  private lastHeight = 0;
+  private mainElementHeight = 0;
+  private scaleAmt = 1;
   private initialized = false;
 
   constructor(
+    private content: IonContent,
+    private domController: DomController,
     private element: ElementRef,
+    private platform: Platform,
     private renderer: Renderer2) {
   }
 
@@ -34,20 +41,39 @@ export class ProtoParallaxDirective {
     if (!parallaxNodes.length) { return; }
 
     this.initParallaxItems(parallaxNodes);
+
+    // scroll listener currently only necessary for ios
+    if (!this.platform.is('ios')) { return; }
+
+    this.content.getScrollElement().then((container: HTMLElement) => {
+      this.bindScrollListener(container);
+    }).catch();
+
   }
 
-  // this lifecycle fires multiple times
-  // TODO: find a better way to ensure correct dimensions
   public ngAfterViewChecked() {
     if (!this.parallaxContainer || !this.parallaxItems.length) { return; }
-    this.lastHeight = this.parallaxItems[0].element.offsetHeight;
+    this.mainElementHeight = this.parallaxItems[0].element.offsetHeight;
 
-    if (this.initialized || !this.lastHeight) {
-      return;
-    }
+    if (this.initialized || !this.mainElementHeight) { return; }
 
     this.initialized = true;
     this.setMainParallaxItem();
+  }
+
+  private bindScrollListener(container: HTMLElement) {
+    // native scroll event seems faster on iOS than ionScroll
+    container.addEventListener('scroll', (ev: any) => {
+      if (!ev || !ev.target) { return; }
+
+      const scrollValue = ev.target.scrollTop;
+
+      if (scrollValue > 0 && this.scaleAmt === 1) {
+        return;
+      }
+
+      this.updateMainParallaxItem(scrollValue);
+    });
   }
 
   // TODO: make this work for multiple elements
@@ -64,22 +90,15 @@ export class ProtoParallaxDirective {
   }
 
   // main parallax item is necessary for fixed perspective origin and ios bouncing
+  // TODO: discuss how we define our main parallax item
   private setMainParallaxItem() {
-    // TODO: discuss how we define our main parallax item
-    const mainParallaxItem: ParallaxItem = this.parallaxItems.filter((item: ParallaxItem) => item.isMain)[0];
-    if (!mainParallaxItem) { return; }
+    this.mainParallaxItem = this.parallaxItems.filter((item: ParallaxItem) => item.isMain)[0];
+    if (!this.mainParallaxItem) { return; }
 
-    const mainHeight = mainParallaxItem.element.clientHeight;
-    this.setPerspectiveOrigin(mainHeight);
-  }
-
-  // TODO: we still have to set translateY value for parallax elements if perspective-origin is "bottom right"
-  // (see https://github.com/GoogleChromeLabs/ui-element-samples/blob/gh-pages/parallax/scripts/parallax.js)
-  private setPerspectiveOrigin(height: number) {
+    // TODO: we still have to set translateY value for parallax elements if perspective-origin is "bottom right"
+    // (see https://github.com/GoogleChromeLabs/ui-element-samples/blob/gh-pages/parallax/scripts/parallax.js)
     // we need to set y-value for perspective if related content has dynamic height (e.g. infinite scrolling, etc.)
-    if (!height) { return; }
-    console.log('RENDER');
-    this.renderer.setStyle(this.parallaxContainer, 'perspectiveOrigin', `100% ${height}px`);
+    this.renderer.setStyle(this.parallaxContainer, 'perspectiveOrigin', `100% ${this.mainElementHeight}px`);
   }
 
   private getParallaxItem(node: HTMLElement): ParallaxItem {
@@ -100,5 +119,10 @@ export class ProtoParallaxDirective {
         return (perspective - this.depth) / perspective;
       },
     };
+  }
+
+  private updateMainParallaxItem(scrollValue: number) {
+    this.scaleAmt = Math.max((-scrollValue / this.mainElementHeight + 1), 1);
+    this.renderer.setStyle(this.mainParallaxItem.element.firstElementChild, 'transform', 'translateZ(0) scale(' + this.scaleAmt + ')');
   }
 }

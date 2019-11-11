@@ -1,6 +1,6 @@
 const pStyle: CSSStyleDeclaration = getComputedStyle(document.documentElement);
 
-export type ProtoImageType = 'default' | 'banner' | 'thumbnail' | 'avatar';
+export type ProtoImageType = 'default' | 'banner' | 'thumbnail' | 'avatar' | 'preload';
 
 /* tslint:disable-next-line */
 export class ProtoImageConfig {
@@ -9,6 +9,7 @@ export class ProtoImageConfig {
     avatar_large: parseFloat(pStyle.getPropertyValue(`--ratio-square`)),
     banner: parseFloat(pStyle.getPropertyValue(`--proto-image-ratio-banner`)),
     default: parseFloat(pStyle.getPropertyValue(`--proto-image-ratio-default`)),
+    preload: parseFloat(pStyle.getPropertyValue(`--proto-image-ratio-default`)),
     thumbnail: parseFloat(pStyle.getPropertyValue(`--proto-image-ratio-thumbnail`)),
   };
 
@@ -17,6 +18,7 @@ export class ProtoImageConfig {
     avatar_large: parseFloat(pStyle.getPropertyValue(`--proto-image-width-avatar-l`)),
     default: parseFloat(pStyle.getPropertyValue(`--proto-image-width-default`)),
     placeholder: parseFloat(pStyle.getPropertyValue(`--proto-image-width-placeholder`)),
+    preload: parseFloat(pStyle.getPropertyValue(`--proto-image-width-preload`)),
     thumbnail: parseFloat(pStyle.getPropertyValue(`--proto-image-width-thumbnail`)),
   };
 
