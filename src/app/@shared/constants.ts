@@ -18,7 +18,7 @@ export class C {
   // for non-cordova platforms
   public static APP_VERSION = {
     name: 'prototype',
-    package: 'berlin.prototype.starter2',
+    package: 'berlin.prototype.blueprint',
     number: appVersionFromConfigXml,
   };
 
