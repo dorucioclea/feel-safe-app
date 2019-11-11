@@ -47,7 +47,6 @@ export class RestaurantDetailPage implements OnInit {
     this.restaurantService.getRestaurantById(this.id)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((restaurant) => {
-        console.log(restaurant);
         this.restaurant = restaurant;
 
         this.completeRefresher();

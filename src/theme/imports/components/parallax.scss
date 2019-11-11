@@ -2,33 +2,37 @@
 // see https://developers.google.com/web/updates/2016/12/performant-parallaxing
 
 [proto-parallax] {
-
-  .proto-parallax {
-
-    &-container {
-      position: relative;
-    }
-
-    &-element {
-      top: 0;
-      z-index: 0;
-    }
-
-    &-image {
-      @include cover(3, 2, #fafafa, transparent);
-      z-index: 0;
-    }
-
-    &-content {
-      position: relative;
-      z-index: 1;
-      background: var(--ion-background-color);
-    }
-  }
+  --background: transparent;
 
   .magic-pixel {
     @include size(1px);
   }
+
+  .hero-background {
+    position: relative;
+    z-index: -1;
+  }
+}
+
+.proto-parallax-container {
+  position: relative;
+}
+
+.proto-parallax-element {
+  top: 0;
+  z-index: 0;
+}
+
+.proto-parallax-image {
+  transform: translateZ(0) scale(1);
+  transform-origin: center bottom;
+}
+
+.proto-parallax-content {
+  position: relative;
+  z-index: 1;
+  min-height: calc(100vh - var(--tab-bar-height) - var(--ion-safe-area-bottom) - var(--ion-safe-area-top) - var(--toolbar-height));
+  background: var(--ion-color-light);
 }
 
 .webkit [proto-parallax] {
@@ -50,6 +54,14 @@
       transform-style: preserve-3d;
     }
   }
+}
+
+ion-header + [proto-parallax] {
+  --top-offset: var(--proto-space-xs); // reduce top flicker for fast negative scrolls
+
+  top: calc(var(--toolbar-height) * -1 - var(--ion-safe-area-top) - var(--top-offset));
+  flex: none;
+  height: calc(100% + var(--top-offset));
 }
 
 .no-webkit {

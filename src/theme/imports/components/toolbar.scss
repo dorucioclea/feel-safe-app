@@ -17,6 +17,10 @@ ion-header {
   ion-buttons + .title-md {
     padding-left: var(--proto-space-xs);
   }
+
+  ion-toolbar {
+    --min-height: var(--toolbar-height);
+  }
 }
 
 ion-toolbar {
@@ -24,6 +28,7 @@ ion-toolbar {
   &[transparent] {
     --background: transparent;
     --ion-color-base: transparent !important;
+    --border-color: transparent;
   }
 
   .button {

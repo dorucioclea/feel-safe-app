@@ -8,11 +8,16 @@
   --proto-space-xxl: 48px;
 
   --ratio-square: 1;
-  --proto-image-ratio-default: 1.5;
+  --proto-image-ratio-default: 1;
   --proto-image-ratio-thumbnail: 1;
+  --proto-image-ratio-preload: 1;
   --proto-image-width-avatar: 48px;
   --proto-image-width-avatar-l: 100px;
   --proto-image-width-thumbnail: 80px;
   --proto-image-width-default: 375px;
   --proto-image-width-placeholder: 15px;
+  --proto-image-width-preload: 6px;
+
+  --toolbar-height: 44px;
+  --tab-bar-height: 55px;
 }
