@@ -42,5 +42,13 @@ export class DeeplinkService {
 
       return;
     }
+
+    if (data.$link.path.indexOf('/restaurants') > -1) {
+      const parts = data.$link.path.split('/');
+
+      this.navController.navigateRoot(['/main/restaurants', parts[parts.length - 1]]).catch();
+
+      return;
+    }
   }
 }
