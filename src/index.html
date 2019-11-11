@@ -28,6 +28,13 @@
 
 <body>
   <app-root></app-root>
+
+  <script>
+    // Webkit detection
+    var isWebKit = 'WebkitAppearance' in document.documentElement.style && !(/Edge/.test(navigator.userAgent)) && !('MozAppearance' in document.documentElement.style);
+    isWebKit ? document.body.classList.add('webkit') : document.body.classList.add('no-webkit');
+  </script>
+
 </body>
 
 </html>

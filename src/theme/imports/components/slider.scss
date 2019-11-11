@@ -1,11 +1,12 @@
-ion-slides {
+
+.onboarding-slider {
+  --slides-offset-bottom: calc(var(--proto-space-xl) + var(--ion-safe-area-bottom));
 
   .swiper-pagination-bullet {
     opacity: 1;
   }
-
 }
 
-.swiper-container-horizontal>.swiper-pagination-bullets {
-  bottom: var(--proto-space-xl);
+.swiper-container-horizontal > .swiper-pagination-bullets {
+  bottom: var(--slides-offset-bottom);
 }

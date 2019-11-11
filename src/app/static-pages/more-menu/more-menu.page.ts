@@ -14,16 +14,20 @@ import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
   styleUrls: ['./more-menu.page.scss'],
 })
 export class MoreMenuPage implements OnInit {
+  public onboardingReturnUrl: string;
 
   constructor(
     private alertController: AlertController,
     private authService: AuthService,
     private navController: NavController,
+    private router: Router,
     private splashScreen: SplashScreen,
     private translate: TranslateService,
   ) { }
 
-  public ngOnInit() {}
+  public ngOnInit() {
+    this.onboardingReturnUrl = this.router.routerState.snapshot.url;
+  }
 
   public async logout() {
     const confirmation = await this.confirmLogout();
@@ -32,7 +36,7 @@ export class MoreMenuPage implements OnInit {
 
     this.splashScreen.show();
     this.authService.logout().then(() => {
-      this.navController.navigateRoot(['/login']).then(() => {
+      this.navController.navigateRoot('/login').then(() => {
         window.location.reload();
       }).catch();
     }).catch();

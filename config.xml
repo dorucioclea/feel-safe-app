@@ -50,6 +50,9 @@
         <config-file parent="UIStatusBarHidden" platform="ios" target="*-Info.plist">
             <true />
         </config-file>
+        <edit-config file="*-Info.plist" mode="merge" target="UIUserInterfaceStyle">
+            <string>Light</string>
+        </edit-config>
         <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription">
             <string>Lade ein Bild als Avatar hoch, damit andere Nutzer dich sehen können</string>
         </edit-config>

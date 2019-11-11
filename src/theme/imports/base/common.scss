@@ -25,3 +25,13 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+.has-active-state {
+  pointer-events: none;
+  opacity: 0;
+
+  &.is-active {
+    pointer-events: initial;
+    opacity: 1;
+  }
+}

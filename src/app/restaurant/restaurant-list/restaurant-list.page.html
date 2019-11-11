@@ -14,7 +14,9 @@
 </ion-header>
 
 <ion-content #ListContent>
-  <ion-refresher mode="ios" slot="fixed" pullFactor="0.3" (ionRefresh)="refresh($event)">
+  <ion-refresher mode="ios" slot="fixed" pullFactor="0.3"
+    [disabled]="restaurants.meta.isLoading"
+    (ionRefresh)="refresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-down"
       [pullingText]="'REFRESHER.PULLING_TEXT' | translate"
@@ -25,8 +27,9 @@
   <ion-list class="proto-item-list">
     <ion-item class="proto-item" detail="true"
       *ngFor="let restaurant of restaurants.items; trackBy: trackByFunction"
-      (click)="openDetailPage(restaurant)">
-
+      [ngClass]="{ 'is-skeleton': restaurant.isSkeleton }"
+      [routerLink]="['/main/restaurants', restaurant.id]"
+      routerDirection="forward">
       <ng-container *ngIf="!restaurant.isSkeleton">
         <proto-image
           imageType="thumbnail"
@@ -49,6 +52,9 @@
           </p>
           <small>
             <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+          </small>
+          <small>
+            <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
           </small>
         </ion-label>
       </ng-container>

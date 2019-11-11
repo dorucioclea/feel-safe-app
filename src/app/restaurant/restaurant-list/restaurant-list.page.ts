@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { IonContent, ModalController, NavController } from '@ionic/angular';
+import { IonContent, ModalController } from '@ionic/angular';
 import { ModalOptions } from '@ionic/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { RESTAURANT_DUMMY_DATA, RestaurantModel } from '../shared/restaurant.model';
+import { RESTAURANT_DUMMY_DATA } from '../shared/restaurant.model';
 import { RestaurantService, Restaurants } from '../shared/restaurant.service';
 import { RestaurantFilterPage } from 'src/app/restaurant/restaurant-filter/restaurant-filter.page';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
@@ -24,6 +24,7 @@ export class RestaurantListPage implements OnInit {
   };
   public searchValue: string;
   public currentLang: string;
+  public initialized = false;
 
   private ngUnsubscribe: Subject<any> = new Subject();
   private infiniteScrollEvent: any;
@@ -32,7 +33,6 @@ export class RestaurantListPage implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    private navController: NavController,
     private restaurantService: RestaurantService,
     private translate: TranslateService,
   ) {
@@ -40,30 +40,21 @@ export class RestaurantListPage implements OnInit {
   }
 
   public ngOnInit() {
-    this.restaurantService.getRestaurants()
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((restaurants: Restaurants) => {
-        this.restaurants.meta = restaurants.meta;
-
-        // otherwise completeInfiniteScroll and completeRefresher would complete too early!
-        if (this.restaurants.meta.isLoading) { return; }
-
-        this.restaurants.items = restaurants.items;
-
-        this.completeInfiniteScroll();
-        this.completeRefresher();
-
-        if (this.searchResultsLoading) {
-          this.searchResultsLoading = false;
-          this.content.scrollToTop(0).catch();
-        }
-
-      });
   }
 
   public ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
+  }
+
+  public ionViewDidEnter() {
+    if (this.initialized) {
+      return;
+    }
+
+    this.initialized = true;
+
+    this.loadRestaurants();
   }
 
   public search(event: any) {
@@ -93,12 +84,6 @@ export class RestaurantListPage implements OnInit {
     this.restaurantService.getMoreRestaurants();
   }
 
-  public openDetailPage(restaurant: RestaurantModel) {
-    if (!restaurant) { return; }
-
-    this.navController.navigateForward(['/main/restaurants', restaurant.id]).catch();
-  }
-
   public async openFilterModal() {
     const modal = await this.modalController.create({
       component: RestaurantFilterPage,
@@ -113,6 +98,28 @@ export class RestaurantListPage implements OnInit {
 
   public trackByFunction(index: number, item: any) {
     return item ? item.id : index;
+  }
+
+  private loadRestaurants() {
+    this.restaurantService.getRestaurants()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((restaurants: Restaurants) => {
+        this.restaurants.meta = restaurants.meta;
+
+        // otherwise completeInfiniteScroll and completeRefresher would complete too early!
+        if (this.restaurants.meta.isLoading) { return; }
+
+        this.restaurants.items = restaurants.items;
+
+        this.completeInfiniteScroll();
+        this.completeRefresher();
+
+        if (this.searchResultsLoading) {
+          this.searchResultsLoading = false;
+          this.content.scrollToTop(0).catch();
+        }
+
+      });
   }
 
   private completeInfiniteScroll() {

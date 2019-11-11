@@ -1,24 +1,29 @@
-<ion-header mode="ios">
-  <ion-toolbar mode="ios">
-    <ion-buttons mode="ios" slot="start">
-      <ion-back-button mode="ios" icon="ios-arrow-round-back" text=""></ion-back-button>
-    </ion-buttons>
-    <ion-title mode="ios">{{ restaurant?.title }}</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+<ion-content proto-parallax>
+  <ion-refresher mode="ios" slot="fixed" pullFactor="0.3"
+    (ionRefresh)="refresh($event)">
     <ion-refresher-content
-      pullingIcon="arrow-dropdown"
+      pullingIcon="arrow-down"
       [pullingText]="'REFRESHER.PULLING_TEXT' | translate"
-      refreshingSpinner="circles"
       [refreshingText]="'REFRESHER.REFRESHING_TEXT' | translate">
     </ion-refresher-content>
-  </ion-refresher>
+   </ion-refresher>
+    <div class="proto-parallax-container">
+      <div class="proto-parallax-element proto-parallax-element--main" parallax="0.6"
+        [ngClass]="{'is-skeleton': restaurant.isSkeleton }">
+        <proto-image [imageId]="restaurant.image" imageType="default"></proto-image>
+        <ion-back-button text="" defaultHref="" icon="ios-arrow-round-back" color="light" class="back-button"></ion-back-button>
+      </div>
+      <div class="proto-parallax-content detail-content">
+        <ion-spinner class="proto-spinner" *ngIf="restaurant.isSkeleton" color="dark"></ion-spinner>
 
-  <proto-image
-    [imageId]="restaurant?.image">
-  </proto-image>
-  <h1>{{ restaurant?.title }}</h1>
+        <ng-container *ngIf="!restaurant.isSkeleton">
+          <h1>{{ restaurant.title }}</h1>
+          <p>{{ restaurant.canonicalAddress }}</p> <br>
+          <small>
+            {{ 'VIEW.RESTAURANT_LIST.TIME_AGO' | translate }}
+            {{ restaurant.createdAt | amTimeAgo:true}}
+          </small>
+        </ng-container>
+      </div>
+    </div>
 </ion-content>

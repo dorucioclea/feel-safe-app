@@ -1,0 +1,59 @@
+// css only parallax
+// see https://developers.google.com/web/updates/2016/12/performant-parallaxing
+
+[proto-parallax] {
+
+  .proto-parallax {
+
+    &-container {
+      position: relative;
+    }
+
+    &-element {
+      top: 0;
+      z-index: 0;
+    }
+
+    &-image {
+      @include cover(3, 2, #fafafa, transparent);
+      z-index: 0;
+    }
+
+    &-content {
+      position: relative;
+      z-index: 1;
+      background: var(--ion-background-color);
+    }
+  }
+
+  .magic-pixel {
+    @include size(1px);
+  }
+}
+
+.webkit [proto-parallax] {
+
+  .proto-parallax {
+    &-container {
+      perspective: 1px;
+      perspective-origin: bottom right;
+      overflow: initial;
+    }
+
+    &-element {
+      position: sticky;
+      transform-style: preserve-3d;
+      transform-origin: bottom right;
+    }
+
+    &-content {
+      transform-style: preserve-3d;
+    }
+  }
+}
+
+.no-webkit {
+  .proto-parallax-element {
+    transform: none!important;
+  }
+}

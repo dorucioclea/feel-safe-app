@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { RestaurantModel } from '../shared/restaurant.model';
+import { RESTAURANT_DUMMY_DATA, RestaurantModel } from '../shared/restaurant.model';
 import { RestaurantService } from '../shared/restaurant.service';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
@@ -15,9 +15,9 @@ import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 })
 export class RestaurantDetailPage implements OnInit {
   public initialized = false;
-  public id: string;
-  public restaurant: RestaurantModel;
+  public restaurant: RestaurantModel = RESTAURANT_DUMMY_DATA[0];
 
+  private id: string;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   private refresherEvent: any;
 
@@ -28,25 +28,30 @@ export class RestaurantDetailPage implements OnInit {
 
   public ngOnInit() {
     this.id = this.activatedRoute.snapshot.params.id;
-
-    this.restaurantService.getRestaurantById(this.id)
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((restaurant) => {
-        this.restaurant = restaurant;
-
-        this.completeRefresher();
-      });
   }
 
   public ionViewDidEnter() {
     if (this.initialized) { return; }
 
     this.initialized = true;
+
+    this.loadRestaurant();
   }
 
   public refresh(event: any) {
     this.refresherEvent = event;
     this.restaurantService.refreshRestaurantById(this.id);
+  }
+
+  private loadRestaurant() {
+    this.restaurantService.getRestaurantById(this.id)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((restaurant) => {
+        console.log(restaurant);
+        this.restaurant = restaurant;
+
+        this.completeRefresher();
+      });
   }
 
   private completeRefresher() {
