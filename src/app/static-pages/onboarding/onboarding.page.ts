@@ -56,12 +56,14 @@ export class OnboardingPage implements OnInit {
   }
 
   public prev() {
-    this.slider.slidePrev();
+    this.slider.slidePrev().catch();
   }
 
   public next() {
     if (!this.lastSlideActive) {
-      return this.slider.slideNext();
+      this.slider.slideNext().catch();
+
+      return;
     }
 
     this.proceed(true);

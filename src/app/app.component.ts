@@ -46,7 +46,7 @@ export class AppComponent {
       if (this.platform.is('cordova')) {
         window.open = cordova.InAppBrowser.open;
 
-        this.statusBar.styleDefault();
+        this.statusBar.styleLightContent();
       }
 
       if (this.platform.is('android')) {
@@ -100,7 +100,7 @@ export class AppComponent {
 
   private handleConsole() {
     if (window.localStorage.getItem('PROTO_DEBUG')) { return; }
-    
+
     let methods: string[] = [];
 
     switch (environment.name) {
