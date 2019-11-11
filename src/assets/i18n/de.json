@@ -138,6 +138,9 @@
     },
     "LOGIN_ERROR": {
       "MESSAGE": "Deine Zugangsdaten sind nicht korrekt."
+    },
+    "PASSWORD_RESET": {
+      "MESSAGE": "Der Link ist ungültig oder abgelaufen."
     }
   },
   "FILTER": {

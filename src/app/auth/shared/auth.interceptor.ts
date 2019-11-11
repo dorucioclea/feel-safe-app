@@ -18,7 +18,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (request.url.indexOf(C.urls.url) > -1 && request.url.indexOf('auth') === -1 && request.url.indexOf('login') === -1) {
+    if (request.url.indexOf(C.urls.url) > -1 && request.url.indexOf('auth') === -1 && request.url.indexOf('login') === -1 && request.url.indexOf('reset-password') === -1) {
       if (this.storage.get('accessToken')) {
         const accessToken = this.storage.get('accessToken');
         request = request.clone({ headers: request.headers.set('Authorization', `${accessToken.id}`) });

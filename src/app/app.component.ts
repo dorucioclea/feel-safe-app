@@ -6,10 +6,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from 'src/app/auth/shared/auth.service';
+import { C } from './@shared/constants';
+import { DeeplinkService } from 'src/app/@core/deeplink.service';
 import { PushService } from 'src/app/@core/push.service';
 import { UserService } from 'src/app/user/shared/user.service';
 import { environment } from '../environments/environment';
-import { C } from './@shared/constants';
 
 declare var cordova: any;
 declare var window: any;
@@ -27,6 +28,7 @@ export class AppComponent {
 
   constructor(
     private authService: AuthService,
+    private deeplinkService: DeeplinkService,
     private platform: Platform,
     private pushService: PushService,
     private splashScreen: SplashScreen,
@@ -41,6 +43,8 @@ export class AppComponent {
     this.handleConsole();
 
     this.platform.ready().then(async () => {
+      this.deeplinkService.initialize();
+      
       this.setTranslateConfig();
 
       if (this.platform.is('cordova')) {

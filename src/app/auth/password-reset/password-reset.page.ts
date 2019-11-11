@@ -75,7 +75,7 @@ export class PasswordResetPage implements OnInit {
       this.showResetSuccessMessage = true;
     }).catch((error) => {
       console.error(error);
-      this.onSubmitFailed(this.translate.instant('TOAST.SAVE_ERROR.MESSAGE'));
+      this.onSubmitFailed(this.translate.instant('TOAST.PASSWORD_RESET.MESSAGE'));
       this.isLoading = false;
     });
   }
