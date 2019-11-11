@@ -14,8 +14,8 @@ export class LanguageSwitchComponent implements OnInit {
   public currentLanguage: string;
 
   constructor(
-    private translate: TranslateService,
     private languageService: LanguageService,
+    private translate: TranslateService,
   ) { }
 
   public ngOnInit() {
