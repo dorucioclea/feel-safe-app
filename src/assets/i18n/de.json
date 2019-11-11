@@ -137,7 +137,7 @@
       "MESSAGE": "Dieser Account existiert nicht."
     },
     "LOGIN_ERROR": {
-      "MESSAGE": "Ihre Nutzerdaten sind nicht korrekt."
+      "MESSAGE": "Deine Zugangsdaten sind nicht korrekt."
     }
   },
   "FILTER": {
