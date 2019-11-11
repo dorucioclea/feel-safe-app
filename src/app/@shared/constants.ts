@@ -22,8 +22,8 @@ export class C {
     number: appVersionFromConfigXml,
   };
 
-  public static availableLanguages = ['en', 'de'];
-  public static defaultLanguage = 'en';
+  public static availableLanguages = ['de', 'en'];
+  public static defaultLanguage = 'de';
 
   public static appReloadThreshold = 3600000;
 

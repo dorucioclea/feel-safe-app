@@ -29,7 +29,9 @@
       {{ 'VIEW.MORE.ONBOARDING' | translate }}
       <ion-icon name="refresh" slot="end" color="dark"></ion-icon>
     </ion-item>
-    <proto-language-switch></proto-language-switch>
+
+    <proto-language-switch *ngIf="showLanguageSwitcher"></proto-language-switch>
+
     <ion-item class="proto-item" detail="false"
       (click)="logout()">
       {{ 'BUTTON.LOGOUT' | translate }}

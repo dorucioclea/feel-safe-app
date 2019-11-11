@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from 'src/app/auth/shared/auth.service';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
+import { C } from 'src/app/@shared/constants';
 
 @HideSplash()
 @Component({
@@ -15,6 +16,7 @@ import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 })
 export class MoreMenuPage implements OnInit {
   public onboardingReturnUrl: string;
+  public showLanguageSwitcher = false;
 
   constructor(
     private alertController: AlertController,
@@ -27,6 +29,8 @@ export class MoreMenuPage implements OnInit {
 
   public ngOnInit() {
     this.onboardingReturnUrl = this.router.routerState.snapshot.url;
+
+    this.showLanguageSwitcher = C.availableLanguages.length > 1;
   }
 
   public async logout() {
