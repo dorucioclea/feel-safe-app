@@ -35,6 +35,8 @@ export class DeeplinkService {
     // TODO: implement deeplink handling
     console.log('Handle deeplink', data);
 
+    if (typeof data === 'string') { return; } 
+
     if (data.$link.path.indexOf('/password-reset') > -1) {
       const parts = data.$link.path.split('/');
 
