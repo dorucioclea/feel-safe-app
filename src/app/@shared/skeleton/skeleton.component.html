@@ -1,0 +1,40 @@
+<!-- COMPANY SKELETON -->
+<ng-container *ngIf="type === 'company'">
+  <div class="proto-card proto-card--company" *ngFor="let item of items">
+    <div class="proto-card__header">
+      <h3 class="proto-card-title">xxxxxxxxxxxxxxxx</h3>
+    </div>
+    <ul class="proto-card-list" handle-external-links>
+      <li>xxxxxxxxxxxxxxxxxxxxxxxxx</li>
+      <li>xxxxxxxxxxxxxx</li>
+    </ul>
+  </div>
+</ng-container>
+
+<!-- PROJECT_INFORMATION SKELETON -->
+<ng-container *ngIf="type === 'detail'">
+  <ion-list-header class="proto-cards-header"></ion-list-header>
+  <div class="proto-card proto-card--info">
+    <ul class="proto-card-table">
+      <li class="proto-card-table__row"></li>
+      <li class="proto-card-table__row"></li>
+      <li class="proto-card-table__row"></li>
+    </ul>
+  </div>
+  <ion-list-header class="proto-cards-header"></ion-list-header>
+  <div class="proto-card proto-card--info"></div>
+</ng-container>
+
+<!-- DEFAULT SKELETON -->
+<ng-container *ngIf="type !== 'restaurant' && type !== 'detail'">
+  <ion-list-header *ngIf="type === 'project-lists' || type === 'task-lists'" class="proto-cards-header"></ion-list-header>
+  <div class="proto-card" *ngFor="let item of items">
+    <div class="proto-card__header">
+      <h2 class="proto-card-title">xxxxxxxxxxx</h2>
+    </div>
+    <h3 class="proto-card-company">xxxxxxxxxxxxxxxxx</h3>
+    <div class="proto-card__footer">
+      <h5 class="proto-card-date">xxxxxxxxxxxxxx</h5>
+    </div>
+  </div>
+</ng-container>

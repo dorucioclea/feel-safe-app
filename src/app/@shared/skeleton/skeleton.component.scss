@@ -1,0 +1,52 @@
+:host {
+  display: block;
+
+  .proto-card {
+    min-height: 85px;
+    background: var(--ion-color-tertiary);
+
+    &--company {
+      min-height: 110px;
+    }
+
+    &--info {
+      min-height: 100px;
+    }
+  }
+
+  .proto-card-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .proto-cards-header,
+  .proto-card-title,
+  .proto-card-company,
+  .proto-card-date,
+  .proto-card-list li {
+    height: 15px;
+    margin-top: 4px;
+    color: transparent;
+    background: #e6efed;
+    border-radius: 8px;
+  }
+
+  .proto-cards-header {
+    width: 50%;
+    min-height: 0;
+    margin-top: var(--proto-space-xxl);
+    background: #eee;
+  }
+
+  .proto-card-company {
+    max-width: 50%;
+  }
+
+  .proto-card-table__row {
+    height: 21px;
+    background: #e6efed;
+    border-radius: 8px;
+
+  }
+}

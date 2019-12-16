@@ -14,6 +14,7 @@ import { LanguageSwitchComponent } from './language-switch/language-switch.compo
 import { ProtoImageComponent } from './proto-image/proto-image.component';
 import { ProtoParallaxDirective } from './proto-parallax.directive';
 import { ShowHidePasswordComponent } from './show-hide-password/show-hide-password.component';
+import { SkeletonComponent } from 'src/app/@shared/skeleton/skeleton.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ShowHidePasswordComponent } from './show-hide-password/show-hide-passwo
     ProtoImageComponent,
     ProtoParallaxDirective,
     ShowHidePasswordComponent,
+    SkeletonComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +52,7 @@ import { ShowHidePasswordComponent } from './show-hide-password/show-hide-passwo
     ProtoParallaxDirective,
     ReactiveFormsModule,
     ShowHidePasswordComponent,
+    SkeletonComponent,
     TranslateModule,
   ],
 })
