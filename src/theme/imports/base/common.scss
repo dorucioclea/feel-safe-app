@@ -21,6 +21,15 @@
   }
 }
 
+.error-state {
+  text-align: center;
+  margin: var(--proto-space);
+
+  h2 {
+    margin-bottom: var(--proto-space-m);
+  }
+}
+
 // hide scrollbar by default
 ::-webkit-scrollbar {
   display: none;
