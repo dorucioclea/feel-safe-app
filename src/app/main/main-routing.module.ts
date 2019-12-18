@@ -59,4 +59,4 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 // tslint:disable-next-line
-export class MainPageRoutingModule { }
+export class MainRoutingModule { }
