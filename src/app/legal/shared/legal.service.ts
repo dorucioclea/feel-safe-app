@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { AgreementModel } from 'src/app/legal/shared/agreement.model';
-import { C } from 'src/app/@shared/constants';
+import { URL } from 'src/app/@shared/url';
 
 @Injectable({
   providedIn: 'root',
@@ -14,11 +14,11 @@ export class LegalService {
   ) { }
 
   public getLatestAgreement(agreementType: string): Observable<AgreementModel> {
-    return this.http.get<AgreementModel>(`${C.urls.agreements}/${agreementType}/latest`);
+    return this.http.get<AgreementModel>(`${URL.agreements}/${agreementType}/latest`);
   }
 
   public consentToAgreement(agreementId: string, agreement: AgreementModel, agreementType: string) {
-    return this.http.post(`${C.urls.consents}`, {
+    return this.http.post(`${URL.consents}`, {
       agreementId: agreementId,
       agreement: agreement,
       agreementType: agreementType,
@@ -26,6 +26,6 @@ export class LegalService {
   }
 
   public checkForRequiredActions(): Promise<any[]> {
-    return this.http.get<any[]>(`${C.urls.agreements}/require-action`).toPromise();
+    return this.http.get<any[]>(`${URL.agreements}/require-action`).toPromise();
   }
 }

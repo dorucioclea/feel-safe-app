@@ -1,6 +1,7 @@
 import * as moment from 'moment';
 
 import { C } from './constants';
+import { URL } from './url';
 
 export interface ImageSource {
   large: string
@@ -110,16 +111,16 @@ export class AppHelper {
       return this.getFallbackImage(id, width);
     }
     if (!width) {
-      return `${C.urls.files}/${id}/download`;
+      return `${URL.files}/${id}/download`;
     }
     if (!height) {
-      return `${C.urls.files}/${id}/download?square=${width}`;
+      return `${URL.files}/${id}/download?square=${width}`;
     }
     if (height === 'auto') {
-      return `${C.urls.files}/${id}/download?width=${width}`;
+      return `${URL.files}/${id}/download?width=${width}`;
     }
 
-    return `${C.urls.files}/${id}/download?width=${width}&height=${height}`;
+    return `${URL.files}/${id}/download?width=${width}&height=${height}`;
   }
 
   public static sortByTitle(a: any, b: any) {

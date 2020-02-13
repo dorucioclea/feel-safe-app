@@ -3,7 +3,7 @@ import { FileTransfer, FileTransferObject, FileUploadOptions } from '@ionic-nati
 import { HttpClient } from '@angular/common/http';
 
 import { AuthService } from '../auth/shared/auth.service';
-import { C } from '../@shared/constants';
+import { URL } from '../@shared/url';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class FileUploadService {
   ) {}
 
   public upload(filepath: any) {
-    const url = `${C.urls.files}/upload`;
+    const url = `${URL.files}/upload`;
     let fileName = filepath.split('/');
     fileName = fileName[fileName.length - 1];
 
@@ -34,14 +34,14 @@ export class FileUploadService {
   }
 
   public uploadFromUrl(fileUrl: string) {
-    const url = `${C.urls.files}/upload-from-url`;
+    const url = `${URL.files}/upload-from-url`;
 
     return this.http.post(url, { url: fileUrl })
       .toPromise();
   }
 
   public delete(fileId: string) {
-    const url = `${C.urls.files}/${fileId}`;
+    const url = `${URL.files}/${fileId}`;
 
     return this.http.delete(url)
       .toPromise();

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { C } from 'src/app/@shared/constants';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
 import { map, tap } from 'rxjs/operators';
 
 import { StorageService } from 'src/app/@core/storage.service';
+import { URL } from 'src/app/@shared/url';
 import { UserModel, UserSource } from './user.model';
 
 interface UserDetailsStore {
@@ -53,7 +53,7 @@ export class UserService {
 
     if (!currentUser) { return; }
 
-    const url = `${C.urls.users}/${currentUser.id}`;
+    const url = `${URL.users}/${currentUser.id}`;
 
     return this.http.get<UserSource>(url)
       .pipe(
@@ -89,7 +89,7 @@ export class UserService {
   }
 
   public getUserById(id: string): Observable<UserModel> {
-    const url = `${C.urls.users}/${id}/`;
+    const url = `${URL.users}/${id}/`;
 
     return this.http.get<UserSource>(url)
       .pipe(
@@ -100,7 +100,7 @@ export class UserService {
   public updateUserAttributes(attributes: any) {
     const user = this.getCurrentUser();
     if (!user) { return Promise.reject('No user logged in yet'); }
-    const url = `${C.urls.url}/users/${user.id}/`;
+    const url = `${URL.users}/${user.id}/`;
 
     return this.http.patch<UserSource>(url, attributes)
       .pipe(
@@ -114,7 +114,7 @@ export class UserService {
   }
 
   public destroyCurrentUser() {
-    const url = `${C.urls.users}/${this.getCurrentUser().id}`;
+    const url = `${URL.users}/${this.getCurrentUser().id}`;
 
     return this.http.delete(url)
       .toPromise();
@@ -123,7 +123,7 @@ export class UserService {
   public blockUserById(blockedUserId: string): Promise<any> {
     const currentUser = this.getCurrentUser();
 
-    const url = `${C.urls.users}/${currentUser.id}/blockedUsers`;
+    const url = `${URL.users}/${currentUser.id}/blockedUsers`;
 
     const data = {
       blockedUserId: blockedUserId,
@@ -134,7 +134,7 @@ export class UserService {
   }
 
   private loadUserDetail(userId: string): Observable<UserModel> {
-    const url = `${C.urls.users}/${userId}`;
+    const url = `${URL.users}/${userId}`;
 
     return this.http.get(url)
       .pipe(
