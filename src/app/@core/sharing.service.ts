@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
-import { C } from '../@shared/constants';
 import { Platform } from '@ionic/angular';
+import { URL } from '../@shared/url';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +30,6 @@ export class SharingService {
   }
 
   public shareFab(fabId: string) {
-    this.share(null, null, `${C.urls.shareFab}/${fabId}`);
+    this.share(null, null, `${URL.shareFab}/${fabId}`);
   }
 }

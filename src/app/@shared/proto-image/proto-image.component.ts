@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, Input, ElementRef, Renderer2 } from '@angular/core';
 
-import { C } from '../constants';
 import {
   ProtoImageConfig as Config,
   ProtoImageType as imageType,
 } from './proto-image.config';
+import { URL } from 'src/app/@shared/url';
 
 @Component({
   selector: 'proto-image',
@@ -75,12 +75,12 @@ export class ProtoImageComponent implements OnInit {
     if (id.includes('fallback')) { return this.getFallbackImage(id, width); }
 
     // original size
-    if (!width) { return `${C.urls.files}/${id}/download`; }
+    if (!width) { return `${URL.files}/${id}/download`; }
 
     // squared image
-    if (!height) { return `${C.urls.files}/${id}/download?square=${width}`; }
+    if (!height) { return `${URL.files}/${id}/download?square=${width}`; }
 
-    return `${C.urls.files}/${id}/download?width=${width}&height=${height}`;
+    return `${URL.files}/${id}/download?width=${width}&height=${height}`;
   }
 
   private getFallbackImage(name: string, width?: number): string {

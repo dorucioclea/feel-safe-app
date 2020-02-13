@@ -4,8 +4,8 @@ import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 
-import { C } from 'src/app/@shared/constants';
 import { StorageService } from 'src/app/@core/storage.service';
+import { URL } from 'src/app/@shared/url';
 import { UserService } from 'src/app/user/shared/user.service';
 
 export interface PushStatus {
@@ -78,7 +78,7 @@ export class PushService {
 
     this.pushObject.on('registration').subscribe((registration) => {
       console.log('PUSH REGISTRATION', registration);
-      this.updatePushToken(registration.registrationId).catch();
+      this.updatePushToken(registration.registrationId);
     });
   }
 
@@ -87,7 +87,7 @@ export class PushService {
 
     if (!currentUser) { return Promise.resolve(); }
 
-    const url = `${C.urls.users}/${currentUser.id}/set-push-token`;
+    const url = `${URL.users}/${currentUser.id}/set-push-token`;
 
     return this.http.post(url, { token: token })
       .pipe(

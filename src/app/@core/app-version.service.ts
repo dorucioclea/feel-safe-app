@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Platform } from '@ionic/angular';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 
-import { C } from '../@shared/constants';
+import { C } from 'src/app/@shared/constants';
 import { StorageService } from './storage.service';
+import { URL } from 'src/app/@shared/url';
 
 @Injectable({
   providedIn: 'root',
@@ -88,7 +89,7 @@ export class AppVersionService {
   }
 
   private getRemoteVersions() {
-    const url = `${C.urls.appVersions}`;
+    const url = `${URL.appVersions}`;
 
     return this.http.get(url).toPromise();
   }

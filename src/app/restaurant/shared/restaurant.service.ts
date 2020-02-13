@@ -4,10 +4,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { tap, map, mergeMap } from 'rxjs/operators';
 
 import { AppHelper } from 'src/app/@shared/app-helper';
-import { C } from 'src/app/@shared/constants';
 import { ProtoItems } from 'src/app/@shared/proto-items.interface';
-import { RestaurantModel, RestaurantSource } from './restaurant.model';
 import { RestaurantCategoryModel, RestaurantCategorySource } from 'src/app/restaurant/shared/restaurant-category.model';
+import { RestaurantModel, RestaurantSource } from './restaurant.model';
+import { URL } from 'src/app/@shared/url';
 
 export interface Restaurants extends ProtoItems {
   items: RestaurantModel[],
@@ -152,7 +152,7 @@ export class RestaurantService {
       filter.where = Object.assign(filter.where, this.search);
     }
 
-    const url = `${C.urls.restaurants}?filter=${encodeURIComponent(JSON.stringify(filter))}`;
+    const url = `${URL.restaurants}?filter=${encodeURIComponent(JSON.stringify(filter))}`;
 
     let totalCount = 0;
 
@@ -182,7 +182,7 @@ export class RestaurantService {
   }
 
   private loadRestaurantById(restaurantId: string) {
-    const url = `${C.urls.restaurants}/${restaurantId}`;
+    const url = `${URL.restaurants}/${restaurantId}`;
 
     return this.http.get<RestaurantSource>(url)
       .pipe(
@@ -212,7 +212,7 @@ export class RestaurantService {
   }
 
   private loadCategories() {
-    const url = `${C.urls.restaurantCategories}`;
+    const url = `${URL.restaurantCategories}`;
 
     return this.http.get<RestaurantCategorySource[]>(url)
       .pipe(
