@@ -4,7 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AuthService } from 'src/app/auth/shared/auth.service';
+import { AuthService } from 'src/app/auth/@shared/auth.service';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 import { C } from 'src/app/@shared/constants';
 

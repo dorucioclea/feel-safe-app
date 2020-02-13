@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { AgreementModel } from 'src/app/legal/shared/agreement.model';
+import { AgreementModel } from 'src/app/legal/@shared/agreement.model';
 import { URL } from 'src/app/@shared/url';
 
 @Injectable({

@@ -5,7 +5,7 @@ import { tap, map, mergeMap } from 'rxjs/operators';
 
 import { AppHelper } from 'src/app/@shared/app-helper';
 import { ProtoItems } from 'src/app/@shared/proto-items.interface';
-import { RestaurantCategoryModel, RestaurantCategorySource } from 'src/app/restaurant/shared/restaurant-category.model';
+import { RestaurantCategoryModel, RestaurantCategorySource } from 'src/app/restaurant/@shared/restaurant-category.model';
 import { RestaurantModel, RestaurantSource } from './restaurant.model';
 import { URL } from 'src/app/@shared/url';
 

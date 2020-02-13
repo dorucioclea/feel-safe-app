@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 
 import { StorageService } from 'src/app/@core/storage.service';
 import { URL } from 'src/app/@shared/url';
-import { UserService } from 'src/app/user/shared/user.service';
+import { UserService } from 'src/app/user/@shared/user.service';
 
 export interface PushStatus {
   softPermission: 'unknown' | 'allowed' | 'denied',

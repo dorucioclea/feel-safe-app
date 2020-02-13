@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { RESTAURANT_DUMMY_DATA, RestaurantModel } from '../shared/restaurant.model';
-import { RestaurantService } from '../shared/restaurant.service';
+import { RESTAURANT_DUMMY_DATA, RestaurantModel } from '../@shared/restaurant.model';
+import { RestaurantService } from '../@shared/restaurant.service';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
 @HideSplash()

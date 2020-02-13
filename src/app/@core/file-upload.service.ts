@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FileTransfer, FileTransferObject, FileUploadOptions } from '@ionic-native/file-transfer/ngx';
 import { HttpClient } from '@angular/common/http';
 
-import { AuthService } from '../auth/shared/auth.service';
+import { AuthService } from '../auth/@shared/auth.service';
 import { URL } from '../@shared/url';
 
 @Injectable({

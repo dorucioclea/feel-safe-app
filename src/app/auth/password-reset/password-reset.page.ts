@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from 'src/app/auth/shared/auth.service';
+import { AuthService } from 'src/app/auth/@shared/auth.service';
 import { C } from 'src/app/@shared/constants';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 import { ToastService } from '../../@core/toast.service';

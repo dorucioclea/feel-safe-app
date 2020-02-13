@@ -5,11 +5,11 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AuthService } from 'src/app/auth/shared/auth.service';
+import { AuthService } from 'src/app/auth/@shared/auth.service';
 import { C } from './@shared/constants';
 import { DeeplinkService } from 'src/app/@core/deeplink.service';
 import { PushService } from 'src/app/@core/push.service';
-import { UserService } from 'src/app/user/shared/user.service';
+import { UserService } from 'src/app/user/@shared/user.service';
 import { environment } from '../environments/environment';
 
 declare var cordova: any;

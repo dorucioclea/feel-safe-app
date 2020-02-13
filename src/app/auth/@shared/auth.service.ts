@@ -8,8 +8,8 @@ import { DeeplinkService } from 'src/app/@core/deeplink.service';
 import { InAppBrowserService } from 'src/app/@core/in-app-browser.service';
 import { StorageService } from 'src/app/@core/storage.service';
 import { URL } from 'src/app/@shared/url';
-import { UserService } from 'src/app/user/shared/user.service';
-import { UserSource, UserModel } from 'src/app/user/shared/user.model';
+import { UserService } from 'src/app/user/@shared/user.service';
+import { UserSource, UserModel } from 'src/app/user/@shared/user.model';
 
 export interface LoginData {
   email: string,

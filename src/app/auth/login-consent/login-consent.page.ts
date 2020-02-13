@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { AgreementModel } from 'src/app/legal/shared/agreement.model';
-import { LegalService } from 'src/app/legal/shared/legal.service';
+import { AgreementModel } from 'src/app/legal/@shared/agreement.model';
+import { LegalService } from 'src/app/legal/@shared/legal.service';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
 @HideSplash()
