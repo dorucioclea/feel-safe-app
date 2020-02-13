@@ -100,7 +100,7 @@ export class UserService {
   public updateUserAttributes(attributes: any) {
     const user = this.getCurrentUser();
     if (!user) { return Promise.reject('No user logged in yet'); }
-    const url = `${URL.url}/users/${user.id}/`;
+    const url = `${URL.users}/${user.id}/`;
 
     return this.http.patch<UserSource>(url, attributes)
       .pipe(
