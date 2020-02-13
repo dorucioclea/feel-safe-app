@@ -76,8 +76,8 @@ export class URL {
   public static needsAuthentication(url: string, method: string) {
     if (url.indexOf(this.url) < 0) { return false; }
 
-    let path = url.split('?')[0];
-    path = path.replace(this.url, '');
+    const urlWithoutParams = url.split('?')[0];
+    const path = urlWithoutParams.replace(this.url, '');
 
     const endpoint = this.endpointsWithoutAuthentication.find((endpoint) => endpoint.path === path);
 
