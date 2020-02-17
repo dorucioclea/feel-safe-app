@@ -5,9 +5,11 @@ import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 
 import { AgreementModel } from 'src/app/legal/@shared/agreement.model';
-import { LegalService } from 'src/app/legal/@shared/legal.service';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
+import { LegalService } from 'src/app/legal/@shared/legal.service';
+import { PageTrack } from 'src/app/@shared/page-track.decorator';
 
+@PageTrack()
 @HideSplash()
 @Component({
   selector: 'app-agreement',

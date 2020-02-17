@@ -3,14 +3,16 @@ import { ModalController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { RestaurantService } from 'src/app/restaurant/@shared/restaurant.service';
-import { RestaurantCategoryModel } from 'src/app/restaurant/@shared/restaurant-category.model';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
+import { PageTrack } from 'src/app/@shared/page-track.decorator';
+import { RestaurantCategoryModel } from 'src/app/restaurant/@shared/restaurant-category.model';
+import { RestaurantService } from 'src/app/restaurant/@shared/restaurant.service';
 
 const MIN_DISTANCE = 1;
 const MAX_DISTANCE = 50;
 const DEFAULT_DISTANCE = 25;
 
+@PageTrack()
 @HideSplash()
 @Component({
   selector: 'page-restaurant-filter',

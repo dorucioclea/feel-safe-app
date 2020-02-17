@@ -5,9 +5,11 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from 'src/app/auth/@shared/auth.service';
-import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 import { C } from 'src/app/@shared/constants';
+import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
+import { PageTrack } from 'src/app/@shared/page-track.decorator';
 
+@PageTrack()
 @HideSplash()
 @Component({
   selector: 'page-more-menu',

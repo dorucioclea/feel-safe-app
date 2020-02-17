@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 
+import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
+import { PageTrack } from 'src/app/@shared/page-track.decorator';
+
+@PageTrack()
 @HideSplash()
 @Component({
   selector: 'page-imprint',

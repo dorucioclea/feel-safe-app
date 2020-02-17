@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -18,4 +18,10 @@ import { AuthInterceptor } from '../auth/@shared/auth.interceptor';
   ],
 })
 // tslint:disable-next-line
-export class CoreModule { }
+export class CoreModule {
+  public static injector: Injector;
+
+  constructor(injector: Injector) {
+    CoreModule.injector = injector;
+  }
+}

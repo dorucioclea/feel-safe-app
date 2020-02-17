@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 import { C } from 'src/app/@shared/constants';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
+import { PageTrack } from 'src/app/@shared/page-track.decorator';
 import { ToastService } from 'src/app/@core/toast.service';
-import { TranslateService } from '@ngx-translate/core';
 import { UserModel } from 'src/app/user/@shared/user.model';
 import { UserService } from 'src/app/user/@shared/user.service';
 
+@PageTrack()
 @HideSplash()
 @Component({
   selector: 'page-user-edit',

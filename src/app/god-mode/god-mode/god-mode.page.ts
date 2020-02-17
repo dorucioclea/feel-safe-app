@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { C } from 'src/app/@shared/constants';
-import { StorageService } from 'src/app/@core/storage.service';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
+import { PageTrack } from 'src/app/@shared/page-track.decorator';
+import { StorageService } from 'src/app/@core/storage.service';
 
+@PageTrack()
 @HideSplash()
 @Component({
   selector: 'page-god-mode',

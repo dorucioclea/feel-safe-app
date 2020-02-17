@@ -3,15 +3,17 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalController, NavController } from '@ionic/angular';
 import { ModalOptions } from '@ionic/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from 'src/app/auth/@shared/auth.service';
 import { C } from 'src/app/@shared/constants';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 import { LegalService } from 'src/app/legal/@shared/legal.service';
 import { LoginConsentPage } from 'src/app/auth/login-consent/login-consent.page';
-import { ToastService } from '../../@core/toast.service';
-import { TranslateService } from '@ngx-translate/core';
+import { PageTrack } from 'src/app/@shared/page-track.decorator';
+import { ToastService } from 'src/app/@core/toast.service';
 
+@PageTrack()
 @HideSplash()
 @Component({
   selector: 'app-login',

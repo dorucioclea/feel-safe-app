@@ -5,11 +5,13 @@ import { IonContent, ModalController } from '@ionic/angular';
 import { ModalOptions } from '@ionic/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { RESTAURANT_DUMMY_DATA } from '../@shared/restaurant.model';
-import { RestaurantService, Restaurants } from '../@shared/restaurant.service';
-import { RestaurantFilterPage } from 'src/app/restaurant/restaurant-filter/restaurant-filter.page';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
+import { PageTrack } from 'src/app/@shared/page-track.decorator';
+import { RESTAURANT_DUMMY_DATA } from '../@shared/restaurant.model';
+import { RestaurantFilterPage } from 'src/app/restaurant/restaurant-filter/restaurant-filter.page';
+import { RestaurantService, Restaurants } from '../@shared/restaurant.service';
 
+@PageTrack()
 @HideSplash()
 @Component({
   selector: 'page-restaurant-list',

@@ -4,9 +4,11 @@ import { IonSlides, NavController } from '@ionic/angular';
 
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 import { LanguageService } from 'src/app/@core/language.service';
+import { PageTrack } from 'src/app/@shared/page-track.decorator';
 import { PushService } from 'src/app/@core/push.service';
 import { StorageService } from 'src/app/@core/storage.service';
 
+@PageTrack()
 @HideSplash()
 @Component({
   selector: 'app-onboarding',
