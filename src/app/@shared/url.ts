@@ -1,4 +1,7 @@
+import { AppHelper } from 'src/app/@shared/app-helper';
 import { environment } from '../../environments/environment';
+
+type Params = { queryParams?: any, filter?: any };
 
 /* tslint:disable-next-line */
 export class URL {
@@ -35,7 +38,9 @@ export class URL {
   }
 
   public static get restaurants() {
-    return this.url + '/restaurants';
+    return (id?: string, params?: Params) => {
+      return `${this.url}/restaurants${id ? `/${id}` : ''}${this.transformParamsToString(params)}`;
+    }
   }
 
   public static get restaurantCategories() {
@@ -44,14 +49,6 @@ export class URL {
 
   public static get tags() {
     return this.url + '/tags';
-  }
-
-  public static get votes() {
-    return this.url + '/votes';
-  }
-
-  public static get shareFab() {
-    return this.baseUrl + '/fabs';
   }
 
   public static get apiVersion() {
@@ -84,5 +81,21 @@ export class URL {
     if (!endpoint || endpoint.methods.includes(method)) { return true; }
 
     return false;
+  }
+
+  private static transformParamsToString(params: Params) {
+    const queryParams = params.queryParams || {};
+    let filterString = '';
+    let queryParamsString = '';
+        
+    if (params.filter) {
+      filterString = `filter=${encodeURIComponent(JSON.stringify(params.filter))}`;
+    }
+
+    if (params.queryParams) {
+      queryParamsString = `${filterString ? '&' : ''}${AppHelper.urlParamsFromObject(queryParams)}`;
+    }
+
+    return `?${filterString}${queryParamsString}`;
   }
 }

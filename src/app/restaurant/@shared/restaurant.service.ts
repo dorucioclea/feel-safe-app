@@ -152,7 +152,7 @@ export class RestaurantService {
       filter.where = Object.assign(filter.where, this.search);
     }
 
-    const url = `${URL.restaurants}?filter=${encodeURIComponent(JSON.stringify(filter))}`;
+    const url = URL.restaurants(null, { filter });
 
     let totalCount = 0;
 
@@ -182,7 +182,7 @@ export class RestaurantService {
   }
 
   private loadRestaurantById(restaurantId: string) {
-    const url = `${URL.restaurants}/${restaurantId}`;
+    const url = URL.restaurants(restaurantId);
 
     return this.http.get<RestaurantSource>(url)
       .pipe(
