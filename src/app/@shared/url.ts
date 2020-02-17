@@ -1,5 +1,5 @@
-import { AppHelper } from 'src/app/@shared/app-helper';
 import { environment } from '../../environments/environment';
+import { urlParamsFromObject } from 'src/app/@shared/utils';
 
 type Params = { queryParams?: any, filter?: any };
 
@@ -99,7 +99,7 @@ export class URL {
     }
 
     if (params.queryParams) {
-      queryParamsString = `${filterString ? '&' : ''}${AppHelper.urlParamsFromObject(params.queryParams)}`;
+      queryParamsString = `${filterString ? '&' : ''}${urlParamsFromObject(params.queryParams)}`;
     }
 
     return `?${filterString}${queryParamsString}`;

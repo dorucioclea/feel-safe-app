@@ -3,11 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap, map, mergeMap } from 'rxjs/operators';
 
-import { AppHelper } from 'src/app/@shared/app-helper';
 import { ProtoItems } from 'src/app/@shared/proto-items.interface';
 import { RestaurantCategoryModel, RestaurantCategorySource } from 'src/app/restaurant/@shared/restaurant-category.model';
 import { RestaurantModel, RestaurantSource } from './restaurant.model';
 import { URL } from 'src/app/@shared/url';
+import { isEmptyObject } from 'src/app/@shared/utils';
 
 export interface Restaurants extends ProtoItems {
   items: RestaurantModel[],
@@ -91,7 +91,7 @@ export class RestaurantService {
   }
 
   public getRestaurants(): Observable<Restaurants> {
-    this.restaurantsStore = { items: [], meta: { isFirstLoad: true, isLoading: true, filterIsActive: AppHelper.isEmptyObject(this.whereFilter), whereFilter: this.whereFilter, orderBy: this.orderBy } };
+    this.restaurantsStore = { items: [], meta: { isFirstLoad: true, isLoading: true, filterIsActive: isEmptyObject(this.whereFilter), whereFilter: this.whereFilter, orderBy: this.orderBy } };
     this.restaurants.next(this.restaurantsStore);
 
     this.loadRestaurants().toPromise().catch((error) => {
@@ -148,7 +148,7 @@ export class RestaurantService {
       order: this.orderBy,
     };
 
-    if (!AppHelper.isEmptyObject(this.search)) {
+    if (!isEmptyObject(this.search)) {
       filter.where = Object.assign(filter.where, this.search);
     }
 
@@ -227,7 +227,7 @@ export class RestaurantService {
   private updateFilter() {
     this.restaurantsStore.items = [];
     this.restaurantsStore.meta.isLoading = true;
-    this.restaurantsStore.meta.filterIsActive = AppHelper.isEmptyObject(this.whereFilter);
+    this.restaurantsStore.meta.filterIsActive = isEmptyObject(this.whereFilter);
     this.restaurantsStore.meta.whereFilter = this.whereFilter;
     this.restaurantsStore.meta.orderBy = this.orderBy;
     this.restaurants.next(this.restaurantsStore);
