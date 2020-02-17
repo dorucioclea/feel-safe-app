@@ -78,7 +78,7 @@ export class URL {
 
     const endpoint = this.endpointsWithoutAuthentication.find((endpoint) => endpoint.path === path);
 
-    if (!endpoint || endpoint.methods.includes(method)) { return true; }
+    if (!endpoint || !endpoint.methods.includes(method)) { return true; }
 
     return false;
   }
