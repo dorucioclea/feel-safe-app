@@ -32,7 +32,7 @@ export class MainPage implements OnInit {
       path: '/main/more',
       iconName: 'options',
       label: 'VIEW.MORE.TITLE',
-    }
+    },
   ];
 
   constructor(
@@ -51,7 +51,7 @@ export class MainPage implements OnInit {
 
   private isTabPath(path: string) {
 
-    return this.tabs.filter(tab => tab.path === path).length > 0;
+    return this.tabs.filter((tab) => tab.path === path).length > 0;
   }
 
   private handleBackButton() {
