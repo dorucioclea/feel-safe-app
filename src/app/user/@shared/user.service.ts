@@ -108,8 +108,8 @@ export class UserService {
       .toPromise();
   }
 
-  public destroyCurrentUser() {
-    return this.http.delete(URL.usersById(this.getCurrentUser().id))
+  public deleteAccount(email: string, password: string) {
+    return this.http.post(URL.usersDeleteAccount(this.getCurrentUser().id), { email, password })
       .toPromise();
   }
 

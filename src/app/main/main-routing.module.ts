@@ -29,6 +29,14 @@ const routes: Routes = [
             loadChildren: () => import('../static-pages/more-menu/more-menu.page.module').then((mod) => mod.MoreMenuPageModule),
           },
           {
+            path: 'profile',
+            loadChildren: () => import('src/app/user/user-edit/user-edit.page.module').then((mod) => mod.UserEditPageModule),
+          },
+          {
+            path: 'delete-user',
+            loadChildren: () => import('src/app/user/user-delete/user-delete.page.module').then((mod) => mod.UserDeletePageModule),
+          },
+          {
             path: 'imprint',
             loadChildren: () => import('../static-pages/imprint/imprint.page.module').then((mod) => mod.ImprintPageModule),
           },

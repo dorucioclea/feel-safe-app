@@ -11,7 +11,10 @@
     "REGISTER": "Register",
     "REQUEST_NEW_PASSWORD": "Request new password",
     "RESET_FILTER": "Reset filter",
-    "RESET_PASSWORD": "Reset password"
+    "RESET_PASSWORD": "Reset password",
+    "TAKE_PICTURE": "Take picture",
+    "SELECT_IMAGE": "Select picture",
+    "DELETE_ACCOUNT": "Delete account"
   },
   "INPUT": {
     "LABEL": {
@@ -81,6 +84,13 @@
     },
     "MORE": {
       "TITLE": "More"
+    },
+    "USER_EDIT": {
+      "TITLE": "Profile"
+    },
+    "USER_DELETE": {
+      "TITLE": "Delete account",
+      "HINT": "Enter your current password to delete your account entirely and irrevocably."
     }
   },
   "ALERT": {
@@ -97,6 +107,11 @@
     "SEARCH": {
       "MESSAGE": "Wir konnten keine Ergebnisse für<br><strong> {{query}} <\/strong> finden. Überprüfe deine Filter- und Sucheinstellungen.",
       "TITLE": "Hoppla!"
+    }
+  },
+  "TOAST": {
+    "USER_DELETE_ERROR": {
+      "MESSAGE": "Wrong password entered."
     }
   },
   "FILTER": {
