@@ -14,11 +14,11 @@ export class LegalService {
   ) { }
 
   public getLatestAgreement(agreementType: string): Observable<AgreementModel> {
-    return this.http.get<AgreementModel>(`${URL.agreements}/${agreementType}/latest`);
+    return this.http.get<AgreementModel>(URL.agreementsLatest(agreementType));
   }
 
   public consentToAgreement(agreementId: string, agreement: AgreementModel, agreementType: string) {
-    return this.http.post(`${URL.consents}`, {
+    return this.http.post(URL.consents(), {
       agreementId: agreementId,
       agreement: agreement,
       agreementType: agreementType,
@@ -26,6 +26,6 @@ export class LegalService {
   }
 
   public checkForRequiredActions(): Promise<any[]> {
-    return this.http.get<any[]>(`${URL.agreements}/require-action`).toPromise();
+    return this.http.get<any[]>(URL.agreementsRequireAction()).toPromise();
   }
 }

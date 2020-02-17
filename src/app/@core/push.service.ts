@@ -87,9 +87,7 @@ export class PushService {
 
     if (!currentUser) { return Promise.resolve(); }
 
-    const url = `${URL.users}/${currentUser.id}/set-push-token`;
-
-    return this.http.post(url, { token: token })
+    return this.http.post(URL.usersSetPushToken(currentUser.id), { token: token })
       .pipe(
         tap(() => {
           console.log('Push token successfully updated!');

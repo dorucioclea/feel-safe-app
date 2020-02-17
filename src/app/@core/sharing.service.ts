@@ -29,7 +29,7 @@ export class SharingService {
     });
   }
 
-  public shareFab(fabId: string) {
-    this.share(null, null, `${URL.shareFab}/${fabId}`);
+  public shareRestaurant(id: string) {
+    this.share(null, null, URL.restaurantsById(id));
   }
 }

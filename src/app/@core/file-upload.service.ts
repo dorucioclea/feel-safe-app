@@ -17,7 +17,6 @@ export class FileUploadService {
   ) {}
 
   public upload(filepath: any) {
-    const url = `${URL.files}/upload`;
     let fileName = filepath.split('/');
     fileName = fileName[fileName.length - 1];
 
@@ -30,20 +29,16 @@ export class FileUploadService {
       },
     }
 
-    return fileTransfer.upload(filepath, url, options);
+    return fileTransfer.upload(filepath, URL.filesUpload(), options);
   }
 
   public uploadFromUrl(fileUrl: string) {
-    const url = `${URL.files}/upload-from-url`;
-
-    return this.http.post(url, { url: fileUrl })
+    return this.http.post(URL.filesUploadFromUrl(), { url: fileUrl })
       .toPromise();
   }
 
   public delete(fileId: string) {
-    const url = `${URL.files}/${fileId}`;
-
-    return this.http.delete(url)
+    return this.http.delete(URL.filesById(fileId))
       .toPromise();
   }
 }

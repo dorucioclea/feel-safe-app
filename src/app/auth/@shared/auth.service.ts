@@ -38,10 +38,8 @@ export class AuthService {
   }
 
   public register(registerData: any) {
-    const url = `${URL.url}/users`;
-
     return new Promise((resolve, reject) => {
-      this.http.post(url, registerData).subscribe(() => {
+      this.http.post(URL.users(), registerData).subscribe(() => {
         const loginData = {
           email: registerData.email,
           password: registerData.password,
@@ -57,10 +55,8 @@ export class AuthService {
   }
 
   public login(loginData: any) {
-    const url = `${URL.url}/users/login?include=user`;
-
     return new Promise((resolve, reject) => {
-      this.http.post(url, loginData).subscribe((response: any) => {
+      this.http.post(URL.usersLogin({ queryParams: { include: 'user' } }), loginData).subscribe((response: any) => {
         const accessToken: any = Object.assign({}, response);
         const user = response.user;
 
@@ -78,7 +74,7 @@ export class AuthService {
   public async loginWithProvider(provider: string) {
     return new Promise((resolve, reject) => {
       if (this.platform.is('cordova')) {
-        this.inAppBrowserService.openUrl(`${URL.auth}/${provider}`);
+        this.inAppBrowserService.openUrl(URL.auth(provider));
 
         const unsubscribe: Subject<void> = new Subject<void>();
 
@@ -108,14 +104,14 @@ export class AuthService {
 
       // web fallback
       try {
-        window.open(`${URL.auth}/${provider}`, '_blank', 'width=900,height=500');
+        window.open(URL.auth(provider), '_blank', 'width=900,height=500');
         window.onmessage = async (event) => {
           if (event.data.response) {
             const response = JSON.parse(decodeURIComponent(event.data.response));
 
             this.storage.set('accessToken', response.accessToken);
 
-            const user = await this.http.get<UserSource>(`${URL.users}/${response.accessToken.userId}`).toPromise() as UserSource;
+            const user = await this.http.get<UserSource>(URL.usersById(response.accessToken.userId)).toPromise() as UserSource;
             this.userService.setCurrentUser(user);
             
             return resolve(new UserModel(user));
@@ -130,9 +126,7 @@ export class AuthService {
   }
 
   public logout() {
-    const url = `${URL.users}/logout`;
-
-    return this.http.post(url, {})
+    return this.http.post(URL.usersLogout(), {})
       .pipe(
         tap(() => {
           this.userService.removeCurrentUser();
@@ -143,20 +137,16 @@ export class AuthService {
   }
 
   public requestPasswordReset(email: string) {
-    const url = `${URL.users}/reset`;
-
-    return this.http.post(url, { email: email })
+    return this.http.post(URL.usersReset(), { email: email })
       .toPromise();
   }
 
   public resetPassword(token: string, newPassword: string) {
-    const url = `${URL.users}/reset-password`;
-
     const headers = new HttpHeaders({
       Authorization: token,
     });
 
-    return this.http.post(url, { newPassword: newPassword }, { headers: headers })
+    return this.http.post(URL.usersResetPassword(), { newPassword: newPassword }, { headers: headers })
       .toPromise();
   }
 
@@ -164,7 +154,7 @@ export class AuthService {
     try {
       this.storage.set('accessToken', accessToken);
 
-      const user = await this.http.get<UserSource>(`${URL.users}/${accessToken.userId}`).toPromise() as UserSource;
+      const user = await this.http.get<UserSource>(URL.usersById(accessToken.userId)).toPromise() as UserSource;
 
       this.userService.setCurrentUser(user);
       
