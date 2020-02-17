@@ -84,7 +84,6 @@ export class URL {
   }
 
   private static transformParamsToString(params: Params) {
-    const queryParams = params.queryParams || {};
     let filterString = '';
     let queryParamsString = '';
         
@@ -93,7 +92,7 @@ export class URL {
     }
 
     if (params.queryParams) {
-      queryParamsString = `${filterString ? '&' : ''}${AppHelper.urlParamsFromObject(queryParams)}`;
+      queryParamsString = `${filterString ? '&' : ''}${AppHelper.urlParamsFromObject(params.queryParams)}`;
     }
 
     return `?${filterString}${queryParamsString}`;
