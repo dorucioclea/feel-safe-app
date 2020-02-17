@@ -59,6 +59,12 @@ export class URL {
     }
   }
 
+  public static get usersDeleteAccount() {
+    return (id: string) => {
+      return `${this.url}/users/${id}/delete-account`;
+    }
+  }
+
   public static get usersReset() {
     return () => {
       return `${this.url}/users/reset`;

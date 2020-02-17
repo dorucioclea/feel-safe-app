@@ -17,7 +17,8 @@
     "RESET_FILTER": "Filter zurücksetzen",
     "RESET_PASSWORD": "Passwort zurücksetzen",
     "TAKE_PICTURE": "Foto aufnehmen",
-    "SELECT_IMAGE": "Foto wählen"
+    "SELECT_IMAGE": "Foto wählen",
+    "DELETE_ACCOUNT": "Account löschen"
   },
   "INPUT": {
     "LABEL": {
@@ -32,7 +33,8 @@
       "EMAIL": "Enter your email address",
       "PASSWORD": "Enter your password",
       "PASSWORD_REQUIREMENTS": "{{min}} oder mehr Zeichen",
-      "USERNAME": "Enter your username"
+      "USERNAME": "Enter your username",
+      "CURRENT_PASSWORD": "Dein aktuelles Passwort"
     }
   },
   "LANGUAGE": {
@@ -104,6 +106,10 @@
     },
     "USER_EDIT": {
       "TITLE": "Profilinformationen"
+    },
+    "USER_DELETE": {
+      "TITLE": "Account löschen",
+      "HINT": "Gib dein aktuelles Passwort ein, um deinen Account komplett und unwiderruflich zu löschen."
     }
   },
   "ALERT": {
@@ -146,6 +152,9 @@
     },
     "PASSWORD_RESET": {
       "MESSAGE": "Der Link ist ungültig oder abgelaufen."
+    },
+    "USER_DELETE_ERROR": {
+      "MESSAGE": "Das Passwort ist nicht korrekt."
     }
   },
   "FILTER": {

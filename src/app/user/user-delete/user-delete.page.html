@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons mode="md" slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'VIEW.USER_DELETE.TITLE' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    {{ 'VIEW.USER_DELETE.HINT' | translate }}
+  </div>
+
+  <form class="form-block submit-form" novalidate
+    [formGroup]="deleteForm"
+    [ngClass]="{ 'is-disabled': isLoading }"
+    (ngSubmit)="save()">
+    <ion-list class="proto-input-list">
+      <div class="password-container">
+        <proto-show-hide-password class="has-valid-status"
+          formControlName="password"
+          [label]="('INPUT.LABEL.PASSWORD' | translate)"
+          [placeholder]="'INPUT.PLACEHOLDER.CURRENT_PASSWORD' | translate: { min: passwordMinLength }"></proto-show-hide-password>
+      </div>
+
+      <div class="form-buttons">
+        <ion-button class="proto-button" expand="block" type="submit"
+          [disabled]="!formIsValid() || isLoading">
+          <ion-spinner *ngIf="isLoading"></ion-spinner>
+          <ng-container *ngIf="!isLoading" >
+            {{ 'BUTTON.DELETE' | translate }}
+          </ng-container>
+        </ion-button>
+
+        <!-- this allows you to submit form via enter key (e.g. useful for pwa) -->
+        <input class="hidden-submit-button" type="submit">
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

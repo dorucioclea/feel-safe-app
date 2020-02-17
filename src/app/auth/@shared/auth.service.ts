@@ -129,8 +129,7 @@ export class AuthService {
     return this.http.post(URL.usersLogout(), {})
       .pipe(
         tap(() => {
-          this.userService.removeCurrentUser();
-          this.storage.remove('accessToken');
+          this.removeCriticalData();
         }),
       )
       .toPromise();
@@ -148,6 +147,11 @@ export class AuthService {
 
     return this.http.post(URL.usersResetPassword(), { newPassword: newPassword }, { headers: headers })
       .toPromise();
+  }
+
+  public removeCriticalData() {
+    this.userService.removeCurrentUser();
+    this.storage.remove('accessToken');
   }
 
   private async loginWithAccessToken(accessToken: any) {
