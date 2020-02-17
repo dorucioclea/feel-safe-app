@@ -84,6 +84,8 @@ export class URL {
   }
 
   private static transformParamsToString(params: Params) {
+    if (!params) { return ''; }
+
     let filterString = '';
     let queryParamsString = '';
         
