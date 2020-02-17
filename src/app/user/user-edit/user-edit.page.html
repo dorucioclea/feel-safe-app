@@ -1,0 +1,48 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-buttons mode="md" slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'VIEW.USER_EDIT.TITLE' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="form-block submit-form" novalidate
+    [formGroup]="editForm"
+    [ngClass]="{ 'is-disabled': isLoading }"
+    (ngSubmit)="save()">
+    <app-image-upload
+      [imageId]="editForm.value.avatarId"
+      (imageReceived)="updateAvatar($event)"></app-image-upload>
+    <ion-list class="proto-input-list">
+      <ion-item class="proto-input">
+        <ion-label position="floating">{{ 'INPUT.LABEL.USERNAME' | translate }}</ion-label>
+        <ion-input type="text" value="" formControlName="username" [placeholder]="'INPUT.PLACEHOLDER.USERNAME' | translate"></ion-input>
+      </ion-item>
+      <ion-item class="proto-input">
+        <ion-label position="floating">{{ 'INPUT.LABEL.EMAIL' | translate }}</ion-label>
+        <ion-input type="email" value="" formControlName="email" [placeholder]="'INPUT.PLACEHOLDER.EMAIL' | translate"></ion-input>
+      </ion-item>
+      <div class="password-container">
+        <proto-show-hide-password class="has-valid-status"
+          formControlName="newPassword"
+          [label]="('INPUT.LABEL.NEW_PASSWORD' | translate)"
+          [placeholder]="'INPUT.PLACEHOLDER.PASSWORD_REQUIREMENTS' | translate: { min: passwordMinLength }"></proto-show-hide-password>
+      </div>
+
+      <div class="form-buttons">
+        <ion-button class="proto-button" expand="block" type="submit"
+          [disabled]="!formIsValid() || isLoading">
+          <ion-spinner *ngIf="isLoading"></ion-spinner>
+          <ng-container *ngIf="!isLoading" >
+            {{ 'BUTTON.SAVE' | translate }}
+          </ng-container>
+        </ion-button>
+
+        <!-- this allows you to submit form via enter key (e.g. useful for pwa) -->
+        <input class="hidden-submit-button" type="submit">
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

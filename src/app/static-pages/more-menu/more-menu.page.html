@@ -7,9 +7,15 @@
 <ion-content>
   <ion-list class="proto-item-list" lines="full">
     <ion-item class="proto-item" detail="true"
+      [routerLink]="['/main/more/profile']" routerDirection="forward">
+      {{ 'VIEW.USER_EDIT.TITLE' | translate }}
+    </ion-item>
+
+    <ion-item class="proto-item" detail="true"
       [routerLink]="['/main/more/imprint']" routerDirection="forward">
       {{ 'VIEW.IMPRINT.TITLE' | translate }}
     </ion-item>
+
     <ion-item class="proto-item" detail="true"
       [routerLink]="['/main/more/agreements/privacy']" routerDirection="forward">
       {{ 'VIEW.MORE.PRIVACY' | translate }}

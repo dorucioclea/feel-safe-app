@@ -15,7 +15,9 @@
     "REGISTER": "Registrieren",
     "REQUEST_NEW_PASSWORD": "Neues Passwort anfordern",
     "RESET_FILTER": "Filter zurücksetzen",
-    "RESET_PASSWORD": "Passwort zurücksetzen"
+    "RESET_PASSWORD": "Passwort zurücksetzen",
+    "TAKE_PICTURE": "Foto aufnehmen",
+    "SELECT_IMAGE": "Foto wählen"
   },
   "INPUT": {
     "LABEL": {
@@ -99,6 +101,9 @@
       "PRIVACY": "Datenschutz",
       "TERMS": "AGB",
       "ONBOARDING": "Onboarding erneut ansehen"
+    },
+    "USER_EDIT": {
+      "TITLE": "Profilinformationen"
     }
   },
   "ALERT": {

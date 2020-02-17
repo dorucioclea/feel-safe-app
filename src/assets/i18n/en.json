@@ -11,7 +11,9 @@
     "REGISTER": "Register",
     "REQUEST_NEW_PASSWORD": "Request new password",
     "RESET_FILTER": "Reset filter",
-    "RESET_PASSWORD": "Reset password"
+    "RESET_PASSWORD": "Reset password",
+    "TAKE_PICTURE": "Take picture",
+    "SELECT_IMAGE": "Select picture"
   },
   "INPUT": {
     "LABEL": {
@@ -81,6 +83,9 @@
     },
     "MORE": {
       "TITLE": "More"
+    },
+    "USER_EDIT": {
+      "TITLE": "Profile"
     }
   },
   "ALERT": {

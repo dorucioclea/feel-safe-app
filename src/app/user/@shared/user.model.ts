@@ -1,24 +1,21 @@
 export interface UserSource {
   id: string,
-  firstName: string,
-  lastName: string,
+  username: string,
   avatar: string,
   email: string,
 }
 
 export class UserModel {
   public id: string;
-  public firstName: string;
-  public lastName: string;
-  public avatar: string;
+  public username: string;
+  public avatarId: string;
   public email: string;
   public providerLogin: boolean;
 
   constructor(source: UserSource) {
     this.id = source.id;
-    this.firstName = source.firstName;
-    this.lastName = source.lastName;
-    this.avatar = source.avatar;
+    this.username = source.username;
+    this.avatarId = source.avatar;
     this.email = source.email;
     this.providerLogin = /@.+\.passport/.test(this.email);
   }
