@@ -3,10 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { RESTAURANT_DUMMY_DATA, RestaurantModel } from '../@shared/restaurant.model';
-import { RestaurantService } from '../@shared/restaurant.service';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
+import { PageTrack } from 'src/app/@shared/page-track.decorator';
+import { RESTAURANT_DUMMY_DATA, RestaurantModel } from 'src/app/restaurant/@shared/restaurant.model';
+import { RestaurantService } from 'src/app/restaurant/@shared/restaurant.service';
 
+@PageTrack()
 @HideSplash()
 @Component({
   selector: 'page-restaurant-detail',

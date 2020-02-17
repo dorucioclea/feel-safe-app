@@ -11,6 +11,7 @@ import { DeeplinkService } from 'src/app/@core/deeplink.service';
 import { PushService } from 'src/app/@core/push.service';
 import { UserService } from 'src/app/user/@shared/user.service';
 import { environment } from '../environments/environment';
+import { TrackingService } from 'src/app/@core/tracking.service';
 
 declare var cordova: any;
 declare var window: any;
@@ -33,6 +34,7 @@ export class AppComponent {
     private pushService: PushService,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
+    private trackingService: TrackingService,
     private translate: TranslateService,
     private userService: UserService,
   ) {
@@ -46,6 +48,8 @@ export class AppComponent {
       this.deeplinkService.initialize();
       
       this.setTranslateConfig();
+
+      this.trackingService.initTracking();
 
       if (this.platform.is('cordova')) {
         window.open = cordova.InAppBrowser.open;

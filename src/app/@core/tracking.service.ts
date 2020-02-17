@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 
-import { StorageService } from './storage.service';
+import { Events } from 'src/app/@core/event.service';
+import { StorageService } from 'src/app/@core/storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TrackingService {
   constructor(
+    private events: Events,
     private storage: StorageService,
   ) { }
 
@@ -27,13 +29,14 @@ export class TrackingService {
   }
 
   private bindEvents() {
-    // TODO: replace deprecated ionic Events
-    // e.g. via plain js Event constructor or libs like https://github.com/ai/nanoevents
+    this.events.subscribe('view:enter', (data: any) => {
+      this.track('page_view', { page_title: data });
+    });
   }
 
   private track(eventName: string, eventProperties?: any) {
-    const isTrackingDisabled = this.storage.get('isTrackingDisabled', false);
-    if (isTrackingDisabled) { return console.warn('Tracking is disabled'); }
+    const isTrackingEnabled = this.storage.get('isTrackingEnabled', false);
+    if (!isTrackingEnabled) { return console.warn('Tracking is disabled'); }
 
     // TODO Implement track function here
     // this.firebase.logEvent(eventName, eventProperties || {})

@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/@shared/auth.service';
 import { C } from 'src/app/@shared/constants';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
-import { ToastService } from '../../@core/toast.service';
-import { TranslateService } from '@ngx-translate/core';
+import { PageTrack } from 'src/app/@shared/page-track.decorator';
+import { ToastService } from 'src/app/@core/toast.service';
 
+@PageTrack()
 @HideSplash()
 @Component({
   selector: 'page-password-reset',
