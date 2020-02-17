@@ -1,4 +1,4 @@
-import { environment } from '../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { urlParamsFromObject } from 'src/app/@shared/utils';
 
 type Params = {
