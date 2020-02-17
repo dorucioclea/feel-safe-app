@@ -152,11 +152,9 @@ export class RestaurantService {
       filter.where = Object.assign(filter.where, this.search);
     }
 
-    const url = URL.restaurants(null, { filter });
-
     let totalCount = 0;
 
-    return this.http.get(url, { observe: 'response' })
+    return this.http.get(URL.restaurants({ filter }), { observe: 'response' })
       .pipe(
         tap((response: any) => {
           const headers: HttpHeaders = response.headers;
@@ -182,9 +180,7 @@ export class RestaurantService {
   }
 
   private loadRestaurantById(restaurantId: string) {
-    const url = URL.restaurants(restaurantId);
-
-    return this.http.get<RestaurantSource>(url)
+    return this.http.get<RestaurantSource>(URL.restaurantsById(restaurantId))
       .pipe(
         map((restaurant) => new RestaurantModel(restaurant)),
         tap((restaurant) => {
@@ -212,9 +208,7 @@ export class RestaurantService {
   }
 
   private loadCategories() {
-    const url = `${URL.restaurantCategories}`;
-
-    return this.http.get<RestaurantCategorySource[]>(url)
+    return this.http.get<RestaurantCategorySource[]>(URL.restaurantCategories())
       .pipe(
         map((categories) => categories.map((category) => new RestaurantCategoryModel(category))),
         tap((categories) => {

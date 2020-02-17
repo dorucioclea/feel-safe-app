@@ -24,16 +24,16 @@ export class AppHelper {
       return this.getFallbackImage(id, width);
     }
     if (!width) {
-      return `${URL.files}/${id}/download`;
+      return URL.filesDownload(id);
     }
     if (!height) {
-      return `${URL.files}/${id}/download?square=${width}`;
+      return URL.filesDownload(id, { queryParams: { square: width } });
     }
     if (height === 'auto') {
-      return `${URL.files}/${id}/download?width=${width}`;
+      return URL.filesDownload(id, { queryParams: { width } });
     }
 
-    return `${URL.files}/${id}/download?width=${width}&height=${height}`;
+    return URL.filesDownload(id, { queryParams: { width, height } });
   }
 
   private static getFallbackImage(id: string, width?: number): string {

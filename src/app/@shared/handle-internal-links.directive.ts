@@ -1,7 +1,7 @@
 import { Directive, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AppHelper } from 'src/app/@shared/app-helper';
+import { objectFromUrlParams } from 'src/app/@shared/utils';
 
 @Directive({
   selector: '[handle-internal-links]',
@@ -33,7 +33,7 @@ export class HandleInternalLinksDirective {
     let queryParams = {};
 
     if (urlParams) {
-      queryParams = AppHelper.objectFromUrlParams(urlParams);
+      queryParams = objectFromUrlParams(urlParams);
     }
 
     this.router.navigate([url], { queryParams: queryParams }).catch();

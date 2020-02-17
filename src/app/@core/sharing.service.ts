@@ -30,6 +30,6 @@ export class SharingService {
   }
 
   public shareRestaurant(id: string) {
-    this.share(null, null, `${URL.restaurants}/${id}`);
+    this.share(null, null, URL.restaurantsById(id));
   }
 }

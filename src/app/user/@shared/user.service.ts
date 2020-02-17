@@ -53,9 +53,7 @@ export class UserService {
 
     if (!currentUser) { return; }
 
-    const url = `${URL.users}/${currentUser.id}`;
-
-    return this.http.get<UserSource>(url)
+    return this.http.get<UserSource>(URL.usersById(currentUser.id))
       .pipe(
         tap((user) => {
           this.setCurrentUser(user);
@@ -89,9 +87,7 @@ export class UserService {
   }
 
   public getUserById(id: string): Observable<UserModel> {
-    const url = `${URL.users}/${id}/`;
-
-    return this.http.get<UserSource>(url)
+    return this.http.get<UserSource>(URL.usersById(id))
       .pipe(
         map((user: UserSource) => new UserModel(user)),
       );
@@ -100,9 +96,8 @@ export class UserService {
   public updateUserAttributes(attributes: any) {
     const user = this.getCurrentUser();
     if (!user) { return Promise.reject('No user logged in yet'); }
-    const url = `${URL.users}/${user.id}/`;
 
-    return this.http.patch<UserSource>(url, attributes)
+    return this.http.patch<UserSource>(URL.usersById(user.id), attributes)
       .pipe(
         tap((user: UserSource) => {
           this.storage.set('user', user);
@@ -114,29 +109,23 @@ export class UserService {
   }
 
   public destroyCurrentUser() {
-    const url = `${URL.users}/${this.getCurrentUser().id}`;
-
-    return this.http.delete(url)
+    return this.http.delete(URL.usersById(this.getCurrentUser().id))
       .toPromise();
   }
 
   public blockUserById(blockedUserId: string): Promise<any> {
     const currentUser = this.getCurrentUser();
 
-    const url = `${URL.users}/${currentUser.id}/blockedUsers`;
-
     const data = {
       blockedUserId: blockedUserId,
     };
 
-    return this.http.post(url, data)
+    return this.http.post(URL.usersBlockedUsers(currentUser.id), data)
       .toPromise();
   }
 
   private loadUserDetail(userId: string): Observable<UserModel> {
-    const url = `${URL.users}/${userId}`;
-
-    return this.http.get(url)
+    return this.http.get(URL.usersById(userId))
       .pipe(
         tap((user: any) => {
           this.userDetailsStore[userId] = user;

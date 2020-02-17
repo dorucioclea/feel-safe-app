@@ -75,12 +75,12 @@ export class ProtoImageComponent implements OnInit {
     if (id.includes('fallback')) { return this.getFallbackImage(id, width); }
 
     // original size
-    if (!width) { return `${URL.files}/${id}/download`; }
+    if (!width) { return URL.filesDownload(id); }
 
     // squared image
-    if (!height) { return `${URL.files}/${id}/download?square=${width}`; }
+    if (!height) { return URL.filesDownload(id, { queryParams: { square: width } }); }
 
-    return `${URL.files}/${id}/download?width=${width}&height=${height}`;
+    return URL.filesDownload(id, { queryParams: { width, height } });
   }
 
   private getFallbackImage(name: string, width?: number): string {

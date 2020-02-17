@@ -1,7 +1,17 @@
 import { environment } from '../../environments/environment';
 import { urlParamsFromObject } from 'src/app/@shared/utils';
 
-type Params = { queryParams?: any, filter?: any };
+type Params = {
+  queryParams?: any,
+  filter?: {
+    where?: any,
+    order?: string,
+    skip?: number,
+    limit?: number,
+    include?: any,
+    scope?: any,
+  },
+};
 
 /* tslint:disable-next-line */
 export class URL {
@@ -10,45 +20,145 @@ export class URL {
   }
 
   public static get auth() {
-    return environment.apiBaseUrl + '/auth';
+    return (provider: string) => {
+      return `${environment.apiBaseUrl}/auth/${provider}`;
+    }
   }
 
   public static get url() {
-    return this.baseUrl + '/' + this.apiVersion;
+    return `${this.baseUrl}/${this.apiVersion}`;
   }
 
   public static get users() {
-    return this.url + '/users';
+    return (params?: Params) => {
+      return `${this.url}/users${this.transformParamsToString(params)}`;
+    }
+  }
+
+  public static get usersById() {
+    return (id: string, params?: Params) => {
+      return `${this.url}/users/${id}${this.transformParamsToString(params)}`;
+    }
+  }
+
+  public static get usersLogin() {
+    return (params?: Params) => {
+      return `${this.url}/users/login${this.transformParamsToString(params)}`;
+    }
+  }
+
+  public static get usersSetPushToken() {
+    return (id: string) => {
+      return `${this.url}/users/${id}/set-push-token`;
+    }
+  }
+
+  public static get usersBlockedUsers() {
+    return (id: string) => {
+      return `${this.url}/users/${id}/blockedUsers`;
+    }
+  }
+
+  public static get usersReset() {
+    return () => {
+      return `${this.url}/users/reset`;
+    }
+  }
+
+  public static get usersResetPassword() {
+    return () => {
+      return `${this.url}/users/reset-password`;
+    }
+  }
+
+  public static get usersLogout() {
+    return () => {
+      return `${this.url}/users/logout`;
+    }
   }
 
   public static get agreements() {
-    return this.url + '/agreements';
+    return (params?: Params) => {
+      return `${this.url}/agreements${this.transformParamsToString(params)}`;
+    }
+  }
+
+  public static get agreementsLatest() {
+    return (type: string) => {
+      return `${this.url}/agreements/${type}/latest`;
+    }
+  }
+
+  public static get agreementsRequireAction() {
+    return () => {
+      return `${this.url}/require-action`;
+    }
   }
 
   public static get consents() {
-    return this.url + '/consents';
+    return (params?: Params) => {
+      return `${this.url}/consents${this.transformParamsToString(params)}`;
+    }
   }
 
   public static get appVersions() {
-    return this.url + '/app-versions';
+    return (params?: Params) => {
+      return `${this.url}/app-versions${this.transformParamsToString(params)}`;
+    }
   }
 
   public static get files() {
-    return this.url + '/files';
+    return (params?: Params) => {
+      return `${this.url}/files${this.transformParamsToString(params)}`;
+    }
+  }
+
+  public static get filesUpload() {
+    return () => {
+      return `${this.url}/files/upload`;
+    }
+  }
+
+  public static get filesUploadFromUrl() {
+    return () => {
+      return `${this.url}/files/upload-from-url`;
+    }
+  }
+
+  public static get filesDownload() {
+    return (id: string, params?: Params) => {
+      return `${this.url}/files/${id}/download${this.transformParamsToString(params)}`;
+    }
+  }
+
+  public static get filesById() {
+    return (id: string) => {
+      return `${this.url}/files/${id}`;
+    }
   }
 
   public static get restaurants() {
-    return (id?: string, params?: Params) => {
-      return `${this.url}/restaurants${id ? `/${id}` : ''}${this.transformParamsToString(params)}`;
+    return (params?: Params) => {
+      return `${this.url}/restaurants${this.transformParamsToString(params)}`;
+    }
+  }
+
+  public static get restaurantsById() {
+    return (id: string, params?: Params) => {
+      return `${this.url}/restaurants/${id}${this.transformParamsToString(params)}`;
     }
   }
 
   public static get restaurantCategories() {
-    return this.url + '/restaurant-categories';
+    return (params?: Params) => {
+      return `${this.url}/restaurant-categories${this.transformParamsToString(params)}`;
+    }
   }
 
   public static get tags() {
-    return this.url + '/tags';
+    return (params?: Params) => {
+      return `${this.url}/tags${this.transformParamsToString(params)}`;
+    }
   }
 
   public static get apiVersion() {
