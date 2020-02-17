@@ -13,16 +13,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content #ListContent>
-  <ion-refresher mode="ios" slot="fixed" pullFactor="0.3"
-    [disabled]="restaurants.meta.isLoading"
+<ion-content #ListContent class="has-native-refresher">
+  <ion-refresher color="dark" slot="fixed"
     (ionRefresh)="refresh($event)">
-    <ion-refresher-content
-      pullingIcon="arrow-down"
-      [pullingText]="'REFRESHER.PULLING_TEXT' | translate"
-      [refreshingText]="'REFRESHER.REFRESHING_TEXT' | translate">
-    </ion-refresher-content>
-   </ion-refresher>
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
   <ion-list class="proto-item-list">
     <ion-item class="proto-item" detail="true"
