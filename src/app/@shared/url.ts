@@ -68,6 +68,11 @@ export class URL {
       methods: ['POST'],
       path: '/auth',
     },
+    // wildcard matching
+    // {
+    //   methods: ['GET'],
+    //   path: '/restaurants/*',
+    // },
   ];
 
   public static needsAuthentication(url: string, method: string) {
@@ -76,7 +81,7 @@ export class URL {
     const urlWithoutParams = url.split('?')[0];
     const path = urlWithoutParams.replace(this.url, '');
 
-    const endpoint = this.endpointsWithoutAuthentication.find((endpoint) => endpoint.path === path);
+    const endpoint = this.endpointsWithoutAuthentication.find((endpoint) => this.matchWildcardString(path, endpoint.path));
 
     if (!endpoint || !endpoint.methods.includes(method)) { return true; }
 
@@ -98,5 +103,11 @@ export class URL {
     }
 
     return `?${filterString}${queryParamsString}`;
+  }
+
+  private static matchWildcardString(str, rule) {
+    const escapeRegex = (str) => str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1');
+
+    return new RegExp('^' + rule.split('*').map(escapeRegex).join('.*') + '$').test(str);
   }
 }
