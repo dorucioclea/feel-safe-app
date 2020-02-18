@@ -1,7 +1,8 @@
 import { TranslateService } from '@ngx-translate/core';
-import { ToastService } from './../@core/toast.service';
 import { NavController, Platform } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
+
+import { ToastService } from 'src/app/@core/toast.service';
 
 export interface Tab {
   tab: string,
@@ -20,7 +21,6 @@ const TIME_PERIOD_TO_EXIT = 2000;
 })
 // tslint:disable-next-line
 export class MainPage implements OnInit {
-
   public tabs: Tab[] = [
     {
       tab: 'restaurants',
@@ -50,12 +50,10 @@ export class MainPage implements OnInit {
   public ngOnInit() {}
 
   private isTabPath(path: string) {
-
     return this.tabs.filter((tab) => tab.path === path).length > 0;
   }
 
   private handleBackButton() {
-
     if (!this.platform.is('android')) { return; }
 
     let lastTimeBackPress = 0;
@@ -78,5 +76,4 @@ export class MainPage implements OnInit {
       .catch((result: any) => { console.warn(result); });
     })
   }
-
 }
