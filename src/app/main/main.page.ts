@@ -69,11 +69,14 @@ export class MainPage implements OnInit {
 
           return;
         }
-
-        this.toastService.show(this.translate.instant('TOAST.EXIT_APP.MESSAGE')).catch();
+        this.showAlert().catch()
         lastTimeBackPress = new Date().getTime();
       })
       .catch((result: any) => { console.warn(result); });
     })
+  }
+
+  private showAlert() {
+    return this.toastService.show(this.translate.instant('TOAST.EXIT_APP.MESSAGE')).catch();
   }
 }
