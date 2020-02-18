@@ -16,7 +16,7 @@ import { RestaurantService } from 'src/app/restaurant/@shared/restaurant.service
   styleUrls: ['./restaurant-detail.page.scss'],
 })
 export class RestaurantDetailPage implements OnInit {
-  public initialized = false;
+  public initialized: boolean = false;
   public restaurant: RestaurantModel = RESTAURANT_DUMMY_DATA[0];
 
   private id: string;
@@ -28,11 +28,11 @@ export class RestaurantDetailPage implements OnInit {
     private restaurantService: RestaurantService,
   ) { }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params.id;
   }
 
-  public ionViewDidEnter() {
+  public ionViewDidEnter(): void {
     if (this.initialized) { return; }
 
     this.initialized = true;
@@ -40,12 +40,12 @@ export class RestaurantDetailPage implements OnInit {
     this.loadRestaurant();
   }
 
-  public refresh(event: any) {
+  public refresh(event: any): void {
     this.refresherEvent = event;
     this.restaurantService.refreshRestaurantById(this.id);
   }
 
-  private loadRestaurant() {
+  private loadRestaurant(): void {
     this.restaurantService.getRestaurantById(this.id)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((restaurant) => {
@@ -55,7 +55,7 @@ export class RestaurantDetailPage implements OnInit {
       });
   }
 
-  private completeRefresher() {
+  private completeRefresher(): void {
     if (this.refresherEvent) {
       this.refresherEvent.target.complete();
       this.refresherEvent = null;

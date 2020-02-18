@@ -5,7 +5,7 @@ import { Subject, Subscription } from 'rxjs';
   providedIn: 'root',
 })
 export class Events {
-  private channels: { [key: string]: Subject<any>; } = {};
+  private channels: { [key: string]: Subject<any> } = {};
 
   constructor() {}
 

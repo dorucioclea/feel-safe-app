@@ -17,7 +17,7 @@ import { SharedModule } from './@shared/shared.module';
 import { RestaurantFilterPageModule } from 'src/app/restaurant/restaurant-filter/restaurant-filter.page.module';
 
 // --- Factories ---------------------------------------------------------------
-export function createTranslateLoader(http: HttpClient) {
+export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
@@ -30,7 +30,7 @@ const IONIC_CONFIG = {
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    /**/AppRoutingModule, // AppRoutingModule has to be imported first
+    /**/ AppRoutingModule, // AppRoutingModule has to be imported first
     AgreementPageModule,
     BrowserModule,
     CoreModule,

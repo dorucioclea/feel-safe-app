@@ -9,7 +9,7 @@ export class ToastService {
     private toastController: ToastController,
   ) { }
 
-  public async show(message: string, success = true) {
+  public async show(message: string, success: boolean = true): Promise<void> {
     const toast = await this.toastController.create({
       message: message,
       duration: 2500,

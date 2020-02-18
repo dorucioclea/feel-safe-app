@@ -26,9 +26,9 @@ export class GodModePage implements OnInit {
     this.storagePrefix = C.STORAGE_PREFIX;
   }
 
-  public ngOnInit() { }
+  public ngOnInit(): void { }
 
-  public clearAndReload() {
+  public clearAndReload(): void {
     this.storage.clear();
 
     this.router.navigate(['/']).then(() => {
@@ -36,7 +36,7 @@ export class GodModePage implements OnInit {
     }).catch();
   }
 
-  public getStorage() {
+  public getStorage(): void {
     const allStorageItems = this.storage.getAllItems();
 
     this.storageItems = Object.keys(allStorageItems).map((key) => ({ key: key.replace(C.STORAGE_PREFIX, ''), value: allStorageItems[key], type: typeof allStorageItems[key] }));

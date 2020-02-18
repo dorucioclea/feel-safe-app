@@ -26,12 +26,12 @@ export class RestaurantListPage implements OnInit {
   };
   public searchValue: string;
   public currentLang: string;
-  public initialized = false;
+  public initialized: boolean = false;
 
   private ngUnsubscribe: Subject<any> = new Subject();
   private infiniteScrollEvent: any;
   private refresherEvent: any;
-  private searchResultsLoading = false;
+  private searchResultsLoading: boolean = false;
 
   constructor(
     private modalController: ModalController,
@@ -41,15 +41,14 @@ export class RestaurantListPage implements OnInit {
     this.currentLang = this.translate.currentLang;
   }
 
-  public ngOnInit() {
-  }
+  public ngOnInit(): void { }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
 
-  public ionViewDidEnter() {
+  public ionViewDidEnter(): void {
     if (this.initialized) {
       return;
     }
@@ -59,7 +58,7 @@ export class RestaurantListPage implements OnInit {
     this.loadRestaurants();
   }
 
-  public search(event: any) {
+  public search(event: any): void {
     this.searchResultsLoading = true;
 
     this.searchValue = event.detail.value;
@@ -71,12 +70,12 @@ export class RestaurantListPage implements OnInit {
     this.restaurantService.searchRestaurants({ title: { ilike: `%${this.searchValue}%` } });
   }
 
-  public refresh(event: any) {
+  public refresh(event: any): void {
     this.refresherEvent = event;
     this.restaurantService.refreshRestaurants();
   }
 
-  public loadMore(event: any) {
+  public loadMore(event: any): void {
     this.infiniteScrollEvent = event;
 
     if (!this.restaurants.meta.hasMore) {
@@ -86,7 +85,7 @@ export class RestaurantListPage implements OnInit {
     this.restaurantService.getMoreRestaurants();
   }
 
-  public async openFilterModal() {
+  public async openFilterModal(): Promise<void> {
     const modal = await this.modalController.create({
       component: RestaurantFilterPage,
       componentProps: {
@@ -98,11 +97,11 @@ export class RestaurantListPage implements OnInit {
     return await modal.present();
   }
 
-  public trackByFunction(index: number, item: any) {
+  public trackByFunction(index: number, item: any): any  {
     return item ? item.id : index;
   }
 
-  private loadRestaurants() {
+  private loadRestaurants(): void {
     this.restaurantService.getRestaurants()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((restaurants: Restaurants) => {
@@ -124,13 +123,13 @@ export class RestaurantListPage implements OnInit {
       });
   }
 
-  private completeInfiniteScroll() {
+  private completeInfiniteScroll(): void {
     if (this.infiniteScrollEvent) {
       this.infiniteScrollEvent.target.complete();
     }
   }
 
-  private completeRefresher() {
+  private completeRefresher(): void {
     if (this.refresherEvent) {
       this.refresherEvent.target.complete();
     }

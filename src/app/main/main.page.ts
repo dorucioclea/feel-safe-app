@@ -5,11 +5,11 @@ import { Component, OnInit } from '@angular/core';
 import { ToastService } from 'src/app/@core/toast.service';
 
 export interface Tab {
-  tab: string,
-  path: string,
-  iconSource?: string,
-  iconName?: string,
-  label: string,
+  tab: string;
+  path: string;
+  iconSource?: string;
+  iconName?: string;
+  label: string;
 }
 
 const TIME_PERIOD_TO_EXIT = 2000;
@@ -47,36 +47,36 @@ export class MainPage implements OnInit {
       .catch();
   }
 
-  public ngOnInit() {}
+  public ngOnInit(): void {}
 
-  private isTabPath(path: string) {
+  private isTabPath(path: string): boolean {
     return this.tabs.filter((tab) => tab.path === path).length > 0;
   }
 
-  private handleBackButton() {
+  private handleBackButton(): void {
     if (!this.platform.is('android')) { return; }
 
     let lastTimeBackPress = 0;
     this.platform.backButton.subscribeWithPriority(0, () => {
       const path = window.location.pathname;
       this.navController.pop()
-      .then(() => {
+        .then(() => {
 
-        if (!this.isTabPath(path)) { return; }
+          if (!this.isTabPath(path)) { return; }
 
-        if (new Date().getTime() - lastTimeBackPress < TIME_PERIOD_TO_EXIT) {
-          navigator['app'].exitApp();
+          if (new Date().getTime() - lastTimeBackPress < TIME_PERIOD_TO_EXIT) {
+            navigator['app'].exitApp();
 
-          return;
-        }
-        this.showAlert().catch()
-        lastTimeBackPress = new Date().getTime();
-      })
-      .catch((result: any) => { console.warn(result); });
+            return;
+          }
+          this.showAlert().catch()
+          lastTimeBackPress = new Date().getTime();
+        })
+        .catch((result: any) => { console.warn(result); });
     })
   }
 
-  private showAlert() {
+  private showAlert(): any {
     return this.toastService.show(this.translate.instant('TOAST.EXIT_APP.MESSAGE')).catch();
   }
 }

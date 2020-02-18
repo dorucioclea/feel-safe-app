@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const sgf = require('staged-git-files');
 const { spawn } = require('child_process');
 
@@ -10,13 +12,17 @@ sgf((error, stagedFiles) => {
     return process.exit(0);
   }
 
-  let files = [];
+  const files = [];
 
   for (const stagedFile of stagedFiles) {
-    files.push(` --files ${stagedFile.filename}`);
+    if (stagedFile.filename.indexOf('.ts') > -1) {
+      files.push(` ${stagedFile.filename}`);
+    }
   }
 
-  const npm = spawn('npm', ['run', 'lint', '--', 'app', ...files, ], {
+  console.log(...files);
+
+  const npm = spawn('eslint', [...files], {
     cwd: process.cwd(),
     env: process.env,
     shell: true,
@@ -29,13 +35,13 @@ sgf((error, stagedFiles) => {
 
     console.log(output);
 
-    if (output.indexOf('ERROR') > -1) {
-      const count = (output.match(/ERROR/g) || []).length;
+    if (output.indexOf('error') > -1) {
+      const count = (output.match(/error/g) || []).length;
       errorCount += count;
     }
   });
 
-  npm.stderr.on('data', (data) => {
+  npm.stderr.on('data', () => {
     // console.error(data.toString());
   });
 

@@ -2,19 +2,19 @@ import { C } from './constants';
 import { URL } from './url';
 
 export interface ImageSource {
-  large: string
-  original?: string,
-  preload?: string,
-  preview?: string,
-  largeOriginalRatio?: string,
+  large: string;
+  original?: string;
+  preload?: string;
+  preview?: string;
+  largeOriginalRatio?: string;
 }
 
 export interface GeoPoint {
-  lat: number,
-  lng: number,
+  lat: number;
+  lng: number;
 }
 
- /* tslint:disable-next-line */
+/* tslint:disable-next-line */
 export class AppHelper {
   public static getImage(id: string, width?: number, height?: number | 'auto'): string {
     if (!id) {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const sgf = require('staged-git-files');
 const fs = require('fs');
 
@@ -6,7 +7,7 @@ sgf((error, stagedFiles) => {
     console.log(error);
   }
   
-  let failedDependencies = [];
+  const failedDependencies = [];
 
   for (const stagedFile of stagedFiles) {
     if (stagedFile.filename.indexOf('package.json') === -1) { continue; }

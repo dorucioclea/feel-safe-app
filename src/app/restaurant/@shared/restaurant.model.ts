@@ -1,17 +1,17 @@
 
 export interface RestaurantSource {
-  id: string,
-  title: string,
-  description: string,
-  canonicalAddress: string,
-  image: string,
-  numberOfSeats: number,
-  priceRange: 'low' | 'mid' | 'high',
-  restaurantCategoryId: string,
-  restaurantCategory: any,
-  createdAt: string,
-  updatedAt: string,
-  isSkeleton?: boolean,
+  id: string;
+  title: string;
+  description: string;
+  canonicalAddress: string;
+  image: string;
+  numberOfSeats: number;
+  priceRange: 'low' | 'mid' | 'high';
+  restaurantCategoryId: string;
+  restaurantCategory: any;
+  createdAt: string;
+  updatedAt: string;
+  isSkeleton?: boolean;
 }
 
 export class RestaurantModel {
@@ -28,7 +28,7 @@ export class RestaurantModel {
   public updatedAt: string;
   public isSkeleton: boolean;
 
-  constructor (source: RestaurantSource) {
+  constructor(source: RestaurantSource) {
     this.id = source.id;
     this.title = source.title;
     this.description = source.description;
@@ -40,7 +40,6 @@ export class RestaurantModel {
     this.restaurantCategory = source.restaurantCategory;
     this.createdAt = source.createdAt;
     this.updatedAt = source.updatedAt;
-
     this.isSkeleton = source.isSkeleton;
   }
 }

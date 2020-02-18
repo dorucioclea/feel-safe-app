@@ -1,3 +1,4 @@
+/* eslint-disable */
 const exec = require('child_process').exec;
 const request = require('request');
 const fs = require('fs');

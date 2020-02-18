@@ -1,4 +1,4 @@
-export function urlParamsFromObject(obj: any) {
+export function urlParamsFromObject(obj: any): string {
   let str = '';
   for (const key in obj) {
     if (str != '') {

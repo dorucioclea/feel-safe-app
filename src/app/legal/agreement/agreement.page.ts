@@ -21,8 +21,8 @@ export class AgreementPage implements OnInit {
   @Input() public type: string;
   @Input() public agreement: AgreementModel;
 
-  public initialized = false;
-  public firstLoadFinished = false;
+  public initialized: boolean = false;
+  public firstLoadFinished: boolean = false;
 
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
@@ -32,11 +32,11 @@ export class AgreementPage implements OnInit {
     private modalController: ModalController,
   ) { }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.type = this.type || this.activatedRoute.snapshot.params.type || 'terms';
   }
 
-  public ionViewDidEnter() {
+  public ionViewDidEnter(): void {
     if (this.initialized) {
       return;
     }
@@ -46,20 +46,20 @@ export class AgreementPage implements OnInit {
     this.loadAgreements();
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
 
-  public consent() {
+  public consent(): void {
     this.close({ agreement: this.agreement });
   }
 
-  public close(data = {}) {
+  public close(data: any = {}): void {
     this.modalController.dismiss(data).catch();
   }
 
-  private loadAgreements() {
+  private loadAgreements(): void {
     if (this.agreement) { return; }
 
     this.legalService.getLatestAgreement(this.type)

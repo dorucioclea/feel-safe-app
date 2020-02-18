@@ -12,7 +12,7 @@ export class DeeplinkService {
     private navController: NavController,
   ) { }
 
-  public initialize() {
+  public initialize(): void {
     console.log('INIT DEEPLINKS');
     this.deeplinks.route({}).subscribe((data) => {
       this.handleDeeplink(data);
@@ -21,7 +21,7 @@ export class DeeplinkService {
     });
   }
 
-  public route() {
+  public route(): Observable<any> {
     return new Observable((observer) => {
       this.deeplinks.route({}).subscribe((data) => {
         observer.next(data);
@@ -31,7 +31,7 @@ export class DeeplinkService {
     });
   }
 
-  private handleDeeplink(data: any) {
+  private handleDeeplink(data: any): void {
     // TODO: implement deeplink handling
     console.log('Handle deeplink', data);
 

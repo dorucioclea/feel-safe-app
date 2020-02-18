@@ -17,7 +17,7 @@ export class ImageUploadComponent implements OnInit {
   @Input() public imageId: string;
   @Output() public imageReceived: EventEmitter<string> = new EventEmitter<string>();
 
-  public isLoading = false;
+  public isLoading: boolean = false;
   public ratioPercentage: string;
   public ratioFactor: number;
 
@@ -31,11 +31,11 @@ export class ImageUploadComponent implements OnInit {
     private platform: Platform,
   ) { }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.calculateImageRatio();
   }
 
-  public getImage(source: string) {
+  public getImage(source: string): void {
     if (!this.platform.is('cordova')) {
       return this.getImageWebFallback();
     }
@@ -82,14 +82,14 @@ export class ImageUploadComponent implements OnInit {
     });
   }
 
-  public deleteImage() {
+  public deleteImage(): void {
     this.fileUploadService.delete(this.imageId).then(() => {
       this.imageId = null;
       this.imageReceived.emit('deleted');
     }).catch();
   }
 
-  private calculateImageRatio() {
+  private calculateImageRatio(): void {
     if (!this.ratio) {
       this.ratio = '3:2';
     }
@@ -109,7 +109,7 @@ export class ImageUploadComponent implements OnInit {
     this.ratioPercentage = (HUNDRED / this.ratioFactor).toFixed(TWO) + '%';
   }
 
-  private getImageWebFallback() {
+  private getImageWebFallback(): void {
     console.log('fallback', environment.uploadWebFallbackImage, environment.name);
     if (!environment.uploadWebFallbackImage) { return; }
 

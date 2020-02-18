@@ -1,8 +1,8 @@
 export interface RestaurantCategorySource {
-  id: string,
-  title: string,
-  createdAt: string,
-  updatedAt: string,
+  id: string;
+  title: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class RestaurantCategoryModel {
@@ -11,7 +11,7 @@ export class RestaurantCategoryModel {
   public createdAt: string;
   public updatedAt: string;
 
-  constructor (source: RestaurantCategorySource) {
+  constructor(source: RestaurantCategorySource) {
     this.id = source.id;
     this.title = source.title;
     this.createdAt = source.createdAt;

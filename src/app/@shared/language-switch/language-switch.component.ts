@@ -18,12 +18,12 @@ export class LanguageSwitchComponent implements OnInit {
     private translate: TranslateService,
   ) { }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.availableLanguages = C.availableLanguages.map((language) => language.toUpperCase());
     this.currentLanguage = this.translate.currentLang.toUpperCase();
   }
 
-  public changeLanguage(event: any) {
+  public changeLanguage(event: any): void {
     const currentLanguage = this.currentLanguage;
 
     this.languageService.changeLanguage(event.detail.value.toLowerCase()).catch((error) => {

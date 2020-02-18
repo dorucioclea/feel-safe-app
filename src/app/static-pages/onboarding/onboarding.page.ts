@@ -18,10 +18,10 @@ import { StorageService } from 'src/app/@core/storage.service';
 export class OnboardingPage implements OnInit {
   @ViewChild('slider', { static: true }) public slider: IonSlides;
 
-  public slideOptions = {};
+  public slideOptions: any = {};
   public slides: any[] = [];
-  public firstSlideActive = true;
-  public lastSlideActive = false;
+  public firstSlideActive: boolean = true;
+  public lastSlideActive: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -31,37 +31,37 @@ export class OnboardingPage implements OnInit {
     private storage: StorageService,
   ) { }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.languageService.getTranslation('VIEW.ONBOARDING.SLIDES').subscribe((slides) => {
       this.slides = slides;
     });
   }
 
-  public ionViewDidLeave() {
+  public ionViewDidLeave(): void {
     this.lastSlideActive = false;
     this.slider.length().then(() => {
       this.slider.slideTo(0).catch();
     }).catch();
   }
 
-  public ionSlideWillChange() {
+  public ionSlideWillChange(): void {
     this.slider.getActiveIndex().then((index: number) => {
       this.firstSlideActive = index === 0;
       this.lastSlideActive = index === this.slides.length - 1;
     }).catch();
   }
 
-  public skip() {
+  public skip(): void {
     this.slider.length().then((length: number) => {
       this.slider.slideTo(length - 1).catch();
     }).catch();
   }
 
-  public prev() {
+  public prev(): void {
     this.slider.slidePrev().catch();
   }
 
-  public next() {
+  public next(): void {
     if (!this.lastSlideActive) {
       this.slider.slideNext().catch();
 
@@ -71,14 +71,14 @@ export class OnboardingPage implements OnInit {
     this.proceed(true);
   }
 
-  public proceed(allowPush = false) {
+  public proceed(allowPush: boolean = false): void {
     this.storage.set('hasOnboardingRun', true);
 
     const pushStatus = this.pushService.getPushStatus();
     pushStatus.softPermission = allowPush ? 'allowed' : 'denied';
     this.pushService.setPushStatus(pushStatus);
 
-    this.pushService.initPush().catch();
+    this.pushService.initPush();
 
     const queryParams = this.activatedRoute.snapshot.queryParams;
     if (queryParams.returnUrl) {

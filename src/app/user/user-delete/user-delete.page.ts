@@ -20,9 +20,9 @@ import { UserService } from 'src/app/user/@shared/user.service';
 })
 export class UserDeletePage implements OnInit {
   public deleteForm: FormGroup;
-  public isLoading = false;
+  public isLoading: boolean = false;
   public currentUser: UserModel;
-  public passwordMinLength = C.validation.passwordMinLength;
+  public passwordMinLength: number = C.validation.passwordMinLength;
 
   constructor(
     private authService: AuthService,
@@ -37,13 +37,13 @@ export class UserDeletePage implements OnInit {
     });
   }
 
-  public ngOnInit() { }
+  public ngOnInit(): void { }
 
-  public formIsValid() {
+  public formIsValid(): boolean {
     return this.deleteForm.valid;
   }
 
-  public async save() {
+  public async save(): Promise<void> {
     if (this.isLoading) { return; }
 
     this.isLoading = true;

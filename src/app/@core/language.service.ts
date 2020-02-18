@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
+import { Observable } from 'rxjs';
 
 import { C } from 'src/app/@shared/constants';
 import { StorageService } from 'src/app/@core/storage.service';
@@ -14,7 +15,7 @@ export class LanguageService {
     private translate: TranslateService,
   ) { }
 
-  public initialize() {
+  public initialize(): void {
     const storedLanguage = this.getStoredLanguage();
 
     const browserLanguage = navigator.language.split('-')[0];
@@ -51,7 +52,7 @@ export class LanguageService {
     });
   }
 
-  public getTranslation(translatableString: string) {
+  public getTranslation(translatableString: string): Observable<any> {
     this.translate.getTranslation(this.getLanguage());
 
     return this.translate.get(translatableString);
@@ -71,7 +72,7 @@ export class LanguageService {
     return language;
   }
 
-  private getStoredLanguage() {
+  private getStoredLanguage(): string {
     const storedLanguage = this.storage.get('language');
 
     if (!storedLanguage || !C.availableLanguages.includes(storedLanguage)) {
@@ -83,7 +84,7 @@ export class LanguageService {
     return storedLanguage;
   }
 
-  private setMomentLanguage(language = C.defaultLanguage) {
+  private setMomentLanguage(language: string = C.defaultLanguage): void {
     moment.locale(language);
   }
 }

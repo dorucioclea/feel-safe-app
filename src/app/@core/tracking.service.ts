@@ -12,7 +12,7 @@ export class TrackingService {
     private storage: StorageService,
   ) { }
 
-  public initTracking() {
+  public initTracking(): void {
     let appStarts = this.storage.get('appStarts', 0);
 
     if (appStarts === 0) {
@@ -28,13 +28,13 @@ export class TrackingService {
     this.bindEvents();
   }
 
-  private bindEvents() {
+  private bindEvents(): void {
     this.events.subscribe('view:enter', (data: any) => {
       this.track('page_view', { page_title: data });
     });
   }
 
-  private track(eventName: string, eventProperties?: any) {
+  private track(eventName: string, eventProperties?: any): void {
     const isTrackingEnabled = this.storage.get('isTrackingEnabled', false);
     if (!isTrackingEnabled) { return console.warn('Tracking is disabled'); }
 

@@ -15,7 +15,7 @@ export class InAppBrowserService {
     private safariViewController: SafariViewController,
   ) { }
 
-  public openUrl(url: string, useSystemBrowser = false) {
+  public openUrl(url: string, useSystemBrowser: boolean = false): any {
     if (!this.platform.is('cordova')) {
       return window.open(url, '_system');
     }
@@ -48,7 +48,7 @@ export class InAppBrowserService {
       });
   }
 
-  public hide() {
+  public hide(): void {
     if (this.platform.is('ios')) {
       this.safariViewController.hide().catch((error) => {
         console.error(error);
