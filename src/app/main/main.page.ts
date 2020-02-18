@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ToastService } from './../@core/toast.service';
 import { NavController, Platform } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
@@ -39,6 +40,7 @@ export class MainPage implements OnInit {
     private navController: NavController,
     private platform: Platform,
     private toastService: ToastService,
+    private translate: TranslateService,
   ) {
     this.platform.ready()
       .then(() => { this.handleBackButton(); })
@@ -70,7 +72,7 @@ export class MainPage implements OnInit {
           return;
         }
 
-        this.toastService.show('Press back again to exit App').catch();
+        this.toastService.show(this.translate.instant('TOAST.EXIT_APP.MESSAGE')).catch();
         lastTimeBackPress = new Date().getTime();
       })
       .catch((result: any) => { console.warn(result); });
