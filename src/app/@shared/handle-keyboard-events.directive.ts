@@ -16,7 +16,7 @@ export class HandleKeyboardEventsDirective {
     private platform: Platform,
   ) { }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.platform.ready().then(() => {
       this.keyboardWillShow = this.onKeyboardWillShow.bind(this);
       this.keyboardDidShow = this.onKeyboardDidShow.bind(this);
@@ -30,32 +30,32 @@ export class HandleKeyboardEventsDirective {
     }).catch();
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     window.removeEventListener('keyboardWillShow', this.keyboardWillShow);
     window.removeEventListener('keyboardDidShow', this.keyboardDidShow);
     window.removeEventListener('keyboardWillHide', this.keyboardWillHide);
     window.removeEventListener('keyboardDidHide', this.keyboardDidHide);
   }
 
-  private onKeyboardWillShow(ev: any) {
+  private onKeyboardWillShow(ev: any): void {
     document.body.classList.add('keyboard-will-show');
 
     const keyboardHeight = ev.keyboardHeight <= 0 ? DEFAULT_KEYBOARD_HEIGHT : ev.keyboardHeight;
     document.documentElement.style.setProperty('--keyboard-height', keyboardHeight  + 'px');
   }
 
-  private onKeyboardDidShow(ev: Event) {
+  private onKeyboardDidShow(): void {
     document.body.classList.add('keyboard-did-show');
   }
 
-  private onKeyboardWillHide() {
+  private onKeyboardWillHide(): void {
     document.documentElement.style.setProperty('--keyboard-height', '0px');
     document.body.classList.remove('keyboard-will-show');
     document.body.classList.remove('keyboard-did-show');
     document.body.classList.add('keyboard-will-hide');
   }
 
-  private onKeyboardDidHide() {
+  private onKeyboardDidHide(): void {
     document.body.classList.remove('keyboard-will-hide');
   }
 }

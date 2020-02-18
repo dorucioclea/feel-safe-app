@@ -9,7 +9,7 @@ export const ScriptStore: Scripts[] = [
   { name: 'facebooksdk', src: 'https://connect.facebook.net/en_US/sdk.js' },
 ];
 
-declare var document: any;
+declare let document: any;
 
 @Injectable({
   providedIn: 'root',
@@ -26,14 +26,14 @@ export class DynamicScriptLoaderService {
     });
   }
 
-  public load(...scripts: string[]) {
+  public load(...scripts: string[]): Promise<any> {
     const promises: any[] = [];
     scripts.forEach((script) => promises.push(this.loadScript(script)));
 
     return Promise.all(promises);
   }
 
-  public loadScript(name: string) {
+  public loadScript(name: string): Promise<any> {
     return new Promise((resolve) => {
       if (!this.scripts[name].loaded) {
         //load script
@@ -41,20 +41,20 @@ export class DynamicScriptLoaderService {
         script.type = 'text/javascript';
         script.src = this.scripts[name].src;
         if (script.readyState) {  //IE
-            script.onreadystatechange = () => {
-                if (script.readyState === "loaded" || script.readyState === "complete") {
-                    script.onreadystatechange = null;
-                    this.scripts[name].loaded = true;
-                    resolve({ script: name, loaded: true, status: 'Loaded' });
-                }
-            };
+          script.onreadystatechange = (): any => {
+            if (script.readyState === 'loaded' || script.readyState === 'complete') {
+              script.onreadystatechange = null;
+              this.scripts[name].loaded = true;
+              resolve({ script: name, loaded: true, status: 'Loaded' });
+            }
+          };
         } else {  //Others
-            script.onload = () => {
-                this.scripts[name].loaded = true;
-                resolve({ script: name, loaded: true, status: 'Loaded' });
-            };
+          script.onload = (): any => {
+            this.scripts[name].loaded = true;
+            resolve({ script: name, loaded: true, status: 'Loaded' });
+          };
         }
-        script.onerror = () => resolve({ script: name, loaded: false, status: 'Failed' });
+        script.onerror = (): any => resolve({ script: name, loaded: false, status: 'Failed' });
         document.getElementsByTagName('head')[0].appendChild(script);
       } else {
         resolve({ script: name, loaded: true, status: 'Already Loaded' });

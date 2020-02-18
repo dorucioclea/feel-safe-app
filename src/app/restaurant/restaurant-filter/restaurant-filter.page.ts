@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { GeoPoint } from 'src/app/@shared/app-helper';
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 import { PageTrack } from 'src/app/@shared/page-track.decorator';
 import { RestaurantCategoryModel } from 'src/app/restaurant/@shared/restaurant-category.model';
@@ -24,7 +25,7 @@ export class RestaurantFilterPage implements OnInit {
   @Input() public orderBy: any;
 
   public categories: RestaurantCategoryModel[] = [];
-  public currentLocation = { lat: 52.52451, lng: 13.395346 };
+  public currentLocation: GeoPoint = { lat: 52.52451, lng: 13.395346 };
   public priceRange: string;
   public restaurantCategoryId: string;
 
@@ -42,7 +43,7 @@ export class RestaurantFilterPage implements OnInit {
     private restaurantService: RestaurantService,
   ) { }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.restoreFilter();
 
     this.restaurantService.getCategories()
@@ -52,12 +53,12 @@ export class RestaurantFilterPage implements OnInit {
       });
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
 
-  public clearFilter() {
+  public clearFilter(): void {
     this.priceRange = '___ALL___';
     this.restaurantCategoryId = '___ALL___';
     this.locationDistance.isActive = false;
@@ -66,19 +67,19 @@ export class RestaurantFilterPage implements OnInit {
     this.applyFilter();
   }
 
-  public applyFilter() {
+  public applyFilter(): void {
     this.updateWhereFilter();
 
     this.restaurantService.setFilter(this.whereFilter, this.orderBy);
     this.dismiss();
   }
 
-  public dismiss() {
+  public dismiss(): void {
     console.log(this.whereFilter, this.orderBy);
     this.modalController.dismiss().catch();
   }
 
-  private restoreFilter() {
+  private restoreFilter(): void {
     this.priceRange = this.whereFilter.priceRange || '___ALL___';
     this.restaurantCategoryId = this.whereFilter.restaurantCategoryId || '___ALL___';
 
@@ -88,7 +89,7 @@ export class RestaurantFilterPage implements OnInit {
     }
   }
 
-  private updateWhereFilter() {
+  private updateWhereFilter(): void {
     this.whereFilter.priceRange = this.priceRange;
     this.whereFilter.restaurantCategoryId = this.restaurantCategoryId;
 

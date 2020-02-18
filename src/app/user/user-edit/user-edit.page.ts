@@ -19,9 +19,9 @@ import { UserService } from 'src/app/user/@shared/user.service';
 })
 export class UserEditPage implements OnInit {
   public editForm: FormGroup;
-  public isLoading = false;
+  public isLoading: boolean = false;
   public currentUser: UserModel;
-  public passwordMinLength = C.validation.passwordMinLength;
+  public passwordMinLength: number = C.validation.passwordMinLength;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,11 +38,11 @@ export class UserEditPage implements OnInit {
     });
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.currentUser = this.userService.getCurrentUser();
   }
 
-  public ionViewDidEnter() {
+  public ionViewDidEnter(): void {
     this.editForm.patchValue({
       avatarId: this.currentUser.avatarId,
       username: this.currentUser.username,
@@ -50,16 +50,15 @@ export class UserEditPage implements OnInit {
     });
   }
 
-  public updateAvatar(id: string) {
-    console.log(id);
+  public updateAvatar(id: string): void {
     this.editForm.patchValue({ avatarId: id });
   }
 
-  public formIsValid() {
+  public formIsValid(): boolean {
     return this.editForm.valid;
   }
 
-  public async save() {
+  public async save(): Promise<void> {
     if (this.isLoading) { return; }
 
     this.isLoading = true;

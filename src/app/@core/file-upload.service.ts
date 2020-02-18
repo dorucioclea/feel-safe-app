@@ -16,7 +16,7 @@ export class FileUploadService {
     private http: HttpClient,
   ) {}
 
-  public upload(filepath: any) {
+  public upload(filepath: any): any {
     let fileName = filepath.split('/');
     fileName = fileName[fileName.length - 1];
 
@@ -32,12 +32,12 @@ export class FileUploadService {
     return fileTransfer.upload(filepath, URL.filesUpload(), options);
   }
 
-  public uploadFromUrl(fileUrl: string) {
+  public uploadFromUrl(fileUrl: string): Promise<any> {
     return this.http.post(URL.filesUploadFromUrl(), { url: fileUrl })
       .toPromise();
   }
 
-  public delete(fileId: string) {
+  public delete(fileId: string): Promise<any> {
     return this.http.delete(URL.filesById(fileId))
       .toPromise();
   }

@@ -1,4 +1,4 @@
-export function stripHtml(content: string) {
+export function stripHtml(content: string): string {
   if (!content) { return '' };
 
   const tmp = document.implementation.createHTMLDocument('New').body;

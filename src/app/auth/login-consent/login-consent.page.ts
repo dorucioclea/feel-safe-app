@@ -17,9 +17,9 @@ import { PageTrack } from 'src/app/@shared/page-track.decorator';
 export class LoginConsentPage implements OnInit {
   public loginConsentForm: FormGroup;
   public agreements: { [key: string]: AgreementModel };
-  public initialized = false;
+  public initialized: boolean = false;
   public isLoading: boolean;
-  public firstLoadFinished = false;
+  public firstLoadFinished: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,9 +32,9 @@ export class LoginConsentPage implements OnInit {
     });
   }
 
-  public ngOnInit() {}
+  public ngOnInit(): void {}
 
-  public ionViewDidEnter() {
+  public ionViewDidEnter(): void {
     if (this.initialized) {
       return;
     }
@@ -44,23 +44,23 @@ export class LoginConsentPage implements OnInit {
     this.loadAgreements().catch();
   }
 
-  public formIsValid() {
+  public formIsValid(): boolean {
     return this.loginConsentForm.valid && this.consentsValid();
   }
 
-  public consentsValid() {
+  public consentsValid(): boolean {
     return this.loginConsentForm.value.termsConsent && this.loginConsentForm.value.privacyConsent;
   }
 
-  public consent() {
+  public consent(): void {
     this.close({ agreements: Object.values(this.agreements) });
   }
 
-  public close(data = {}) {
+  public close(data: any = {}): void {
     this.modalController.dismiss(data).catch();
   }
 
-  private async loadAgreements() {
+  private async loadAgreements(): Promise<void> {
     try {
       this.isLoading = true;
 

@@ -13,5 +13,5 @@ import { PageTrack } from 'src/app/@shared/page-track.decorator';
 export class ImprintPage implements OnInit {
   constructor() { }
 
-  public ngOnInit() { }
+  public ngOnInit(): void { }
 }

@@ -18,7 +18,7 @@ import { PageTrack } from 'src/app/@shared/page-track.decorator';
 })
 export class MoreMenuPage implements OnInit {
   public onboardingReturnUrl: string;
-  public showLanguageSwitcher = false;
+  public showLanguageSwitcher: boolean = false;
 
   constructor(
     private alertController: AlertController,
@@ -29,13 +29,13 @@ export class MoreMenuPage implements OnInit {
     private translate: TranslateService,
   ) { }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.onboardingReturnUrl = this.router.routerState.snapshot.url;
 
     this.showLanguageSwitcher = C.availableLanguages.length > 1;
   }
 
-  public async logout() {
+  public async logout(): Promise<void> {
     const confirmation = await this.confirmLogout();
 
     if (!confirmation) { return; }
@@ -48,7 +48,7 @@ export class MoreMenuPage implements OnInit {
     }).catch();
   }
 
-  private confirmLogout() {
+  private confirmLogout(): Promise<boolean> {
     return new Promise(async (resolve) => {
       const alert = await this.alertController.create({
         header: this.translate.instant('ALERT.LOGOUT.HEADER'),
@@ -58,12 +58,12 @@ export class MoreMenuPage implements OnInit {
             text: this.translate.instant('BUTTON.CANCEL'),
             role: 'cancel',
             cssClass: 'secondary',
-            handler: () => {
+            handler: (): void => {
               return resolve(false);
             },
           }, {
             text: this.translate.instant('BUTTON.OK'),
-            handler: () => {
+            handler: (): void => {
               return resolve(true);
             },
           },

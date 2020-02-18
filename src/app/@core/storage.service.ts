@@ -15,7 +15,7 @@ export class StorageService {
   /**
    * Use for storing values, stringifies values
    */
-  public set(key: string, value: any) {
+  public set(key: string, value: any): void {
     switch (typeof value) {
       case 'function':
         throw new Error('Yeah, so, functions cannot be saved into localStorage.');
@@ -31,7 +31,7 @@ export class StorageService {
     }
   }
 
-  public get(key: string, defaultValue?: any) {
+  public get(key: string, defaultValue?: any): any {
     let item = this.storage.getItem(C.STORAGE_PREFIX + key) || defaultValue;
 
     // We do not need to parse the default value
@@ -42,21 +42,22 @@ export class StorageService {
     return item;
   }
 
-  public remove(key: string) {
+  public remove(key: string): void {
     this.storage.removeItem(C.STORAGE_PREFIX + key);
   }
 
-  public clear() {
+  public clear(): void {
     for (const item in this.storage) {
       if (!this.storage.hasOwnProperty(item)) { continue };
 
+      // eslint-disable-next-line @typescript-eslint/prefer-includes
       if (item.indexOf(C.STORAGE_PREFIX) >= 0) {
         this.storage.removeItem(item);
       }
     }
   }
 
-  public getAllItems() {
+  public getAllItems(): any {
     const items = Object.assign({}, this.storage);
 
     for (const item in items) {
@@ -64,6 +65,7 @@ export class StorageService {
 
       items[item] = this.parseJsonIfNeeded(items[item]);
 
+      // eslint-disable-next-line @typescript-eslint/prefer-includes
       if (item.indexOf(C.STORAGE_PREFIX) < 0) {
         delete items[item];
       }
@@ -72,7 +74,7 @@ export class StorageService {
     return items;
   }
 
-  private parseJsonIfNeeded(item: any) {
+  private parseJsonIfNeeded(item: any): any {
     // console.log(item);
     try {
       item = JSON.parse(item || '{}'); // TODO Why an empty object, does that make sense?

@@ -3,11 +3,13 @@ import { Network } from '@ionic-native/network/ngx';
 import { Platform } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 
+const CHECK_DURATION: number = 2000;
+
 @Injectable({
   providedIn: 'root',
 })
 export class NetworkService {
-  private checkDuration = 2000;
+  private checkDuration: number = CHECK_DURATION;
   private connectSubscription: Subscription;
   private disconnectSubscription: Subscription;
   private networkTimeout: any;
@@ -26,18 +28,18 @@ export class NetworkService {
     });
   }
 
-  public initWatcher() {
+  public initWatcher(): void {
     this.disconnectSubscription = this.network.onDisconnect().subscribe(this.onDisconnected.bind(this));
     this.connectSubscription = this.network.onConnect().subscribe(this.onConnected.bind(this));
   }
 
-  public destroyWatcher() {
+  public destroyWatcher(): void {
     this.disconnectSubscription.unsubscribe();
     this.connectSubscription.unsubscribe();
     clearTimeout(this.networkTimeout);
   }
 
-  private checkNetwork() {
+  private checkNetwork(): void {
     this.networkTimeout = setTimeout(() => {
       if (this.platform.is('cordova') && this.network.type === 'none') {
         // TODO: show toast
@@ -50,7 +52,7 @@ export class NetworkService {
     }, this.checkDuration);
   }
 
-  private onDisconnected() {
+  private onDisconnected(): void {
     // we don't want to open the offline modal immediately
     // to prevent edge cases like losing wifi and switch to mobile connection
     // which would also trigger the offline state for a short time
@@ -60,20 +62,20 @@ export class NetworkService {
     }, this.checkDuration);
   }
 
-  private onConnected() {
+  private onConnected(): void {
     clearTimeout(this.networkTimeout);
     // TODO: hide toast
     console.info('connected');
   }
 
-  private subscribeOnResume() {
+  private subscribeOnResume(): void {
     this.platform.resume.subscribe(() => {
       this.initWatcher();
       this.checkNetwork();
     });
   }
 
-  private unsubscribeOnPause() {
+  private unsubscribeOnPause(): void {
     this.platform.pause.subscribe(() => {
       this.destroyWatcher();
     });

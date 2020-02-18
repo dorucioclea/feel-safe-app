@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -9,12 +8,12 @@ import { AuthService } from 'src/app/auth/@shared/auth.service';
 import { C } from './@shared/constants';
 import { DeeplinkService } from 'src/app/@core/deeplink.service';
 import { PushService } from 'src/app/@core/push.service';
+import { TrackingService } from 'src/app/@core/tracking.service';
 import { UserService } from 'src/app/user/@shared/user.service';
 import { environment } from '../environments/environment';
-import { TrackingService } from 'src/app/@core/tracking.service';
 
-declare var cordova: any;
-declare var window: any;
+declare let cordova: any;
+declare let window: any;
 
 const SPLASH_TIMEOUT = 3000;
 
@@ -23,9 +22,9 @@ const SPLASH_TIMEOUT = 3000;
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  public splashImage = '';
+  public splashImage: string = '';
   public splashImageLoaded: boolean;
-  public splashTimeout;
+  public splashTimeout: any;
 
   constructor(
     private authService: AuthService,
@@ -41,7 +40,7 @@ export class AppComponent {
     this.initializeApp();
   }
 
-  public initializeApp() {
+  public initializeApp(): void {
     this.handleConsole();
 
     this.platform.ready().then(async () => {
@@ -73,7 +72,7 @@ export class AppComponent {
         this.onSplashImageLoaded();
       }, SPLASH_TIMEOUT);
 
-      this.pushService.initPush().catch();
+      this.pushService.initPush();
 
       if (this.authService.isAuthenticated()) {
         try {
@@ -82,10 +81,10 @@ export class AppComponent {
           console.error(error);
         }
       }
-    }).catch();
+    }).catch(() => {});
   }
 
-  public onSplashImageLoaded() {
+  public onSplashImageLoaded(): void {
     clearTimeout(this.splashTimeout);
     this.splashImageLoaded = true;
 
@@ -98,15 +97,15 @@ export class AppComponent {
     }, t);
   }
 
-  private setTranslateConfig() {
-    let lang = navigator.language.split('-')[0];
-    lang = /(de|en)/gi.test(lang) ? lang : 'de';
+  private setTranslateConfig(): void {
+    // let lang = navigator.language.split('-')[0];
+    // lang = /(de|en)/gi.test(lang) ? lang : 'de';
 
     this.translate.setDefaultLang('de');
     this.translate.use('de');
   }
 
-  private handleConsole() {
+  private handleConsole(): void {
     if (window.localStorage.getItem('PROTO_DEBUG')) { return; }
 
     let methods: string[] = [];
@@ -130,24 +129,24 @@ export class AppComponent {
     }
 
     methods.forEach((method) => {
-      console[method] = function () { };
+      console[method] = function(): void { };
     });
   }
 
-  private getSplashImage(width: number, height?: number): string {
+  private getSplashImage(width: number): string {
     const WIDTH_IPHONE_5 = 320;
     const WIDTH_ANDROID_DEFAULT = 360;
 
     // TODO: missing splashscreen for s7 edge (and most probably other devices)
 
     if (width === WIDTH_IPHONE_5) {
-      return "./assets/img/splash/Default-568h@2x~iphone.png";
+      return './assets/img/splash/Default-568h@2x~iphone.png';
     }
 
     if (width === WIDTH_ANDROID_DEFAULT) {
-      return "./assets/img/splash/drawable-port-xhdpi-screen.png";
+      return './assets/img/splash/drawable-port-xhdpi-screen.png';
     }
 
-    return "./assets/img/splash/Default-667h.png";
+    return './assets/img/splash/Default-667h.png';
   }
 }

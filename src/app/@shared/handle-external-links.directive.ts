@@ -12,11 +12,11 @@ export class HandleExternalLinksDirective {
     private platform: Platform,
   ) { }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.element.nativeElement.addEventListener('click', this.onElementClicked.bind(this));
   }
 
-  private onElementClicked(ev: any) {
+  private onElementClicked(ev: any): any {
     ev.preventDefault();
     ev.stopPropagation();
 

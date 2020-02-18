@@ -1,4 +1,4 @@
-export function objectFromUrlParams(params: any) {
+export function objectFromUrlParams(params: any): any {
   const obj: any = {};
 
   const parts = params.split('&');

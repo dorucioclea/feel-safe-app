@@ -12,8 +12,8 @@ import { UserService } from 'src/app/user/@shared/user.service';
 import { UserSource, UserModel } from 'src/app/user/@shared/user.model';
 
 export interface LoginData {
-  email: string,
-  password: string,
+  email: string;
+  password: string;
 };
 
 @Injectable({
@@ -29,15 +29,15 @@ export class AuthService {
     private userService: UserService,
   ) { }
 
-  public getAccessToken() {
+  public getAccessToken(): any {
     return this.storage.get('accessToken', null);
   }
 
-  public isAuthenticated() {
+  public isAuthenticated(): boolean {
     return !!this.getAccessToken();
   }
 
-  public register(registerData: any) {
+  public register(registerData: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post(URL.users(), registerData).subscribe(() => {
         const loginData = {
@@ -54,7 +54,7 @@ export class AuthService {
     });
   }
 
-  public login(loginData: any) {
+  public login(loginData: any): Promise<UserModel> {
     return new Promise((resolve, reject) => {
       this.http.post(URL.usersLogin({ queryParams: { include: 'user' } }), loginData).subscribe((response: any) => {
         const accessToken: any = Object.assign({}, response);
@@ -71,7 +71,7 @@ export class AuthService {
     });
   }
 
-  public async loginWithProvider(provider: string) {
+  public async loginWithProvider(provider: string): Promise<UserModel> {
     return new Promise((resolve, reject) => {
       if (this.platform.is('cordova')) {
         this.inAppBrowserService.openUrl(URL.auth(provider));
@@ -105,7 +105,7 @@ export class AuthService {
       // web fallback
       try {
         window.open(URL.auth(provider), '_blank', 'width=900,height=500');
-        window.onmessage = async (event) => {
+        window.onmessage = async (event): Promise<any> => {
           if (event.data.response) {
             const response = JSON.parse(decodeURIComponent(event.data.response));
 
@@ -125,7 +125,7 @@ export class AuthService {
     });
   }
 
-  public logout() {
+  public logout(): Promise<any> {
     return this.http.post(URL.usersLogout(), {})
       .pipe(
         tap(() => {
@@ -135,12 +135,12 @@ export class AuthService {
       .toPromise();
   }
 
-  public requestPasswordReset(email: string) {
+  public requestPasswordReset(email: string): Promise<any> {
     return this.http.post(URL.usersReset(), { email: email })
       .toPromise();
   }
 
-  public resetPassword(token: string, newPassword: string) {
+  public resetPassword(token: string, newPassword: string): Promise<any> {
     const headers = new HttpHeaders({
       Authorization: token,
     });
@@ -149,12 +149,12 @@ export class AuthService {
       .toPromise();
   }
 
-  public removeCriticalData() {
+  public removeCriticalData(): void {
     this.userService.removeCurrentUser();
     this.storage.remove('accessToken');
   }
 
-  private async loginWithAccessToken(accessToken: any) {
+  private async loginWithAccessToken(accessToken: any): Promise<UserModel> {
     try {
       this.storage.set('accessToken', accessToken);
 

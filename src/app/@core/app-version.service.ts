@@ -88,7 +88,7 @@ export class AppVersionService {
     });
   }
 
-  private getRemoteVersions() {
+  private getRemoteVersions(): Promise<any> {
     return this.http.get(URL.appVersions()).toPromise();
   }
 }

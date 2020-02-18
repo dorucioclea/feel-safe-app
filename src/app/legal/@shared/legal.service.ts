@@ -17,7 +17,7 @@ export class LegalService {
     return this.http.get<AgreementModel>(URL.agreementsLatest(agreementType));
   }
 
-  public consentToAgreement(agreementId: string, agreement: AgreementModel, agreementType: string) {
+  public consentToAgreement(agreementId: string, agreement: AgreementModel, agreementType: string): Promise<any> {
     return this.http.post(URL.consents(), {
       agreementId: agreementId,
       agreement: agreement,

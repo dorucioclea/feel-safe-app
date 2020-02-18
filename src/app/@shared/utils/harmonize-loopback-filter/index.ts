@@ -1,4 +1,4 @@
-export function harmonizeLoopbackFilter(filter: any) {
+export function harmonizeLoopbackFilter(filter: any): any {
   if (filter.where && !filter.where.and) {
     filter.where = {
       and: [

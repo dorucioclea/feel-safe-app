@@ -22,7 +22,7 @@ import { ToastService } from 'src/app/@core/toast.service';
 })
 export class LoginPage implements OnInit {
   public loginForm: FormGroup;
-  public isLoading = false;
+  public isLoading: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -40,9 +40,9 @@ export class LoginPage implements OnInit {
     });
   }
 
-  public ngOnInit() { }
+  public ngOnInit(): void { }
 
-  public async login() {
+  public async login(): Promise<void> {
     if (!this.loginForm.valid || this.isLoading) { return; }
 
     this.isLoading = true;
@@ -62,11 +62,11 @@ export class LoginPage implements OnInit {
     }
   }
 
-  public formIsValid() {
+  public formIsValid(): boolean {
     return this.loginForm.valid;
   }
 
-  public async loginWithProvider(provider: string) {
+  public async loginWithProvider(provider: string): Promise<void> {
     const modal = await this.modalController.create({
       component: LoginConsentPage,
     } as ModalOptions);
@@ -92,7 +92,7 @@ export class LoginPage implements OnInit {
     }).catch();
   }
 
-  private onLoginSucceeded() {
+  private onLoginSucceeded(): void {
     this.isLoading = false;
 
     this.activatedRoute.queryParams.subscribe((queryParams) => {
@@ -106,7 +106,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  private onLoginFailed() {
+  private onLoginFailed(): void {
     const message = this.translate.instant('TOAST.LOGIN_ERROR.MESSAGE');
     this.toastService.show(message, false).catch();
   }

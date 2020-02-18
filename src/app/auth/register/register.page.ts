@@ -20,10 +20,10 @@ import { ToastService } from 'src/app/@core/toast.service';
 })
 export class RegisterPage implements OnInit {
   public registerForm: FormGroup;
-  public emailTaken = false;
-  public isLoading = false;
+  public emailTaken: boolean = false;
+  public isLoading: boolean = false;
   public agreements: { [key: string]: AgreementModel };
-  public passwordMinLength = C.validation.passwordMinLength;
+  public passwordMinLength: number = C.validation.passwordMinLength;
 
   constructor(
     private authService: AuthService,
@@ -43,11 +43,11 @@ export class RegisterPage implements OnInit {
     });
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.loadAgreements().catch();
   }
 
-  public register() {
+  public register(): void {
     if (!this.registerForm.valid || this.isLoading) { return; }
 
     this.isLoading = true;
@@ -72,15 +72,15 @@ export class RegisterPage implements OnInit {
     });
   }
 
-  public formIsValid() {
+  public formIsValid(): boolean {
     return this.registerForm.valid && this.consentsValid();
   }
 
-  public consentsValid() {
+  public consentsValid(): boolean {
     return this.registerForm.value.termsConsent && this.registerForm.value.privacyConsent;
   }
 
-  private onRegistrationSucceeded() {
+  private onRegistrationSucceeded(): void {
     this.isLoading = false;
     this.navController.navigateRoot('/main')
       .then(() => {
@@ -89,7 +89,7 @@ export class RegisterPage implements OnInit {
       .catch();
   }
 
-  private onRegistrationFailed(err: any) {
+  private onRegistrationFailed(err: any): void | Promise<void> {
     this.isLoading = false;
 
     if (err && err.status === C.status.unprocessableEntity &&
@@ -105,13 +105,12 @@ export class RegisterPage implements OnInit {
   private getUnprocessableEntityMessage(data: any): string {
     try {
       return data.error.error.message;
-    }
-    catch (catchErr) {
+    } catch (catchErr) {
       return '';
     };
   }
 
-  private async loadAgreements() {
+  private async loadAgreements(): Promise<void> {
     try {
       this.isLoading = true;
 

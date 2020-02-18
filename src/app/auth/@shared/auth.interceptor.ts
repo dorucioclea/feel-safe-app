@@ -23,7 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
         request = request.clone({ headers: request.headers.set('Authorization', `${accessToken.id}`) });
       }
 
-      return next.handle(request).pipe(catchError((error, caught) => {
+      return next.handle(request).pipe(catchError((error) => {
         this.handleAuthError(error);
 
         return of(error);
@@ -38,7 +38,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (error.status === STATUS_UNAUTHORIZED) {
       //navigate /delete cookies or whatever
       console.debug('handled auth error ' + error.status);
-      this.router.navigate([`/login`]).catch();
+      this.router.navigate(['/login']).catch();
       // if you've caught / handled the error, you don't want to rethrow it unless you also want downstream consumers to have to handle it as well.
 
       return of(error.message);

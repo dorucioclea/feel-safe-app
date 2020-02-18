@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path  = require('path');
 const readline = require('readline');
 const stylelint  = require('stylelint');

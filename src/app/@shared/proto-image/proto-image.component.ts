@@ -17,7 +17,7 @@ import { URL } from 'src/app/@shared/url';
 // tslint:disable:no-magic-numbers
 export class ProtoImageComponent implements OnInit {
   @ViewChild('imageSrc', { static: true }) public imageSrc: ElementRef;
-  @Input() public showFallbackImage = false;
+  @Input() public showFallbackImage: boolean = false;
   @Input() public imageType: imageType = 'default';
 
   @Input() set imageId(id: string) {
@@ -32,29 +32,28 @@ export class ProtoImageComponent implements OnInit {
   }
 
   public largeImage: string;
-  public isFallbackImage = false;
-  public hasLoaded = false;
+  public isFallbackImage: boolean = false;
+  public hasLoaded: boolean = false;
 
   constructor(
     private renderer: Renderer2,
-  ) {
-  }
+  ) { }
 
-  public ngOnInit() {
-  }
+  public ngOnInit(): void { }
 
-  public onImageLoaded() {
+  public onImageLoaded(): void {
     this.renderer.removeAttribute(this.imageSrc.nativeElement, 'data-src');
 
     // probably not necessary, needs more testing
     //requestAnimationFrame(() => {
-      this.hasLoaded = true;
+    this.hasLoaded = true;
     //});
   }
 
-  private setImageSource(imageId: string) {
+  private setImageSource(imageId: string): void {
+    const TWO: number = 2;
     const ratio: number = Config.ratio[this.imageType] || Config.ratio.default;
-    const width: number = 2 * (Config.width[this.imageType] || Config.width.default);
+    const width: number = TWO * (Config.width[this.imageType] || Config.width.default);
 
     this.largeImage = this.getImage(imageId, width, Math.ceil(width / ratio));
 

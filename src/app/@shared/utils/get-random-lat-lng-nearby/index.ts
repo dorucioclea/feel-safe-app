@@ -1,6 +1,8 @@
+import { GeoPoint } from 'src/app/@shared/app-helper';
+
 // http://gis.stackexchange.com/questions/25877/how-to-generate-random-locations-nearby-my-location
 
-export function getRandomLatLngNearby(original_lat: number, original_lng: number) {
+export function getRandomLatLngNearby(original_lat: number, original_lng: number): GeoPoint {
   const radius = 0.08985; // = 5 km
   const double = 2;
 

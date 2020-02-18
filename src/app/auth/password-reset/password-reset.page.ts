@@ -19,9 +19,9 @@ import { ToastService } from 'src/app/@core/toast.service';
 export class PasswordResetPage implements OnInit {
   public requestForm: FormGroup;
   public resetForm: FormGroup;
-  public isLoading = false;
-  public showRequestSuccessMessage = false;
-  public showResetSuccessMessage = false;
+  public isLoading: boolean = false;
+  public showRequestSuccessMessage: boolean = false;
+  public showResetSuccessMessage: boolean = false;
   public token: string;
 
   constructor(
@@ -40,19 +40,19 @@ export class PasswordResetPage implements OnInit {
     });
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.token = this.activatedRoute.snapshot.params.token;
   }
 
-  public requestFormIsValid() {
+  public requestFormIsValid(): boolean {
     return this.requestForm.valid;
   }
 
-  public resetFormIsValid() {
+  public resetFormIsValid(): boolean {
     return this.resetForm.valid;
   }
 
-  public sendRequest() {
+  public sendRequest(): void {
     if (!this.requestFormIsValid()) { return; }
 
     this.isLoading = true;
@@ -67,7 +67,7 @@ export class PasswordResetPage implements OnInit {
     });
   }
 
-  public reset() {
+  public reset(): void {
     if (!this.resetFormIsValid()) { return; }
 
     this.isLoading = true;
@@ -82,7 +82,7 @@ export class PasswordResetPage implements OnInit {
     });
   }
 
-  private onSubmitFailed(message: string) {
+  private onSubmitFailed(message: string): void {
     this.toastService.show(message, false).catch();
   }
 }

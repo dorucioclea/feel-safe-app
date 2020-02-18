@@ -9,11 +9,11 @@ import { URL } from 'src/app/@shared/url';
 import { UserModel, UserSource } from './user.model';
 
 interface UserDetailsStore {
-  [key: string]: UserModel,
+  [key: string]: UserModel;
 };
 
 interface UserDetails {
-  [key: string]: BehaviorSubject<UserModel>,
+  [key: string]: BehaviorSubject<UserModel>;
 }
 
 @Injectable({
@@ -76,12 +76,12 @@ export class UserService {
     return this.storage.get('user');
   }
 
-  public setCurrentUser(user: UserSource) {
+  public setCurrentUser(user: UserSource): void {
     this.storage.set('user', user);
     this.currentUser.next(new UserModel(user));
   }
 
-  public removeCurrentUser() {
+  public removeCurrentUser(): void {
     this.storage.remove('user');
     this.currentUser.next(null);
   }
@@ -89,11 +89,11 @@ export class UserService {
   public getUserById(id: string): Observable<UserModel> {
     return this.http.get<UserSource>(URL.usersById(id))
       .pipe(
-        map((user: UserSource) => new UserModel(user)),
+        map((user) => new UserModel(user)),
       );
   }
 
-  public updateUserAttributes(attributes: any) {
+  public updateUserAttributes(attributes: any): Promise<UserModel> {
     const user = this.getCurrentUser();
     if (!user) { return Promise.reject('No user logged in yet'); }
 
@@ -108,7 +108,7 @@ export class UserService {
       .toPromise();
   }
 
-  public deleteAccount(email: string, password: string) {
+  public deleteAccount(email: string, password: string): Promise<any> {
     return this.http.post(URL.usersDeleteAccount(this.getCurrentUser().id), { email, password })
       .toPromise();
   }

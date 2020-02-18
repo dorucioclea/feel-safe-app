@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -17,16 +18,16 @@ export class ShowHidePasswordComponent implements ControlValueAccessor {
   @Input() public label: string;
   @Input() public placeholder: string;
 
-  public isVisible = false;
+  public isVisible: boolean = false;
 
-  private _value = '';
+  private _value: string = '';
 
   constructor() { }
 
-  get value() {
+  get value(): string {
     return this._value;
   }
-  set value(val) {
+  set value(val: string) {
     this._value = val;
     this.onChange(val);
     this.onTouched();
@@ -35,15 +36,15 @@ export class ShowHidePasswordComponent implements ControlValueAccessor {
   public onChange: any = () => { };
   public onTouched: any = () => { };
 
-  public registerOnChange(func: Function) {
+  public registerOnChange(func: Function): void {
     this.onChange = func;
   }
 
-  public registerOnTouched(func: Function) {
+  public registerOnTouched(func: Function): void {
     this.onTouched = func;
   }
 
-  public writeValue(value: string) {
+  public writeValue(value: string): void {
     if (value) {
       this.value = value;
     }

@@ -10,15 +10,15 @@ import { URL } from 'src/app/@shared/url';
 import { isEmptyObject } from 'src/app/@shared/utils';
 
 export interface Restaurants extends ProtoItems {
-  items: RestaurantModel[],
+  items: RestaurantModel[];
 }
 
 interface RestaurantsByIdStore {
-  [key: string]: RestaurantModel,
+  [key: string]: RestaurantModel;
 }
 
 interface RestaurantsById {
-  [key: string]: BehaviorSubject<RestaurantModel>,
+  [key: string]: BehaviorSubject<RestaurantModel>;
 }
 
 const DEFAULT_LIMIT = 25;
@@ -30,7 +30,7 @@ const DEFAULT_ORDER_BY = 'createdAt DESC';
 })
 export class RestaurantService {
   private whereFilter: any = DEFAUL_WHERE_FILTER;
-  private orderBy = DEFAULT_ORDER_BY;
+  private orderBy: string = DEFAULT_ORDER_BY;
   private search: { [key: string]: string } = {};
   private restaurantsStore: Restaurants = null;
   private restaurants: BehaviorSubject<Restaurants> = new BehaviorSubject(null);
@@ -43,14 +43,14 @@ export class RestaurantService {
     private http: HttpClient,
   ) { }
 
-  public setFilter(whereFilter: any = DEFAUL_WHERE_FILTER, orderBy: string = DEFAULT_ORDER_BY) {
+  public setFilter(whereFilter: any = DEFAUL_WHERE_FILTER, orderBy: string = DEFAULT_ORDER_BY): void {
     this.whereFilter = whereFilter;
     this.orderBy = orderBy;
 
     this.updateFilter();
   }
 
-  public resetFilter() {
+  public resetFilter(): void {
     this.whereFilter = DEFAUL_WHERE_FILTER;
     this.orderBy = DEFAULT_ORDER_BY;
 
@@ -65,11 +65,11 @@ export class RestaurantService {
     return DEFAULT_ORDER_BY;
   }
 
-  public searchRestaurants(search: { [key: string]: any }) {
+  public searchRestaurants(search: { [key: string]: any }): void {
     this.updateSearch(search);
   }
 
-  public clearSearch() {
+  public clearSearch(): void {
     this.updateSearch({});
   }
 
@@ -83,7 +83,7 @@ export class RestaurantService {
     }));
   }
 
-  public refreshRestaurantById(restaurantId: string) {
+  public refreshRestaurantById(restaurantId: string): void {
     this.loadRestaurantById(restaurantId).toPromise().catch((error) => {
       console.error(`Error refreshing restaurant ${restaurantId}`);
       console.error(error);
@@ -104,7 +104,7 @@ export class RestaurantService {
     return this.restaurants.asObservable();
   }
 
-  public getMoreRestaurants() {
+  public getMoreRestaurants(): void {
     this.restaurantsStore.meta.isLoading = true;
     this.restaurants.next(this.restaurantsStore);
 
@@ -116,7 +116,7 @@ export class RestaurantService {
     });
   }
 
-  public refreshRestaurants() {
+  public refreshRestaurants(): void {
     if (!this.restaurantsStore) { return; }
 
     this.restaurantsStore.meta.isLoading = true;
@@ -140,7 +140,7 @@ export class RestaurantService {
     }));
   }
 
-  private loadRestaurants(skip = 0, limit = DEFAULT_LIMIT) {
+  private loadRestaurants(skip: number = 0, limit: number = DEFAULT_LIMIT): Observable<RestaurantModel[]> {
     const filter = {
       skip: skip,
       limit: limit,
@@ -179,7 +179,7 @@ export class RestaurantService {
       );
   }
 
-  private loadRestaurantById(restaurantId: string) {
+  private loadRestaurantById(restaurantId: string): Observable<RestaurantModel> {
     return this.http.get<RestaurantSource>(URL.restaurantsById(restaurantId))
       .pipe(
         map((restaurant) => new RestaurantModel(restaurant)),
@@ -195,7 +195,7 @@ export class RestaurantService {
       );
   }
 
-  private updateRestaurantsById(restaurants: RestaurantModel[]) {
+  private updateRestaurantsById(restaurants: RestaurantModel[]): void {
     restaurants.forEach((restaurant) => {
       this.restaurantsByIdStore[restaurant.id] = restaurant;
       
@@ -207,7 +207,7 @@ export class RestaurantService {
     });
   }
 
-  private loadCategories() {
+  private loadCategories(): Observable<RestaurantCategoryModel[]> {
     return this.http.get<RestaurantCategorySource[]>(URL.restaurantCategories())
       .pipe(
         map((categories) => categories.map((category) => new RestaurantCategoryModel(category))),
@@ -218,7 +218,7 @@ export class RestaurantService {
       );
   }
 
-  private updateFilter() {
+  private updateFilter(): void {
     this.restaurantsStore.items = [];
     this.restaurantsStore.meta.isLoading = true;
     this.restaurantsStore.meta.filterIsActive = isEmptyObject(this.whereFilter);
@@ -234,7 +234,7 @@ export class RestaurantService {
     });
   }
   
-  private updateSearch(search: { [key: string]: any }) {
+  private updateSearch(search: { [key: string]: any }): void {
     this.search = search;
 
     this.restaurantsStore.items = [];

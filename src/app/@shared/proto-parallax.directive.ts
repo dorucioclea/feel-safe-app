@@ -2,11 +2,11 @@ import { Directive, Renderer2, ElementRef } from '@angular/core';
 import { DomController, IonContent, Platform } from '@ionic/angular';
 
 interface ParallaxItem {
-  element: HTMLElement,
-  isMain?: boolean,
-  value: number,
-  depth: number,
-  scale: number,
+  element: HTMLElement;
+  isMain?: boolean;
+  value: number;
+  depth: number;
+  scale: number;
 }
 
 @Directive({
@@ -18,9 +18,9 @@ export class ProtoParallaxDirective {
   private parallaxItems: ParallaxItem[];
   private mainParallaxItem: ParallaxItem;
 
-  private mainElementHeight = 0;
-  private scaleAmt = 1;
-  private initialized = false;
+  private mainElementHeight: number = 0;
+  private scaleAmt: number = 1;
+  private initialized: boolean = false;
 
   constructor(
     private content: IonContent,
@@ -30,7 +30,7 @@ export class ProtoParallaxDirective {
     private renderer: Renderer2) {
   }
 
-  public ngAfterViewInit() {
+  public ngAfterViewInit(): void {
     const parallaxSupported = document.body.classList.contains('webkit');
     if (!parallaxSupported) { return; }
 
@@ -51,7 +51,7 @@ export class ProtoParallaxDirective {
 
   }
 
-  public ngAfterViewChecked() {
+  public ngAfterViewChecked(): void {
     if (!this.parallaxContainer || !this.parallaxItems.length) { return; }
     this.mainElementHeight = this.parallaxItems[0].element.offsetHeight;
 
@@ -61,7 +61,7 @@ export class ProtoParallaxDirective {
     this.setMainParallaxItem();
   }
 
-  private bindScrollListener(container: HTMLElement) {
+  private bindScrollListener(container: HTMLElement): void {
     // native scroll event seems faster on iOS than ionScroll
     container.addEventListener('scroll', (ev: any) => {
       if (!ev || !ev.target) { return; }
@@ -77,7 +77,7 @@ export class ProtoParallaxDirective {
   }
 
   // TODO: make this work for multiple elements
-  private initParallaxItems(nodelist: NodeList) {
+  private initParallaxItems(nodelist: NodeList): void {
     this.parallaxItems = Array.from(nodelist).map((node: HTMLElement) => {
       const item: ParallaxItem = this.getParallaxItem(node);
       this.renderer.setStyle(
@@ -91,7 +91,7 @@ export class ProtoParallaxDirective {
 
   // main parallax item is necessary for fixed perspective origin and ios bouncing
   // TODO: discuss how we define our main parallax item
-  private setMainParallaxItem() {
+  private setMainParallaxItem(): void {
     this.mainParallaxItem = this.parallaxItems.filter((item: ParallaxItem) => item.isMain)[0];
     if (!this.mainParallaxItem) { return; }
 
@@ -113,15 +113,15 @@ export class ProtoParallaxDirective {
     return {
       element: node,
       isMain: node.classList.contains('proto-parallax-element--main'),
-      get value() { return rate > 0 ? rate : perspective; },
-      get depth() { return 1 - (1 / this.value); },
-      get scale() {
+      get value(): number { return rate > 0 ? rate : perspective; },
+      get depth(): number { return 1 - (1 / this.value); },
+      get scale(): number {
         return (perspective - this.depth) / perspective;
       },
     };
   }
 
-  private updateMainParallaxItem(scrollValue: number) {
+  private updateMainParallaxItem(scrollValue: number): void {
     this.scaleAmt = Math.max((-scrollValue / this.mainElementHeight + 1), 1);
     this.renderer.setStyle(this.mainParallaxItem.element.firstElementChild, 'transform', 'translateZ(0) scale(' + this.scaleAmt + ')');
   }

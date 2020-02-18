@@ -9,8 +9,8 @@ import { URL } from 'src/app/@shared/url';
 import { UserService } from 'src/app/user/@shared/user.service';
 
 export interface PushStatus {
-  softPermission: 'unknown' | 'allowed' | 'denied',
-  permission: 'unknown' | 'allowed' | 'denied',
+  softPermission: 'unknown' | 'allowed' | 'denied';
+  permission: 'unknown' | 'allowed' | 'denied';
 }
 
 @Injectable({
@@ -18,7 +18,7 @@ export interface PushStatus {
 })
 export class PushService {
   private pushObject: PushObject;
-  private initialized = false;
+  private initialized: boolean = false;
 
   constructor(
     private push: Push,
@@ -35,7 +35,7 @@ export class PushService {
     this.userService.currentUser.subscribe((user) => {
       if (!user) { return; }
 
-      this.initPush().catch();
+      this.initPush();
     });
   }
 
@@ -45,11 +45,11 @@ export class PushService {
     return pushStatus;
   }
 
-  public setPushStatus(pushStatus: PushStatus) {
+  public setPushStatus(pushStatus: PushStatus): void {
     this.storage.set('pushStatus', pushStatus);
   }
 
-  public async initPush() {
+  public initPush(): void {
     if (this.initialized) { return; }
 
     const pushStatus = this.getPushStatus();
@@ -82,7 +82,7 @@ export class PushService {
     });
   }
 
-  private updatePushToken(token: string) {
+  private updatePushToken(token: string): Promise<any> {
     const currentUser = this.userService.getCurrentUser();
 
     if (!currentUser) { return Promise.resolve(); }
@@ -96,7 +96,7 @@ export class PushService {
       .toPromise();
   }
 
-  private clearAllNotifications() {
+  private clearAllNotifications(): void {
     if (!this.pushObject) { return; }
 
     this.pushObject.clearAllNotifications().catch();

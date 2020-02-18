@@ -13,7 +13,7 @@ export class SharingService {
     private socialSharing: SocialSharing,
   ) { }
 
-  public share(subject = null, message = null, url = null) {
+  public share(subject: string = null, message: string = null, url: string = null): void {
     if (!this.platform.is('cordova')) {
       console.log('SHARE', subject, message, url);
 
@@ -29,7 +29,7 @@ export class SharingService {
     });
   }
 
-  public shareRestaurant(id: string) {
+  public shareRestaurant(id: string): void {
     this.share(null, null, URL.restaurantsById(id));
   }
 }

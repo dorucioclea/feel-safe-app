@@ -1,8 +1,8 @@
 export interface UserSource {
-  id: string,
-  username: string,
-  avatar: string,
-  email: string,
+  id: string;
+  username: string;
+  avatar: string;
+  email: string;
 }
 
 export class UserModel {
