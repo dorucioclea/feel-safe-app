@@ -155,6 +155,9 @@
     },
     "USER_DELETE_ERROR": {
       "MESSAGE": "Das Passwort ist nicht korrekt."
+    },
+    "EXIT_APP": {
+      "MESSAGE": "Noch einmal drücken, um die App zu schließen."
     }
   },
   "FILTER": {

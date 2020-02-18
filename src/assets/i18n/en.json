@@ -112,6 +112,9 @@
   "TOAST": {
     "USER_DELETE_ERROR": {
       "MESSAGE": "Wrong password entered."
+    },
+    "EXIT_APP": {
+      "MESSAGE": "Press back again to exit App."
     }
   },
   "FILTER": {
