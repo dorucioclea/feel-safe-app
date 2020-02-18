@@ -1,12 +1,13 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="restaurants">
-      <ion-icon src="./assets/icons/list.svg"></ion-icon>
-      <ion-label>{{ 'VIEW.RESTAURANT_LIST.TITLE' | translate }}</ion-label>
-    </ion-tab-button>
-    <ion-tab-button tab="more">
-      <ion-icon name="ios-more"></ion-icon>
-      <ion-label>{{ 'VIEW.MORE.TITLE' | translate }}</ion-label>
+    <ion-tab-button 
+      *ngFor="let tab of tabs"
+      tab="{{ tab.tab }}">
+      <ion-icon src="{{ tab.iconSource }}"
+        *ngIf="tab.iconSource"></ion-icon>
+      <ion-icon name="{{ tab.iconName }}"
+        *ngIf="tab.iconName"></ion-icon>
+      <ion-label>{{ tab.label | translate }}</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
