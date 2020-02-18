@@ -15,7 +15,9 @@ sgf((error, stagedFiles) => {
   const files = [];
 
   for (const stagedFile of stagedFiles) {
-    files.push(` ${stagedFile.filename}`);
+    if (stagedFile.filename.indexOf('.ts') > -1) {
+      files.push(` ${stagedFile.filename}`);
+    }
   }
 
   console.log(...files);

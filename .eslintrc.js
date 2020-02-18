@@ -4,14 +4,7 @@ module.exports = {
   plugins: [
     '@typescript-eslint',
   ],
-  extends: [
-    // 'eslint:recommended',
-    // 'plugin:@typescript-eslint/eslint-recommended',
-    // 'plugin:@typescript-eslint/recommended',
-    // 'airbnb-typescript',
-    // 'prettier/@typescript-eslint',
-    // 'plugin:prettier/recommended',
-  ],
+  extends: [],
   parserOptions: {
     sourceType: 'module',
     tsconfigRootDir: __dirname,
