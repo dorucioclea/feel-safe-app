@@ -45,9 +45,7 @@ export class MainPage implements OnInit {
       .catch();
   }
 
-  public ngOnInit() {
-    
-  }
+  public ngOnInit() {}
 
   private isTabPath(path: string) {
 
@@ -60,24 +58,22 @@ export class MainPage implements OnInit {
 
     let lastTimeBackPress = 0;
     this.platform.backButton.subscribeWithPriority(0, () => {
+      const path = window.location.pathname;
       this.navController.pop()
-        .then(() => {
+      .then(() => {
 
-          const path = window.location.pathname;
+        if (!this.isTabPath(path)) { return; }
 
-          if (!this.isTabPath(path)) { return; }
+        if (new Date().getTime() - lastTimeBackPress < TIME_PERIOD_TO_EXIT) {
+          navigator['app'].exitApp();
 
-          if (new Date().getTime() - lastTimeBackPress < TIME_PERIOD_TO_EXIT) {
-            navigator['app'].exitApp();
+          return;
+        }
 
-            return;
-          }
-
-          this.toastService.show('Press back again to exit App').catch();
-
-          lastTimeBackPress = new Date().getTime();
-        })
-        .catch((result: any) => { console.warn(result); });
+        this.toastService.show('Press back again to exit App').catch();
+        lastTimeBackPress = new Date().getTime();
+      })
+      .catch((result: any) => { console.warn(result); });
     })
   }
 
