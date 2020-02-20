@@ -28,46 +28,6 @@ export class C {
   // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   public static appReloadThreshold: number = 3600000;
 
-  public static urls: any = {
-    get baseUrl() {
-      return environment.apiBaseUrl;
-    },
-    get auth() {
-      return environment.apiBaseUrl + '/auth';
-    },
-    apiVersion: 'api',
-    get url() {
-      return this.baseUrl + '/' + this.apiVersion;
-    },
-    get users() {
-      return this.url + '/users';
-    },
-    get agreements() {
-      return this.url + '/agreements';
-    },
-    get consents() {
-      return this.url + '/consents';
-    },
-    get files() {
-      return this.url + '/files';
-    },
-    get restaurants() {
-      return this.url + '/restaurants';
-    },
-    get restaurantCategories() {
-      return this.url + '/restaurant-categories';
-    },
-    get tags() {
-      return this.url + '/tags';
-    },
-    get votes() {
-      return this.url + '/votes';
-    },
-    get shareFab() {
-      return this.baseUrl + '/fabs';
-    },
-  };
-
   // {8,100}           - Assert password is between 8 and 100 characters
   // (?=.*[0-9])       - Assert a string has at least one number
   // /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,100}$/
