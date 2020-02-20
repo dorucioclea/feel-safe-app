@@ -5,6 +5,7 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
 import { Deeplinks } from '@ionic-native/deeplinks/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { SafariViewController } from '@ionic-native/safari-view-controller/ngx';
@@ -19,6 +20,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
     Crop,
     Deeplinks,
     FileTransfer, // tslint:disable-line
+    FirebaseX,
     InAppBrowser,
     Network,
     SafariViewController,
