@@ -1,8 +1,9 @@
+/* eslint-disable */
 const packageJson = require('../package.json');
 const { spawn } = require('child_process');
 
 function reinstallFirebase() {
-  console.log(`Starting to re-install cordova-plugin-firebasex... Go grab some ☕️ or 🍔 while I'm at it. I will get back to you, as soon as I'm done!`);
+  console.log('Starting to re-install cordova-plugin-firebasex... Go grab some ☕️ or 🍔 while I\'m at it. I will get back to you, as soon as I\'m done!');
 
   const firebaseVersion = packageJson.dependencies['cordova-plugin-firebasex'];
 
@@ -39,7 +40,7 @@ function reinstallFirebase() {
   });
 
   npm.on('close', (code) => {
-    console.log(`🎉 Fixed firebase for you! 🔥`);
+    console.log('🎉 Fixed firebase for you! 🔥');
   });
 }
 
