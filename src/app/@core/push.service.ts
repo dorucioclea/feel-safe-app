@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
-import { HttpClient } from '@angular/common/http';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
+import { C } from 'src/app/@shared/constants';
 import { StorageService } from 'src/app/@core/storage.service';
-import { URL } from 'src/app/@shared/url';
 import { UserService } from 'src/app/user/@shared/user.service';
 
 export interface PushStatus {
@@ -17,11 +17,11 @@ export interface PushStatus {
   providedIn: 'root',
 })
 export class PushService {
-  private pushObject: PushObject;
   private initialized: boolean = false;
+  private token: string;
 
   constructor(
-    private push: Push,
+    private firebase: FirebaseX,
     private http: HttpClient,
     private platform: Platform,
     private storage: StorageService,
@@ -29,14 +29,8 @@ export class PushService {
   ) {
     this.platform.resume
       .subscribe(() => {
-        this.clearAllNotifications();
+        this.clearAllNotifications().catch();
       });
-
-    this.userService.currentUser.subscribe((user) => {
-      if (!user) { return; }
-
-      this.initPush();
-    });
   }
 
   public getPushStatus(): PushStatus {
@@ -49,7 +43,7 @@ export class PushService {
     this.storage.set('pushStatus', pushStatus);
   }
 
-  public initPush(): void {
+  public async initPush(): Promise<void> {
     if (this.initialized) { return; }
 
     const pushStatus = this.getPushStatus();
@@ -58,28 +52,40 @@ export class PushService {
 
     if (pushStatus.softPermission !== 'allowed' || pushStatus.permission === 'denied') { return; }
 
-    const options: PushOptions = {
-      android: {
-        icon: 'pushicon',
-        iconColor: '#c31b1d',
-      },
-      ios: {
-        alert: 'true',
-        badge: true,
-        sound: 'false',
-      },
-    };
-
     console.log('init push');
 
     this.initialized = true;
 
-    this.pushObject = this.push.init(options);
+    let hasPermission = await this.firebase.hasPermission();
 
-    this.pushObject.on('registration').subscribe((registration) => {
-      console.log('PUSH REGISTRATION', registration);
-      this.updatePushToken(registration.registrationId);
-    });
+    if (!hasPermission) {
+      hasPermission = await this.firebase.grantPermission();
+    }
+    
+    if (!hasPermission) {
+      pushStatus.permission = 'denied';
+      this.setPushStatus(pushStatus);
+
+      return;
+    }
+
+    pushStatus.permission = 'allowed';
+    this.setPushStatus(pushStatus);
+
+    this.firebase.onTokenRefresh()
+      .subscribe(async () => {
+        const token = await this.firebase.getToken();
+        console.log('Got new push token', token);
+        this.token = token;
+
+        this.updatePushToken(token);
+      });
+  }
+
+  public refreshPushToken(): void {
+    if (!this.token) { return; }
+
+    this.updatePushToken(this.token);
   }
 
   private updatePushToken(token: string): Promise<any> {
@@ -87,7 +93,9 @@ export class PushService {
 
     if (!currentUser) { return Promise.resolve(); }
 
-    return this.http.post(URL.usersSetPushToken(currentUser.id), { token: token })
+    const url = `${C.urls.users}/${currentUser.id}/set-push-token`;
+
+    return this.http.post(url, { token: token })
       .pipe(
         tap(() => {
           console.log('Push token successfully updated!');
@@ -96,10 +104,16 @@ export class PushService {
       .toPromise();
   }
 
-  private clearAllNotifications(): void {
-    if (!this.pushObject) { return; }
+  private async clearAllNotifications(): Promise<void> {
+    const pushStatus = this.getPushStatus();
 
-    this.pushObject.clearAllNotifications().catch();
-    this.pushObject.setApplicationIconBadgeNumber(0).catch();
+    if (pushStatus.softPermission !== 'allowed' || pushStatus.permission === 'denied') { return; }
+
+    const hasPermission = await this.firebase.grantPermission();
+
+    if (!hasPermission) { return; }
+
+    this.firebase.clearAllNotifications().catch();
+    this.firebase.setBadgeNumber(0).catch();
   }
 }

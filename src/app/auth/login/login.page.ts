@@ -11,6 +11,7 @@ import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 import { LegalService } from 'src/app/legal/@shared/legal.service';
 import { LoginConsentPage } from 'src/app/auth/login-consent/login-consent.page';
 import { PageTrack } from 'src/app/@shared/page-track.decorator';
+import { PushService } from 'src/app/@core/push.service';
 import { ToastService } from 'src/app/@core/toast.service';
 
 @PageTrack()
@@ -31,6 +32,7 @@ export class LoginPage implements OnInit {
     private legalService: LegalService,
     private modalController: ModalController,
     private navController: NavController,
+    private pushService: PushService,
     private toastService: ToastService,
     private translate: TranslateService,
   ) {
@@ -94,6 +96,8 @@ export class LoginPage implements OnInit {
 
   private onLoginSucceeded(): void {
     this.isLoading = false;
+
+    this.pushService.refreshPushToken();
 
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       if (queryParams.returnUrl) {
