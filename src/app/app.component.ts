@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from 'src/app/auth/@shared/auth.service';
 import { C } from './@shared/constants';
 import { DeeplinkService } from 'src/app/@core/deeplink.service';
+import { LanguageService } from 'src/app/@core/language.service';
 import { PushService } from 'src/app/@core/push.service';
 import { TrackingService } from 'src/app/@core/tracking.service';
 import { UserService } from 'src/app/user/@shared/user.service';
@@ -29,12 +29,12 @@ export class AppComponent {
   constructor(
     private authService: AuthService,
     private deeplinkService: DeeplinkService,
+    private languageService: LanguageService,
     private platform: Platform,
     private pushService: PushService,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private trackingService: TrackingService,
-    private translate: TranslateService,
     private userService: UserService,
   ) {
     this.initializeApp();
@@ -44,10 +44,9 @@ export class AppComponent {
     this.handleConsole();
 
     this.platform.ready().then(async () => {
+      this.languageService.initialize();
       this.deeplinkService.initialize();
       
-      this.setTranslateConfig();
-
       this.trackingService.initTracking();
 
       if (this.platform.is('cordova')) {
@@ -95,14 +94,6 @@ export class AppComponent {
     setTimeout(() => {
       this.splashScreen.hide();
     }, t);
-  }
-
-  private setTranslateConfig(): void {
-    // let lang = navigator.language.split('-')[0];
-    // lang = /(de|en)/gi.test(lang) ? lang : 'de';
-
-    this.translate.setDefaultLang('de');
-    this.translate.use('de');
   }
 
   private handleConsole(): void {
