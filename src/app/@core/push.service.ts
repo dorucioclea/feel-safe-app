@@ -4,8 +4,8 @@ import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
-import { C } from 'src/app/@shared/constants';
 import { StorageService } from 'src/app/@core/storage.service';
+import { URL } from 'src/app/@shared/url';
 import { UserService } from 'src/app/user/@shared/user.service';
 
 export interface PushStatus {
@@ -93,7 +93,7 @@ export class PushService {
 
     if (!currentUser) { return Promise.resolve(); }
 
-    const url = `${C.urls.users}/${currentUser.id}/set-push-token`;
+    const url = `${URL.usersById(currentUser.id)}/set-push-token`;
 
     return this.http.post(url, { token: token })
       .pipe(
