@@ -25,7 +25,7 @@ export class Events {
     subject.next(data);
   }
 
-  public unsubscribe(topic: string): null {
+  public destroy(topic: string): null {
     const subject = this.channels[topic];
 
     if (!subject) { return; }
