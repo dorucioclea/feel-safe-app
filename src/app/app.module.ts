@@ -5,6 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 import { AgreementPageModule } from 'src/app/legal/agreement/agreement.page.module';
 import { AppComponent } from './app.component';
@@ -49,6 +50,7 @@ const IONIC_CONFIG = {
     }),
   ],
   providers: [
+    BarcodeScanner,
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy,

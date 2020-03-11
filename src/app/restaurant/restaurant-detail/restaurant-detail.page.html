@@ -25,6 +25,11 @@
           {{ restaurant.createdAt | amTimeAgo:true}}
         </small>
       </ng-container>
+
+      <ngx-qrcode 
+        qrc-element-type="url" 
+        [qrc-value] = "restaurant.id">
+      </ngx-qrcode>
     </div>
   </div>
 </ion-content>

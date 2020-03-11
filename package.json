@@ -49,6 +49,7 @@
     "@angular/router": "8.2.14",
     "@angular/service-worker": "8.2.14",
     "@ionic-native/app-version": "5.15.0",
+    "@ionic-native/barcode-scanner": "5.22.0",
     "@ionic-native/camera": "5.15.0",
     "@ionic-native/core": "5.15.0",
     "@ionic-native/crop": "5.15.0",
@@ -92,6 +93,8 @@
     "moment": "2.24.0",
     "ngx-json-viewer": "2.4.0",
     "ngx-moment": "3.4.0",
+    "ngx-qrcode2": "0.0.9",
+    "phonegap-plugin-barcodescanner": "git://github.com/prototype-berlin/phonegap-plugin-barcodescanner.git#proto-scanner",
     "phonegap-plugin-multidex": "1.0.0",
     "rxjs": "6.5.3",
     "sw-toolbox": "3.6.0",
@@ -179,7 +182,8 @@
         "ANDROID_CRASHLYTICS_VERSION": "2.10.1",
         "ANDROID_CRASHLYTICS_NDK_VERSION": "2.1.0",
         "ANDROID_SHORTCUTBADGER_VERSION": "1.1.22"
-      }
+      },
+      "phonegap-plugin-barcodescanner": {}
     },
     "platforms": [
       "android",
