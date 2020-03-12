@@ -59,7 +59,7 @@ export class MainPage implements OnInit {
   public scan(): void {
     this.modalIsOpen = true;
     
-    this.scanService.scan('uuid')
+    this.scanService.scan('url-uuid')
       .then(id => {
         this.router.navigate(['main/restaurants', id]);
         this.modalIsOpen = false;

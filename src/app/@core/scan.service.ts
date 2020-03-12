@@ -22,7 +22,7 @@ const UUID = {
   all: /^[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}$/i,
 };
 
-type ScanType = 'uuid';
+type ScanType = 'url-uuid' | 'uuid';
 
 @Injectable({
   providedIn: 'root',
@@ -32,21 +32,29 @@ export class ScanService {
     private scanner: BarcodeScanner,
   ) { }
 
-  public async scan(type: ScanType): Promise<any> {
+  public async scan(type: ScanType): Promise<string> {
     return new Promise((resolve, reject) => {
       this.scanner
         .scan(BARCODE_SCANNER_OPTIONS)
-        .then(data => {
-          if(data.cancelled) {  reject(null); }
+        .then(scanData => {
+          if(scanData.cancelled) {  reject(null); }
 
-          if(!type) { resolve(data.text); }
+          if(!type) { resolve(scanData.text); }
 
           switch (type.toLowerCase()) {
             case 'uuid':
-              if(!this.isValidUUID(data.text)) {
+              const uuid = scanData.text;
+              if(!this.isValidUUID(uuid)) {
                 reject('Invalid UUID');
               }
-              resolve(data.text);
+              resolve(uuid);
+              break;
+            case 'url-uuid':
+              const url_uuid = this.parseURLData(scanData.text);
+              if(!this.isValidUUID(url_uuid)) {
+                reject('Invalid UUID');
+              }
+              resolve(url_uuid);
               break;
           }
 
@@ -56,5 +64,11 @@ export class ScanService {
 
   private isValidUUID(uuid: string): boolean {
     return uuid.match(UUID['all']) !== null;
+  }
+
+  private parseURLData(url: string): string {
+    const split = url.split('/');
+
+    return split[split.length - 1];
   }
 }
