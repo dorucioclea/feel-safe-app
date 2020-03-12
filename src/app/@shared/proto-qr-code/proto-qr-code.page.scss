@@ -1,0 +1,7 @@
+@import 'src/theme/imports/helpers/middle-content';
+
+.qr-code {
+  width: 75vw;
+  height: 75vw;
+  @extend %middle-content;
+}
