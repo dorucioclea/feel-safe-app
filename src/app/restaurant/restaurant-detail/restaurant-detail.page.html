@@ -3,6 +3,12 @@
     <ion-buttons slot="start">
       <ion-back-button mode="ios" text="" defaultHref="" icon="ios-arrow-round-back" color="light"></ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button
+        (click)="share()">
+        <ion-icon name="ellipsis-horizontal"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -25,11 +31,7 @@
           {{ restaurant.createdAt | amTimeAgo:true}}
         </small>
       </ng-container>
-
-      <ngx-qrcode 
-        qrc-element-type="url" 
-        [qrc-value] = "restaurant.id">
-      </ngx-qrcode>
+      
     </div>
   </div>
 </ion-content>

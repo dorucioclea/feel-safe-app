@@ -1,3 +1,4 @@
+import { ProtoQrCodePage } from './../../@shared/proto-qr-code/proto-qr-code.page';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -7,6 +8,7 @@ import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 import { PageTrack } from 'src/app/@shared/page-track.decorator';
 import { RESTAURANT_DUMMY_DATA, RestaurantModel } from 'src/app/restaurant/@shared/restaurant.model';
 import { RestaurantService } from 'src/app/restaurant/@shared/restaurant.service';
+import { ActionSheetController, PopoverController } from '@ionic/angular';
 
 @PageTrack()
 @HideSplash()
@@ -26,6 +28,8 @@ export class RestaurantDetailPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private restaurantService: RestaurantService,
+    private actionSheetController: ActionSheetController,
+    private popoverController: PopoverController,
   ) { }
 
   public ngOnInit(): void {
@@ -43,6 +47,30 @@ export class RestaurantDetailPage implements OnInit {
   public refresh(event: any): void {
     this.refresherEvent = event;
     this.restaurantService.refreshRestaurantById(this.id);
+  }
+
+  public async presentPopover(): Promise<any> {
+    const popover = await this.popoverController.create({
+      component: ProtoQrCodePage,
+      componentProps: { data: 'blueprint://prototype.berlin/restaurants/' + this.id },
+      cssClass: 'proto-popover',
+      translucent: true
+    });
+    return await popover.present();
+  }
+
+  public async share(): Promise<any> {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Share',
+      buttons: [{
+        text: 'QR Code',
+        icon: 'qr-code',
+        handler: (): any => {
+          this.presentPopover();
+        }
+      }]
+    });
+    await actionSheet.present();
   }
 
   private loadRestaurant(): void {

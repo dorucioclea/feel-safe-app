@@ -1,3 +1,4 @@
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
@@ -13,6 +14,7 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { LanguageSwitchComponent } from './language-switch/language-switch.component';
 import { ProtoImageComponent } from './proto-image/proto-image.component';
 import { ProtoParallaxDirective } from './proto-parallax.directive';
+import { ProtoQrCodePage } from './proto-qr-code/proto-qr-code.page';
 import { ShowHidePasswordComponent } from './show-hide-password/show-hide-password.component';
 import { SkeletonComponent } from 'src/app/@shared/skeleton/skeleton.component';
 
@@ -26,6 +28,7 @@ import { SkeletonComponent } from 'src/app/@shared/skeleton/skeleton.component';
     LanguageSwitchComponent,
     ProtoImageComponent,
     ProtoParallaxDirective,
+    ProtoQrCodePage,
     ShowHidePasswordComponent,
     SkeletonComponent,
   ],
@@ -36,6 +39,7 @@ import { SkeletonComponent } from 'src/app/@shared/skeleton/skeleton.component';
     MomentModule,
     ReactiveFormsModule,
     TranslateModule,
+    NgxQRCodeModule,
   ],
   exports: [
     AppInfoComponent,
@@ -50,11 +54,15 @@ import { SkeletonComponent } from 'src/app/@shared/skeleton/skeleton.component';
     MomentModule,
     ProtoImageComponent,
     ProtoParallaxDirective,
+    ProtoQrCodePage,
     ReactiveFormsModule,
     ShowHidePasswordComponent,
     SkeletonComponent,
     TranslateModule,
   ],
+  entryComponents: [
+    ProtoQrCodePage,
+  ]
 })
 // tslint:disable-next-line
 export class SharedModule { }
