@@ -12,7 +12,8 @@ const BARCODE_SCANNER_OPTIONS = {
   formats: 'QR_CODE', // default: all but PDF_417 and RSS_EXPANDED
   orientation: 'portrait', // Android only (portrait|landscape), default unset so it rotates with the device
   disableAnimations: false, // iOS
-  disableSuccessBeep: false // iOS and Android
+  disableSuccessBeep: false, // iOS and Android
+  color: undefined, // Reticle finder color 
 };
 
 const UUID = {
@@ -33,6 +34,11 @@ export class ScanService {
   ) { }
 
   public async scan(type: ScanType): Promise<string> {
+
+    const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--ion-color-primary');
+
+    BARCODE_SCANNER_OPTIONS.color = BARCODE_SCANNER_OPTIONS.color || primaryColor;
+
     return new Promise((resolve, reject) => {
       this.scanner
         .scan(BARCODE_SCANNER_OPTIONS)
