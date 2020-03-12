@@ -22,6 +22,8 @@ const UUID = {
   all: /^[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}$/i,
 };
 
+type ScanType = 'uuid';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -30,7 +32,7 @@ export class ScanService {
     private scanner: BarcodeScanner,
   ) { }
 
-  public async scan(type: any): Promise<any> {
+  public async scan(type: ScanType): Promise<any> {
     return new Promise((resolve, reject) => {
       this.scanner
         .scan(BARCODE_SCANNER_OPTIONS)
