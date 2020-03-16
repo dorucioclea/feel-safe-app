@@ -13,7 +13,11 @@ const BARCODE_SCANNER_OPTIONS = {
   orientation: 'portrait', // Android only (portrait|landscape), default unset so it rotates with the device
   disableAnimations: false, // iOS
   disableSuccessBeep: false, // iOS and Android
-  color: undefined, // Reticle finder color 
+  // Reticle
+  reticleSize: 250, // Reticle size
+  reticleColor: undefined, // Reticle finder color 
+  reticleOpacity: 0.85, // Reticle opacity
+  reticleImageFile: 'scanner-reticle.png', // Reticle image file (Must be defined in resource-file in config)
 };
 
 const UUID = {
@@ -37,7 +41,7 @@ export class ScanService {
 
     const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--ion-color-primary');
 
-    BARCODE_SCANNER_OPTIONS.color = BARCODE_SCANNER_OPTIONS.color || primaryColor;
+    BARCODE_SCANNER_OPTIONS.reticleColor = BARCODE_SCANNER_OPTIONS.reticleColor || primaryColor;
 
     return new Promise((resolve, reject) => {
       this.scanner
