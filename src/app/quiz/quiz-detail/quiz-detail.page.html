@@ -1,0 +1,106 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar class="toolbar" proto-translucent>
+    <ion-buttons slot="start">
+      <ion-button class="proto-button button-round back-button"
+        (click)="goBack()">
+        <ion-icon name="arrow-back-outline" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ quiz?.title }} <ng-container *ngIf="results">- {{ 'VIEW.QUIZ_DETAIL.TITLE_RESULT' | translate }}</ng-container></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-spinner color="dark" class="proto-spinner" *ngIf="isLoading"></ion-spinner>
+  <div class="quiz-content" *ngIf="!results && !isLoading">
+
+    <div class="bar">
+      <div class="pagination-bar"
+        *ngIf="!results">
+        <div class="pagination">
+          <div class="pagination__indices">
+            <div class="pagination-bullet"
+            *ngFor="let item of quiz?.items; let i = index;"
+            (click)="slideTo(i)"
+            [ngClass]="{
+              'is-active': wasActive(i),
+              'is-correct' : wasActive(i) && isCorrect(item.id),
+              'is-wrong': wasActive(i) && isWrong(item.id)
+            }"
+            ></div>
+          </div>
+        </div>
+        <div class="pagination">
+          <div class="pagination__indices pagination__indices--right">
+            <div class="pagination-bullet"
+            *ngFor="let item of quiz?.items; let i = index;"
+            [ngClass]="{
+              'is-active': activeSlideIndex < i,
+              'is-correct' : activeSlideIndex < i && isCorrect(item.id),
+              'is-wrong': activeSlideIndex < i && isWrong(item.id)
+            }"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-indicator"
+        *ngIf="showIndicator"
+        [ngClass]="{
+          'animated': animateIndicator,
+          'is-correct': isCorrect(item.id),
+          'is-wrong': isWrong(item.id)
+        }">
+        <ion-icon name="thumbs-up-outline" color="light"
+          *ngIf="isCorrect(item.id)"></ion-icon>
+        <ion-icon name="thumbs-down-outline" color="light"
+          *ngIf="isWrong(item.id)"></ion-icon>
+      </div>
+
+    </div>
+
+    <div class="slides-wrapper">
+
+      <ion-slides #slides id="slides" pager="false" class="slides"
+        (ionSlideWillChange)="slidesWillChange()">
+        <ion-slide *ngFor="let item of quiz?.items; let i = index;" class="slide">
+          <h1 class="question">
+            {{ item.question }}
+          </h1>
+          <proto-quiz-item-preview
+            [item]="item"
+            [item]="getitem()"
+            (onSelect)="selectOption($event, item)"
+            (onValidated)="onValidated($event)"
+            (onProceeded)="proceed()">
+          </proto-quiz-item-preview>
+
+          <div class="button-container">
+            <ion-button expand="full" class="proto-button"
+              *ngIf="!wasValidated"
+              [disabled]="!isSelected"
+              (click)="validate()">
+              {{ 'BUTTON.VALIDATE' | translate }} 
+              <ng-container *ngIf="item.autoValidate">
+                ({{ validationCountdown }})
+              </ng-container>
+            </ion-button>
+            <ion-button expand="full" class="proto-button"
+              *ngIf="wasValidated"
+              [disabled]="item.autoProceed"
+              (click)="proceed()">
+              {{ 'BUTTON.PROCEED' | translate }} 
+              <ng-container *ngIf="item.autoProceed">
+                ({{ proceedingCountdown }})
+              </ng-container>
+            </ion-button>
+          </div>
+
+        </ion-slide>
+      </ion-slides>
+
+    </div>
+
+  </div>
+</ion-content>
+
