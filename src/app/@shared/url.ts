@@ -167,6 +167,18 @@ export class URL {
     }
   }
 
+  public static get quizzes() {
+    return (params?: Params): string => {
+      return `${this.url}/quizzes${this.transformParamsToString(params)}`;
+    }
+  }
+
+  public static get quizById() {
+    return (id: string, params?: Params): string => {
+      return `${this.url}/quizzes/${id}${this.transformParamsToString(params)}`;
+    }
+  }
+
   public static get apiVersion(): string {
     return 'api';
   }
