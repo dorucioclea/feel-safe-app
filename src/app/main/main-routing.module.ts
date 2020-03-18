@@ -23,6 +23,15 @@ const routes: Routes = [
         ],
       },
       {
+        path: 'quizzes',
+        children: [
+          {
+            path: ':id',
+            loadChildren: () => import('../quiz/quiz-detail/quiz-detail.page.module').then((mod) => mod.QuizDetailPageModule),
+          },
+        ],
+      },
+      {
         path: 'more',
         children: [
           {
