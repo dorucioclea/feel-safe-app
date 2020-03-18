@@ -1,15 +1,12 @@
-import { Router } from '@angular/router';
-import { InAppBrowserService } from 'src/app/@core/in-app-browser.service';
-import { TranslateService } from '@ngx-translate/core';
-import { SharingService } from './../../@core/sharing.service';
-import { IonSlides, ModalController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
+import { IonSlides } from '@ionic/angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { HideSplash } from 'src/app/@shared/hide-splash.decorator';
 import { PageTrack } from 'src/app/@shared/page-track.decorator';
-import { QuizModel, QUIZ_DUMMY_DATA } from '../@shared/quiz.model';
+import { QuizModel } from '../@shared/quiz.model';
 import { QuizService, QuizResults } from '../@shared/quiz.service';
 import { QuizItemOptionModel } from 'src/app/quiz/@shared/quiz-item-option.model';
 import { QuizItemModel } from 'src/app/quiz/@shared/quiz-item.model';
@@ -66,24 +63,13 @@ export class QuizDetailPage implements OnInit {
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
-    private quizService: QuizService,
-    private sharingService: SharingService,
-    private translateService: TranslateService,
     private router: Router,
-    private inAppBrowserService: InAppBrowserService,
-    private modalController: ModalController,
+    private quizService: QuizService,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   public ngOnInit(): void {
-    // this.id = this.navParams.get('id');
-
-
-    this.quiz = QUIZ_DUMMY_DATA[0];
-    this.item = this.quiz.items[this.activeSlideIndex];
-
-    this.quizService.selectItem(this.item);
-    this.isLoading = false;
-
+    this.id = this.activatedRoute.snapshot.params.id;
   }
 
   public ionViewDidEnter(): void {
@@ -91,29 +77,22 @@ export class QuizDetailPage implements OnInit {
 
     this.initialized = true;
 
-   /*  this.quiz = QUIZ_DUMMY_DATA[0];
-    this.item = this.quiz.items[this.activeSlideIndex];
-
-    this.quizService.selectItem(this.item);
-    this.isLoading = false; */
-
-  /*   this.quizService.getQuizById(this.id)
+    this.quizService.getQuizById(this.id)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((quiz) => {
-
-        this.quiz = QUIZ_DUMMY_DATA[0];
+        this.quiz = quiz;
         console.log(this.quiz);
-        // this.quiz = quiz;
         
         this.item = this.quiz.items[this.activeSlideIndex];
         this.quizService.selectItem(this.item);
+
+        this.handleAutoValidation();
         this.isLoading = false;
-      }); */
+      });
   }
 
   public selectOption(option: QuizItemOptionModel, item: QuizItemModel): void {
-
-/*     this.quizService.selectOption(option, item);
+    this.quizService.selectOption(option, item);
 
     if (item.index === 0) {
       this.quizService.updateQuizState(this.quiz.id, 'started');
@@ -121,7 +100,7 @@ export class QuizDetailPage implements OnInit {
 
     if (item.index === this.quiz.items.length - 1) {
       this.quizService.updateQuizState(this.quiz.id, 'completed');
-    } */
+    }
 
     this.isSelected = true;
   }
@@ -143,8 +122,8 @@ export class QuizDetailPage implements OnInit {
     this.handleAutoProceeding();
   }
 
-  public onValidated(totalResult: any): void {
-    if(totalResult) {
+  public onValidated(totalResults: any): void {
+    if(totalResults) {
       this.correctItems.push(this.item.id)
     } else {
       this.wrongItems.push(this.item.id)
@@ -155,6 +134,12 @@ export class QuizDetailPage implements OnInit {
   public async proceed(): Promise<any> {
     this.wasValidated = false;
     this.hasProceeded = true;
+
+    if(this.isLastSlide) {
+
+      this.router.navigate(['main/quizzes-results', this.id])
+      return;
+    } 
 
     if(this.lockSwipes) {
       await this.slides.lockSwipes(false).catch();
@@ -196,7 +181,6 @@ export class QuizDetailPage implements OnInit {
   }
 
   private handleAutoValidation(): void {
-    // Handle autoValidate
     if(this.item.autoValidate) {
       this.validationCountdown = this.item.autoValidate;
       const interval = setInterval(() => {
@@ -210,7 +194,6 @@ export class QuizDetailPage implements OnInit {
   }
 
   private handleAutoProceeding(): void {
-    // Handle autoProceed
     if(this.item.autoProceed) {
       this.proceedingCountdown = this.item.autoProceed;
       const interval = setInterval(() => {

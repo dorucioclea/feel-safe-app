@@ -45,7 +45,7 @@
       </div>
 
       <div class="result-indicator"
-        *ngIf="showIndicator"
+        *ngIf="showIndicator && item.options.length"
         [ngClass]="{
           'animated': animateIndicator,
           'is-correct': isCorrect(item.id),
@@ -64,12 +64,9 @@
       <ion-slides #slides id="slides" pager="false" class="slides"
         (ionSlideWillChange)="slidesWillChange()">
         <ion-slide *ngFor="let item of quiz?.items; let i = index;" class="slide">
-          <h1 class="question">
-            {{ item.question }}
-          </h1>
+          <div class="question" [innerHTML]="item.question"></div>
           <proto-quiz-item-preview
             [item]="item"
-            [item]="getitem()"
             (onSelect)="selectOption($event, item)"
             (onValidated)="onValidated($event)"
             (onProceeded)="proceed()">
