@@ -1,0 +1,129 @@
+<!-- multi text button -->
+<ng-container *ngIf="item.type === 'text'">
+  <div class="proto-quiz-card-scene" *ngFor="let option of item.options; let i = index;">
+    <div class="proto-quiz-card-text"
+      [ngClass]="{
+        'is-flipped' : !animatedTextEnabled ? false : isFlipped(option),
+        'card-text--static' : !animatedTextEnabled
+      }"
+      [ngStyle]="{ 'transition-delay' : i * 0.125 + 's' }">
+      <!-- front -->
+      <div class="proto-quiz-card-text__face proto-quiz-card-text__face--front"
+        (click)="selectOption(option)"
+        [ngClass]="{
+          'proto-quiz-card-text__face--front--static' : !animatedTextEnabled,
+          'is-selected' : isSelected(option.id) && !isCorrect(option.id) && !isWrong(option.id),
+          'is-correct' : isCorrect(option.id),
+          'is-wrong' : isWrong(option.id)
+        }">
+        {{ option.text }}
+      </div>
+      <!-- back -->
+      <div class="proto-quiz-card-text__face proto-quiz-card-text__face--back"
+        [ngClass]="{ 'card-text__face--back--static' : !animatedTextEnabled }">
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<!-- type: image -->
+<div class="proto-quiz-scene-image" *ngIf="item.type === 'image'">
+  <div class="proto-quiz-card-image" *ngFor="let option of item.options; let i = index"
+    [ngClass]="{ 'is-flipped' : isFlipped(option) }"
+    [ngStyle]="{ 'transition-delay' : i*0.125 + 's' }">
+    <!-- front -->
+    <div class="proto-quiz-card-image__face proto-quiz-card-image__face--front">
+    </div>
+    <!-- back -->
+    <div class="proto-quiz-card-image__face proto-quiz-card-image__face--back"
+      (click)="selectOption(option)">
+
+      <proto-image imageType="default" class="proto-quiz-card-image__image"
+      [imageId]="option.imageId"
+      *ngIf="option.imageId" ></proto-image>
+
+      <div class="proto-quiz-card-image__overlay"
+        [ngClass]="{
+          'is-selected' : isSelected(option.id) && !isCorrect(option.id) && !isWrong(option.id),
+          'is-correct' : isCorrect(option.id),
+          'is-wrong' : isWrong(option.id)
+        }">
+        <ion-icon name="checkmark-outline" color="light"
+            *ngIf="isSelected(option.id) && !isCorrect(option.id) && !isWrong(option.id)" class="item-button__icon"></ion-icon>
+        <ion-icon name="thumbs-up" color="light"
+          *ngIf="isCorrect(option.id)" class="item-button__icon"></ion-icon>
+        <ion-icon name="close" color="light"
+          *ngIf="isWrong(option.id)" class="item-button__icon"></ion-icon>
+      </div>
+      
+      <div class="item-button__text">
+        <ng-container *ngIf="option.text !== ''">
+          {{ option.text }}
+        </ng-container>
+        <ng-container *ngIf="option.text === ''">
+          <ion-icon name="checkmark-outline" color="light"
+            *ngIf="isSelected(option.id) && !isCorrect(option.id) && !isWrong(option.id)" class="item-button__icon"></ion-icon>
+          <ion-icon name="thumbs-up" color="light"
+            *ngIf="isCorrect(option.id)" class="item-button__icon"></ion-icon>
+          <ion-icon name="close" color="light"
+            *ngIf="isWrong(option.id)" class="item-button__icon"></ion-icon>
+        </ng-container>
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+<!-- boolean type -->
+<ng-container *ngIf="item.type === 'boolean'">
+
+  <ng-container *ngFor="let option of item.options; let i = index">
+
+    <!-- boolean image button -->
+    <div class="boolean" *ngIf="!option.text">
+      <ion-button expand="full" mode="ios" class="proto-button button-round item-button image"
+        [disabled]="hasProceeded"
+        (click)="selectOption(option)">
+        <div *ngIf="option.option" class="item-button__icon">
+          <img src="assets/img/quiz-detail/quiz-thumb-up.png">
+        </div>
+        <div *ngIf="!option.option" class="item-button__icon">
+          <img src="assets/img/quiz-detail/quiz-thumb-down.png">
+        </div>
+        <div class="item-button__overlay"
+          [ngClass]="{
+            'is-selected' : isSelected(option.id) && !isCorrect(option.id) && !isWrong(option.id),
+            'is-correct' : isCorrect(option.id),
+            'is-wrong' : isWrong(option.id)
+          }">
+        </div>
+      </ion-button>
+    </div>
+
+    <!-- boolean text button -->
+    <div class="scene-text" *ngIf="option.text">
+      <div class="card-text"
+        [ngClass]="{
+          'is-flipped' : !animatedTextEnabled ? false : isFlipped(option),
+          'card-text--static' : !animatedTextEnabled
+        }"
+        [ngStyle]="{ 'transition-delay' : i*0.125 + 's' }">
+        <div class="card-text__face card-text__face--front"
+          (click)="selectOption(option)"
+          [ngClass]="{
+            'card-text__face--front--static' : !animatedTextEnabled,
+            'is-selected' : isSelected(option.id) && !isCorrect(option.id) && !isWrong(option.id),
+            'is-correct' : isCorrect(option.id),
+            'is-wrong' : isWrong(option.id)
+          }">
+          {{ option.text }}
+        </div>
+        <div class="card-text__face card-text__face--back"
+          [ngClass]="{ 'card-text__face--back--static' : !animatedTextEnabled }">
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
