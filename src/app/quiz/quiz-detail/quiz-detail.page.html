@@ -14,7 +14,9 @@
   <ion-spinner color="dark" class="proto-spinner" *ngIf="isLoading"></ion-spinner>
   <div class="quiz-content" *ngIf="!results && !isLoading">
 
-    <div class="bar">
+    <div class="proto-quiz-bar">
+
+      <!-- TODO: Implement secondary pagination from amore -->
       <div class="pagination-bar"
         *ngIf="!results">
         <div class="pagination">
@@ -44,7 +46,7 @@
         </div>
       </div>
 
-      <div class="result-indicator"
+      <div class="proto-quiz-indicator"
         *ngIf="showIndicator && item.options.length"
         [ngClass]="{
           'animated': animateIndicator,
@@ -72,30 +74,30 @@
             (onProceeded)="proceed()">
           </proto-quiz-item-preview>
 
-          <div class="button-container">
-            <ion-button expand="full" class="proto-button"
-              *ngIf="!wasValidated"
-              [disabled]="!isSelected"
-              (click)="validate()">
-              {{ 'BUTTON.VALIDATE' | translate }} 
-              <ng-container *ngIf="item.autoValidate">
-                ({{ validationCountdown }})
-              </ng-container>
-            </ion-button>
-            <ion-button expand="full" class="proto-button"
-              *ngIf="wasValidated"
-              [disabled]="item.autoProceed"
-              (click)="proceed()">
-              {{ 'BUTTON.PROCEED' | translate }} 
-              <ng-container *ngIf="item.autoProceed">
-                ({{ proceedingCountdown }})
-              </ng-container>
-            </ion-button>
-          </div>
-
         </ion-slide>
       </ion-slides>
 
+    </div>
+
+    <div class="button-container" slot="fixed" style="position: fixed; bottom: 16px; z-index: 1;">
+      <ion-button expand="full" class="proto-button"
+        *ngIf="!wasValidated"
+        [disabled]="!isSelected"
+        (click)="validate()">
+        {{ 'BUTTON.VALIDATE' | translate }} 
+        <ng-container *ngIf="item.autoValidate">
+          ({{ validationCountdown }})
+        </ng-container>
+      </ion-button>
+      <ion-button expand="full" class="proto-button"
+        *ngIf="wasValidated"
+        [disabled]="item.autoProceed"
+        (click)="proceed()">
+        {{ 'BUTTON.PROCEED' | translate }} 
+        <ng-container *ngIf="item.autoProceed">
+          ({{ proceedingCountdown }})
+        </ng-container>
+      </ion-button>
     </div>
 
   </div>
