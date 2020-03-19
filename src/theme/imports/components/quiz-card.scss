@@ -14,13 +14,13 @@
   --proto-quiz-card-text-face-front-border-radius: var(--proto-quiz-card-text-border-radius);
   --proto-quiz-card-text-face-front-color: var(--ion-color-light);
   --proto-quiz-card-text-face-front-background-color: var(--ion-color-lighter);
-  --proto-quiz-card-text-face-front-background-image: url('assets/splash-landscape.png');
+  --proto-quiz-card-text-face-front-background-image: url('assets/img/quiz-card-face-front.png');
   --proto-quiz-card-text-face-front-background-size: cover;
 
   --proto-quiz-card-text-face-back-border-radius: var(--proto-quiz-card-text-border-radius);
   --proto-quiz-card-text-face-back-color: var(--ion-color-light);
   --proto-quiz-card-text-face-back-background-color: var(--ion-color-primary);
-  --proto-quiz-card-text-face-back-background-image: url('assets/splash-landscape.png');
+  --proto-quiz-card-text-face-back-background-image: url('assets/img/quiz-card-face-front.png');
   --proto-quiz-card-text-face-back-background-size: cover;
 
   // Type: image
@@ -37,13 +37,13 @@
   --proto-quiz-card-image-face-front-border-radius: var(--proto-quiz-card-image-border-radius);
   --proto-quiz-card-image-face-front-color: var(--ion-color-light);
   --proto-quiz-card-image-face-front-background-color: var(--ion-color-lighter);
-  --proto-quiz-card-image-face-front-background-image: url('assets/splash-landscape.png');
+  --proto-quiz-card-image-face-front-background-image: url('assets/img/quiz-card-face-front.png');
   --proto-quiz-card-image-face-front-background-size: 250% 250%;
 
   --proto-quiz-card-image-face-back-border-radius: var(--proto-quiz-card-image-border-radius);
   --proto-quiz-card-image-face-back-color: var(--ion-color-light);
   --proto-quiz-card-image-face-back-background-color: var(--ion-color-primary);
-  --proto-quiz-card-image-face-back-background-image: url('assets/splash-landscape.png');
+  --proto-quiz-card-image-face-back-background-image: url('assets/img/quiz-card-face-front.png');
   --proto-quiz-card-image-face-back-background-size: cover;
 
 
@@ -55,9 +55,9 @@
 
   --proto-quiz-card-boolean-face-back-color: var(--ion-color-light);
   --proto-quiz-card-boolean-face-back-background-color: var(--ion-color-primary);
-  --proto-quiz-card-boolean-face-back-background-image: url('assets/splash-landscape.png');
+  --proto-quiz-card-boolean-face-back-background-image: url('assets/img/quiz-card-face-front.png');
 
   --proto-quiz-card-boolean-face-front-color: var(--ion-color-light);
   --proto-quiz-card-boolean-face-front-background-color: var(--ion-color-lighter);
-  --proto-quiz-card-boolean-face-front-background-image: url('assets/splash-landscape.png');
+  --proto-quiz-card-boolean-face-front-background-image: url('assets/img/quiz-card-face-front.png');
 }
