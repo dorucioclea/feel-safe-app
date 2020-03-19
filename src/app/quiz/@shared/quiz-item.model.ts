@@ -1,8 +1,8 @@
 import { QuizItemOptionSource, QuizItemOptionModel } from 'src/app/quiz/@shared/quiz-item-option.model';
 
 export type QuizItemType = 'boolean' | 'text' | 'image' | 'info';
-export type QuizItemAutoValidation = number | false;
-export type QuizItemAutoProceeding = number | false;
+export type QuizItemAutoValidation = number;
+export type QuizItemAutoProceeding = number;
 
 export interface QuizItemSource {
   id: string;

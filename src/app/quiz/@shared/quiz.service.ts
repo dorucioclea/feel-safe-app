@@ -52,6 +52,8 @@ export class QuizService {
   ) { }
 
   public getQuizById(quizId: string): Observable<QuizModel> {
+
+    console.log()
     if (this.quizzesById[quizId]) {
       return this.quizzesById[quizId].asObservable();
     }
