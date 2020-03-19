@@ -32,6 +32,12 @@ export class MainPage implements OnInit {
       iconSource: './assets/icons/list.svg',
       label: 'VIEW.RESTAURANT_LIST.TITLE',
     },
+    {
+      tab: 'quizzes',
+      path: '/main/quizzes',
+      iconName: 'heart',
+      label: 'VIEW.QUIZ_DETAIL.TITLE',
+    },
     { 
       tab: 'more',
       path: '/main/more',

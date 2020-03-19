@@ -15,6 +15,7 @@ import { LanguageSwitchComponent } from './language-switch/language-switch.compo
 import { ProtoImageComponent } from './proto-image/proto-image.component';
 import { ProtoParallaxDirective } from './proto-parallax.directive';
 import { ProtoQrCodePage } from './proto-qr-code/proto-qr-code.page';
+import { QuizItemPreviewComponent } from 'src/app/quiz/@shared/quiz-item-preview/quiz-item-preview.component';
 import { ShowHidePasswordComponent } from './show-hide-password/show-hide-password.component';
 import { SkeletonComponent } from 'src/app/@shared/skeleton/skeleton.component';
 
@@ -29,6 +30,7 @@ import { SkeletonComponent } from 'src/app/@shared/skeleton/skeleton.component';
     ProtoImageComponent,
     ProtoParallaxDirective,
     ProtoQrCodePage,
+    QuizItemPreviewComponent,
     ShowHidePasswordComponent,
     SkeletonComponent,
   ],
@@ -55,6 +57,7 @@ import { SkeletonComponent } from 'src/app/@shared/skeleton/skeleton.component';
     ProtoImageComponent,
     ProtoParallaxDirective,
     ProtoQrCodePage,
+    QuizItemPreviewComponent,
     ReactiveFormsModule,
     ShowHidePasswordComponent,
     SkeletonComponent,

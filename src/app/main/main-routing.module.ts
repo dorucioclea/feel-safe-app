@@ -29,6 +29,20 @@ const routes: Routes = [
             path: ':id',
             loadChildren: () => import('../quiz/quiz-detail/quiz-detail.page.module').then((mod) => mod.QuizDetailPageModule),
           },
+          {
+            path: '',
+            redirectTo: '/main/quizzes/d35942c2-8501-46f5-963b-40516fec1965',
+            pathMatch: 'full',
+          },
+        ],
+      },
+      {
+        path: 'quizzes-results',
+        children: [
+          {
+            path: ':id',
+            loadChildren: () => import('../quiz/quiz-result/quiz-result.page.module').then((mod) => mod.QuizResultPageModule),
+          },
         ],
       },
       {
