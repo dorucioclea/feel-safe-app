@@ -1,0 +1,36 @@
+.proto-quiz-indicator {
+  z-index: 9999 ;
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+
+  pointer-events: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100px;
+  height: 100px;
+
+  margin: 0 auto;
+  border-radius: 50%;
+
+  transform: translate3d(-50%,-50%,0) scale(0) rotateZ(0);
+
+  &.animated {
+    transition: transform 0.5s ease-out;
+  }
+
+  &.is-correct {
+    background: var(--ion-color-success);
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    transform: translate3d(-50%,-50%,0) scale(1) rotateZ(360deg);
+  }
+
+  &.is-wrong {
+    background: var(--ion-color-success);
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    transform: translate3d(-50%,-50%,0) scale(1) rotateZ(-360deg);
+  }
+}
