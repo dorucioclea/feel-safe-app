@@ -21,6 +21,12 @@ const INTERVAL = 1000 // ms
   styleUrls: ['./quiz-detail.page.scss'],
 })
 export class QuizDetailPage implements OnInit {
+
+  // Config
+  public lockSwipes: boolean = false;
+  public showIndicator: boolean = true;
+  public animateIndicator: boolean = true;
+  
   public initialized: boolean = false;
 
   public id: string;
@@ -43,12 +49,6 @@ export class QuizDetailPage implements OnInit {
 
   public isLastSlide: boolean = false;
   public activeSlideIndex: number = 0;
-
-  // Config
-  public lockSwipes: boolean = false;
-
-  public showIndicator: boolean = true;
-  public animateIndicator: boolean = true;
 
   public slides: IonSlides;
   @ViewChild('slides', { static: false }) set content(slides: IonSlides) {
@@ -85,8 +85,9 @@ export class QuizDetailPage implements OnInit {
         
         this.item = this.quiz.items[this.activeSlideIndex];
         this.quizService.selectItem(this.item);
-
         this.handleAutoValidation();
+        console.log(this.item.options)
+
         this.isLoading = false;
       });
   }
@@ -122,8 +123,9 @@ export class QuizDetailPage implements OnInit {
     this.handleAutoProceeding();
   }
 
-  public onValidated(totalResults: any): void {
-    if(totalResults) {
+  public onValidated(results: boolean): void {
+    console.log(results);
+    if(results) {
       this.correctItems.push(this.item.id)
     } else {
       this.wrongItems.push(this.item.id)
@@ -181,8 +183,12 @@ export class QuizDetailPage implements OnInit {
   }
 
   private handleAutoValidation(): void {
-    if(this.item.autoValidate) {
-      this.validationCountdown = this.item.autoValidate;
+    if(this.item.options.length === 0) {
+      return this.handleAutoProceeding();
+    }
+
+    if(this.item.enableAutoValidation) {
+      this.validationCountdown = this.item.autoValidationDuration;
       const interval = setInterval(() => {
         this.validationCountdown = this.validationCountdown - INTERVAL;
         if(this.validationCountdown === 0) {
@@ -194,8 +200,8 @@ export class QuizDetailPage implements OnInit {
   }
 
   private handleAutoProceeding(): void {
-    if(this.item.autoProceed) {
-      this.proceedingCountdown = this.item.autoProceed;
+    if(this.item.enableAutoProceeding) {
+      this.proceedingCountdown = this.item.autoProceedingDuration;
       const interval = setInterval(() => {
         this.proceedingCountdown = this.proceedingCountdown - INTERVAL;
         if(this.proceedingCountdown === 0) {

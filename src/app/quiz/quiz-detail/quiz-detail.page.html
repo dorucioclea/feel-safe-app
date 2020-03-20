@@ -11,7 +11,9 @@
 </ion-header>
 
 <ion-content>
+
   <ion-spinner color="dark" class="proto-spinner" *ngIf="isLoading"></ion-spinner>
+  
   <div class="quiz-content" *ngIf="!results && !isLoading">
 
     <div class="proto-quiz-bar">
@@ -21,27 +23,31 @@
         *ngIf="!results">
         <div class="pagination">
           <div class="pagination__indices">
-            <div class="pagination-bullet"
-            *ngFor="let item of quiz?.items; let i = index;"
-            (click)="slideTo(i)"
-            [ngClass]="{
-              'is-active': wasActive(i),
-              'is-correct' : wasActive(i) && isCorrect(item.id),
-              'is-wrong': wasActive(i) && isWrong(item.id)
-            }"
-            ></div>
+            <ng-container *ngFor="let item of quiz?.items; let i = index;">
+              <div class="pagination-bullet"
+                *ngIf="item.options.length > 0"
+                (click)="slideTo(i)"
+                [ngClass]="{
+                  'is-active': wasActive(i),
+                  'is-correct' : wasActive(i) && isCorrect(item.id),
+                  'is-wrong': wasActive(i) && isWrong(item.id)
+                }"
+                ></div>
+            </ng-container>
           </div>
         </div>
         <div class="pagination">
           <div class="pagination__indices pagination__indices--right">
-            <div class="pagination-bullet"
-            *ngFor="let item of quiz?.items; let i = index;"
-            [ngClass]="{
-              'is-active': activeSlideIndex < i,
-              'is-correct' : activeSlideIndex < i && isCorrect(item.id),
-              'is-wrong': activeSlideIndex < i && isWrong(item.id)
-            }"
-            ></div>
+            <ng-container *ngFor="let item of quiz?.items; let i = index;">
+              <div class="pagination-bullet"
+              *ngIf="item.options.length > 0"
+              [ngClass]="{
+                'is-active': activeSlideIndex < i,
+                'is-correct' : activeSlideIndex < i && isCorrect(item.id),
+                'is-wrong': activeSlideIndex < i && isWrong(item.id)
+              }"
+              ></div>
+            </ng-container>
           </div>
         </div>
       </div>
@@ -62,39 +68,40 @@
     </div>
 
     <div class="slides-wrapper">
-
       <ion-slides #slides id="slides" pager="false" class="slides"
         (ionSlideWillChange)="slidesWillChange()">
-        <ion-slide *ngFor="let item of quiz?.items; let i = index;" class="slide">
-          <div class="question" [innerHTML]="item.question"></div>
-          <proto-quiz-item-preview
-            [item]="item"
-            (onSelect)="selectOption($event, item)"
-            (onValidated)="onValidated($event)"
-            (onProceeded)="proceed()">
-          </proto-quiz-item-preview>
-
-        </ion-slide>
+        <ng-container *ngFor="let item of quiz?.items; let i = index;">
+          <ion-slide class="slide">
+            <div class="question" [innerHTML]="item.question"></div>
+            <proto-quiz-item-preview
+              [item]="item"
+              (onSelect)="selectOption($event, item)"
+              (onValidated)="onValidated($event)"
+              (onProceeded)="proceed()">
+            </proto-quiz-item-preview>
+          </ion-slide>
+        </ng-container>
       </ion-slides>
-
     </div>
 
     <div class="button-container" slot="fixed" style="position: fixed; bottom: 16px; z-index: 1;">
+
       <ion-button expand="full" class="proto-button"
-        *ngIf="!wasValidated"
-        [disabled]="!isSelected"
+        *ngIf="item.showValidationButton && !wasValidated"
+        [disabled]="!isSelected && item.options.length"
         (click)="validate()">
         {{ 'BUTTON.VALIDATE' | translate }} 
-        <ng-container *ngIf="item.autoValidate">
+        <ng-container *ngIf="item.enableAutoValidation">
           ({{ validationCountdown }})
         </ng-container>
       </ion-button>
+
       <ion-button expand="full" class="proto-button"
-        *ngIf="wasValidated"
-        [disabled]="item.autoProceed"
+        *ngIf="(item.showProceedingButton && wasValidated) || !item.showValidationButton"
+        [disabled]="item.enableAutoProceeding"
         (click)="proceed()">
         {{ 'BUTTON.PROCEED' | translate }} 
-        <ng-container *ngIf="item.autoProceed">
+        <ng-container *ngIf="item.enableAutoProceeding">
           ({{ proceedingCountdown }})
         </ng-container>
       </ion-button>
