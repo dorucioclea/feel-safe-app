@@ -10,8 +10,15 @@ export interface QuizItemSource {
   type: QuizItemType;
   question: string;
   options?: QuizItemOptionSource[];
-  autoValidate: QuizItemAutoValidation;
-  autoProceed: QuizItemAutoProceeding;
+  // autoValidate: QuizItemAutoValidation;
+  enableAutoValidation: boolean;
+  autoValidationDuration: number;
+  showValidationButton: boolean;
+  // autoProceed: QuizItemAutoProceeding;
+  enableAutoProceeding: boolean;
+  autoProceedingDuration: number;
+  showProceedingButton: boolean;
+
   createdAt: string;
   updatedAt: string;
 }
@@ -23,8 +30,18 @@ export class QuizItemModel {
   public question: string;
   public options: QuizItemOptionModel[];
   public index: number;
-  public autoValidate: QuizItemAutoValidation;
-  public autoProceed: QuizItemAutoProceeding;
+
+  // public autoValidate: QuizItemAutoValidation;
+  public enableAutoValidation: boolean;
+  public autoValidationDuration: number;
+  public showValidationButton: boolean;
+  // autoProceed: QuizItemAutoProceeding;
+  public enableAutoProceeding: boolean;
+  public autoProceedingDuration: number;
+  public showProceedingButton: boolean;
+
+  // public autoProceed: QuizItemAutoProceeding;
+
   public createdAt: string;
   public updatedAt: string;
 
@@ -35,8 +52,15 @@ export class QuizItemModel {
     this.question = source.question;
     this.options = source.options ? source.options.map((option) => new QuizItemOptionModel(option)) : [];
     this.index = index;
-    this.autoValidate = source.autoValidate;
-    this.autoProceed = source.autoProceed;
+
+    this.enableAutoValidation = source.enableAutoValidation;
+    this.autoValidationDuration = source.autoValidationDuration;
+    this.showValidationButton = source.showValidationButton;
+
+    this.enableAutoProceeding = source.enableAutoProceeding;
+    this.autoProceedingDuration = source.autoProceedingDuration;
+    this.showProceedingButton = source.showProceedingButton;
+
     this.createdAt = source.createdAt;
     this.updatedAt = source.updatedAt;
   }
