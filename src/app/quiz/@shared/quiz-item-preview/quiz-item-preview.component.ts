@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 import { QuizService } from 'src/app/quiz/@shared/quiz.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
@@ -12,18 +13,19 @@ const FLIP_TIMEOUT = 250;
   styleUrls: ['./quiz-item-preview.component.scss'],
 })
 export class QuizItemPreviewComponent implements OnInit {
+
+  // Config
+  public animatedTextEnabled: boolean = true;
+  public optionFlipOnEverySwipe: boolean = true;
+  public optionFlipDelay: number = 0.125; // 0 = all at the same time
+  public optionFlipDirection: boolean = false; // true = first to last
+  
   @Input() public item: QuizItemModel;
   @Input() public currentItem: QuizItemModel;
 
   @Output() public onSelect: EventEmitter<QuizItemOptionModel> = new EventEmitter();
   @Output() public onValidated: EventEmitter<any> = new EventEmitter();
   @Output() public onProceeded: EventEmitter<any> = new EventEmitter();
-
-  // Config
-
-  // Animation config
-  public animatedTextEnabled: boolean = true;
-  public flipOnEverySwipe: boolean = true;
 
   public selectedOptions: string[] = [];
   public isMultiSelect: boolean = false;
@@ -41,7 +43,6 @@ export class QuizItemPreviewComponent implements OnInit {
     private quizService: QuizService) { }
 
   public ngOnInit(): void {
-    //TODO: Handle in model?
     this.isMultiSelect = this.item.options.filter((item) => item.isCorrect).length > 1;
 
     this.quizService.getValidation().subscribe((validatedItem) => {
@@ -137,7 +138,7 @@ export class QuizItemPreviewComponent implements OnInit {
   }
 
   public flipAllOptions(item: QuizItemModel): void {
-    if(this.flipOnEverySwipe) {
+    if(this.optionFlipOnEverySwipe) {
       this.item.options.forEach((option) => {
         setTimeout(() => {
           this.flipOption(this.isCurrentItem(item) ? 'back' : 'front', option);
