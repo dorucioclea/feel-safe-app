@@ -10,11 +10,9 @@ export interface QuizItemSource {
   type: QuizItemType;
   question: string;
   options?: QuizItemOptionSource[];
-  // autoValidate: QuizItemAutoValidation;
   enableAutoValidation: boolean;
   autoValidationDuration: number;
   showValidationButton: boolean;
-  // autoProceed: QuizItemAutoProceeding;
   enableAutoProceeding: boolean;
   autoProceedingDuration: number;
   showProceedingButton: boolean;
@@ -31,16 +29,12 @@ export class QuizItemModel {
   public options: QuizItemOptionModel[];
   public index: number;
 
-  // public autoValidate: QuizItemAutoValidation;
   public enableAutoValidation: boolean;
   public autoValidationDuration: number;
   public showValidationButton: boolean;
-  // autoProceed: QuizItemAutoProceeding;
   public enableAutoProceeding: boolean;
   public autoProceedingDuration: number;
   public showProceedingButton: boolean;
-
-  // public autoProceed: QuizItemAutoProceeding;
 
   public createdAt: string;
   public updatedAt: string;
