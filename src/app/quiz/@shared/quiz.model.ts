@@ -41,8 +41,12 @@ export const QUIZ_DUMMY_DATA: QuizModel[] = [
         quizId: 'yrm9dY6yiDeF1',
         type: 'boolean',
         question: 'Which bear is in danger?',
-        autoValidate: 0,
-        autoProceed: 3000,
+        enableAutoValidation: false,
+        autoValidationDuration: 0,
+        showValidationButton: true,
+        enableAutoProceeding: false,
+        autoProceedingDuration: 0,
+        showProceedingButton: true,
         index: 0,
         options: [
           {
@@ -74,8 +78,12 @@ export const QUIZ_DUMMY_DATA: QuizModel[] = [
         quizId: 'yrm9dY6yiDeF1',
         type: 'boolean',
         question: 'What does a proto bear eat?',
-        autoValidate: 4000,
-        autoProceed: 2000,
+        enableAutoValidation: true,
+        autoValidationDuration: 0,
+        showValidationButton: true,
+        enableAutoProceeding: false,
+        autoProceedingDuration: 0,
+        showProceedingButton: true,
         index: 1,
         options: [
           {
@@ -107,8 +115,12 @@ export const QUIZ_DUMMY_DATA: QuizModel[] = [
         quizId: 'yrm9dY6yiDeF1',
         type: 'boolean',
         question: 'Where do proto bears live?',
-        autoValidate: 5000,
-        autoProceed: 0,
+        enableAutoValidation: true,
+        autoValidationDuration: 0,
+        showValidationButton: true,
+        enableAutoProceeding: false,
+        autoProceedingDuration: 0,
+        showProceedingButton: true,
         index: 2,
         options: [
           {
